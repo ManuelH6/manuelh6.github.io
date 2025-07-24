@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel Assogba - Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind = {
+          config: {
+            theme: {
+              extend: {
+                colors: {
+                  'leaf-primary': '#16a34a',
+                  'leaf-secondary': '#22c55e',
+                  'leaf-light': '#4ade80',
+                  'leaf-dark': '#15803d',
+                },
+                animation: {
+                  'float': 'float 6s ease-in-out infinite',
+                  'glow': 'glow 2s ease-in-out infinite alternate',
+                  'slide-up': 'slideUp 0.6s ease-out',
+                  'fade-in': 'fadeIn 0.8s ease-out',
+                }
+              }
+            }
+          }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-leaf-primary/20 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-leaf-primary">MA</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-leaf-primary transition-colors">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-leaf-primary transition-colors">About</a>
+                    <a href="#skills" class="text-gray-700 hover:text-leaf-primary transition-colors">Skills</a>
+                    <a href="#experience" class="text-gray-700 hover:text-leaf-primary transition-colors">Experience</a>
+                    <a href="#projects" class="text-gray-700 hover:text-leaf-primary transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-700 hover:text-leaf-primary transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden text-leaf-primary" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden mt-4 pb-4" id="mobile-menu">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-leaf-primary transition-colors">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-leaf-primary transition-colors">About</a>
+                <a href="#skills" class="block py-2 text-gray-700 hover:text-leaf-primary transition-colors">Skills</a>
+                <a href="#experience" class="block py-2 text-gray-700 hover:text-leaf-primary transition-colors">Experience</a>
+                <a href="#projects" class="block py-2 text-gray-700 hover:text-leaf-primary transition-colors">Projects</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-leaf-primary transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100"></div>
+        <div class="absolute inset-0 opacity-15">
+            <div class="absolute top-20 left-20 w-72 h-72 bg-leaf-primary rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-20 w-96 h-96 bg-leaf-secondary rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="animate-slide-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="text-gray-900">ASSOGBA</span>
+                    <span class="text-leaf-primary">Manuel</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-4">Full-Stack Developer</p>
+                <p class="text-lg text-leaf-dark mb-8">Web & Mobile Solutions | Cloud & DevOps</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+                    <div class="flex items-center gap-2 text-gray-600">
+                        <i class="fas fa-map-marker-alt text-leaf-primary"></i>
+                        <span>Cotonou, Bénin</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-600">
+                        <i class="fas fa-phone text-leaf-primary"></i>
+                        <span>(229) 01 6151-2491</span>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <a href="#contact" class="bg-leaf-primary hover:bg-leaf-dark text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Get In Touch
+                    </a>
+                    <a href="#projects" class="border-2 border-leaf-primary text-leaf-primary hover:bg-leaf-primary hover:text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105">
+                        View My Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">About <span class="text-leaf-primary">Me</span></h2>
+                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-leaf-primary/20 shadow-lg">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Versatile Full-Stack Developer with expertise in Laravel, JavaScript, REST APIs, and solid command of modern frontend technologies (Bootstrap, Next.js, React Native). Experienced in agile workflows, Docker deployments, AWS S3, and cPanel and UML modeling.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        I deliver reliable, well-structured solutions. Autonomous, detail-oriented, and results-driven, I integrate seamlessly into teams to drive project success. With experience spanning NGOs, corporate environments, and freelance projects, I bring adaptability and a service-oriented mindset to every challenge.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">Technical <span class="text-leaf-primary">Skills</span></h2>
+                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Programming Languages & Frameworks -->
+                <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 hover:border-leaf-primary/40 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <h3 class="text-xl font-bold text-leaf-primary mb-4">Languages & Frameworks</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-php text-2xl text-purple-600"></i>
+                            <span class="text-sm text-gray-700">PHP/Laravel</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-js-square text-2xl text-yellow-500"></i>
+                            <span class="text-sm text-gray-700">JavaScript</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-react text-2xl text-cyan-500"></i>
+                            <span class="text-sm text-gray-700">React/Next.js</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-css3-alt text-2xl text-blue-500"></i>
+                            <span class="text-sm text-gray-700">CSS/Tailwind</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fas fa-gem text-2xl text-red-500"></i>
+                            <span class="text-sm text-gray-700">Ruby on Rails</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fas fa-mobile-alt text-2xl text-leaf-primary"></i>
+                            <span class="text-sm text-gray-700">Flutter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Databases & APIs -->
+                <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 hover:border-leaf-primary/40 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <h3 class="text-xl font-bold text-leaf-primary mb-4">Databases & APIs</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fas fa-database text-2xl text-orange-500"></i>
+                            <span class="text-sm text-gray-700">MySQL</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fas fa-database text-2xl text-blue-500"></i>
+                            <span class="text-sm text-gray-700">PostgreSQL</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fas fa-exchange-alt text-2xl text-leaf-primary"></i>
+                            <span class="text-sm text-gray-700">RESTful APIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & DevOps -->
+                <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 hover:border-leaf-primary/40 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <h3 class="text-xl font-bold text-leaf-primary mb-4">Tools & DevOps</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-git-alt text-2xl text-orange-600"></i>
+                            <span class="text-sm text-gray-700">Git</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-docker text-2xl text-blue-600"></i>
+                            <span class="text-sm text-gray-700">Docker</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-aws text-2xl text-orange-500"></i>
+                            <span class="text-sm text-gray-700">AWS S3</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fas fa-server text-2xl text-leaf-primary"></i>
+                            <span class="text-sm text-gray-700">cPanel</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-wordpress text-2xl text-blue-700"></i>
+                            <span class="text-sm text-gray-700">WordPress</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 bg-white/70 rounded-lg shadow-sm">
+                            <i class="fab fa-figma text-2xl text-purple-600"></i>
+                            <span class="text-sm text-gray-700">Figma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">Professional <span class="text-leaf-primary">Experience</span></h2>
+                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <!-- Experience Timeline -->
+                <div class="relative">
+                    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-leaf-primary"></div>
+                    
+                    <!-- Grid Generator -->
+                    <div class="relative flex items-start mb-8">
+                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-white shadow-md"></div>
+                        <div class="ml-12 bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                                <h3 class="text-xl font-bold text-gray-900">Grid Generator</h3>
+                                <span class="text-leaf-dark">May 2025 – Present</span>
+                            </div>
+                            <p class="text-leaf-primary mb-2">Private Project</p>
+                            <p class="text-gray-700">Development of an interactive grid generator using CSS, Bootstrap, and Tailwind CSS, allowing users to dynamically configure rows, columns, and spacing.</p>
+                        </div>
+                    </div>
+
+                    <!-- Maison des Tortues -->
+                    <div class="relative flex items-start mb-8">
+                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-white shadow-md"></div>
+                        <div class="ml-12 bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                                <h3 class="text-xl font-bold text-gray-900">Fullstack Developer</h3>
+                                <span class="text-leaf-dark">April 2024 – May 2025</span>
+                            </div>
+                            <p class="text-leaf-primary mb-2">Maison des Tortues | Natitingou, Bénin</p>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Developed and maintained the iKnow platform (field data monitoring)</li>
+                                <li>• Integrated APIs and configured AWS S3 storage</li>
+                                <li>• Deployed via CPanel and provided technical support to partner NGOs</li>
+                                <li>• Wrote user manuals and technical documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- RBT-WAP Project -->
+                    <div class="relative flex items-start mb-8">
+                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-white shadow-md"></div>
+                        <div class="ml-12 bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                                <h3 class="text-xl font-bold text-gray-900">Fullstack Developer</h3>
+                                <span class="text-leaf-dark">June 2021 – March 2024</span>
+                            </div>
+                            <p class="text-leaf-primary mb-2">RBT-WAP Project (GIZ) | Natitingou, Bénin</p>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Designed multiple platforms: BiodivCenter, FSOA evaluation, interactive games</li>
+                                <li>• Integrated APIs (iNaturalist, REST), automatic scoring, multimedia forms</li>
+                                <li>• Created technical documentation, UX/UI design, and interactive mapping</li>
+                                <li>• Produced 360° images and videos; piloted Mavic 2 Pro drone</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- JHS Corporate -->
+                    <div class="relative flex items-start mb-8">
+                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-white shadow-md"></div>
+                        <div class="ml-12 bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                                <h3 class="text-xl font-bold text-gray-900">Web Marketing & SEO Consultant</h3>
+                                <span class="text-leaf-dark">May 2023 – July 2023</span>
+                            </div>
+                            <p class="text-leaf-primary mb-2">JHS Corporate Sarl | Cotonou, Bénin</p>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Optimized and integrated 3 news platforms using WordPress</li>
+                                <li>• Automated newsletters, integrated Google News, tracked performance via Google Analytics</li>
+                                <li>• Developed visual identity and implemented integrated advertising</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Freelance -->
+                    <div class="relative flex items-start">
+                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-white shadow-md"></div>
+                        <div class="ml-12 bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                                <h3 class="text-xl font-bold text-gray-900">Freelance Mobile Developer</h3>
+                                <span class="text-leaf-dark">April 2023 – December 2023</span>
+                            </div>
+                            <p class="text-leaf-primary mb-2">Beninfy | Remote</p>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• Developed mobile frontend based on Figma prototype</li>
+                                <li>• Integrated Google Maps API and REST API communication</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">Featured <span class="text-leaf-primary">Projects</span></h2>
+                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: iKnow Platform -->
+                <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-leaf-primary/20 hover:border-leaf-primary/40 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-br from-leaf-primary to-leaf-secondary flex items-center justify-center">
+                        <i class="fas fa-chart-line text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">iKnow Platform</h3>
+                        <p class="text-gray-700 mb-4">Field data monitoring platform for NGO partners with real-time analytics and AWS S3 integration.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">Laravel</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">AWS S3</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">MySQL</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">REST API</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-leaf-primary hover:text-leaf-dark transition-colors">
+                            <span>View Project</span>
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: BiodivCenter -->
+                <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-leaf-primary/20 hover:border-leaf-primary/40 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center">
+                        <i class="fas fa-leaf text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">BiodivCenter</h3>
+                        <p class="text-gray-700 mb-4">Species monitoring platform with interactive mapping and iNaturalist API integration for biodiversity research.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">JavaScript</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">iNaturalist API</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">Interactive Maps</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">UX/UI</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-leaf-primary hover:text-leaf-dark transition-colors">
+                            <span>View Project</span>
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Grid Generator -->
+                <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-leaf-primary/20 hover:border-leaf-primary/40 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                        <i class="fas fa-th text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Grid Generator</h3>
+                        <p class="text-gray-700 mb-4">Interactive CSS grid generator tool allowing dynamic configuration of rows, columns, and spacing with live preview.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">CSS Grid</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">Bootstrap</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">Tailwind CSS</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">JavaScript</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-leaf-primary hover:text-leaf-dark transition-colors">
+                            <span>View Project</span>
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Beninfy Mobile App -->
+                <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-leaf-primary/20 hover:border-leaf-primary/40 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-6xl text-white opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Beninfy Mobile</h3>
+                        <p class="text-gray-700 mb-4">React Native mobile application with Google Maps integration and Figma-based UI implementation.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">React Native</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">Google Maps</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">Figma</span>
+                            <span class="bg-leaf-primary/15 text-leaf-dark px-2 py-1 rounded text-xs">REST API</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-leaf-primary hover:text-leaf-dark transition-colors">
+                            <span>View Project</span>
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">Education & <span class="text-leaf-primary">Certifications</span></h2>
+                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+            </div>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- MERN Stack Certification -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-certificate text-3xl text-leaf-primary mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">MERN Stack Certification</h3>
+                            <p class="text-leaf-dark">Oak Academy | Udemy</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-2">Full Stack Web Development with MERN Stack Projects</p>
+                    <p class="text-sm text-gray-500">2022 – 2024 | Completed November 2024</p>
+                </div>
+
+                <!-- Bachelor's Degree -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-graduation-cap text-3xl text-leaf-primary mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Bachelor in Software Engineering</h3>
+                            <p class="text-leaf-dark">University of Abomey-Calavi (UAC)</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-2">IFRI | Bénin</p>
+                    <p class="text-sm text-gray-500">2015 – 2019 | Completed September 2019</p>
+                </div>
+
+                <!-- Mathematics & CS Studies -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 md:col-span-2 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-calculator text-3xl text-leaf-primary mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Mathematics and Computer Science</h3>
+                            <p class="text-leaf-dark">University of Porto-Novo | IMSP | Bénin</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">2013 – 2015</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">Get In <span class="text-leaf-primary">Touch</span></h2>
+                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-envelope text-2xl text-leaf-primary mr-4"></i>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">Email</h3>
+                                    <a href="mailto:assogbamanuel6@gmail.com" class="text-gray-600 hover:text-leaf-primary transition-colors">
+                                        assogbamanuel6@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-phone text-2xl text-leaf-primary mr-4"></i>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">Phone</h3>
+                                    <a href="tel:+22901615124911" class="text-gray-600 hover:text-leaf-primary transition-colors">
+                                        (229) 01 6151-2491
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-map-marker-alt text-2xl text-leaf-primary mr-4"></i>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">Location</h3>
+                                    <p class="text-gray-600">Cotonou, Bénin</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <i class="fab fa-linkedin text-2xl text-leaf-primary mr-4"></i>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">LinkedIn</h3>
+                                    <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/" target="_blank" class="text-gray-600 hover:text-leaf-primary transition-colors">
+                                        Connect with me
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 shadow-lg">
+                        <form class="space-y-6" id="contact-form">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-white/70 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-primary focus:border-transparent text-gray-900">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-white/70 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-primary focus:border-transparent text-gray-900">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                                <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-white/70 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-primary focus:border-transparent text-gray-900">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-white/70 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-primary focus:border-transparent text-gray-900 resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-leaf-primary hover:bg-leaf-dark text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-leaf-primary/20 py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <p class="text-gray-600">&copy; 2025 Manuel Assogba. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="mailto:assogbamanuel6@gmail.com" class="text-gray-500 hover:text-leaf-primary transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/" target="_blank" class="text-gray-500 hover:text-leaf-primary transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="tel:+22901615124911" class="text-gray-500 hover:text-leaf-primary transition-colors">
+                        <i class="fas fa-phone text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your form submission logic here
+            alert('Thank you for your message! I will get back to you soon.');
+        });
+    </script>
+</body>
+</html>
