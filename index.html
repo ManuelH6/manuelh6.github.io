@@ -1,313 +1,440 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" x-data="app()" x-init="init()">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuel Assogba - Développeur Full-Stack</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind = {
-          config: {
-            theme: {
-              extend: {
-                colors: {
-                  'leaf-primary': '#16a34a',
-                  'leaf-secondary': '#22c55e',
-                  'leaf-light': '#4ade80',
-                  'leaf-dark': '#15803d',
-                },
-                animation: {
-                  'float': 'float 6s ease-in-out infinite',
-                  'glow': 'glow 2s ease-in-out infinite alternate',
-                  'slide-up': 'slideUp 0.6s ease-out',
-                  'fade-in': 'fadeIn 0.8s ease-out',
-                }
-              }
-            }
-          }
-        }
-    </script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title x-text="currentLang === 'fr' ? 'Manuel Assogba - Développeur Full-Stack' : 'Manuel Assogba - Full-Stack Developer'"></title>
+    
+    <!-- Tailwind CSS -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="./src/output.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+     
+    <!-- Alpine Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
     <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .animate-slide-up { animation: slideUp 0.6s ease-out; }
-        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+        body { font-family: 'Inter', sans-serif; }
+        .smooth-scroll { scroll-behavior: smooth; }
+        .stagger-animation > * { opacity: 0; transform: translateY(20px); }
+        .stagger-animation.animate > * { opacity: 1; transform: translateY(0); transition: all 0.6s ease-out; }
+        .stagger-animation.animate > *:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-animation.animate > *:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-animation.animate > *:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-animation.animate > *:nth-child(4) { transition-delay: 0.4s; }
+        .stagger-animation.animate > *:nth-child(5) { transition-delay: 0.5s; }
+        .stagger-animation.animate > *:nth-child(6) { transition-delay: 0.6s; }
         
-        .language-toggle {
+        .hero-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
+            overflow: hidden;
         }
         
-        .language-toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
+        .hero-bg::before {
+            content: '';
             position: absolute;
-            cursor: pointer;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #374151;
-            transition: .4s;
-            border-radius: 30px;
-            border: 2px solid #16a34a;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
         }
         
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 4px;
-            bottom: 2px;
-            background-color: #16a34a;
-            transition: .4s;
-            border-radius: 50%;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
-        input:checked + .slider {
-            background-color: #374151;
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
         }
         
-        input:checked + .slider:before {
-            transform: translateX(26px);
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
         
-        .lang-label {
-            position: absolute;
-            font-size: 10px;
-            font-weight: bold;
-            color: white;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: .3s;
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+            z-index: 1000;
+            transition: width 0.3s ease;
         }
         
-        .lang-fr {
-            left: 6px;
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+        }
+
+        .lightbox-image {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 95vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* Pour les images mobiles */
+        .lightbox-image.portrait {
+            max-height: 85vh;
+            max-width: auto;
+        }
+
+        .lightbox-image.landscape {
+            max-width: 95vw;
+            max-height: auto;
         }
         
-        .lang-en {
-            right: 6px;
+        .projects-container {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        input:not(:checked) + .slider .lang-fr {
-            color: #fff;
-        }
-        
-        input:not(:checked) + .slider .lang-en {
-            color: #9ca3af;
-        }
-        
-        input:checked + .slider .lang-fr {
-            color: #9ca3af;
-        }
-        
-        input:checked + .slider .lang-en {
-            color: #fff;
+        .project-slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white overflow-x-hidden">
+
+<body class="smooth-scroll" x-cloak>
+    <!-- Progress Bar -->
+    <div class="progress-bar" x-bind:style="`width: ${scrollProgress}%`"></div>
+
+    <!-- Language Toggle -->
+    <div class="fixed top-6 right-6 z-50">
+        <button @click="toggleLanguage()" 
+                class="bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300 border border-white/20">
+            <span x-show="currentLang === 'fr'" class="flex items-center gap-2">
+                <i class="fas fa-globe"></i> EN
+            </span>
+            <span x-show="currentLang === 'en'" class="flex items-center gap-2">
+                <i class="fas fa-globe"></i> FR
+            </span>
+        </button>
+    </div>
+
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-sm z-50 border-b border-leaf-primary/20">
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300"
+         x-show="showNav" 
+         x-transition:enter="transform transition ease-in-out duration-500"
+         x-transition:enter-start="-translate-y-full"
+         x-transition:enter-end="translate-y-0">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-leaf-secondary">MA</div>
+                <div class="font-bold text-navy text-xl">Manuel Assogba</div>
+                
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-leaf-secondary transition-colors" data-translate="nav-home">Accueil</a>
-                    <a href="#about" class="hover:text-leaf-secondary transition-colors" data-translate="nav-about">À propos</a>
-                    <a href="#skills" class="hover:text-leaf-secondary transition-colors" data-translate="nav-skills">Compétences</a>
-                    <a href="#experience" class="hover:text-leaf-secondary transition-colors" data-translate="nav-experience">Expérience</a>
-                    <a href="#projects" class="hover:text-leaf-secondary transition-colors" data-translate="nav-projects">Projets</a>
-                    <a href="#contact" class="hover:text-leaf-secondary transition-colors" data-translate="nav-contact">Contact</a>
+                    <a href="#about" class="text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.about"></a>
+                    <a href="#skills" class="text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.skills"></a>
+                    <a href="#education" class="text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.education"></a>
+                    <a href="#experience" class="text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.experience"></a>
+                    <a href="#projects" class="text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.projects"></a>
+                    <a href="#contact" class="text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.contact"></a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <!-- Language Toggle -->
-                    <div class="language-toggle">
-                        <input type="checkbox" id="language-toggle">
-                        <label for="language-toggle" class="slider">
-                            <span class="lang-label lang-fr">FR</span>
-                            <span class="lang-label lang-en">EN</span>
-                        </label>
-                    </div>
-                    <button class="md:hidden text-leaf-secondary" id="mobile-menu-btn">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" @click="mobileMenuOpen = !mobileMenuOpen">
+                    <i class="fas fa-bars text-navy"></i>
+                </button>
             </div>
-            <!-- Mobile Menu -->
-            <div class="md:hidden hidden mt-4 pb-4" id="mobile-menu">
-                <a href="#home" class="block py-2 hover:text-leaf-secondary transition-colors" data-translate="nav-home">Accueil</a>
-                <a href="#about" class="block py-2 hover:text-leaf-secondary transition-colors" data-translate="nav-about">À propos</a>
-                <a href="#skills" class="block py-2 hover:text-leaf-secondary transition-colors" data-translate="nav-skills">Compétences</a>
-                <a href="#experience" class="block py-2 hover:text-leaf-secondary transition-colors" data-translate="nav-experience">Expérience</a>
-                <a href="#projects" class="block py-2 hover:text-leaf-secondary transition-colors" data-translate="nav-projects">Projets</a>
-                <a href="#contact" class="block py-2 hover:text-leaf-secondary transition-colors" data-translate="nav-contact">Contact</a>
+            
+            <!-- Mobile Navigation -->
+            <div class="md:hidden mt-4 space-y-2" x-show="mobileMenuOpen" x-collapse>
+                <a href="#about" @click="mobileMenuOpen = false" class="block text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.about"></a>
+                <a href="#skills" @click="mobileMenuOpen = false" class="block text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.skills"></a>
+                <a href="#education" @click="mobileMenuOpen = false" class="block text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.education"></a>
+                <a href="#experience" @click="mobileMenuOpen = false" class="block text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.experience"></a>
+                <a href="#projects" @click="mobileMenuOpen = false" class="block text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.projects"></a>
+                <a href="#contact" @click="mobileMenuOpen = false" class="block text-gray-custom hover:text-navy transition-colors" x-text="texts[currentLang].nav.contact"></a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-20 left-20 w-72 h-72 bg-leaf-primary rounded-full blur-3xl animate-float"></div>
-            <div class="absolute bottom-20 right-20 w-96 h-96 bg-leaf-secondary rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+    <section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-white relative">
+        <div class="container mx-auto px-6 text-center">
+            <div class="stagger-animation" x-init="setTimeout(() => $el.classList.add('animate'), 500)">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">Manuel Assogba</h1>
+                <h2 class="text-2xl md:text-3xl font-light mb-8" x-text="texts[currentLang].hero.title"></h2>
+                <p class="text-xl md:text-2xl max-w-4xl mx-auto mb-12 opacity-90" x-text="texts[currentLang].hero.subtitle"></p>
+                <a href="#about" class="inline-flex items-center gap-2 bg-white text-navy px-8 py-4 rounded-full font-semibold hover:bg-off-white transition-all duration-300 transform hover:scale-105">
+                    <span x-text="texts[currentLang].hero.cta"></span>
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
         </div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="animate-slide-up">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span class="text-white">ASSOGBA</span>
-                    <span class="text-leaf-secondary">Manuel</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-4" data-translate="hero-title">Développeur Full-Stack</p>
-                <p class="text-lg text-leaf-light mb-8" data-translate="hero-subtitle">Solutions Web & Mobile | Cloud & DevOps</p>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
-                    <div class="flex items-center gap-2 text-gray-300">
-                        <i class="fas fa-map-marker-alt text-leaf-secondary"></i>
-                        <span>Cotonou, Bénin</span>
-                    </div>
-                    <div class="flex items-center gap-2 text-gray-300">
-                        <i class="fas fa-phone text-leaf-secondary"></i>
-                        <span>(229) 01 6151-2491</span>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <a href="#contact" class="bg-leaf-primary hover:bg-leaf-dark text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105" data-translate="hero-contact">
-                        Me contacter
-                    </a>
-                    <a href="#projects" class="border-2 border-leaf-secondary text-leaf-secondary hover:bg-leaf-secondary hover:text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105" data-translate="hero-work">
-                        Voir mes projets
-                    </a>
-                </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-800">
+    <section id="about" class="py-20 bg-off-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4"><span data-translate="about-title">À propos de</span> <span class="text-leaf-secondary">moi</span></h2>
-                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-6" x-text="texts[currentLang].about.title"></h2>
+                <div class="w-24 h-1 bg-navy-light mx-auto"></div>
             </div>
+            
             <div class="max-w-4xl mx-auto">
-                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-leaf-primary/20">
-                    <p class="text-lg text-gray-300 leading-relaxed mb-6" data-translate="about-p1">
-                        Développeur Full-Stack polyvalent avec une expertise en Laravel, JavaScript, APIs REST, et une solide maîtrise des technologies frontend modernes (Bootstrap, Next.js, React Native). Expérimenté dans les workflows agiles, les déploiements Docker, AWS S3, cPanel et la modélisation UML.
-                    </p>
-                    <p class="text-lg text-gray-300 leading-relaxed" data-translate="about-p2">
-                        Je livre des solutions fiables et bien structurées. Autonome, soucieux du détail et axé sur les résultats, je m'intègre parfaitement dans les équipes pour assurer le succès des projets. Avec une expérience couvrant les ONG, les environnements d'entreprise et les projets freelance, j'apporte adaptabilité et un état d'esprit orienté service à chaque défi.
-                    </p>
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 stagger-animation" x-intersect="$el.classList.add('animate')">
+                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed" x-text="texts[currentLang].about.content"></p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-900">
+    <section id="skills" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4"><span data-translate="skills-title">Compétences</span> <span class="text-leaf-secondary">techniques</span></h2>
-                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-6" x-text="texts[currentLang].skills.title"></h2>
+                <div class="w-24 h-1 bg-navy-light mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Programming Languages & Frameworks -->
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 hover:border-leaf-secondary/40 transition-all duration-300">
-                    <h3 class="text-xl font-bold text-leaf-secondary mb-4" data-translate="skills-languages">Langages & Frameworks</h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-php text-2xl text-purple-400"></i>
-                            <span class="text-sm">PHP/Laravel</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-js-square text-2xl text-yellow-400"></i>
-                            <span class="text-sm">JavaScript</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-react text-2xl text-cyan-400"></i>
-                            <span class="text-sm">React/Next.js</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-css3-alt text-2xl text-blue-400"></i>
-                            <span class="text-sm">CSS/Tailwind</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fas fa-gem text-2xl text-red-400"></i>
-                            <span class="text-sm">Ruby on Rails</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fas fa-mobile-alt text-2xl text-leaf-secondary"></i>
-                            <span class="text-sm">Flutter</span>
-                        </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation" x-intersect="$el.classList.add('animate')">
+                <!-- Languages & Frameworks -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-navy-light text-4xl mb-6">
+                        <i class="fas fa-code"></i>
                     </div>
+                    <h3 class="text-2xl font-bold text-navy mb-4" x-text="texts[currentLang].skills.categories.languages"></h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            PHP (Laravel, PHPUnit)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            JavaScript/TypeScript
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            Next.js, React Native
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            CSS (Bootstrap, Tailwind)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            Ruby on Rails, Flutter
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Databases & APIs -->
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 hover:border-leaf-secondary/40 transition-all duration-300">
-                    <h3 class="text-xl font-bold text-leaf-secondary mb-4" data-translate="skills-databases">Bases de données & APIs</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fas fa-database text-2xl text-orange-400"></i>
-                            <span class="text-sm">MySQL</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fas fa-database text-2xl text-blue-400"></i>
-                            <span class="text-sm">PostgreSQL</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fas fa-exchange-alt text-2xl text-leaf-secondary"></i>
-                            <span class="text-sm">APIs RESTful</span>
-                        </div>
+                <!-- Database & API -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-navy-light text-4xl mb-6">
+                        <i class="fas fa-database"></i>
                     </div>
+                    <h3 class="text-2xl font-bold text-navy mb-4" x-text="texts[currentLang].skills.categories.database"></h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            MySQL, PostgreSQL
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            REST API
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            API Integration
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- Tools & DevOps -->
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 hover:border-leaf-secondary/40 transition-all duration-300">
-                    <h3 class="text-xl font-bold text-leaf-secondary mb-4" data-translate="skills-tools">Outils & DevOps</h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-git-alt text-2xl text-orange-500"></i>
-                            <span class="text-sm">Git</span>
+                <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-navy-light text-4xl mb-6">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-4" x-text="texts[currentLang].skills.categories.tools"></h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            Git, Docker
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            AWS S3, CPanel
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            VS Code, Postman
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CMS & Design -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-navy-light text-4xl mb-6">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-4" x-text="texts[currentLang].skills.categories.cms"></h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            WordPress/Elementor
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            Figma (UI/UX)
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Methodology -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-navy-light text-4xl mb-6">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-4" x-text="texts[currentLang].skills.categories.methodology"></h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            Agile, UML
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            Software Architecture
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Languages -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-navy-light text-4xl mb-6">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-4" x-text="texts[currentLang].skills.categories.spoken"></h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            <span x-text="texts[currentLang].skills.languages.french"></span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-navy-light"></i>
+                            <span x-text="texts[currentLang].skills.languages.english"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-off-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-6" x-text="texts[currentLang].education.title"></h2>
+                <div class="w-24 h-1 bg-navy-light mx-auto"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-navy-light"></div>
+                    
+                    <!-- Education Items -->
+                    <div class="space-y-12">
+                        <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
+                            <div class="absolute left-6 w-4 h-4 bg-navy-light rounded-full border-4 border-white shadow-lg"></div>
+                            <div class="bg-white rounded-2xl shadow-xl p-8">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-navy mb-2" x-text="texts[currentLang].education.items[0].title"></h3>
+                                        <p class="text-navy-light font-semibold" x-text="texts[currentLang].education.items[0].school"></p>
+                                    </div>
+                                    <span class="text-gray-custom font-medium" x-text="texts[currentLang].education.items[0].period"></span>
+                                </div>
+                                <p class="text-gray-700" x-text="texts[currentLang].education.items[0].description"></p>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-docker text-2xl text-blue-500"></i>
-                            <span class="text-sm">Docker</span>
+                        
+                        <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
+                            <div class="absolute left-6 w-4 h-4 bg-navy-light rounded-full border-4 border-white shadow-lg"></div>
+                            <div class="bg-white rounded-2xl shadow-xl p-8">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-navy mb-2" x-text="texts[currentLang].education.items[1].title"></h3>
+                                        <p class="text-navy-light font-semibold" x-text="texts[currentLang].education.items[1].school"></p>
+                                    </div>
+                                    <span class="text-gray-custom font-medium" x-text="texts[currentLang].education.items[1].period"></span>
+                                </div>
+                                <p class="text-gray-700" x-text="texts[currentLang].education.items[1].description"></p>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-aws text-2xl text-orange-400"></i>
-                            <span class="text-sm">AWS S3</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fas fa-server text-2xl text-leaf-secondary"></i>
-                            <span class="text-sm">cPanel</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-wordpress text-2xl text-blue-600"></i>
-                            <span class="text-sm">WordPress</span>
-                        </div>
-                        <div class="flex items-center gap-2 p-2 bg-gray-900/50 rounded-lg">
-                            <i class="fab fa-figma text-2xl text-purple-500"></i>
-                            <span class="text-sm">Figma</span>
+                        
+                        <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
+                            <div class="absolute left-6 w-4 h-4 bg-navy-light rounded-full border-4 border-white shadow-lg"></div>
+                            <div class="bg-white rounded-2xl shadow-xl p-8">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-navy mb-2" x-text="texts[currentLang].education.items[2].title"></h3>
+                                        <p class="text-navy-light font-semibold" x-text="texts[currentLang].education.items[2].school"></p>
+                                    </div>
+                                    <span class="text-gray-custom font-medium" x-text="texts[currentLang].education.items[2].period"></span>
+                                </div>
+                                <p class="text-gray-700" x-text="texts[currentLang].education.items[2].description"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -316,97 +443,35 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-800">
+    <section id="experience" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4"><span data-translate="experience-title">Expérience</span> <span class="text-leaf-secondary">professionnelle</span></h2>
-                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-6" x-text="texts[currentLang].experience.title"></h2>
+                <div class="w-24 h-1 bg-navy-light mx-auto"></div>
             </div>
+            
             <div class="max-w-4xl mx-auto">
-                <!-- Experience Timeline -->
                 <div class="relative">
-                    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-leaf-primary"></div>
+                    <!-- Timeline Line -->
+                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-navy-light"></div>
                     
-                    <!-- Grid Generator -->
-                    <div class="relative flex items-start mb-8">
-                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-gray-800"></div>
-                        <div class="ml-12 bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                                <h3 class="text-xl font-bold text-white">Générateur de Grilles</h3>
-                                <span class="text-leaf-light" data-translate="exp1-date">Mai 2025 – Présent</span>
+                    <!-- Experience Items -->
+                    <div class="space-y-12">
+                        <template x-for="(item, index) in texts[currentLang].experience.items" :key="index">
+                            <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
+                                <div class="absolute left-6 w-4 h-4 bg-navy-light rounded-full border-4 border-white shadow-lg"></div>
+                                <div class="bg-white rounded-2xl shadow-xl p-8">
+                                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                                        <div>
+                                            <h3 class="text-2xl font-bold text-navy mb-2" x-text="item.position"></h3>
+                                            <p class="text-navy-light font-semibold" x-text="item.company"></p>
+                                        </div>
+                                        <span class="text-gray-custom font-medium" x-text="item.period"></span>
+                                    </div>
+                                    <p class="text-gray-700" x-text="item.description"></p>
+                                </div>
                             </div>
-                            <p class="text-leaf-secondary mb-2" data-translate="exp1-company">Projet Personnel</p>
-                            <p class="text-gray-300" data-translate="exp1-desc">Développement d'un générateur de grilles interactif utilisant CSS, Bootstrap et Tailwind CSS, permettant aux utilisateurs de configurer dynamiquement les lignes, colonnes et espacements.</p>
-                        </div>
-                    </div>
-
-                    <!-- Maison des Tortues -->
-                    <div class="relative flex items-start mb-8">
-                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-gray-800"></div>
-                        <div class="ml-12 bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                                <h3 class="text-xl font-bold text-white" data-translate="exp2-title">Développeur Fullstack</h3>
-                                <span class="text-leaf-light" data-translate="exp2-date">Avril 2024 – Mai 2025</span>
-                            </div>
-                            <p class="text-leaf-secondary mb-2">Maison des Tortues | Natitingou, Bénin</p>
-                            <ul class="text-gray-300 space-y-1">
-                                <li data-translate="exp2-item1">• Développement et maintenance de la plateforme iKnow (surveillance des données de terrain)</li>
-                                <li data-translate="exp2-item2">• Intégration d'APIs et configuration du stockage AWS S3</li>
-                                <li data-translate="exp2-item3">• Déploiement via CPanel et support technique aux ONG partenaires</li>
-                                <li data-translate="exp2-item4">• Rédaction de manuels utilisateur et documentation technique</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- RBT-WAP Project -->
-                    <div class="relative flex items-start mb-8">
-                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-gray-800"></div>
-                        <div class="ml-12 bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                                <h3 class="text-xl font-bold text-white" data-translate="exp3-title">Développeur Fullstack</h3>
-                                <span class="text-leaf-light" data-translate="exp3-date">Juin 2021 – Mars 2024</span>
-                            </div>
-                            <p class="text-leaf-secondary mb-2">Projet RBT-WAP (GIZ) | Natitingou, Bénin</p>
-                            <ul class="text-gray-300 space-y-1">
-                                <li data-translate="exp3-item1">• Conception de plusieurs plateformes : BiodivCenter, évaluation FSOA, jeux interactifs</li>
-                                <li data-translate="exp3-item2">• Intégration d'APIs (iNaturalist, REST), notation automatique, formulaires multimédias</li>
-                                <li data-translate="exp3-item3">• Création de documentation technique, design UX/UI et cartographie interactive</li>
-                                <li data-translate="exp3-item4">• Production d'images et vidéos 360° ; pilotage de drone Mavic 2 Pro</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- JHS Corporate -->
-                    <div class="relative flex items-start mb-8">
-                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-gray-800"></div>
-                        <div class="ml-12 bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                                <h3 class="text-xl font-bold text-white" data-translate="exp4-title">Consultant Web Marketing & SEO</h3>
-                                <span class="text-leaf-light" data-translate="exp4-date">Mai 2023 – Juillet 2023</span>
-                            </div>
-                            <p class="text-leaf-secondary mb-2">JHS Corporate Sarl | Cotonou, Bénin</p>
-                            <ul class="text-gray-300 space-y-1">
-                                <li data-translate="exp4-item1">• Optimisation et intégration de 3 plateformes d'actualités utilisant WordPress</li>
-                                <li data-translate="exp4-item2">• Automatisation des newsletters, intégration Google News, suivi des performances via Google Analytics</li>
-                                <li data-translate="exp4-item3">• Développement de l'identité visuelle et mise en place de publicité intégrée</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Freelance -->
-                    <div class="relative flex items-start">
-                        <div class="absolute left-2 w-4 h-4 bg-leaf-secondary rounded-full border-4 border-gray-800"></div>
-                        <div class="ml-12 bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                                <h3 class="text-xl font-bold text-white" data-translate="exp5-title">Développeur Mobile Freelance</h3>
-                                <span class="text-leaf-light" data-translate="exp5-date">Avril 2023 – Décembre 2023</span>
-                            </div>
-                            <p class="text-leaf-secondary mb-2">Beninfy | À distance</p>
-                            <ul class="text-gray-300 space-y-1">
-                                <li data-translate="exp5-item1">• Développement du frontend mobile basé sur un prototype Figma</li>
-                                <li data-translate="exp5-item2">• Intégration de l'API Google Maps et communication avec l'API REST</li>
-                            </ul>
-                        </div>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -414,230 +479,212 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4"><span data-translate="projects-title">Projets</span> <span class="text-leaf-secondary">phares</span></h2>
-                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1: iKnow Platform -->
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-leaf-primary/20 hover:border-leaf-secondary/40 transition-all duration-300 transform hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-leaf-primary to-leaf-secondary flex items-center justify-center">
-                        <i class="fas fa-chart-line text-6xl text-white opacity-80"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Plateforme iKnow</h3>
-                        <p class="text-gray-300 mb-4" data-translate="project1-desc">Plateforme de surveillance des données de terrain pour les ONG partenaires avec analyses en temps réel et intégration AWS S3.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">Laravel</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">AWS S3</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">MySQL</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">API REST</span>
-                        </div>
-                        <a href="https://maisondestortues.org/nos-solutions/iknow/" class="inline-flex items-center text-leaf-secondary hover:text-leaf-light transition-colors">
-                            <span data-translate="view-project">Voir le projet</span>
-                            <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2: BiodivCenter -->
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-leaf-primary/20 hover:border-leaf-secondary/40 transition-all duration-300 transform hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center">
-                        <i class="fas fa-leaf text-6xl text-white opacity-80"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">BiodivCenter</h3>
-                        <p class="text-gray-300 mb-4" data-translate="project2-desc">Plateforme de surveillance des espèces avec cartographie interactive et intégration de l'API iNaturalist pour la recherche sur la biodiversité.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">JavaScript</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">API iNaturalist</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">Cartes Interactives</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">UX/UI</span>
-                        </div>
-                        <a href="https://biodivcenter.com" class="inline-flex items-center text-leaf-secondary hover:text-leaf-light transition-colors">
-                            <span data-translate="view-project">Voir le projet</span>
-                            <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3: Grid Generator -->
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-leaf-primary/20 hover:border-leaf-secondary/40 transition-all duration-300 transform hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
-                        <i class="fas fa-th text-6xl text-white opacity-80"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Générateur de Grilles</h3>
-                        <p class="text-gray-300 mb-4" data-translate="project3-desc">Outil générateur de grilles CSS interactif permettant la configuration dynamique des lignes, colonnes et espacements avec aperçu en direct.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">CSS Grid</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">Bootstrap</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">Tailwind CSS</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">JavaScript</span>
-                        </div>
-                        <a href="https://grid-generator.example.com" class="inline-flex items-center text-leaf-secondary hover:text-leaf-light transition-colors">
-                            <span data-translate="view-project">Voir le projet</span>
-                            <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 4: Beninfy Mobile App -->
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-leaf-primary/20 hover:border-leaf-secondary/40 transition-all duration-300 transform hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
-                        <i class="fas fa-mobile-alt text-6xl text-white opacity-80"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Beninfy Mobile</h3>
-                        <p class="text-gray-300 mb-4" data-translate="project4-desc">Application mobile React Native avec intégration Google Maps et implémentation d'interface utilisateur basée sur Figma.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">React Native</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">Google Maps</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">Figma</span>
-                            <span class="bg-leaf-primary/20 text-leaf-light px-2 py-1 rounded text-xs">API REST</span>
-                        </div>
-                        <a href="https://beninfy-mobile.example.com" class="inline-flex items-center text-leaf-secondary hover:text-leaf-light transition-colors">
-                            <span data-translate="view-project">Voir le projet</span>
-                            <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <section id="projects" class="min-h-screen bg-navy text-white relative overflow-hidden">
+        <div class="text-center py-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6" x-text="texts[currentLang].projects.title"></h2>
+            <div class="w-24 h-1 bg-white mx-auto mb-8"></div>
+            <p class="text-xl opacity-90" x-text="texts[currentLang].projects.subtitle"></p>
         </div>
+        
+        <!-- Projects Navigation -->
+        <div class="fixed left-1/2 bottom-10 transform -translate-x-1/2 z-30 flex space-x-2">
+            <template x-for="(project, index) in projects" :key="index">
+                <button @click="currentProject = index" 
+                        class="w-3 h-3 rounded-full transition-all duration-300"
+                        :class="currentProject === index ? 'bg-white' : 'bg-white/30'">
+                </button>
+            </template>
+        </div>
+        
+        <!-- Projects Container -->
+        <div class="projects-container" :style="`transform: translateX(-${currentProject * 100}vw)`">
+            <template x-for="(project, index) in projects" :key="index">
+                <div class="project-slide">
+                    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                        <!-- Left Column - Content -->
+                        <div class="space-y-8">
+                            <h3 class="text-3xl md:text-4xl font-bold" x-text="project[currentLang].title"></h3>
+                            <p class="text-xl opacity-90 leading-relaxed" x-text="project[currentLang].description"></p>
+                            <div class="flex flex-wrap gap-3">
+                                <template x-for="tech in project.tech" :key="tech">
+                                    <span class="bg-white/10 px-4 py-2 rounded-full text-sm font-medium" x-text="tech"></span>
+                                </template>
+                            </div>
+                            <div class="flex gap-4" x-show="project.links.github || project.links.demo">
+                                <a x-show="project.links.github" :href="project.links.github" 
+                                   class="inline-flex items-center gap-2 bg-white text-navy px-6 py-3 rounded-full font-semibold hover:bg-off-white transition-all duration-300">
+                                    <i class="fab fa-github"></i>
+                                    <span x-text="texts[currentLang].projects.viewCode"></span>
+                                </a>
+                                <a x-show="project.links.demo" :href="project.links.demo"
+                                   class="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-navy transition-all duration-300">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span x-text="texts[currentLang].projects.viewDemo"></span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column - Images -->
+                        <div class="space-y-4">
+                            <div class="relative group cursor-pointer" @click="openLightbox(project.images[0])">
+                                <img :src="project.images[0]" :alt="project[currentLang].title" 
+                                     class="w-full h-64 object-cover rounded-2xl shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex items-center justify-center">
+                                    <i class="fas fa-expand text-white text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="relative group cursor-pointer" @click="openLightbox(project.images[1])">
+                                    <img :src="project.images[1]" :alt="project[currentLang].title" 
+                                         class="w-full h-32 object-cover rounded-xl shadow-xl transition-transform duration-300 group-hover:scale-105">
+                                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-expand text-white text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="relative group cursor-pointer" @click="openLightbox(project.images[2])">
+                                    <img :src="project.images[2]" :alt="project[currentLang].title" 
+                                         class="w-full h-32 object-cover rounded-xl shadow-xl transition-transform duration-300 group-hover:scale-105">
+                                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-expand text-white text-xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button @click="previousProject()" 
+                class="fixed left-6 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-4 rounded-full transition-all duration-300">
+            <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <button @click="nextProject()" 
+                class="fixed right-6 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-4 rounded-full transition-all duration-300">
+            <i class="fas fa-chevron-right text-xl"></i>
+        </button>
     </section>
 
-    <!-- Education Section -->
-    <section class="py-20 bg-gray-800">
+    <!-- Soft Skills Section -->
+    <section class="py-20 bg-off-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4"><span data-translate="education-title">Formation &</span> <span class="text-leaf-secondary">certifications</span></h2>
-                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-6" x-text="texts[currentLang].softSkills.title"></h2>
+                <div class="w-24 h-1 bg-navy-light mx-auto"></div>
             </div>
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- MERN Stack Certification -->
-                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-certificate text-3xl text-leaf-secondary mr-4"></i>
-                        <div>
-                            <h3 class="text-xl font-bold text-white" data-translate="cert1-title">Certification MERN Stack</h3>
-                            <p class="text-leaf-light">Oak Academy | Udemy</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation" x-intersect="$el.classList.add('animate')">
+                <template x-for="skill in texts[currentLang].softSkills.items" :key="skill">
+                    <div class="bg-white rounded-2xl shadow-xl p-8 text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="text-navy-light text-4xl mb-4">
+                            <i class="fas fa-star"></i>
                         </div>
+                        <h3 class="text-xl font-semibold text-navy" x-text="skill"></h3>
                     </div>
-                    <p class="text-gray-300 mb-2" data-translate="cert1-desc">Développement Web Full Stack avec projets MERN Stack</p>
-                    <p class="text-sm text-gray-400" data-translate="cert1-date">2022 – 2024 | Terminé en novembre 2024</p>
-                </div>
-
-                <!-- Bachelor's Degree -->
-                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-graduation-cap text-3xl text-leaf-secondary mr-4"></i>
-                        <div>
-                            <h3 class="text-xl font-bold text-white" data-translate="degree1-title">Licence en Génie Logiciel</h3>
-                            <p class="text-leaf-light">Université d'Abomey-Calavi (UAC)</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-2">IFRI | Bénin</p>
-                    <p class="text-sm text-gray-400" data-translate="degree1-date">2015 – 2019 | Terminé en septembre 2019</p>
-                </div>
-
-                <!-- Mathematics & CS Studies -->
-                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20 md:col-span-2">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-calculator text-3xl text-leaf-secondary mr-4"></i>
-                        <div>
-                            <h3 class="text-xl font-bold text-white" data-translate="degree2-title">Mathématiques et Informatique</h3>
-                            <p class="text-leaf-light">Université de Porto-Novo | IMSP | Bénin</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-400">2013 – 2015</p>
-                </div>
+                </template>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900">
+    <section id="contact" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4"><span data-translate="contact-title">Prendre</span> <span class="text-leaf-secondary">contact</span></h2>
-                <div class="w-24 h-1 bg-leaf-primary mx-auto"></div>
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-6" x-text="texts[currentLang].contact.title"></h2>
+                <div class="w-24 h-1 bg-navy-light mx-auto"></div>
             </div>
+            
             <div class="max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Contact Info -->
-                    <div class="space-y-6">
-                        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex items-center mb-4">
-                                <i class="fas fa-envelope text-2xl text-leaf-secondary mr-4"></i>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white" data-translate="contact-email">Email</h3>
-                                    <a href="mailto:assogbamanuel6@gmail.com" class="text-gray-300 hover:text-leaf-secondary transition-colors">
-                                        assogbamanuel6@gmail.com
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex items-center mb-4">
-                                <i class="fas fa-phone text-2xl text-leaf-secondary mr-4"></i>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white" data-translate="contact-phone">Téléphone</h3>
-                                    <a href="tel:+22901615124911" class="text-gray-300 hover:text-leaf-secondary transition-colors">
-                                        (229) 01 6151-2491
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex items-center mb-4">
-                                <i class="fas fa-map-marker-alt text-2xl text-leaf-secondary mr-4"></i>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white" data-translate="contact-location">Localisation</h3>
-                                    <p class="text-gray-300">Cotonou, Bénin</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                            <div class="flex items-center mb-4">
-                                <i class="fab fa-linkedin text-2xl text-leaf-secondary mr-4"></i>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">LinkedIn</h3>
-                                    <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/" target="_blank" class="text-gray-300 hover:text-leaf-secondary transition-colors" data-translate="contact-linkedin">
-                                        Me connecter
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="grid md:grid-cols-2 gap-12">
                     <!-- Contact Form -->
-                    <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-leaf-primary/20">
-                        <form class="space-y-6" id="contact-form">
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-navy mb-6" x-text="texts[currentLang].contact.formTitle"></h3>
+                        <form @submit.prevent="submitForm()" class="space-y-6">
                             <div>
-                                <label for="name" class="block text-sm font-medium text-gray-300 mb-2" data-translate="form-name">Nom</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-leaf-secondary focus:border-transparent text-white">
+                                <label class="block text-gray-700 font-semibold mb-2" x-text="texts[currentLang].contact.form.name"></label>
+                                <input type="text" x-model="form.name" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-light focus:border-transparent transition-all duration-300"
+                                       :class="{'border-red-500': errors.name}"
+                                       :placeholder="texts[currentLang].contact.form.namePlaceholder">
+                                <p x-show="errors.name" class="text-red-500 text-sm mt-1" x-text="errors.name"></p>
                             </div>
+                            
                             <div>
-                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2" data-translate="form-email">Email</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-leaf-secondary focus:border-transparent text-white">
+                                <label class="block text-gray-700 font-semibold mb-2" x-text="texts[currentLang].contact.form.email"></label>
+                                <input type="email" x-model="form.email" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-light focus:border-transparent transition-all duration-300"
+                                       :class="{'border-red-500': errors.email}"
+                                       :placeholder="texts[currentLang].contact.form.emailPlaceholder">
+                                <p x-show="errors.email" class="text-red-500 text-sm mt-1" x-text="errors.email"></p>
                             </div>
+                            
                             <div>
-                                <label for="subject" class="block text-sm font-medium text-gray-300 mb-2" data-translate="form-subject">Sujet</label>
-                                <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-leaf-secondary focus:border-transparent text-white">
+                                <label class="block text-gray-700 font-semibold mb-2" x-text="texts[currentLang].contact.form.message"></label>
+                                <textarea x-model="form.message" rows="5" required
+                                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-light focus:border-transparent transition-all duration-300 resize-none"
+                                          :class="{'border-red-500': errors.message}"
+                                          :placeholder="texts[currentLang].contact.form.messagePlaceholder"></textarea>
+                                <p x-show="errors.message" class="text-red-500 text-sm mt-1" x-text="errors.message"></p>
                             </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-300 mb-2" data-translate="form-message">Message</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-leaf-secondary focus:border-transparent text-white resize-none"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-leaf-primary hover:bg-leaf-dark text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105" data-translate="form-submit">
-                                Envoyer le message
+                            
+                            <button type="submit" :disabled="isSubmitting"
+                                    class="w-full bg-navy hover:bg-navy-light text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                                <span x-show="!isSubmitting" x-text="texts[currentLang].contact.form.submit"></span>
+                                <span x-show="isSubmitting" class="flex items-center justify-center gap-2">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <span x-text="texts[currentLang].contact.form.sending"></span>
+                                </span>
                             </button>
+                            
+                            <div x-show="submitMessage" class="text-center p-4 rounded-lg"
+                                 :class="submitSuccess ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'">
+                                <p x-text="submitMessage"></p>
+                            </div>
                         </form>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div class="bg-white rounded-2xl shadow-xl p-8">
+                            <h3 class="text-2xl font-bold text-navy mb-6" x-text="texts[currentLang].contact.infoTitle"></h3>
+                            <div class="space-y-6">
+                                <a href="mailto:manuel.assogba@example.com" class="flex items-center gap-4 text-gray-700 hover:text-navy transition-colors">
+                                    <div class="w-12 h-12 bg-navy-light/10 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-envelope text-navy-light"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">Email</p>
+                                        <p>assogbamanuel6@gmail.com</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- <a href="https://github.com/manuelassogba" target="_blank" class="flex items-center gap-4 text-gray-700 hover:text-navy transition-colors">
+                                    <div class="w-12 h-12 bg-navy-light/10 rounded-full flex items-center justify-center">
+                                        <i class="fab fa-github text-navy-light"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">GitHub</p>
+                                        <p>@manuelassogba</p>
+                                    </div>
+                                </a> -->
+                                
+                                <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/" target="_blank" class="flex items-center gap-4 text-gray-700 hover:text-navy transition-colors">
+                                    <div class="w-12 h-12 bg-navy-light/10 rounded-full flex items-center justify-center">
+                                        <i class="fab fa-linkedin text-navy-light"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">LinkedIn</p>
+                                        <p>Manuel Assogba</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-navy text-white rounded-2xl p-8">
+                            <h4 class="text-xl font-bold mb-4" x-text="texts[currentLang].contact.availability.title"></h4>
+                            <p class="opacity-90" x-text="texts[currentLang].contact.availability.text"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -645,322 +692,36 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 border-t border-leaf-primary/20 py-8">
+    <footer class="bg-navy text-white py-12">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-center md:text-left mb-4 md:mb-0">
-                    <p class="text-gray-300" data-translate="footer-copyright">&copy; 2025 Manuel Assogba. Tous droits réservés.</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="mailto:assogbamanuel6@gmail.com" class="text-gray-400 hover:text-leaf-secondary transition-colors">
-                        <i class="fas fa-envelope text-xl"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/" target="_blank" class="text-gray-400 hover:text-leaf-secondary transition-colors">
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
-                    <a href="tel:+22901615124911" class="text-gray-400 hover:text-leaf-secondary transition-colors">
-                        <i class="fas fa-phone text-xl"></i>
-                    </a>
-                </div>
+            <div class="text-center">
+                <p class="text-lg mb-4">Manuel Assogba - <span x-text="texts[currentLang].hero.title"></span></p>
+                <p class="opacity-70" x-text="texts[currentLang].footer.copyright"></p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Translations object
-        const translations = {
-            fr: {
-                // Navigation
-                'nav-home': 'Accueil',
-                'nav-about': 'À propos',
-                'nav-skills': 'Compétences',
-                'nav-experience': 'Expérience',
-                'nav-projects': 'Projets',
-                'nav-contact': 'Contact',
-                
-                // Hero section
-                'hero-title': 'Développeur Full-Stack',
-                'hero-subtitle': 'Solutions Web & Mobile | Cloud & DevOps',
-                'hero-contact': 'Me contacter',
-                'hero-work': 'Voir mes projets',
-                
-                // About section
-                'about-title': 'À propos de',
-                'about-p1': 'Développeur Full-Stack polyvalent avec une expertise en Laravel, JavaScript, APIs REST, et une solide maîtrise des technologies frontend modernes (Bootstrap, Next.js, React Native). Expérimenté dans les workflows agiles, les déploiements Docker, AWS S3, cPanel et la modélisation UML.',
-                'about-p2': 'Je livre des solutions fiables et bien structurées. Autonome, soucieux du détail et axé sur les résultats, je m\'intègre parfaitement dans les équipes pour assurer le succès des projets. Avec une expérience couvrant les ONG, les environnements d\'entreprise et les projets freelance, j\'apporte adaptabilité et un état d\'esprit orienté service à chaque défi.',
-                
-                // Skills section
-                'skills-title': 'Compétences',
-                'skills-languages': 'Langages & Frameworks',
-                'skills-databases': 'Bases de données & APIs',
-                'skills-tools': 'Outils & DevOps',
-                
-                // Experience section
-                'experience-title': 'Expérience',
-                'exp1-date': 'Mai 2025 – Présent',
-                'exp1-company': 'Projet Personnel',
-                'exp1-desc': 'Développement d\'un générateur de grilles interactif utilisant CSS, Bootstrap et Tailwind CSS, permettant aux utilisateurs de configurer dynamiquement les lignes, colonnes et espacements.',
-                'exp2-title': 'Développeur Fullstack',
-                'exp2-date': 'Avril 2024 – Mai 2025',
-                'exp2-item1': '• Développement et maintenance de la plateforme iKnow (surveillance des données de terrain)',
-                'exp2-item2': '• Intégration d\'APIs et configuration du stockage AWS S3',
-                'exp2-item3': '• Déploiement via CPanel et support technique aux ONG partenaires',
-                'exp2-item4': '• Rédaction de manuels utilisateur et documentation technique',
-                'exp3-title': 'Développeur Fullstack',
-                'exp3-date': 'Juin 2021 – Mars 2024',
-                'exp3-item1': '• Conception de plusieurs plateformes : BiodivCenter, évaluation FSOA, jeux interactifs',
-                'exp3-item2': '• Intégration d\'APIs (iNaturalist, REST), notation automatique, formulaires multimédias',
-                'exp3-item3': '• Création de documentation technique, design UX/UI et cartographie interactive',
-                'exp3-item4': '• Production d\'images et vidéos 360° ; pilotage de drone Mavic 2 Pro',
-                'exp4-title': 'Consultant Web Marketing & SEO',
-                'exp4-date': 'Mai 2023 – Juillet 2023',
-                'exp4-item1': '• Optimisation et intégration de 3 plateformes d\'actualités utilisant WordPress',
-                'exp4-item2': '• Automatisation des newsletters, intégration Google News, suivi des performances via Google Analytics',
-                'exp4-item3': '• Développement de l\'identité visuelle et mise en place de publicité intégrée',
-                'exp5-title': 'Développeur Mobile Freelance',
-                'exp5-date': 'Avril 2023 – Décembre 2023',
-                'exp5-item1': '• Développement du frontend mobile basé sur un prototype Figma',
-                'exp5-item2': '• Intégration de l\'API Google Maps et communication avec l\'API REST',
-                
-                // Projects section
-                'projects-title': 'Projets',
-                'project1-desc': 'Plateforme de surveillance des données de terrain pour les ONG partenaires avec analyses en temps réel et intégration AWS S3.',
-                'project2-desc': 'Plateforme de surveillance des espèces avec cartographie interactive et intégration de l\'API iNaturalist pour la recherche sur la biodiversité.',
-                'project3-desc': 'Outil générateur de grilles CSS interactif permettant la configuration dynamique des lignes, colonnes et espacements avec aperçu en direct.',
-                'project4-desc': 'Application mobile React Native avec intégration Google Maps et implémentation d\'interface utilisateur basée sur Figma.',
-                'view-project': 'Voir le projet',
-                
-                // Education section
-                'education-title': 'Formation &',
-                'cert1-title': 'Certification MERN Stack',
-                'cert1-desc': 'Développement Web Full Stack avec projets MERN Stack',
-                'cert1-date': '2022 – 2024 | Terminé en novembre 2024',
-                'degree1-title': 'Licence en Génie Logiciel',
-                'degree1-date': '2015 – 2019 | Terminé en septembre 2019',
-                'degree2-title': 'Mathématiques et Informatique',
-                
-                // Contact section
-                'contact-title': 'Prendre',
-                'contact-email': 'Email',
-                'contact-phone': 'Téléphone',
-                'contact-location': 'Localisation',
-                'contact-linkedin': 'Me connecter',
-                'form-name': 'Nom',
-                'form-email': 'Email',
-                'form-subject': 'Sujet',
-                'form-message': 'Message',
-                'form-submit': 'Envoyer le message',
-                
-                // Footer
-                'footer-copyright': '© 2025 Manuel Assogba. Tous droits réservés.'
-            },
-            en: {
-                // Navigation
-                'nav-home': 'Home',
-                'nav-about': 'About',
-                'nav-skills': 'Skills',
-                'nav-experience': 'Experience',
-                'nav-projects': 'Projects',
-                'nav-contact': 'Contact',
-                
-                // Hero section
-                'hero-title': 'Full-Stack Developer',
-                'hero-subtitle': 'Web & Mobile Solutions | Cloud & DevOps',
-                'hero-contact': 'Get In Touch',
-                'hero-work': 'View My Work',
-                
-                // About section
-                'about-title': 'About',
-                'about-p1': 'Versatile Full-Stack Developer with expertise in Laravel, JavaScript, REST APIs, and solid command of modern frontend technologies (Bootstrap, Next.js, React Native). Experienced in agile workflows, Docker deployments, AWS S3, and cPanel and UML modeling.',
-                'about-p2': 'I deliver reliable, well-structured solutions. Autonomous, detail-oriented, and results-driven, I integrate seamlessly into teams to drive project success. With experience spanning NGOs, corporate environments, and freelance projects, I bring adaptability and a service-oriented mindset to every challenge.',
-                
-                // Skills section
-                'skills-title': 'Technical',
-                'skills-languages': 'Languages & Frameworks',
-                'skills-databases': 'Databases & APIs',
-                'skills-tools': 'Tools & DevOps',
-                
-                // Experience section
-                'experience-title': 'Professional',
-                'exp1-date': 'May 2025 – Present',
-                'exp1-company': 'Private Project',
-                'exp1-desc': 'Development of an interactive grid generator using CSS, Bootstrap, and Tailwind CSS, allowing users to dynamically configure rows, columns, and spacing.',
-                'exp2-title': 'Fullstack Developer',
-                'exp2-date': 'April 2024 – May 2025',
-                'exp2-item1': '• Developed and maintained the iKnow platform (field data monitoring)',
-                'exp2-item2': '• Integrated APIs and configured AWS S3 storage',
-                'exp2-item3': '• Deployed via CPanel and provided technical support to partner NGOs',
-                'exp2-item4': '• Wrote user manuals and technical documentation',
-                'exp3-title': 'Fullstack Developer',
-                'exp3-date': 'June 2021 – March 2024',
-                'exp3-item1': '• Designed multiple platforms: BiodivCenter, FSOA evaluation, interactive games',
-                'exp3-item2': '• Integrated APIs (iNaturalist, REST), automatic scoring, multimedia forms',
-                'exp3-item3': '• Created technical documentation, UX/UI design, and interactive mapping',
-                'exp3-item4': '• Produced 360° images and videos; piloted Mavic 2 Pro drone',
-                'exp4-title': 'Web Marketing & SEO Consultant',
-                'exp4-date': 'May 2023 – July 2023',
-                'exp4-item1': '• Optimized and integrated 3 news platforms using WordPress',
-                'exp4-item2': '• Automated newsletters, integrated Google News, tracked performance via Google Analytics',
-                'exp4-item3': '• Developed visual identity and implemented integrated advertising',
-                'exp5-title': 'Freelance Mobile Developer',
-                'exp5-date': 'April 2023 – December 2023',
-                'exp5-item1': '• Developed mobile frontend based on Figma prototype',
-                'exp5-item2': '• Integrated Google Maps API and REST API communication',
-                
-                // Projects section
-                'projects-title': 'Featured',
-                'project1-desc': 'Field data monitoring platform for NGO partners with real-time analytics and AWS S3 integration.',
-                'project2-desc': 'Species monitoring platform with interactive mapping and iNaturalist API integration for biodiversity research.',
-                'project3-desc': 'Interactive CSS grid generator tool allowing dynamic configuration of rows, columns, and spacing with live preview.',
-                'project4-desc': 'React Native mobile application with Google Maps integration and Figma-based UI implementation.',
-                'view-project': 'View Project',
-                
-                // Education section
-                'education-title': 'Education &',
-                'cert1-title': 'MERN Stack Certification',
-                'cert1-desc': 'Full Stack Web Development with MERN Stack Projects',
-                'cert1-date': '2022 – 2024 | Completed November 2024',
-                'degree1-title': 'Bachelor in Software Engineering',
-                'degree1-date': '2015 – 2019 | Completed September 2019',
-                'degree2-title': 'Mathematics and Computer Science',
-                
-                // Contact section
-                'contact-title': 'Get In',
-                'contact-email': 'Email',
-                'contact-phone': 'Phone',
-                'contact-location': 'Location',
-                'contact-linkedin': 'Connect with me',
-                'form-name': 'Name',
-                'form-email': 'Email',
-                'form-subject': 'Subject',
-                'form-message': 'Message',
-                'form-submit': 'Send Message',
-                
-                // Footer
-                'footer-copyright': '© 2025 Manuel Assogba. All rights reserved.'
-            }
-        };
+    <!-- Back to Top Button -->
+    <button @click="scrollToTop()" 
+            x-show="showBackToTop" 
+            x-transition
+            class="fixed bottom-6 right-6 bg-navy hover:bg-navy-light text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-        // Current language
-        let currentLanguage = 'fr';
+    <!-- Lightbox -->
+    <!-- Lightbox -->
+    <div class="lightbox" :class="{ 'show': lightbox.show }" @click="closeLightbox()">
+        <button @click.stop="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full w-12 h-12 flex items-center justify-center">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="lightbox-content" @click.stop>
+            <img :src="lightbox.image" class="lightbox-image" :alt="'Project image'">
+        </div>
+    </div>
 
-        // Translation function
-        function translate(lang) {
-            const elements = document.querySelectorAll('[data-translate]');
-            elements.forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-            
-            // Update document title
-            document.title = lang === 'fr' ? 'Manuel Assogba - Développeur Full-Stack' : 'Manuel Assogba - Full-Stack Developer';
-            
-            // Update HTML lang attribute
-            document.documentElement.lang = lang;
-        }
 
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Language toggle functionality
-        const languageToggle = document.getElementById('language-toggle');
-        
-        languageToggle.addEventListener('change', () => {
-            currentLanguage = languageToggle.checked ? 'en' : 'fr';
-            translate(currentLanguage);
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-
-        // Contact form functionality
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            
-            // Create mailto link
-            const mailtoLink = `mailto:assogbamanuel6@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Reset form
-            contactForm.reset();
-            
-            // Show success message
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = currentLanguage === 'fr' ? 'Message envoyé!' : 'Message sent!';
-            submitBtn.style.backgroundColor = '#15803d';
-            
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.backgroundColor = '#16a34a';
-            }, 3000);
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('backdrop-blur-md');
-            } else {
-                nav.classList.remove('backdrop-blur-md');
-            }
-        });
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set initial language to French
-            translate('fr');
-            
-            // Add intersection observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fade-in');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all sections
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
+    <script src="assets/script.js"></script>
 </body>
-
 </html>

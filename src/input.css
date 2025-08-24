@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #1e3a8a;
+  --color-navy-light: #3b82f6;
+  --color-gray-custom: #6b7280;
+  --color-off-white: #f8fafc;
+  --font-family-inter: 'Inter', sans-serif;
+}

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel Assogba - Développeur Full-Stack | Portfolio</title>
+    <meta name="description" content="Portfolio de Manuel Assogba, développeur Full-Stack expert en Laravel, JavaScript, React et technologies modernes. Découvrez mes projets et expériences." />
+    <meta name="author" content="Manuel Assogba" />
+    <meta name="keywords" content="développeur full-stack, Laravel, JavaScript, React, portfolio, Bénin, développement web" />
+
+    <meta property="og:title" content="Manuel Assogba - Développeur Full-Stack Portfolio" />
+    <meta property="og:description" content="Portfolio professionnel de Manuel Assogba, développeur Full-Stack spécialisé en Laravel, JavaScript et technologies modernes." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/profile.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'system-ui', 'sans-serif'],
+                        'poppins': ['Poppins', 'system-ui', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        },
+                        accent: {
+                            50: '#fefce8',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309'
+                        },
+                        emerald: {
+                            50: '#ecfdf5',
+                            500: '#10b981',
+                            600: '#059669'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-left': 'slide-left 0.8s ease-out forwards',
+                        'slide-right': 'slide-right 0.8s ease-out forwards',
+                        'slide-up': 'slide-up 0.8s ease-out forwards',
+                        'fade-in': 'fade-in 0.8s ease-out forwards',
+                        'scale-in': 'scale-in 0.6s ease-out forwards',
+                        'glow': 'glow 2s ease-in-out infinite alternate'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body 
+    class="font-inter bg-gradient-to-br from-blue-50 via-white to-accent-50 overflow-x-hidden"
+    x-data="portfolioApp()"
+    x-init="init()"
+>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" 
+         :class="scrolled ? 'bg-white/90 backdrop-blur-lg shadow-xl border-b border-blue-100' : 'bg-transparent'">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <button @click="scrollToSection('hero')" 
+                            class="text-xl font-bold font-poppins bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+                        MANUEL ASSOGBA
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <template x-for="item in navItems[language]" :key="item.href">
+                            <button @click="scrollToSection(item.href.substring(1))" 
+                                    class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">
+                                <span x-text="item.label"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Language Switcher & Mobile Menu -->
+                <div class="flex items-center gap-4">
+                    <!-- Language Switcher -->
+                    <div class="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-3 py-2 border border-blue-100 shadow-sm">
+                        <i class="fas fa-globe text-blue-500"></i>
+                        <button @click="language = 'fr'" 
+                                :class="language === 'fr' ? 'bg-primary-500 text-white shadow-lg' : 'text-gray-600 hover:text-gray-800'"
+                                class="px-2 py-1 text-sm font-medium rounded-full transition-all">
+                            FR
+                        </button>
+                        <button @click="language = 'en'" 
+                                :class="language === 'en' ? 'bg-primary-500 text-white shadow-lg' : 'text-gray-600 hover:text-gray-800'"
+                                class="px-2 py-1 text-sm font-medium rounded-full transition-all">
+                            EN
+                        </button>
+                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                                class="text-gray-700 hover:text-primary-600 transition-colors duration-200">
+                            <i :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'" class="text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div x-show="mobileMenuOpen" 
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 transform scale-95"
+                 x-transition:enter-end="opacity-100 transform scale-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100 transform scale-100"
+                 x-transition:leave-end="opacity-0 transform scale-95"
+                 class="md:hidden bg-white/95 backdrop-blur-lg border border-blue-100 rounded-lg mt-2 p-4 shadow-xl">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <template x-for="item in navItems[language]" :key="item.href">
+                        <button @click="scrollToSection(item.href.substring(1)); mobileMenuOpen = false" 
+                                class="block w-full text-left px-3 py-2 text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">
+                            <span x-text="item.label"></span>
+                        </button>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Horizontal Scrollytelling -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-primary-200 to-accent-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+            <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-gradient-to-r from-accent-200 to-emerald-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-emerald-200 to-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Text Content -->
+            <div class="space-y-8">
+                <div class="space-y-4">
+                    <h1 class="text-5xl md:text-7xl font-bold font-playfair leading-tight">
+                        <span class="bg-gradient-to-r from-primary-600 via-accent-600 to-emerald-600 bg-clip-text text-transparent animate-slide-left">
+                            MANUEL
+                        </span>
+                        <br>
+                        <span class="bg-gradient-to-r from-accent-600 via-emerald-600 to-primary-600 bg-clip-text text-transparent animate-slide-right" style="animation-delay: 0.2s;">
+                            ASSOGBA
+                        </span>
+                    </h1>
+                    
+                    <h2 class="text-2xl md:text-3xl font-medium text-gray-700 animate-fade-in" style="animation-delay: 0.4s;" x-text="content[language].hero.subtitle"></h2>
+                    
+                    <p class="text-xl text-gray-600 max-w-lg animate-fade-in" style="animation-delay: 0.6s;" x-text="content[language].hero.tagline"></p>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 animate-slide-up" style="animation-delay: 0.8s;">
+                    <button @click="scrollToSection('about')" 
+                            class="px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 group">
+                        <span x-text="content[language].hero.cta"></span>
+                        <i class="fas fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                    </button>
+                    
+                    <button class="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 border border-gray-200">
+                        <i class="fas fa-download"></i>
+                        <span x-text="content[language].about.downloadCV"></span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile Image with 3D Effect -->
+            <div class="relative animate-scale-in" style="animation-delay: 1s;">
+                <div class="relative w-96 h-96 mx-auto">
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-8 -left-8 w-16 h-16 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full animate-float shadow-lg"></div>
+                    <div class="absolute -bottom-8 -right-8 w-12 h-12 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full animate-float shadow-lg" style="animation-delay: 1s;"></div>
+                    <div class="absolute top-1/2 -right-12 w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full animate-float shadow-lg" style="animation-delay: 2s;"></div>
+                    
+                    <!-- Main Image -->
+                    <div class="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-accent-500/20"></div>
+                        <img src="assets/profile.png" 
+                             alt="Manuel Assogba" 
+                             class="w-full h-full object-cover"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Diagonal Scrollytelling -->
+    <section id="about" class="py-20 px-4 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-accent-50 transform -skew-y-2 origin-top-left"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold font-playfair mb-6 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+                    x-text="content[language].about.title"
+                    x-intersect="$el.classList.add('animate-slide-up')"></h2>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-12 items-center">
+                <!-- About Text -->
+                <div class="lg:col-span-2 space-y-6">
+                    <p class="text-lg leading-relaxed text-gray-600" 
+                       x-text="content[language].about.description"
+                       x-intersect="$el.classList.add('animate-fade-in')"></p>
+                    
+                    <!-- Stats -->
+                    <div class="grid sm:grid-cols-3 gap-6 mt-8" x-intersect="$el.classList.add('animate-slide-up')">
+                        <div class="text-center p-6 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg border border-blue-100">
+                            <div class="text-3xl font-bold text-primary-600 mb-2">5+</div>
+                            <div class="text-gray-600 font-medium" x-text="language === 'fr' ? 'Années d\\'expérience' : 'Years Experience'"></div>
+                        </div>
+                        <div class="text-center p-6 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg border border-blue-100">
+                            <div class="text-3xl font-bold text-accent-600 mb-2">20+</div>
+                            <div class="text-gray-600 font-medium" x-text="language === 'fr' ? 'Projets réalisés' : 'Projects Completed'"></div>
+                        </div>
+                        <div class="text-center p-6 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg border border-blue-100">
+                            <div class="text-3xl font-bold text-emerald-600 mb-2">10+</div>
+                            <div class="text-gray-600 font-medium" x-text="language === 'fr' ? 'Technologies' : 'Technologies'"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills Preview -->
+                <div class="space-y-4" x-intersect="$el.classList.add('animate-slide-left')">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6" x-text="language === 'fr' ? 'Expertise principale' : 'Core Expertise'"></h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 p-3 bg-white/80 rounded-lg shadow-md">
+                            <i class="fab fa-laravel text-2xl text-red-500"></i>
+                            <span class="font-medium text-gray-700">Laravel & PHP</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-white/80 rounded-lg shadow-md">
+                            <i class="fab fa-js-square text-2xl text-yellow-500"></i>
+                            <span class="font-medium text-gray-700">JavaScript & TypeScript</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-white/80 rounded-lg shadow-md">
+                            <i class="fab fa-react text-2xl text-blue-500"></i>
+                            <span class="font-medium text-gray-700">React & Next.js</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-white/80 rounded-lg shadow-md">
+                            <i class="fas fa-database text-2xl text-green-500"></i>
+                            <span class="font-medium text-gray-700">MySQL & PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section - Card Masonry -->
+    <section id="skills" class="py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold font-playfair mb-6 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+                    x-text="content[language].skills.title"
+                    x-intersect="$el.classList.add('animate-slide-up')"></h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <template x-for="(category, index) in content[language].skills.categories" :key="index">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 group"
+                         x-intersect="$el.classList.add('animate-scale-in')"
+                         :style="`animation-delay: ${index * 100}ms`">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i :class="category.icon" class="text-xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800" x-text="category.title"></h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <template x-for="skill in category.skills" :key="skill">
+                                <span class="px-3 py-1 text-sm bg-blue-50 text-blue-700 rounded-full border border-blue-200 hover:bg-blue-100 transition-colors"
+                                      x-text="skill"></span>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education - Timeline Carousel -->
+    <section id="experience" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-accent-50 via-white to-emerald-50"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto">
+            <!-- Section Tabs -->
+            <div class="flex justify-center mb-16">
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-2 shadow-lg border border-blue-100">
+                    <button @click="activeTab = 'experience'" 
+                            :class="activeTab === 'experience' ? 'bg-primary-500 text-white shadow-lg' : 'text-gray-600 hover:text-gray-800'"
+                            class="px-6 py-3 rounded-lg font-semibold transition-all"
+                            x-text="content[language].experience.title"></button>
+                    <button @click="activeTab = 'education'" 
+                            :class="activeTab === 'education' ? 'bg-primary-500 text-white shadow-lg' : 'text-gray-600 hover:text-gray-800'"
+                            class="px-6 py-3 rounded-lg font-semibold transition-all"
+                            x-text="content[language].education.title"></button>
+                </div>
+            </div>
+            
+            <!-- Timeline Content -->
+            <div class="relative">
+                <!-- Experience Timeline -->
+                <div x-show="activeTab === 'experience'" 
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform translate-x-8"
+                     x-transition:enter-end="opacity-100 transform translate-x-0">
+                    <div class="space-y-8">
+                        <template x-for="(item, index) in content[language].experience.items" :key="index">
+                            <div class="relative pl-8 pb-8 group">
+                                <!-- Timeline Dot -->
+                                <div class="absolute left-0 top-6 w-4 h-4 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full shadow-lg group-hover:scale-125 transition-transform"></div>
+                                <!-- Timeline Line -->
+                                <div class="absolute left-2 top-10 w-px h-full bg-gradient-to-b from-primary-200 to-transparent"></div>
+                                
+                                <!-- Content Card -->
+                                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ml-6">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                                        <h3 class="text-xl font-semibold text-gray-800" x-text="item.title"></h3>
+                                        <span class="text-sm text-accent-600 font-medium bg-accent-50 px-3 py-1 rounded-full" x-text="item.period"></span>
+                                    </div>
+                                    <h4 class="text-primary-600 font-medium mb-3" x-text="item.company"></h4>
+                                    <p class="text-gray-600 leading-relaxed" x-text="item.description"></p>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                
+                <!-- Education Timeline -->
+                <div x-show="activeTab === 'education'" 
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform translate-x-8"
+                     x-transition:enter-end="opacity-100 transform translate-x-0">
+                    <div class="space-y-8">
+                        <template x-for="(item, index) in content[language].education.items" :key="index">
+                            <div class="relative pl-8 pb-8 group">
+                                <!-- Timeline Dot -->
+                                <div class="absolute left-0 top-6 w-4 h-4 bg-gradient-to-br from-emerald-500 to-primary-500 rounded-full shadow-lg group-hover:scale-125 transition-transform"></div>
+                                <!-- Timeline Line -->
+                                <div class="absolute left-2 top-10 w-px h-full bg-gradient-to-b from-emerald-200 to-transparent"></div>
+                                
+                                <!-- Content Card -->
+                                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ml-6">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                                        <h3 class="text-xl font-semibold text-gray-800" x-text="item.title"></h3>
+                                        <span class="text-sm text-emerald-600 font-medium bg-emerald-50 px-3 py-1 rounded-full" x-text="item.period"></span>
+                                    </div>
+                                    <h4 class="text-emerald-600 font-medium mb-3" x-text="item.company"></h4>
+                                    <p class="text-gray-600 leading-relaxed" x-text="item.description"></p>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Interactive Gallery -->
+    <section id="projects" class="py-20 px-4 bg-gradient-to-br from-blue-50 to-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold font-playfair mb-6 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+                    x-text="content[language].projects.title"
+                    x-intersect="$el.classList.add('animate-slide-up')"></h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <template x-for="(project, index) in content[language].projects.items" :key="index">
+                    <div class="group cursor-pointer"
+                         :class="project.featured ? 'md:col-span-2 lg:col-span-2' : ''"
+                         @click="selectedProject = project; showProjectModal = true"
+                         x-intersect="$el.classList.add('animate-scale-in')"
+                         :style="`animation-delay: ${index * 100}ms`">
+                        <div class="bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-blue-100 hover:shadow-2xl transform hover:-translate-y-4 transition-all duration-500">
+                            <!-- Project Header -->
+                            <div class="p-6 bg-gradient-to-br from-primary-500 to-accent-500 text-white">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-semibold mb-2 group-hover:scale-105 transition-transform" x-text="project.title"></h3>
+                                        <span class="text-sm bg-white/20 px-3 py-1 rounded-full" x-text="project.year"></span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Project Content -->
+                            <div class="p-6">
+                                <p class="text-gray-600 mb-4 leading-relaxed" x-text="project.description"></p>
+                                
+                                <div class="flex flex-wrap gap-2">
+                                    <template x-for="tech in project.technologies" :key="tech">
+                                        <span class="px-3 py-1 text-sm bg-primary-50 text-primary-700 rounded-full border border-primary-200"
+                                              x-text="tech"></span>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Modern Form -->
+    <section id="contact" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold font-playfair mb-6 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+                    x-text="content[language].contact.title"
+                    x-intersect="$el.classList.add('animate-slide-up')"></h2>
+                <p class="text-xl text-gray-600" x-text="content[language].contact.subtitle"></p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-8" x-intersect="$el.classList.add('animate-slide-left')">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-envelope text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 text-lg">Email</h3>
+                            <p class="text-gray-600">manuel.assogba@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-primary-500 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 text-lg" x-text="language === 'fr' ? 'Localisation' : 'Location'"></h3>
+                            <p class="text-gray-600">Cotonou, Bénin</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex gap-4 pt-8">
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center hover:shadow-lg transform hover:-translate-y-1 transition-all">
+                            <i class="fab fa-linkedin text-white text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center hover:shadow-lg transform hover:-translate-y-1 transition-all">
+                            <i class="fab fa-github text-white text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center hover:shadow-lg transform hover:-translate-y-1 transition-all">
+                            <i class="fab fa-twitter text-white text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div x-intersect="$el.classList.add('animate-slide-right')">
+                    <form @submit.prevent="submitForm" class="space-y-6 bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-lg border border-blue-100">
+                        <div>
+                            <input type="text" 
+                                   x-model="formData.name"
+                                   :placeholder="content[language].contact.form.name"
+                                   class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                   required>
+                        </div>
+                        <div>
+                            <input type="email" 
+                                   x-model="formData.email"
+                                   :placeholder="content[language].contact.form.email"
+                                   class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                   required>
+                        </div>
+                        <div>
+                            <textarea x-model="formData.message"
+                                      :placeholder="content[language].contact.form.message"
+                                      rows="5"
+                                      class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none transition-all"
+                                      required></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full px-6 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 group">
+                            <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
+                            <span x-text="content[language].contact.form.send"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-300" x-text="content[language].footer.copyright"></p>
+                <div class="flex gap-6">
+                    <button @click="scrollToSection('hero')" 
+                            class="text-gray-300 hover:text-white transition-colors"
+                            x-text="content[language].footer.links.home"></button>
+                    <button @click="scrollToSection('projects')" 
+                            class="text-gray-300 hover:text-white transition-colors"
+                            x-text="content[language].footer.links.projects"></button>
+                    <button @click="scrollToSection('contact')" 
+                            class="text-gray-300 hover:text-white transition-colors"
+                            x-text="content[language].footer.links.contact"></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div x-show="showProjectModal" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+         @click.self="showProjectModal = false">
+        
+        <div x-show="showProjectModal"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 transform scale-95"
+             x-transition:enter-end="opacity-100 transform scale-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100 transform scale-100"
+             x-transition:leave-end="opacity-0 transform scale-95"
+             class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            
+            <div class="p-6 bg-gradient-to-br from-primary-500 to-accent-500 text-white">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2" x-text="selectedProject?.title"></h3>
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-sm" x-text="selectedProject?.year"></span>
+                    </div>
+                    <button @click="showProjectModal = false" 
+                            class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-6">
+                <p class="text-gray-600 mb-6 leading-relaxed" x-text="selectedProject?.description"></p>
+                
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3" x-text="language === 'fr' ? 'Technologies utilisées :' : 'Technologies used:'"></h4>
+                    <div class="flex flex-wrap gap-2">
+                        <template x-for="tech in selectedProject?.technologies" :key="tech">
+                            <span class="px-3 py-1 text-sm bg-primary-50 text-primary-700 rounded-full border border-primary-200"
+                                  x-text="tech"></span>
+                        </template>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button class="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                        <i class="fab fa-github"></i>
+                        <span x-text="language === 'fr' ? 'Voir le code' : 'View Code'"></span>
+                    </button>
+                    <button class="flex-1 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span x-text="language === 'fr' ? 'Voir le projet' : 'View Project'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="assets/script.js"></script>
+</body>
+</html>
