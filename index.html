@@ -46,11 +46,18 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--navy);
-            color: var(--lightest-slate);
+            color: var(--slate);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 100px;
         }
 
         .smooth-scroll {
             scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-padding-top: 100px;
         }
 
         /* Premium Glassmorphism */
@@ -266,11 +273,36 @@
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .project-slide {
-            min-width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            gap: 1.5rem;
+        }
+
+        .bento-item {
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: auto;
+            }
+
+            .bento-item {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
         }
 
         /* Timeline Styles */
@@ -364,13 +396,13 @@
                 <h2 class="text-2xl md:text-4xl font-light mb-8 opacity-90" x-text="texts[currentLang].hero.title"></h2>
                 <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-12 text-slate leading-relaxed"
                     x-text="texts[currentLang].hero.subtitle"></p>
-                <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
                     <a href="#projects"
-                        class="glass-card px-8 py-4 font-semibold hover:text-white transition-all duration-300">
+                        class="btn-premium px-10 py-4 font-bold text-lg">
                         <span x-text="texts[currentLang].hero.cta"></span>
                     </a>
                     <a href="#contact"
-                        class="text-white hover:text-blue-accent transition-colors font-medium flex items-center gap-2">
+                        class="px-10 py-4 border border-white/20 rounded-xl text-white hover:bg-white/5 transition-all font-bold text-lg flex items-center gap-2">
                         <span x-text="texts[currentLang].nav.contact"></span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -423,12 +455,12 @@
                         </div>
                     </div>
 
-                    <div class="flex gap-4">
-                        <a :href="projects[0].links.github" class="btn-premium">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a :href="projects[0].links.github" class="btn-premium px-8 flex items-center justify-center">
                             <i class="fab fa-github mr-2"></i> Voir le Code
                         </a>
                         <a href="#projects"
-                            class="px-6 py-3 border border-slate/30 rounded-xl text-slate hover:text-white hover:border-white transition-all">
+                            class="px-8 py-3 border border-slate/30 rounded-xl text-slate hover:text-white hover:border-white transition-all flex items-center justify-center">
                             Voir plus de projets
                         </a>
                     </div>
@@ -436,15 +468,22 @@
 
                 <div class="relative group" x-intersect="$el.classList.add('animate')">
                     <!-- Premium Mockup Display -->
-                    <div
-                        class="relative z-10 glass-card p-4 transform group-hover:scale-[1.02] transition-transform duration-500">
-                        <img :src="projects[0].images[0]" class="rounded-xl shadow-2xl w-full h-auto"
-                            alt="FieldOz Preview" loading="lazy">
+                    <div class="relative z-10 glass-card p-0 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500 shadow-2xl border-white/10">
+                        <!-- Browser Header Mockup -->
+                        <div class="bg-white/5 border-b border-white/10 px-4 py-2 flex items-center gap-2">
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+                            </div>
+                            <div class="mx-auto bg-white/5 rounded px-3 py-0.5 text-[10px] text-slate/50 font-mono truncate max-w-[200px]">
+                                fieldoz.app/dashboard
+                            </div>
+                        </div>
+                        <img :src="projects[0].images[0]" class="w-full h-auto" alt="FieldOz Preview" loading="lazy">
                     </div>
-                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-blue-accent/10 rounded-full blur-3xl -z-0">
-                    </div>
-                    <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-accent/5 rounded-full blur-3xl -z-0">
-                    </div>
+                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-blue-accent/20 rounded-full blur-3xl -z-0"></div>
+                    <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-accent/10 rounded-full blur-3xl -z-0"></div>
                 </div>
             </div>
         </div>
@@ -473,7 +512,7 @@
     </section>
 
     <!-- Skills Section (Bento Grid) -->
-    <section id="skills" class="py-24 relative overflow-hidden">
+    <section id="skills" class="py-40 relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Expertise <span
@@ -483,7 +522,7 @@
 
             <div class="bento-grid stagger-animation" x-intersect="$el.classList.add('animate')">
                 <!-- Backend Master -->
-                <div class="glass-card bento-item col-span-2 row-span-2 border-l-4 border-l-blue-accent">
+                <div class="glass-card bento-item col-span-2 row-span-2 border-l-4 border-l-blue-accent flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="w-12 h-12 bg-blue-accent/10 rounded-lg flex items-center justify-center">
                             <i class="fas fa-server text-blue-accent text-2xl"></i>
@@ -505,7 +544,7 @@
                 </div>
 
                 <!-- Frontend Artist -->
-                <div class="glass-card bento-item col-span-2">
+                <div class="glass-card bento-item col-span-2 flex flex-col justify-between">
                     <div class="flex justify-between items-start">
                         <div class="space-y-2">
                             <h3 class="text-xl font-bold text-white">Frontend Artist</h3>
@@ -551,7 +590,7 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-24 bg-navy">
+    <section id="education" class="py-40 bg-navy">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" x-text="texts[currentLang].education.title">
@@ -568,7 +607,7 @@
                     <div class="space-y-12">
                         <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
                             <div
-                                class="absolute left-6 w-4 h-4 bg-blue-accent rounded-full border-4 border-navy shadow-lg">
+                                class="absolute left-6 top-8 w-4 h-4 bg-blue-accent rounded-full border-4 border-navy shadow-lg z-10">
                             </div>
                             <div class="glass-card p-8">
                                 <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
@@ -629,7 +668,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-24 bg-navy-light relative overflow-hidden">
+    <section id="experience" class="py-40 bg-navy-light relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" x-text="texts[currentLang].experience.title">
@@ -668,7 +707,7 @@
     </section>
 
     <!-- Projects Gallery -->
-    <section id="projects" class="py-24 bg-navy">
+    <section id="projects" class="py-40 bg-navy">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Sélection de <span
@@ -681,8 +720,8 @@
                 <template x-for="(project, index) in projects" :key="index">
                     <!-- Skip index 0 as it's the Featured Star -->
                     <template x-if="index > 0">
-                        <div class="glass-card overflow-hidden group">
-                            <div class="relative h-48 overflow-hidden">
+                        <div class="glass-card overflow-hidden group h-full flex flex-col">
+                            <div class="relative aspect-video overflow-hidden">
                                 <img :src="project.images[0]" :alt="project[currentLang].title"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     loading="lazy">
@@ -717,7 +756,7 @@
     </section>
 
     <!-- Soft Skills Section -->
-    <section class="py-24 bg-navy-light relative overflow-hidden">
+    <section class="py-40 bg-navy-light relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" x-text="texts[currentLang].softSkills.title">
@@ -741,10 +780,10 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20">
+    <section id="contact" class="py-40">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-6" x-text="texts[currentLang].contact.title">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" x-text="texts[currentLang].contact.title">
                 </h2>
                 <div class="w-24 h-1 bg-navy-light mx-auto"></div>
             </div>
@@ -875,9 +914,9 @@
 
 
     <!-- Sticky Action Bar -->
-    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-lg">
-        <div class="glass-card px-6 py-4 flex items-center justify-between shadow-2xl">
-            <div class="flex items-center gap-4">
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-auto px-4">
+        <div class="glass-card px-8 py-3 flex items-center gap-8 shadow-2xl backdrop-blur-xl rounded-full">
+            <div class="flex items-center gap-6">
                 <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/" target="_blank"
                     class="text-slate hover:text-blue-accent transition-colors">
                     <i class="fab fa-linkedin text-xl"></i>
@@ -886,13 +925,12 @@
                     class="text-slate hover:text-blue-accent transition-colors">
                     <i class="fab fa-github text-xl"></i>
                 </a>
-                <div class="w-px h-6 bg-white/10 mx-2"></div>
                 <a href="mailto:assogbamanuel6@gmail.com" class="text-slate hover:text-blue-accent transition-colors">
                     <i class="fas fa-envelope text-xl"></i>
                 </a>
             </div>
-
-            <a href="#contact" class="btn-premium py-2 px-6 text-sm flex items-center gap-2">
+            
+            <a href="#contact" class="btn-premium py-2 px-6 text-sm flex items-center gap-2 rounded-full">
                 <span x-text="currentLang === 'fr' ? 'Parlons-en' : 'Let\'s talk'"></span>
                 <i class="fas fa-paper-plane"></i>
             </a>
