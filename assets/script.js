@@ -255,7 +255,7 @@ function app() {
                             position: "Stagiaire",
                             company: "RAKHEM COMELI-GROUP",
                             period: "2019–2020",
-                            description: "Développement sites WordPress, hébergement Infomaniak."
+                            description: "Développement de solutions web WordPress et gestion de l'infrastructure d'hébergement."
                         }
                     ]
                 },
@@ -404,7 +404,7 @@ function app() {
                             position: "Intern",
                             company: "RAKHEM COMELI-GROUP",
                             period: "2019–2020",
-                            description: "WordPress site development, Infomaniak hosting."
+                            description: "WordPress web solutions development and hosting infrastructure management."
                         }
                     ]
                 },
