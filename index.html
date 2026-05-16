@@ -91,10 +91,11 @@
         }
 
         nav.scrolled {
-            padding: 20px 0;
-            background: rgba(10, 10, 10, 0.8);
+            padding: 16px 0;
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
         /* Hero */
@@ -104,23 +105,34 @@
             margin-bottom: 40px;
         }
 
-        /* Project Image Frame */
         .project-frame {
             position: relative;
             background: #111;
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--border);
-            transition: border-color 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .project-frame:hover {
-            border-color: var(--accent);
+        .project-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid var(--border);
+            z-index: 10;
         }
 
         .project-frame img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
         }
@@ -209,6 +221,26 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Input Styles */
+        .input-zen {
+            width: 100%;
+            background: transparent;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            padding: 16px 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-zen:focus {
+            border-color: var(--accent);
+        }
+
+        .input-zen::placeholder {
+            color: rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 
@@ -261,7 +293,7 @@
                 <div class="w-40 h-2 bg-accent"></div>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="grid lg:grid-cols-2 gap-32 items-center">
                 <div class="project-frame reveal" x-intersect="$el.classList.add('active')">
                     <img :src="projects[0].images[0]" alt="Featured Project">
                 </div>
@@ -292,13 +324,13 @@
                     <h2 class="text-5xl mb-16 tracking-tighter">L'approche<span class="text-accent">.</span></h2>
                     <p class="text-3xl leading-snug font-medium mb-24" x-text="texts[currentLang].about.content"></p>
                     
-                    <h3 class="text-xs font-black uppercase tracking-[0.4em] text-accent mb-16">Expérience & Formation</h3>
+                    <h3 class="text-sm font-black uppercase tracking-[0.4em] text-accent mb-16 border-b border-border pb-4 inline-block">Expérience & Formation</h3>
                     <div class="space-y-4">
                         <template x-for="item in texts[currentLang].experience.items">
                             <div class="timeline-item">
-                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-4 mb-4">
                                     <h4 class="text-2xl font-black tracking-tight" x-text="item.position || item.title"></h4>
-                                    <span class="text-xs font-black uppercase tracking-widest text-muted mt-2 sm:mt-1" x-text="item.period"></span>
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-muted whitespace-nowrap" x-text="item.period"></span>
                                 </div>
                                 <p class="text-accent font-bold mb-4" x-text="item.company"></p>
                                 <p class="text-muted leading-relaxed" x-text="item.description"></p>
@@ -350,9 +382,9 @@
     <!-- Project Gallery -->
     <section id="projects" class="bg-[#050505] border-t border-border">
         <div class="container">
-            <div class="mb-32 text-center reveal" x-intersect="$el.classList.add('active')">
+            <div class="mb-32 reveal" x-intersect="$el.classList.add('active')">
                 <h2 class="text-6xl lg:text-8xl mb-8 tracking-tighter">Réalisations<span class="text-accent">.</span></h2>
-                <p class="text-xl text-muted">Une sélection de solutions digitales sur mesure.</p>
+                <p class="text-xl text-muted">Solutions digitales sur mesure.</p>
             </div>
             
             <div class="project-grid">
@@ -387,28 +419,28 @@
             <div class="grid lg:grid-cols-2 gap-32 items-start">
                 <div class="reveal" x-intersect="$el.classList.add('active')">
                     <h2 class="text-7xl lg:text-8xl font-black tracking-tighter mb-12">Discutons de<br>votre projet<span class="text-accent">.</span></h2>
-                    <p class="text-xl font-medium mb-12 opacity-70">Disponible pour des missions freelance ou des collaborations ambitieuses.</p>
+                    <p class="text-xl font-medium mb-12 text-black/60">Disponible pour des missions freelance ou des collaborations ambitieuses.</p>
                     <div class="space-y-6 font-bold text-3xl tracking-tighter">
                         <a href="mailto:assogbamanuel6@gmail.com" class="block hover:text-accent transition-colors">assogbamanuel6@gmail.com</a>
-                        <p class="opacity-50">Cotonou, Bénin / Remote</p>
+                        <p class="opacity-30">Cotonou, Bénin / Remote</p>
                     </div>
                 </div>
 
-                <div class="reveal bg-white p-12 md:p-20 rounded-[2rem] shadow-sm border border-black/5" x-intersect="$el.classList.add('active')">
+                <div class="reveal bg-white p-12 md:p-20 rounded-[3rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] border border-black/5" x-intersect="$el.classList.add('active')">
                     <form @submit.prevent="submitForm()" class="space-y-12">
-                        <div class="space-y-6 border-b-2 border-black/5 focus-within:border-accent transition-colors pb-6">
-                            <label class="text-[10px] font-black uppercase tracking-[0.2em] opacity-30">Votre Nom</label>
-                            <input type="text" x-model="form.name" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/5" placeholder="John Doe">
+                        <div class="space-y-4">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Votre Nom</label>
+                            <input type="text" x-model="form.name" class="input-zen" placeholder="John Doe">
                         </div>
-                        <div class="space-y-6 border-b-2 border-black/5 focus-within:border-accent transition-colors pb-6">
-                            <label class="text-[10px] font-black uppercase tracking-[0.2em] opacity-30">Email Professionnel</label>
-                            <input type="email" x-model="form.email" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/5" placeholder="john@example.com">
+                        <div class="space-y-4">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Email Professionnel</label>
+                            <input type="email" x-model="form.email" class="input-zen" placeholder="john@example.com">
                         </div>
-                        <div class="space-y-6 border-b-2 border-black/5 focus-within:border-accent transition-colors pb-6">
-                            <label class="text-[10px] font-black uppercase tracking-[0.2em] opacity-30">Votre Message</label>
-                            <textarea x-model="form.message" rows="3" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/5" placeholder="Parlez-moi de votre besoin..."></textarea>
+                        <div class="space-y-4">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Votre Message</label>
+                            <textarea x-model="form.message" rows="3" class="input-zen" placeholder="Parlez-moi de votre besoin..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-black text-white py-8 text-xl font-black uppercase tracking-widest hover:bg-accent transition-all rounded-xl" :disabled="isSubmitting" x-text="isSubmitting ? 'Envoi...' : 'Envoyer le message'"></button>
+                        <button type="submit" class="w-full bg-black text-white py-8 text-xl font-black uppercase tracking-widest hover:bg-accent transition-all rounded-2xl shadow-2xl" :disabled="isSubmitting" x-text="isSubmitting ? 'Envoi...' : 'Envoyer le message'"></button>
                         <p x-show="submitMessage" :class="submitSuccess ? 'text-green-600' : 'text-red-600'" class="text-center font-bold mt-4" x-text="submitMessage"></p>
                     </form>
                 </div>
