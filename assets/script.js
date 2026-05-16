@@ -29,11 +29,11 @@ function app() {
             {
                 fr: {
                     title: "FieldOz",
-                    description: "Chaque projet a un impact. FieldOz permet aux ONG de raconter cet impact avec des rapports visuels et clairs, transformant leurs données en preuves concrètes pour leurs partenaires."
+                    description: "Transformez les données complexes en rapports d'impact visuels. La clarté au service du social."
                 },
                 en: {
                     title: "FieldOz",
-                    description: "Every project has an impact. FieldOz enables NGOs to showcase that impact through clear, visual reports, turning their data into tangible evidence for their partners."
+                    description: "Transform complex data into visual impact reports. Clarity serving social missions."
                 },
                 tech: ["Tailwind", "Alpine", "Laravel", "Livewire"],
                 images: [
@@ -49,11 +49,11 @@ function app() {
             {
                 fr: {
                     title: "Grid Generator",
-                    description: "Générateur de grilles CSS interactives permettant aux développeurs de créer rapidement des layouts complexes avec une interface drag-and-drop intuitive."
+                    description: "Générateur de grilles CSS avec interface drag-and-drop pour layouts complexes."
                 },
                 en: {
                     title: "Grid Generator",
-                    description: "Interactive CSS grid generator allowing developers to quickly create complex layouts with an intuitive drag-and-drop interface."
+                    description: "CSS Grid generator with drag-and-drop for complex layout prototyping."
                 },
                 tech: ["JavaScript", "TypeScript", "Tailwind CSS", "Next.js"],
                 images: [
@@ -69,11 +69,11 @@ function app() {
             {
                 fr: {
                     title: "BiodivCenter",
-                    description: "Plateforme de suivi de la biodiversité, offrant aux centres de conservation la possibilité d’enregistrer, analyser et valoriser les espèces présentes sur leurs sites pour mieux protéger les écosystèmes."
+                    description: "Monitoring de la biodiversité et valorisation des espèces pour centres de conservation."
                 },
                 en: {
                     title: "BiodivCenter",
-                    description: "Platform of biodiversity monitoring, allowing conservation centers to register, analyze, and showcase species to better protect ecosystems."
+                    description: "Biodiversity monitoring platform for tracking and protecting local species."
                 },
                 tech: ["Laravel", "Bootstrap", "MySQL/SQLite", "Leaflet.js", "Flutter", "iNaturalist API"],
                 images: [
@@ -89,7 +89,7 @@ function app() {
             {
                 fr: {
                     title: "Exam",
-                    description: "Plateforme qui offre aux apprenants une évaluation continue de leurs compétences à travers des examens gamifiés, permettant un suivi ludique et motivant de leur progression."
+                    description: "Évaluation des compétences via des examens gamifiés et ludiques."
                 },
                 en: {
                     title: "Exam",
@@ -109,7 +109,7 @@ function app() {
             {
                 fr: {
                     title: "iKnow",
-                    description: "Plateforme qui permet aux ONG partenaires de suivre et contrôler à distance leurs activités de terrain en temps réel, avec des tableaux de synthèse, cartes interactives et suivi des indicateurs des financements."
+                    description: "Suivi temps réel des activités terrain pour les ONG partenaires."
                 },
                 en: {
                     title: "iKnow",
@@ -129,7 +129,7 @@ function app() {
             {
                 fr: {
                     title: "Beninfy Mobile",
-                    description: "Application mobile de découverte culturelle du Bénin avec géolocalisation, guides interactifs et fonctionnalités de partage social."
+                    description: "Guide culturel et touristique du Bénin avec géolocalisation interactive."
                 },
                 en: {
                     title: "Beninfy Mobile",
@@ -160,13 +160,13 @@ function app() {
                     contact: "Contact"
                 },
                 hero: {
-                    title: "Concepteur de solutions digitales à fort impact",
-                    subtitle: "Je transforme les données complexes en expériences utilisateur fluides et robustes, avec une expertise avancée en Laravel et écosystèmes modernes.",
+                    title: "Solutions digitales à fort impact",
+                    subtitle: "Je conçois des expériences fluides et des architectures robustes avec Laravel & React.",
                     cta: "Découvrir mon univers"
                 },
                 about: {
                     title: "À propos de moi",
-                    content: "Développeur Full-Stack polyvalent avec expertise en Laravel, JavaScript, APIs REST, et solide maîtrise frontend (Bootstrap, Next.js, React Native). Expérimenté en workflows agiles, déploiements Docker, AWS S3, CPanel, UML. Je livre des solutions fiables, structurées, avec souci du détail. Expérience couvrant ONG, entreprises, freelance → adaptabilité + esprit orienté service."
+                    content: "Développeur Full-Stack expert Laravel & JavaScript. Je livre des solutions structurées et performantes, avec une approche orientée impact et simplicité."
                 },
                 skills: {
                     title: "Compétences",
@@ -213,7 +213,7 @@ function app() {
                             position: "FieldOz",
                             company: "Projet personnel",
                             period: "Juillet–Août 2025",
-                            description: "Développement d’une plateforme qui transforme les données des ONG en rapports visuels et clairs, permettant de raconter l’impact réel de leurs projets auprès de partenaires et financeurs."
+                            description: "Plateforme SaaS transformant les données terrain en preuves d'impact visuelles pour les bailleurs de fonds."
                         },
                         {
                             position: "Grid Generator",
@@ -231,7 +231,7 @@ function app() {
                             position: "Développeur Fullstack",
                             company: "Maison des Tortues",
                             period: "2024–2025",
-                            description: "Développement de la plateforme iKnow : API, intégration AWS S3, CPanel, documentation technique, formation utilisateurs."
+                            description: "Système de monitoring temps réel (API, AWS S3) pour la préservation de la biodiversité."
                         },
                         {
                             position: "Développeur Fullstack",

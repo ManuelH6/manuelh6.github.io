@@ -331,9 +331,9 @@
                         </div>
                     </div>
                     
-                    <div class="p-12 bg-[#111] rounded-3xl border border-border">
-                        <h3 class="text-xs font-black uppercase tracking-[0.4em] text-accent mb-8">Soft Skills</h3>
-                        <ul class="space-y-4">
+                    <div class="p-16 bg-[#111] rounded-[2rem] border border-border">
+                        <h3 class="text-xs font-black uppercase tracking-[0.4em] text-accent mb-12">Soft Skills</h3>
+                        <ul class="space-y-6">
                             <template x-for="skill in texts[currentLang].softSkills.items">
                                 <li class="flex items-center gap-4 text-sm font-bold">
                                     <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
@@ -382,33 +382,33 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="bg-white text-black">
-        <div class="container max-w-4xl">
-            <div class="grid lg:grid-cols-2 gap-24">
+    <section id="contact" class="bg-[#fafafa] text-black py-40 md:py-60">
+        <div class="container">
+            <div class="grid lg:grid-cols-2 gap-32 items-start">
                 <div class="reveal" x-intersect="$el.classList.add('active')">
-                    <h2 class="text-7xl font-black tracking-tighter mb-12">Parlons de votre projet<span class="text-accent">.</span></h2>
-                    <p class="text-xl font-medium mb-12">Disponible pour de nouvelles collaborations ambitieuses.</p>
-                    <div class="space-y-4 font-bold text-2xl tracking-tighter">
+                    <h2 class="text-7xl lg:text-8xl font-black tracking-tighter mb-12">Discutons de<br>votre projet<span class="text-accent">.</span></h2>
+                    <p class="text-xl font-medium mb-12 opacity-70">Disponible pour des missions freelance ou des collaborations ambitieuses.</p>
+                    <div class="space-y-6 font-bold text-3xl tracking-tighter">
                         <a href="mailto:assogbamanuel6@gmail.com" class="block hover:text-accent transition-colors">assogbamanuel6@gmail.com</a>
-                        <p>Cotonou, Bénin / Remote</p>
+                        <p class="opacity-50">Cotonou, Bénin / Remote</p>
                     </div>
                 </div>
 
-                <div class="reveal" x-intersect="$el.classList.add('active')">
-                    <form @submit.prevent="submitForm()" class="space-y-10">
-                        <div class="space-y-4 border-b-2 border-black/10 focus-within:border-accent transition-colors pb-4">
-                            <label class="text-[10px] font-black uppercase tracking-widest opacity-50">Votre Nom</label>
-                            <input type="text" x-model="form.name" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/10" placeholder="John Doe">
+                <div class="reveal bg-white p-12 md:p-20 rounded-[2rem] shadow-sm border border-black/5" x-intersect="$el.classList.add('active')">
+                    <form @submit.prevent="submitForm()" class="space-y-12">
+                        <div class="space-y-6 border-b-2 border-black/5 focus-within:border-accent transition-colors pb-6">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] opacity-30">Votre Nom</label>
+                            <input type="text" x-model="form.name" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/5" placeholder="John Doe">
                         </div>
-                        <div class="space-y-4 border-b-2 border-black/10 focus-within:border-accent transition-colors pb-4">
-                            <label class="text-[10px] font-black uppercase tracking-widest opacity-50">Email</label>
-                            <input type="email" x-model="form.email" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/10" placeholder="john@example.com">
+                        <div class="space-y-6 border-b-2 border-black/5 focus-within:border-accent transition-colors pb-6">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] opacity-30">Email Professionnel</label>
+                            <input type="email" x-model="form.email" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/5" placeholder="john@example.com">
                         </div>
-                        <div class="space-y-4 border-b-2 border-black/10 focus-within:border-accent transition-colors pb-4">
-                            <label class="text-[10px] font-black uppercase tracking-widest opacity-50">Message</label>
-                            <textarea x-model="form.message" rows="3" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/10" placeholder="Parlez-moi de votre besoin..."></textarea>
+                        <div class="space-y-6 border-b-2 border-black/5 focus-within:border-accent transition-colors pb-6">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] opacity-30">Votre Message</label>
+                            <textarea x-model="form.message" rows="3" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/5" placeholder="Parlez-moi de votre besoin..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-black text-white py-8 text-xl font-black uppercase tracking-widest hover:bg-accent transition-all" :disabled="isSubmitting" x-text="isSubmitting ? 'Envoi...' : 'Envoyer'"></button>
+                        <button type="submit" class="w-full bg-black text-white py-8 text-xl font-black uppercase tracking-widest hover:bg-accent transition-all rounded-xl" :disabled="isSubmitting" x-text="isSubmitting ? 'Envoi...' : 'Envoyer le message'"></button>
                         <p x-show="submitMessage" :class="submitSuccess ? 'text-green-600' : 'text-red-600'" class="text-center font-bold mt-4" x-text="submitMessage"></p>
                     </form>
                 </div>
