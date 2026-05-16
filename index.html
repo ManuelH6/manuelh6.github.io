@@ -4,20 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title
-        x-text="currentLang === 'fr' ? 'Manuel Assogba - Développeur Full-Stack' : 'Manuel Assogba - Full-Stack Developer'">
-    </title>
+    <title x-text="currentLang === 'fr' ? 'Manuel Assogba - Développeur Full-Stack' : 'Manuel Assogba - Full-Stack Developer'"></title>
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
     
     <!-- Tailwind CSS -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="./src/output.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -38,6 +35,8 @@
             --border: rgba(255, 255, 255, 0.1);
         }
 
+        [x-cloak] { display: none !important; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
@@ -57,8 +56,9 @@
 
         /* Typography */
         h1, h2, h3, h4 {
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
         }
 
         .text-muted { color: var(--muted); }
@@ -66,90 +66,19 @@
 
         /* Sections */
         section {
-            padding: 160px 0;
+            padding: 120px 0;
+        }
+
+        @media (min-width: 1024px) {
+            section { padding: 200px 0; }
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 32px;
         }
 
-        /* Clean Card Style */
-        .card-minimal {
-            background: #111;
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 12px;
-            transition: border-color 0.3s ease;
-        }
-
-        .card-minimal:hover {
-            border-color: var(--accent);
-        }
-
-        /* Project Image Frame (Andy Wong Style) */
-        .project-frame {
-            position: relative;
-            background: #161616;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .project-frame img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        .project-frame:hover img {
-            transform: scale(1.03);
-        }
-
-        /* Buttons */
-        .btn-zen {
-            padding: 12px 24px;
-            background: var(--fg);
-            color: var(--bg);
-            font-weight: 600;
-            border-radius: 8px;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn-zen:hover {
-            opacity: 0.9;
-        }
-
-        .btn-outline {
-            padding: 12px 24px;
-            border: 1px solid var(--border);
-            color: var(--fg);
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: black;
-        }
-
-        /* Utility */
-        .stagger-animation>* {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        .stagger-animation.animate>* {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-
-    <style>
         /* Navigation */
         nav {
             position: fixed;
@@ -158,11 +87,11 @@
             right: 0;
             z-index: 100;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 32px 0;
+            padding: 40px 0;
         }
 
         nav.scrolled {
-            padding: 16px 0;
+            padding: 20px 0;
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
@@ -170,31 +99,77 @@
 
         /* Hero */
         .hero-title {
-            font-size: clamp(3rem, 10vw, 6rem);
-            line-height: 0.9;
+            font-size: clamp(3.5rem, 12vw, 7rem);
+            font-weight: 900;
             margin-bottom: 40px;
         }
 
-        /* Project Grid */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
+        /* Project Image Frame */
+        .project-frame {
+            position: relative;
+            background: #111;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: border-color 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            .project-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+        .project-frame:hover {
+            border-color: var(--accent);
+        }
+
+        .project-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .project-frame:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Buttons */
+        .btn-zen {
+            padding: 16px 32px;
+            background: var(--fg);
+            color: var(--bg);
+            font-weight: 700;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-zen:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+        }
+
+        .btn-outline {
+            padding: 16px 32px;
+            border: 1px solid var(--border);
+            color: var(--fg);
+            font-weight: 700;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            background: var(--fg);
+            color: var(--bg);
         }
 
         /* Timeline */
         .timeline-item {
             position: relative;
-            padding-left: 40px;
+            padding-left: 48px;
             border-left: 1px solid var(--border);
-            padding-bottom: 60px;
+            padding-bottom: 80px;
         }
 
         .timeline-item::before {
@@ -205,397 +180,103 @@
             width: 9px;
             height: 9px;
             background: var(--bg);
-            border: 1px solid var(--accent);
+            border: 2px solid var(--accent);
             border-radius: 50%;
         }
 
-        /* Skills */
-        .skills-group {
-            border-top: 1px solid var(--border);
-            padding-top: 40px;
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 
 <body class="smooth-scroll" x-cloak>
-    <!-- Progress Bar -->
-    <div class="progress-bar" x-bind:style="`width: ${scrollProgress}%`"></div>
-
-    <!-- Language Toggle -->
-    <div class="fixed top-6 right-6 z-50">
-        <button @click="toggleLanguage()"
-            class="bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300 border border-white/20">
-            <span x-show="currentLang === 'fr'" class="flex items-center gap-2">
-                <i class="fas fa-globe"></i> EN
-            </span>
-            <span x-show="currentLang === 'en'" class="flex items-center gap-2">
-                <i class="fas fa-globe"></i> FR
-            </span>
-        </button>
-    </div>
-
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-40 border-b border-white/5 bg-navy/90 transition-all duration-300"
-        x-show="showNav" x-transition:enter="transform transition ease-in-out duration-500"
-        x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="font-bold text-white text-xl tracking-tighter">MANUEL<span class="text-blue-accent">.</span>
-                </div>
-
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-slate hover:text-white transition-colors text-sm font-medium"
-                        x-text="texts[currentLang].nav.about"></a>
-                    <a href="#skills" class="text-slate hover:text-white transition-colors text-sm font-medium"
-                        x-text="texts[currentLang].nav.skills"></a>
-                    <a href="#projects" class="text-slate hover:text-white transition-colors text-sm font-medium"
-                        x-text="texts[currentLang].nav.projects"></a>
-                    <a href="#contact" class="text-slate hover:text-white transition-colors text-sm font-medium"
-                        x-text="texts[currentLang].nav.contact"></a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden p-2" @click="mobileMenuOpen = !mobileMenuOpen">
-                    <i class="fas fa-bars text-white text-xl"></i>
-                </button>
+    <nav :class="{ 'scrolled': scrollProgress > 5 }">
+        <div class="container flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-tighter">MANUEL<span class="text-accent">.</span></a>
+            
+            <div class="hidden md:flex items-center gap-12">
+                <a href="#projects" class="text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors">Projets</a>
+                <a href="#about" class="text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors">À propos</a>
+                <a href="#contact" class="text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors">Contact</a>
+                <button @click="toggleLanguage()" class="text-[10px] font-black border border-border px-3 py-1 rounded hover:bg-white hover:text-black transition-all" x-text="currentLang === 'fr' ? 'EN' : 'FR'"></button>
             </div>
 
-            <!-- Mobile Navigation -->
-            <div class="md:hidden mt-4 space-y-4 pb-4" x-show="mobileMenuOpen" x-collapse>
-                <a href="#about" @click="mobileMenuOpen = false"
-                    class="block text-slate hover:text-white transition-colors"
-                    x-text="texts[currentLang].nav.about"></a>
-                <a href="#skills" @click="mobileMenuOpen = false"
-                    class="block text-slate hover:text-white transition-colors"
-                    x-text="texts[currentLang].nav.skills"></a>
-                <a href="#projects" @click="mobileMenuOpen = false"
-                    class="block text-slate hover:text-white transition-colors"
-                    x-text="texts[currentLang].nav.projects"></a>
-                <a href="#contact" @click="mobileMenuOpen = false"
-                    class="block text-slate hover:text-white transition-colors"
-                    x-text="texts[currentLang].nav.contact"></a>
-            </div>
+            <button class="md:hidden text-2xl" @click="mobileMenuOpen = !mobileMenuOpen">
+                <i class="fas" :class="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-white relative">
-        <div class="mesh-gradient">
-            <div class="mesh-ball ball-1"></div>
-            <div class="mesh-ball ball-2"></div>
-        </div>
-        <div class="container mx-auto px-6 text-center z-10">
-            <div class="stagger-animation" x-init="setTimeout(() => $el.classList.add('animate'), 500)">
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
-                    Manuel <span class="text-gradient">Assogba</span>
-                </h1>
-                <h2 class="text-2xl md:text-4xl font-light mb-8 opacity-90" x-text="texts[currentLang].hero.title"></h2>
-                <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-12 text-slate leading-relaxed"
-                    x-text="texts[currentLang].hero.subtitle"></p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <a href="#projects"
-                        class="btn-premium px-10 py-4 font-bold text-lg">
-                        <span x-text="texts[currentLang].hero.cta"></span>
-                    </a>
-                    <a href="#contact"
-                        class="px-10 py-4 border border-white/20 rounded-xl text-white hover:bg-white/5 transition-all font-bold text-lg flex items-center gap-2">
-                        <span x-text="texts[currentLang].nav.contact"></span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+    <!-- Mobile Menu -->
+    <div x-show="mobileMenuOpen" class="fixed inset-0 z-[150] bg-black p-12 flex flex-col justify-center gap-8" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-10" x-transition:enter-end="opacity-100 translate-y-0">
+        <a href="#projects" @click="mobileMenuOpen = false" class="text-6xl font-black tracking-tighter">Projets</a>
+        <a href="#about" @click="mobileMenuOpen = false" class="text-6xl font-black tracking-tighter">À propos</a>
+        <a href="#contact" @click="mobileMenuOpen = false" class="text-6xl font-black tracking-tighter">Contact</a>
+    </div>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-            <div class="w-6 h-10 border-2 border-blue-accent/30 rounded-full flex justify-center">
-                <div class="w-1 h-3 bg-blue-accent rounded-full mt-2 animate-bounce"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Project Section (The Star) -->
-    <section id="featured-project" class="py-24 bg-navy-light relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="stagger-animation" x-intersect="$el.classList.add('animate')">
-                    <span class="text-blue-accent font-bold tracking-widest uppercase text-sm mb-4 block">Projet
-                        Phare</span>
-                    <h2 class="text-4xl md:text-6xl font-bold mb-8 text-white" x-text="projects[0][currentLang].title">
-                    </h2>
-                    <p class="text-xl text-slate mb-8 leading-relaxed" x-text="projects[0][currentLang].description">
-                    </p>
-
-                    <div class="space-y-6 mb-10">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-blue-accent/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-chart-line text-blue-accent text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold mb-1">Impact Mesurable</h4>
-                                <p class="text-slate text-sm">Visualisation claire des données pour prouver l'impact
-                                    social des ONG.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-blue-accent/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-layer-group text-blue-accent text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold mb-1">Architecture Robuste</h4>
-                                <p class="text-slate text-sm">Stack moderne Laravel + Livewire pour une réactivité
-                                    maximale.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a :href="projects[0].links.github" class="btn-premium px-8 flex items-center justify-center">
-                            <i class="fab fa-github mr-2"></i> Voir le Code
-                        </a>
-                        <a href="#projects"
-                            class="px-8 py-3 border border-slate/30 rounded-xl text-slate hover:text-white hover:border-white transition-all flex items-center justify-center">
-                            Voir plus de projets
-                        </a>
-                    </div>
-                </div>
-
-                <div class="relative group" x-intersect="$el.classList.add('animate')">
-                    <!-- Premium Mockup Display -->
-                    <div class="relative z-10 glass-card p-0 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500 shadow-2xl border-white/10">
-                        <!-- Browser Header Mockup -->
-                        <div class="bg-white/5 border-b border-white/10 px-4 py-2 flex items-center gap-2">
-                            <div class="flex gap-1.5">
-                                <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
-                            </div>
-                            <div class="mx-auto bg-white/5 rounded px-3 py-0.5 text-[10px] text-slate/50 font-mono truncate max-w-[200px]">
-                                fieldoz.app/dashboard
-                            </div>
-                        </div>
-                        <img :src="projects[0].images[0]" class="w-full h-auto" alt="FieldOz Preview" loading="lazy">
-                    </div>
-                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-blue-accent/20 rounded-full blur-3xl -z-0"></div>
-                    <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-accent/10 rounded-full blur-3xl -z-0"></div>
+    <!-- Hero -->
+    <section id="hero" class="min-h-screen flex items-center">
+        <div class="container">
+            <div x-intersect="$el.classList.add('active')" class="reveal">
+                <span class="text-accent font-black tracking-[0.3em] uppercase text-xs mb-8 block">Full-Stack Architect</span>
+                <h1 class="hero-title" x-text="texts[currentLang].hero.title"></h1>
+                <p class="text-2xl md:text-3xl text-muted max-w-3xl mb-16 font-medium leading-tight" x-text="texts[currentLang].hero.subtitle"></p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#projects" class="btn-zen">Mes Réalisations <i class="fas fa-arrow-down ml-2"></i></a>
+                    <a href="#contact" class="btn-outline">Travaillons ensemble</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 md:p-12 stagger-animation" x-intersect="$el.classList.add('animate')">
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-8" x-text="texts[currentLang].about.title">
-                    </h2>
-                    <p class="text-lg md:text-xl text-slate leading-relaxed mb-6"
-                        x-text="texts[currentLang].about.content"></p>
-                    <div class="flex flex-wrap gap-4 opacity-70">
-                        <span class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-accent"></i>
-                            Rigoureux</span>
-                        <span class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-accent"></i>
-                            Créatif</span>
-                        <span class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-accent"></i>
-                            Orienté Solution</span>
-                    </div>
-                </div>
+    <!-- Featured Project -->
+    <section id="featured" class="bg-[#050505] border-y border-border">
+        <div class="container">
+            <div class="mb-32 reveal" x-intersect="$el.classList.add('active')">
+                <h2 class="text-6xl lg:text-8xl mb-8 tracking-tighter">Projet<br>Phare<span class="text-accent">.</span></h2>
+                <div class="w-40 h-2 bg-accent"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Skills Section (Bento Grid) -->
-    <section id="skills" class="py-40 relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Expertise <span
-                        class="text-gradient">Matrix</span></h2>
-                <div class="w-24 h-1 bg-blue-accent mx-auto"></div>
-            </div>
-
-            <div class="bento-grid stagger-animation" x-intersect="$el.classList.add('animate')">
-                <!-- Backend Master -->
-                <div class="glass-card bento-item col-span-2 row-span-2 border-l-4 border-l-blue-accent flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 bg-blue-accent/10 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-server text-blue-accent text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">Backend Master</h3>
-                        <p class="text-slate">Expertise approfondie en architecture monolithique et micro-services avec
-                            Laravel.</p>
-                        <div class="flex flex-wrap gap-2 pt-4">
-                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">PHP
-                                8.x</span>
-                            <span
-                                class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">Laravel</span>
-                            <span
-                                class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">PHPUnit</span>
-                            <span
-                                class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">Node.js</span>
-                        </div>
-                    </div>
+            
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="project-frame reveal" x-intersect="$el.classList.add('active')">
+                    <img :src="projects[0].images[0]" alt="Featured Project">
                 </div>
-
-                <!-- Frontend Artist -->
-                <div class="glass-card bento-item col-span-2 flex flex-col justify-between">
-                    <div class="flex justify-between items-start">
-                        <div class="space-y-2">
-                            <h3 class="text-xl font-bold text-white">Frontend Artist</h3>
-                            <p class="text-slate text-sm">Interfaces pixel-perfect et réactives.</p>
-                        </div>
-                        <i class="fas fa-paint-brush text-blue-accent text-xl"></i>
+                <div class="space-y-10 reveal" x-intersect="$el.classList.add('active')">
+                    <h3 class="text-4xl md:text-5xl tracking-tighter" x-text="projects[0][currentLang].title"></h3>
+                    <p class="text-xl text-muted leading-relaxed" x-text="projects[0][currentLang].description"></p>
+                    <div class="flex flex-wrap gap-3">
+                        <template x-for="tech in projects[0].tech">
+                            <span class="text-[10px] font-black uppercase tracking-widest border border-border px-4 py-2 rounded-full" x-text="tech"></span>
+                        </template>
                     </div>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">Next.js</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">Tailwind
-                            CSS</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">Alpine.js</span>
-                    </div>
-                </div>
-
-                <!-- Tools & DevOps -->
-                <div class="glass-card bento-item">
-                    <h3 class="font-bold text-white mb-2">DevOps</h3>
-                    <div class="flex flex-col gap-2">
-                        <div class="flex items-center gap-2 text-xs text-slate">
-                            <i class="fab fa-docker text-blue-accent"></i> Docker
-                        </div>
-                        <div class="flex items-center gap-2 text-xs text-slate">
-                            <i class="fab fa-aws text-blue-accent"></i> AWS S3
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Database -->
-                <div class="glass-card bento-item">
-                    <h3 class="font-bold text-white mb-2">Data</h3>
-                    <div class="flex flex-col gap-2">
-                        <div class="flex items-center gap-2 text-xs text-slate">
-                            <i class="fas fa-database text-blue-accent"></i> PostgreSQL
-                        </div>
-                        <div class="flex items-center gap-2 text-xs text-slate">
-                            <i class="fas fa-project-diagram text-blue-accent"></i> REST API
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-40 bg-navy">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" x-text="texts[currentLang].education.title">
-                </h2>
-                <div class="w-24 h-1 bg-blue-accent mx-auto"></div>
-            </div>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="relative">
-                    <!-- Timeline Line -->
-                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-white/10"></div>
-
-                    <!-- Education Items -->
-                    <div class="space-y-12">
-                        <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
-                            <div
-                                class="absolute left-6 top-8 w-4 h-4 bg-blue-accent rounded-full border-4 border-navy shadow-lg z-10">
-                            </div>
-                            <div class="glass-card p-8">
-                                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                                    <div>
-                                        <h3 class="text-2xl font-bold text-white mb-2"
-                                            x-text="texts[currentLang].education.items[0].title"></h3>
-                                        <p class="text-blue-accent font-semibold"
-                                            x-text="texts[currentLang].education.items[0].school"></p>
-                                    </div>
-                                    <span class="text-slate font-medium"
-                                        x-text="texts[currentLang].education.items[0].period"></span>
-                                </div>
-                                <p class="text-slate" x-text="texts[currentLang].education.items[0].description"></p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
-                            <div
-                                class="absolute left-6 w-4 h-4 bg-navy-light rounded-full border-4 border-white shadow-lg">
-                            </div>
-                            <div class="bg-white rounded-2xl shadow-xl p-8">
-                                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                                    <div>
-                                        <h3 class="text-2xl font-bold text-navy mb-2"
-                                            x-text="texts[currentLang].education.items[1].title"></h3>
-                                        <p class="text-navy-light font-semibold"
-                                            x-text="texts[currentLang].education.items[1].school"></p>
-                                    </div>
-                                    <span class="text-gray-custom font-medium"
-                                        x-text="texts[currentLang].education.items[1].period"></span>
-                                </div>
-                                <p class="text-gray-700" x-text="texts[currentLang].education.items[1].description"></p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
-                            <div
-                                class="absolute left-6 w-4 h-4 bg-navy-light rounded-full border-4 border-white shadow-lg">
-                            </div>
-                            <div class="bg-white rounded-2xl shadow-xl p-8">
-                                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                                    <div>
-                                        <h3 class="text-2xl font-bold text-navy mb-2"
-                                            x-text="texts[currentLang].education.items[2].title"></h3>
-                                        <p class="text-navy-light font-semibold"
-                                            x-text="texts[currentLang].education.items[2].school"></p>
-                                    </div>
-                                    <span class="text-gray-custom font-medium"
-                                        x-text="texts[currentLang].education.items[2].period"></span>
-                                </div>
-                                <p class="text-gray-700" x-text="texts[currentLang].education.items[2].description"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-40 bg-navy-light relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" x-text="texts[currentLang].experience.title">
-                </h2>
-                <div class="w-24 h-1 bg-blue-accent mx-auto"></div>
-            </div>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="relative">
-                    <!-- Timeline Line -->
-                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-white/10"></div>
-
-                    <!-- Experience Items -->
-                    <div class="space-y-12">
-                        <template x-for="(item, index) in texts[currentLang].experience.items" :key="index">
-                            <div class="timeline-item relative pl-20" x-intersect="$el.classList.add('visible')">
-                                <div
-                                    class="absolute left-6 w-4 h-4 bg-blue-accent rounded-full border-4 border-navy shadow-lg">
-                                </div>
-                                <div class="glass-card p-8">
-                                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                                        <div>
-                                            <h3 class="text-2xl font-bold text-white mb-1" x-text="item.title"></h3>
-                                            <p class="text-blue-accent font-semibold" x-text="item.company"></p>
-                                        </div>
-                                        <span class="text-slate font-medium text-sm" x-text="item.period"></span>
-                                    </div>
-                                    <p class="text-slate" x-text="item.description"></p>
-                                </div>
-                            </div>
+                    <div class="pt-8 flex gap-6">
+                        <a :href="projects[0].links.github" class="btn-zen">GitHub <i class="fab fa-github ml-2"></i></a>
+                        <template x-if="projects[0].links.demo">
+                            <a :href="projects[0].links.demo" class="btn-outline">Live Demo</a>
                         </template>
                     </div>
                 </div>
@@ -603,45 +284,93 @@
         </div>
     </section>
 
-    <!-- Projects Gallery -->
-    <section id="projects" class="py-40 bg-navy">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Sélection de <span
-                        class="text-gradient">Réalisations</span></h2>
-                <p class="text-slate text-xl max-w-2xl mx-auto">Chaque projet est une réponse technique précise à un
-                    besoin spécifique.</p>
-            </div>
+    <!-- About & Experience -->
+    <section id="about">
+        <div class="container">
+            <div class="grid lg:grid-cols-12 gap-24">
+                <div class="lg:col-span-7 reveal" x-intersect="$el.classList.add('active')">
+                    <h2 class="text-5xl mb-16 tracking-tighter">L'approche<span class="text-accent">.</span></h2>
+                    <p class="text-3xl leading-snug font-medium mb-24" x-text="texts[currentLang].about.content"></p>
+                    
+                    <h3 class="text-xs font-black uppercase tracking-[0.4em] text-accent mb-16">Expérience & Formation</h3>
+                    <div class="space-y-4">
+                        <template x-for="item in texts[currentLang].experience.items">
+                            <div class="timeline-item">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+                                    <h4 class="text-2xl font-black tracking-tight" x-text="item.position || item.title"></h4>
+                                    <span class="text-xs font-black uppercase tracking-widest text-muted mt-2 sm:mt-1" x-text="item.period"></span>
+                                </div>
+                                <p class="text-accent font-bold mb-4" x-text="item.company"></p>
+                                <p class="text-muted leading-relaxed" x-text="item.description"></p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <template x-for="(project, index) in projects" :key="index">
-                    <!-- Skip index 0 as it's the Featured Star -->
-                    <template x-if="index > 0">
-                        <div class="glass-card overflow-hidden group h-full flex flex-col">
-                            <div class="relative aspect-video overflow-hidden">
-                                <img :src="project.images[0]" :alt="project[currentLang].title"
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                    loading="lazy">
-                                <div
-                                    class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                                    <button @click="openLightbox(project.images[0])"
-                                        class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-blue-accent transition-colors">
-                                        <i class="fas fa-expand text-white"></i>
-                                    </button>
-                                    <a x-show="project.links.github" :href="project.links.github"
-                                        class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-blue-accent transition-colors">
-                                        <i class="fab fa-github text-white"></i>
-                                    </a>
+                <div class="lg:col-span-5 space-y-24 reveal" x-intersect="$el.classList.add('active')">
+                    <div>
+                        <h3 class="text-xs font-black uppercase tracking-[0.4em] text-accent mb-12">Expertise Technique</h3>
+                        <div class="space-y-12">
+                            <div class="pt-8 border-t border-border">
+                                <h4 class="text-xl mb-6">Backend Mastery</h4>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">PHP / Laravel</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">Node.js</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">REST APIs</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">Architecture</span>
                                 </div>
                             </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-white mb-2" x-text="project[currentLang].title"></h3>
-                                <p class="text-slate text-sm line-clamp-2 mb-4"
-                                    x-text="project[currentLang].description"></p>
-                                <div class="flex flex-wrap gap-2">
-                                    <template x-for="tech in project.tech" :key="tech">
-                                        <span class="text-[10px] uppercase tracking-wider font-bold text-blue-accent"
-                                            x-text="tech"></span>
+                            <div class="pt-8 border-t border-border">
+                                <h4 class="text-xl mb-6">Modern Frontend</h4>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">React / Next.js</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">Tailwind CSS</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">Flutter</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-12 bg-[#111] rounded-3xl border border-border">
+                        <h3 class="text-xs font-black uppercase tracking-[0.4em] text-accent mb-8">Soft Skills</h3>
+                        <ul class="space-y-4">
+                            <template x-for="skill in texts[currentLang].softSkills.items">
+                                <li class="flex items-center gap-4 text-sm font-bold">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span x-text="skill"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery -->
+    <section id="projects" class="bg-[#050505] border-t border-border">
+        <div class="container">
+            <div class="mb-32 text-center reveal" x-intersect="$el.classList.add('active')">
+                <h2 class="text-6xl lg:text-8xl mb-8 tracking-tighter">Réalisations<span class="text-accent">.</span></h2>
+                <p class="text-xl text-muted">Une sélection de solutions digitales sur mesure.</p>
+            </div>
+            
+            <div class="project-grid">
+                <template x-for="(project, index) in projects">
+                    <template x-if="index > 0">
+                        <div class="space-y-8 group reveal" x-intersect="$el.classList.add('active')">
+                            <div class="project-frame aspect-video">
+                                <img :src="project.images[0]" :alt="project[currentLang].title">
+                            </div>
+                            <div class="space-y-4">
+                                <h3 class="text-3xl tracking-tight" x-text="project[currentLang].title"></h3>
+                                <p class="text-muted leading-relaxed line-clamp-2" x-text="project[currentLang].description"></p>
+                                <div class="flex gap-6 pt-4">
+                                    <template x-if="project.links.github">
+                                        <a :href="project.links.github" class="text-xs font-black uppercase tracking-widest hover:text-accent underline underline-offset-8">GitHub</a>
+                                    </template>
+                                    <template x-if="project.links.demo">
+                                        <a :href="project.links.demo" class="text-xs font-black uppercase tracking-widest hover:text-accent underline underline-offset-8">Demo</a>
                                     </template>
                                 </div>
                             </div>
@@ -652,187 +381,57 @@
         </div>
     </section>
 
-    <!-- Soft Skills Section -->
-    <section class="py-40 bg-navy-light relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" x-text="texts[currentLang].softSkills.title">
-                </h2>
-                <div class="w-24 h-1 bg-blue-accent mx-auto"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation"
-                x-intersect="$el.classList.add('animate')">
-                <template x-for="skill in texts[currentLang].softSkills.items" :key="skill">
-                    <div
-                        class="glass-card p-8 text-center group">
-                        <div class="text-blue-accent text-4xl mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white" x-text="skill"></h3>
+    <!-- Contact -->
+    <section id="contact" class="bg-white text-black">
+        <div class="container max-w-4xl">
+            <div class="grid lg:grid-cols-2 gap-24">
+                <div class="reveal" x-intersect="$el.classList.add('active')">
+                    <h2 class="text-7xl font-black tracking-tighter mb-12">Parlons de votre projet<span class="text-accent">.</span></h2>
+                    <p class="text-xl font-medium mb-12">Disponible pour de nouvelles collaborations ambitieuses.</p>
+                    <div class="space-y-4 font-bold text-2xl tracking-tighter">
+                        <a href="mailto:assogbamanuel6@gmail.com" class="block hover:text-accent transition-colors">assogbamanuel6@gmail.com</a>
+                        <p>Cotonou, Bénin / Remote</p>
                     </div>
-                </template>
-            </div>
-        </div>
-    </section>
+                </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-40">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" x-text="texts[currentLang].contact.title">
-                </h2>
-                <div class="w-24 h-1 bg-navy-light mx-auto"></div>
-            </div>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-12">
-                    <!-- Contact Form -->
-                    <div class="glass-card p-8">
-                        <h3 class="text-2xl font-bold text-white mb-6" x-text="texts[currentLang].contact.formTitle">
-                        </h3>
-                        <form @submit.prevent="submitForm()" class="space-y-6">
-                            <div>
-                                <label class="block text-slate font-semibold mb-2 text-sm"
-                                    x-text="texts[currentLang].contact.form.name"></label>
-                                <input type="text" x-model="form.name" required
-                                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-blue-accent focus:border-transparent transition-all duration-300"
-                                    :placeholder="texts[currentLang].contact.form.namePlaceholder">
-                            </div>
-
-                            <div>
-                                <label class="block text-slate font-semibold mb-2 text-sm"
-                                    x-text="texts[currentLang].contact.form.email"></label>
-                                <input type="email" x-model="form.email" required
-                                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-blue-accent focus:border-transparent transition-all duration-300"
-                                    :placeholder="texts[currentLang].contact.form.emailPlaceholder">
-                            </div>
-
-                            <div>
-                                <label class="block text-slate font-semibold mb-2 text-sm"
-                                    x-text="texts[currentLang].contact.form.message"></label>
-                                <textarea x-model="form.message" rows="4" required
-                                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-blue-accent focus:border-transparent transition-all duration-300 resize-none"
-                                    :placeholder="texts[currentLang].contact.form.messagePlaceholder"></textarea>
-                            </div>
-
-                            <button type="submit" :disabled="isSubmitting" class="btn-premium w-full py-4">
-                                <span x-show="!isSubmitting" x-text="texts[currentLang].contact.form.submit"></span>
-                                <span x-show="isSubmitting" class="flex items-center justify-center gap-2">
-                                    <i class="fas fa-spinner fa-spin"></i>
-                                    <span x-text="texts[currentLang].contact.form.sending"></span>
-                                </span>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Contact Info -->
-                    <div class="space-y-8">
-                        <div class="glass-card p-8">
-                            <h3 class="text-2xl font-bold text-white mb-6"
-                                x-text="texts[currentLang].contact.infoTitle"></h3>
-                            <div class="space-y-6">
-                                <a href="mailto:assogbamanuel6@gmail.com"
-                                    class="flex items-center gap-4 text-slate hover:text-white transition-colors">
-                                    <div
-                                        class="w-12 h-12 bg-blue-accent/10 rounded-xl flex items-center justify-center">
-                                        <i class="fas fa-envelope text-blue-accent"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-white">Email</p>
-                                        <p class="text-sm">assogbamanuel6@gmail.com</p>
-                                    </div>
-                                </a>
-
-                                <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/" target="_blank"
-                                    class="flex items-center gap-4 text-slate hover:text-white transition-colors">
-                                    <div
-                                        class="w-12 h-12 bg-blue-accent/10 rounded-xl flex items-center justify-center">
-                                        <i class="fab fa-linkedin text-blue-accent"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-white">LinkedIn</p>
-                                        <p class="text-sm">Manuel Assogba</p>
-                                    </div>
-                                </a>
-                            </div>
+                <div class="reveal" x-intersect="$el.classList.add('active')">
+                    <form @submit.prevent="submitForm()" class="space-y-10">
+                        <div class="space-y-4 border-b-2 border-black/10 focus-within:border-accent transition-colors pb-4">
+                            <label class="text-[10px] font-black uppercase tracking-widest opacity-50">Votre Nom</label>
+                            <input type="text" x-model="form.name" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/10" placeholder="John Doe">
                         </div>
-
-                        <div class="bg-blue-accent text-white rounded-2xl p-8 relative overflow-hidden">
-                            <div class="relative z-10">
-                                <h4 class="text-xl font-bold mb-4"
-                                    x-text="texts[currentLang].contact.availability.title"></h4>
-                                <p class="opacity-90" x-text="texts[currentLang].contact.availability.text"></p>
-                            </div>
-                            <i
-                                class="fas fa-paper-plane absolute -bottom-4 -right-4 text-8xl opacity-10 -rotate-12"></i>
+                        <div class="space-y-4 border-b-2 border-black/10 focus-within:border-accent transition-colors pb-4">
+                            <label class="text-[10px] font-black uppercase tracking-widest opacity-50">Email</label>
+                            <input type="email" x-model="form.email" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/10" placeholder="john@example.com">
                         </div>
-                    </div>
+                        <div class="space-y-4 border-b-2 border-black/10 focus-within:border-accent transition-colors pb-4">
+                            <label class="text-[10px] font-black uppercase tracking-widest opacity-50">Message</label>
+                            <textarea x-model="form.message" rows="3" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-black/10" placeholder="Parlez-moi de votre besoin..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-black text-white py-8 text-xl font-black uppercase tracking-widest hover:bg-accent transition-all" :disabled="isSubmitting" x-text="isSubmitting ? 'Envoi...' : 'Envoyer'"></button>
+                        <p x-show="submitMessage" :class="submitSuccess ? 'text-green-600' : 'text-red-600'" class="text-center font-bold mt-4" x-text="submitMessage"></p>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-navy border-t border-white/5 py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="font-bold text-white text-xl tracking-tighter">MANUEL<span class="text-blue-accent">.</span>
-                </div>
-                <div class="text-slate text-sm" x-text="texts[currentLang].footer.copyright"></div>
-                <div class="flex gap-6">
-                    <a href="https://github.com/manuelh6" class="text-slate hover:text-white transition-colors"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/"
-                        class="text-slate hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
-                </div>
+    <footer class="py-24 bg-black border-t border-border">
+        <div class="container flex flex-col md:flex-row justify-between items-center gap-8 text-muted text-xs font-black uppercase tracking-[0.3em]">
+            <p>© 2025 Manuel Assogba</p>
+            <div class="flex gap-12">
+                <a href="https://linkedin.com/in/manuel-assogba-a0900a123/" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+                <a href="https://github.com/manuelh6" target="_blank" class="hover:text-white transition-colors">GitHub</a>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
+    <!-- Back to Top -->
     <button @click="scrollToTop()" x-show="showBackToTop" x-transition
-        class="fixed bottom-6 right-6 bg-blue-accent text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 z-40">
+        class="fixed bottom-12 right-12 bg-accent text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-[100] text-xl">
         <i class="fas fa-arrow-up"></i>
     </button>
-
-    <!-- Lightbox -->
-    <!-- Lightbox -->
-    <div class="lightbox" :class="{ 'show': lightbox.show }" @click="closeLightbox()">
-        <button @click.stop="closeLightbox()"
-            class="absolute top-6 right-6 text-white text-3xl hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full w-12 h-12 flex items-center justify-center">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="lightbox-content" @click.stop>
-            <img :src="lightbox.image" class="lightbox-image" :alt="'Project image'">
-        </div>
-    </div>
-
-
-
-    <!-- Sticky Action Bar -->
-    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-auto px-4">
-        <div class="glass-card px-8 py-3 flex items-center gap-8 shadow-2xl backdrop-blur-xl rounded-full">
-            <div class="flex items-center gap-6">
-                <a href="https://www.linkedin.com/in/manuel-assogba-a0900a123/" target="_blank"
-                    class="text-slate hover:text-blue-accent transition-colors">
-                    <i class="fab fa-linkedin text-xl"></i>
-                </a>
-                <a href="https://github.com/manuelh6" target="_blank"
-                    class="text-slate hover:text-blue-accent transition-colors">
-                    <i class="fab fa-github text-xl"></i>
-                </a>
-                <a href="mailto:assogbamanuel6@gmail.com" class="text-slate hover:text-blue-accent transition-colors">
-                    <i class="fas fa-envelope text-xl"></i>
-                </a>
-            </div>
-            
-            <a href="#contact" class="btn-premium py-2 px-6 text-sm flex items-center gap-2 rounded-full">
-                <span x-text="currentLang === 'fr' ? 'Parlons-en' : 'Let\'s talk'"></span>
-                <i class="fas fa-paper-plane"></i>
-            </a>
-        </div>
-    </div>
 
     <script src="assets/script.js"></script>
 </body>
