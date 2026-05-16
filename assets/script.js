@@ -251,12 +251,12 @@ function app() {
                             period: "2023",
                             description: "Développement frontend mobile Flutter, intégration Google Maps API."
                         },
-                        {
+                        /* {
                             position: "Stagiaire",
                             company: "RAKHEM COMELI-GROUP",
                             period: "2019–2020",
                             description: "Développement de solutions web WordPress et gestion de l'infrastructure d'hébergement."
-                        }
+                        } */
                     ]
                 },
                 projects: {
@@ -400,12 +400,12 @@ function app() {
                             period: "2023",
                             description: "Flutter mobile frontend development, Google Maps API integration."
                         },
-                        {
+                        /* {
                             position: "Intern",
                             company: "RAKHEM COMELI-GROUP",
                             period: "2019–2020",
                             description: "WordPress web solutions development and hosting infrastructure management."
-                        }
+                        } */
                     ]
                 },
                 projects: {
