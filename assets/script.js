@@ -5,7 +5,7 @@ function app() {
         showNav: false,
         showBackToTop: false,
         scrollProgress: 0,
-        currentProject: 0,
+        activeFilter: 'all',
 
         // Form data
         form: {
@@ -456,6 +456,19 @@ function app() {
             }
         },
 
+        setFilter(filter) {
+            this.activeFilter = filter;
+        },
+
+        filteredProjects() {
+            // Skip index 0 (featured project)
+            const rest = this.projects.slice(1);
+            if (this.activeFilter === 'all') return rest;
+            if (this.activeFilter === 'web')    return rest.filter(p => p.type.toLowerCase().includes('web'));
+            if (this.activeFilter === 'mobile') return rest.filter(p => p.type.toLowerCase().includes('mobile'));
+            return rest;
+        },
+
         init() {
             let ticking = false;
             window.addEventListener('scroll', () => {
@@ -468,15 +481,6 @@ function app() {
                 }
             });
             this.handleScroll();
-
-            // Keyboard navigation for projects
-            window.addEventListener('keydown', (e) => {
-                if (document.getElementById('projects').getBoundingClientRect().top <= 100 &&
-                    document.getElementById('projects').getBoundingClientRect().bottom >= 100) {
-                    if (e.key === 'ArrowLeft') this.previousProject();
-                    if (e.key === 'ArrowRight') this.nextProject();
-                }
-            });
         },
 
         handleScroll() {
@@ -496,13 +500,7 @@ function app() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
 
-        nextProject() {
-            this.currentProject = (this.currentProject + 1) % this.projects.length;
-        },
 
-        previousProject() {
-            this.currentProject = this.currentProject === 0 ? this.projects.length - 1 : this.currentProject - 1;
-        },
 
         openLightbox(image) {
             this.lightbox.show = true;
