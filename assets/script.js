@@ -160,9 +160,9 @@ function app() {
                     contact: "Contact"
                 },
                 hero: {
-                    title: "Développeur Full-Stack",
-                    subtitle: "Transformant vos idées en solutions digitales innovantes avec expertise technique et créativité",
-                    cta: "Découvrir mon parcours"
+                    title: "Bâtisseur de solutions digitales à fort impact",
+                    subtitle: "Je transforme les données complexes en expériences utilisateur fluides et robustes, avec une expertise avancée en Laravel et écosystèmes modernes.",
+                    cta: "Découvrir mon univers"
                 },
                 about: {
                     title: "À propos de moi",
@@ -309,9 +309,9 @@ function app() {
                     contact: "Contact"
                 },
                 hero: {
-                    title: "Full-Stack Developer",
-                    subtitle: "Transforming your ideas into innovative digital solutions with technical expertise and creativity",
-                    cta: "Discover my journey"
+                    title: "Building high-impact digital solutions",
+                    subtitle: "I transform complex data into smooth, robust user experiences, leveraging advanced Laravel expertise and modern ecosystems.",
+                    cta: "Discover my universe"
                 },
                 about: {
                     title: "About me",
