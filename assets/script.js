@@ -6,7 +6,7 @@ function app() {
         showBackToTop: false,
         scrollProgress: 0,
         currentProject: 0,
-        
+
         // Form data
         form: {
             name: '',
@@ -17,13 +17,13 @@ function app() {
         isSubmitting: false,
         submitMessage: '',
         submitSuccess: false,
-        
+
         // Lightbox
         lightbox: {
             show: false,
             image: ''
         },
-        
+
         // Projects data
         projects: [
             {
@@ -42,7 +42,7 @@ function app() {
                     "assets/projects/fieldoz/4.png",
                 ],
                 links: {
-                    github: "https://github.com/manuelassogba/fieldoz",
+                    github: "https://github.com/manuelh6/fieldoz",
                     demo: null,
                 }
             },
@@ -55,14 +55,14 @@ function app() {
                     title: "Grid Generator",
                     description: "Interactive CSS grid generator allowing developers to quickly create complex layouts with an intuitive drag-and-drop interface."
                 },
-                tech: ["JavaScript", "TypeScript", "Tailwind CSS" , "Next.js"],
+                tech: ["JavaScript", "TypeScript", "Tailwind CSS", "Next.js"],
                 images: [
                     "assets/projects/gridcss/1.png",
                     "assets/projects/gridcss/2.png",
                     "assets/projects/gridcss/3.png",
                 ],
                 links: {
-                    github: "https://github.com/manuelassogba/grid-generator",
+                    github: "https://github.com/manuelh6/grid-generator",
                     demo: null
                 }
             },
@@ -115,7 +115,7 @@ function app() {
                     title: "iKnow",
                     description: "Platform that enables partner NGOs to remotely monitor and track their field activities in real time, with summary dashboards, interactive maps, and tracking of funding indicators."
                 },
-                tech: ["Laravel", "Bootstrap", "AWS S3", "Google Maps" , "MySQL", "Rest API", "iNaturalist API", "Chart.js"],
+                tech: ["Laravel", "Bootstrap", "AWS S3", "Google Maps", "MySQL", "Rest API", "iNaturalist API", "Chart.js"],
                 images: [
                     "assets/projects/iknow/1.png",
                     "assets/projects/iknow/2.png",
@@ -147,7 +147,7 @@ function app() {
                 }
             }
         ],
-        
+
         // Texts for multilingual support
         texts: {
             fr: {
@@ -160,7 +160,7 @@ function app() {
                     contact: "Contact"
                 },
                 hero: {
-                    title: "Bâtisseur de solutions digitales à fort impact",
+                    title: "Concepteur de solutions digitales à fort impact",
                     subtitle: "Je transforme les données complexes en expériences utilisateur fluides et robustes, avec une expertise avancée en Laravel et écosystèmes modernes.",
                     cta: "Découvrir mon univers"
                 },
@@ -449,51 +449,60 @@ function app() {
                 }
             }
         },
-        
+
         init() {
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        this.handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
             this.handleScroll();
-            window.addEventListener('scroll', () => this.handleScroll());
-            
+
             // Keyboard navigation for projects
             window.addEventListener('keydown', (e) => {
-                if (document.getElementById('projects').getBoundingClientRect().top <= 100 && 
+                if (document.getElementById('projects').getBoundingClientRect().top <= 100 &&
                     document.getElementById('projects').getBoundingClientRect().bottom >= 100) {
                     if (e.key === 'ArrowLeft') this.previousProject();
                     if (e.key === 'ArrowRight') this.nextProject();
                 }
             });
         },
-        
+
         handleScroll() {
             const scrollTop = window.pageYOffset;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             this.scrollProgress = (scrollTop / docHeight) * 100;
-            
+
             this.showNav = scrollTop > 100;
             this.showBackToTop = scrollTop > 500;
         },
-        
+
         toggleLanguage() {
             this.currentLang = this.currentLang === 'fr' ? 'en' : 'fr';
         },
-        
+
         scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
-        
+
         nextProject() {
             this.currentProject = (this.currentProject + 1) % this.projects.length;
         },
-        
+
         previousProject() {
             this.currentProject = this.currentProject === 0 ? this.projects.length - 1 : this.currentProject - 1;
         },
-        
+
         openLightbox(image) {
             this.lightbox.show = true;
             this.lightbox.image = image;
             document.body.style.overflow = 'hidden';
-            
+
             // Détection automatique de l'orientation
             const img = new Image();
             img.src = image;
@@ -515,57 +524,57 @@ function app() {
             this.lightbox.image = '';
             document.body.style.overflow = 'auto';
         },
-        
+
         validateForm() {
             this.errors = {};
-            
+
             if (!this.form.name.trim()) {
                 this.errors.name = this.currentLang === 'fr' ? 'Le nom est requis' : 'Name is required';
             }
-            
+
             if (!this.form.email.trim()) {
                 this.errors.email = this.currentLang === 'fr' ? 'L\'email est requis' : 'Email is required';
             } else if (!/\S+@\S+\.\S+/.test(this.form.email)) {
                 this.errors.email = this.currentLang === 'fr' ? 'Email invalide' : 'Invalid email';
             }
-            
+
             if (!this.form.message.trim()) {
                 this.errors.message = this.currentLang === 'fr' ? 'Le message est requis' : 'Message is required';
             }
-            
+
             return Object.keys(this.errors).length === 0;
         },
-        
+
         async submitForm() {
             if (!this.validateForm()) return;
-            
+
             this.isSubmitting = true;
             this.submitMessage = '';
-            
+
             try {
                 // Simulate form submission
                 await new Promise(resolve => setTimeout(resolve, 2000));
-                
+
                 this.submitSuccess = true;
-                this.submitMessage = this.currentLang === 'fr' 
+                this.submitMessage = this.currentLang === 'fr'
                     ? 'Message envoyé avec succès! Je vous répondrai bientôt.'
                     : 'Message sent successfully! I will reply to you soon.';
-                
+
                 // Reset form
                 this.form = { name: '', email: '', message: '' };
-                
+
                 // Hide success message after 5 seconds
                 setTimeout(() => {
                     this.submitMessage = '';
                 }, 5000);
-                
+
             } catch (error) {
                 this.submitSuccess = false;
                 this.submitMessage = this.currentLang === 'fr'
                     ? 'Erreur lors de l\'envoi. Veuillez réessayer.'
                     : 'Error sending message. Please try again.';
             }
-            
+
             this.isSubmitting = false;
         }
     };
