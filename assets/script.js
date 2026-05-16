@@ -35,6 +35,7 @@ function app() {
                     title: "FieldOz",
                     description: "Transform complex data into visual impact reports. Clarity serving social missions."
                 },
+                type: "Web",
                 tech: ["Tailwind", "Alpine", "Laravel", "Livewire"],
                 images: [
                     "assets/projects/fieldoz/1.png",
@@ -55,6 +56,7 @@ function app() {
                     title: "Grid Generator",
                     description: "CSS Grid generator with drag-and-drop for complex layout prototyping."
                 },
+                type: "Web",
                 tech: ["JavaScript", "TypeScript", "Tailwind CSS", "Next.js"],
                 images: [
                     "assets/projects/gridcss/1.png",
@@ -75,6 +77,7 @@ function app() {
                     title: "BiodivCenter",
                     description: "Biodiversity monitoring platform for tracking and protecting local species."
                 },
+                type: "Web / Mobile",
                 tech: ["Laravel", "Bootstrap", "MySQL/SQLite", "Leaflet.js", "Flutter", "iNaturalist API"],
                 images: [
                     "assets/projects/biodivcenter/1.jpeg",
@@ -95,6 +98,7 @@ function app() {
                     title: "Exam",
                     description: "Platform that provides continuous skill assessment through gamified exams, enabling a fun and motivating way for learners to track their progress."
                 },
+                type: "Web",
                 tech: ["Laravel", "Bootstrap", "MySQL", "JQuery", "JQuery UI"],
                 images: [
                     "assets/projects/eval/1.jpeg",
@@ -115,6 +119,7 @@ function app() {
                     title: "iKnow",
                     description: "Platform that enables partner NGOs to remotely monitor and track their field activities in real time, with summary dashboards, interactive maps, and tracking of funding indicators."
                 },
+                type: "Web",
                 tech: ["Laravel", "Bootstrap", "AWS S3", "Google Maps", "MySQL", "Rest API", "iNaturalist API", "Chart.js"],
                 images: [
                     "assets/projects/iknow/1.png",
@@ -135,6 +140,7 @@ function app() {
                     title: "Beninfy Mobile",
                     description: "Mobile app for cultural discovery in Benin with geolocation, interactive guides, and social sharing features."
                 },
+                type: "Mobile",
                 tech: ["Flutter", "Dart", "Google Maps API", "Figma"],
                 images: [
                     "assets/projects/beninfy/1.png",

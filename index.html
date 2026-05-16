@@ -261,10 +261,11 @@
         .input-zen {
             width: 100%;
             background: transparent;
-            border-bottom: 2px solid rgba(0,0,0,0.1);
+            border-bottom: 2px solid rgba(255,255,255,0.1);
             padding: 16px 0;
             font-size: 1.25rem;
             font-weight: 700;
+            color: white;
             outline: none;
             transition: border-color 0.3s ease;
         }
@@ -274,7 +275,7 @@
         }
 
         .input-zen::placeholder {
-            color: rgba(0,0,0,0.1);
+            color: rgba(255,255,255,0.2);
         }
     </style>
 </head>
@@ -328,13 +329,16 @@
                 <div class="w-40 h-2 bg-accent"></div>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-32 items-center">
+            <div class="grid lg:grid-cols-2 gap-40 items-center">
                 <div class="project-frame reveal" x-intersect="$el.classList.add('active')">
                     <img :src="projects[0].images[0]" alt="Featured Project">
                 </div>
-                <div class="space-y-10 reveal" x-intersect="$el.classList.add('active')">
-                    <h3 class="text-4xl md:text-5xl tracking-tighter" x-text="projects[0][currentLang].title"></h3>
-                    <p class="text-xl text-muted leading-relaxed" x-text="projects[0][currentLang].description"></p>
+                <div class="lg:pl-16 space-y-10 reveal" x-intersect="$el.classList.add('active')">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-black uppercase tracking-[0.4em] text-accent">Projet Principal</span>
+                        <h3 class="text-6xl md:text-8xl tracking-tighter" x-text="projects[0][currentLang].title"></h3>
+                    </div>
+                    <p class="text-2xl text-muted leading-relaxed" x-text="projects[0][currentLang].description"></p>
                     <div class="flex flex-wrap gap-3">
                         <template x-for="tech in projects[0].tech">
                             <span class="text-[10px] font-black uppercase tracking-widest border border-border px-4 py-2 rounded-full" x-text="tech"></span>
@@ -376,10 +380,13 @@
 
                 <div class="lg:col-span-5 space-y-24 reveal" x-intersect="$el.classList.add('active')">
                     <div>
-                        <h3 class="text-xs font-black uppercase tracking-[0.4em] text-accent mb-12">Expertise Technique</h3>
+                        <div class="mb-16">
+                            <h3 class="text-2xl font-black tracking-tight text-white mb-4">Expertise Technique</h3>
+                            <div class="w-20 h-1 bg-accent"></div>
+                        </div>
                         <div class="space-y-12">
                             <div class="pt-8 border-t border-border">
-                                <h4 class="text-xl mb-6">Backend Mastery</h4>
+                                <h4 class="text-xs font-black uppercase tracking-widest text-muted mb-6">Backend Mastery</h4>
                                 <div class="flex flex-wrap gap-3">
                                     <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">PHP / Laravel</span>
                                     <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">Node.js</span>
@@ -388,7 +395,7 @@
                                 </div>
                             </div>
                             <div class="pt-8 border-t border-border">
-                                <h4 class="text-xl mb-6">Modern Frontend</h4>
+                                <h4 class="text-xs font-black uppercase tracking-widest text-muted mb-6">Modern Frontend</h4>
                                 <div class="flex flex-wrap gap-3">
                                     <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">React / Next.js</span>
                                     <span class="text-[10px] font-bold uppercase tracking-widest border border-border px-4 py-2 rounded">Tailwind CSS</span>
@@ -399,7 +406,7 @@
                     </div>
                     
                     <div class="p-16 bg-[#111] rounded-[2rem] border border-border">
-                        <h3 class="text-xs font-black uppercase tracking-[0.4em] text-accent mb-12">Soft Skills</h3>
+                        <h3 class="text-2xl font-black tracking-tight text-white mb-12">Soft Skills</h3>
                         <ul class="space-y-6">
                             <template x-for="skill in texts[currentLang].softSkills.items">
                                 <li class="flex items-center gap-4 text-sm font-bold">
@@ -426,11 +433,14 @@
                 <template x-for="(project, index) in projects">
                     <template x-if="index > 0">
                         <div class="space-y-6 reveal" x-intersect="$el.classList.add('active')">
-                            <div class="project-frame aspect-[16/10] cursor-zoom-in" @click="openLightbox(project.images[0])">
+                            <div class="project-frame aspect-video cursor-zoom-in" @click="openLightbox(project.images[0])">
                                 <img :src="project.images[0]" :alt="project[currentLang].title">
                             </div>
                             <div class="space-y-3">
-                                <h3 class="text-2xl tracking-tight" x-text="project[currentLang].title"></h3>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-accent" x-text="project.type"></span>
+                                </div>
+                                <h3 class="text-2xl font-black tracking-tight" x-text="project[currentLang].title"></h3>
                                 <p class="text-muted text-sm leading-relaxed" x-text="project[currentLang].description"></p>
                                 <div class="flex gap-4 pt-2">
                                     <template x-if="project.links.github">
@@ -449,33 +459,33 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="bg-[#fafafa] text-black py-40 md:py-60">
+    <section id="contact" class="bg-[#050505] py-40 md:py-60 border-t border-border">
         <div class="container">
             <div class="grid lg:grid-cols-2 gap-32 items-start">
                 <div class="reveal" x-intersect="$el.classList.add('active')">
                     <h2 class="text-7xl lg:text-8xl font-black tracking-tighter mb-12">Discutons de<br>votre projet<span class="text-accent">.</span></h2>
-                    <p class="text-xl font-medium mb-12 text-black/60">Disponible pour des missions freelance ou des collaborations ambitieuses.</p>
+                    <p class="text-xl font-medium mb-12 text-muted">Disponible pour des missions freelance ou des collaborations ambitieuses.</p>
                     <div class="font-bold text-3xl tracking-tighter">
                         <a href="mailto:assogbamanuel6@gmail.com" class="hover:text-accent transition-colors">assogbamanuel6@gmail.com</a>
                     </div>
                 </div>
 
-                <div class="reveal bg-white p-12 md:p-20 rounded-[3rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] border border-black/5" x-intersect="$el.classList.add('active')">
+                <div class="reveal bg-[#111] p-12 md:p-20 rounded-[3rem] border border-border shadow-2xl" x-intersect="$el.classList.add('active')">
                     <form @submit.prevent="submitForm()" class="space-y-12">
                         <div class="space-y-4">
-                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Votre Nom</label>
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-muted">Votre Nom</label>
                             <input type="text" x-model="form.name" class="input-zen" placeholder="John Doe">
                         </div>
                         <div class="space-y-4">
-                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Email Professionnel</label>
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-muted">Email Professionnel</label>
                             <input type="email" x-model="form.email" class="input-zen" placeholder="john@example.com">
                         </div>
                         <div class="space-y-4">
-                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Votre Message</label>
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-muted">Votre Message</label>
                             <textarea x-model="form.message" rows="3" class="input-zen" placeholder="Parlez-moi de votre besoin..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-black text-white py-8 text-xl font-black uppercase tracking-widest hover:bg-accent transition-all rounded-2xl shadow-2xl" :disabled="isSubmitting" x-text="isSubmitting ? 'Envoi...' : 'Envoyer le message'"></button>
-                        <p x-show="submitMessage" :class="submitSuccess ? 'text-green-600' : 'text-red-600'" class="text-center font-bold mt-4" x-text="submitMessage"></p>
+                        <button type="submit" class="w-full bg-white text-black py-8 text-xl font-black uppercase tracking-widest hover:bg-accent hover:text-white transition-all rounded-2xl" :disabled="isSubmitting" x-text="isSubmitting ? 'Envoi...' : 'Envoyer le message'"></button>
+                        <p x-show="submitMessage" :class="submitSuccess ? 'text-green-400' : 'text-red-400'" class="text-center font-bold mt-4" x-text="submitMessage"></p>
                     </form>
                 </div>
             </div>
