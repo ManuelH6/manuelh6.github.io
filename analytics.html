@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics — Manuel Assogba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0a;--surface:#111;--fg:#fafafa;--muted:#666;--accent:#3b82f6;--border:rgba(255,255,255,0.08);--green:#22c55e;--red:#ef4444}
+html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}
+
+/* ── Gate ── */
+#gate{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.gate-box{width:100%;max-width:360px;padding:0 24px;text-align:center}
+.gate-logo{font-size:1rem;font-weight:900;letter-spacing:-.04em;margin-bottom:48px;color:var(--muted)}
+.gate-logo span{color:var(--accent)}
+.gate-title{font-size:1.5rem;font-weight:900;letter-spacing:-.04em;margin-bottom:8px}
+.gate-sub{font-size:.8rem;color:var(--muted);margin-bottom:32px}
+.gate-inp{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:1rem;font-weight:600;color:var(--fg);outline:none;text-align:center;letter-spacing:.2em;font-family:'Inter',sans-serif;transition:border-color .2s}
+.gate-inp:focus{border-color:var(--accent)}
+.gate-btn{margin-top:12px;width:100%;padding:14px;background:var(--fg);color:var(--bg);font-weight:700;font-size:.85rem;border:none;border-radius:8px;cursor:pointer;transition:opacity .2s}
+.gate-btn:hover{opacity:.88}
+.gate-err{margin-top:12px;font-size:.75rem;color:var(--red);font-weight:600;min-height:20px}
+
+/* ── Dashboard ── */
+#dash{display:none;min-height:100vh;padding:40px 0 80px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;flex-wrap:wrap;gap:16px}
+.dash-logo{font-size:.9rem;font-weight:900;letter-spacing:-.04em}
+.dash-logo span{color:var(--accent)}
+.top-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.period-btn{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:7px 14px;border-radius:5px;border:1px solid var(--border);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s}
+.period-btn:hover,.period-btn.on{color:var(--fg);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.06)}
+.logout-btn{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:7px 14px;border-radius:5px;border:1px solid var(--red);color:var(--red);background:transparent;cursor:pointer;transition:all .2s}
+.logout-btn:hover{background:var(--red);color:#fff}
+
+/* KPIs */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 20px}
+.kpi-lbl{font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:8px}
+.kpi-val{font-size:2rem;font-weight:900;letter-spacing:-.04em;line-height:1}
+.kpi-sub{font-size:.7rem;color:var(--muted);margin-top:6px}
+
+/* Charts grid */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px}
+.chart-card.wide{grid-column:span 2}
+.chart-title{font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:20px}
+
+/* Countries list */
+.country-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.country-name{font-size:.8rem;font-weight:600;min-width:110px}
+.country-bar-wrap{flex:1;background:rgba(255,255,255,.05);border-radius:3px;height:4px;overflow:hidden}
+.country-bar{height:100%;background:var(--accent);border-radius:3px;transition:width .8s ease}
+.country-count{font-size:.75rem;color:var(--muted);font-weight:600;min-width:36px;text-align:right}
+
+/* Loader */
+.loader{text-align:center;padding:48px;color:var(--muted);font-size:.8rem}
+.spinner{display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Status dot */
+.status{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+@media(max-width:860px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .charts-grid{grid-template-columns:1fr}
+  .chart-card.wide{grid-column:span 1}
+}
+@media(max-width:480px){
+  .kpi-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN GATE ══ -->
+<div id="gate">
+  <div class="gate-box">
+    <p class="gate-logo">MANUEL<span>.</span>analytics</p>
+    <h1 class="gate-title">Accès privé</h1>
+    <p class="gate-sub">Entrez le mot de passe pour accéder au dashboard</p>
+    <input id="pwd-inp" type="password" class="gate-inp" placeholder="••••••••" autocomplete="current-password">
+    <button class="gate-btn" onclick="checkPassword()">Accéder au dashboard</button>
+    <p class="gate-err" id="gate-err"></p>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div id="dash">
+  <div class="wrap">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <div>
+        <div class="dash-logo">MANUEL<span>.</span>analytics</div>
+        <div class="status" style="margin-top:6px"><span class="dot"></span>GA4 connecté</div>
+      </div>
+      <div class="top-right">
+        <button class="period-btn on" onclick="setPeriod('7daysAgo',this)">7 jours</button>
+        <button class="period-btn" onclick="setPeriod('30daysAgo',this)">30 jours</button>
+        <button class="period-btn" onclick="setPeriod('90daysAgo',this)">90 jours</button>
+        <button class="logout-btn" onclick="logout()">Déconnexion</button>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-grid" id="kpi-grid">
+      <div class="loader"><div class="spinner"></div><br>Chargement…</div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid" id="charts-grid">
+      <div class="loader" style="grid-column:span 3"><div class="spinner"></div><br>Chargement…</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════
+// CONFIG — À personnaliser
+// ══════════════════════════════════
+const CONFIG = {
+  // Mot de passe du dashboard (change-le)
+  PASSWORD: 'manuel2025',
+
+  // GA4 Property ID numérique (GA4 > Admin > Paramètres propriété)
+  // Ex: '123456789'
+  PROPERTY_ID: 'VOTRE_PROPERTY_ID',
+
+  // API Key (Google Cloud Console > APIs & Services > Credentials)
+  // Active "Google Analytics Data API" et restreins à ton domaine
+  API_KEY: 'VOTRE_API_KEY',
+};
+// ══════════════════════════════════
+
+let currentPeriod = '7daysAgo';
+let devicesChart = null;
+
+// ── Auth ──
+function checkPassword() {
+  const val = document.getElementById('pwd-inp').value;
+  if (val === CONFIG.PASSWORD) {
+    sessionStorage.setItem('analytics_auth', '1');
+    showDash();
+  } else {
+    document.getElementById('gate-err').textContent = 'Mot de passe incorrect.';
+    document.getElementById('pwd-inp').value = '';
+  }
+}
+
+document.getElementById('pwd-inp').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+function logout() {
+  sessionStorage.removeItem('analytics_auth');
+  location.reload();
+}
+
+function showDash() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('dash').style.display = 'block';
+  loadAll();
+}
+
+if (sessionStorage.getItem('analytics_auth') === '1') showDash();
+
+// ── Period ──
+function setPeriod(period, btn) {
+  currentPeriod = period;
+  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  loadAll();
+}
+
+// ── GA4 API ──
+async function ga4(body) {
+  const url = `https://analyticsdata.googleapis.com/v1beta/properties/${CONFIG.PROPERTY_ID}:runReport?key=${CONFIG.API_KEY}`;
+  const r = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+
+function fmt(n) {
+  n = parseInt(n || 0);
+  if (n >= 1000000) return (n/1000000).toFixed(1)+'M';
+  if (n >= 1000) return (n/1000).toFixed(1)+'k';
+  return n.toLocaleString('fr-FR');
+}
+
+function pct(n) { return (parseFloat(n||0)*100).toFixed(1)+'%'; }
+
+// ── Load all data ──
+async function loadAll() {
+  renderKpiLoader();
+  renderChartsLoader();
+  try {
+    const dateRanges = [{startDate: currentPeriod, endDate: 'today'}];
+
+    const [summary, countries, devices, daily] = await Promise.all([
+      ga4({dateRanges, metrics:[
+        {name:'totalUsers'},{name:'sessions'},
+        {name:'screenPageViews'},{name:'bounceRate'}
+      ]}),
+      ga4({dateRanges, dimensions:[{name:'country'}], metrics:[{name:'totalUsers'}],
+        orderBys:[{metric:{metricName:'totalUsers'},desc:true}], limit:8}),
+      ga4({dateRanges, dimensions:[{name:'deviceCategory'}], metrics:[{name:'totalUsers'}]}),
+      ga4({dateRanges:[{startDate: currentPeriod, endDate:'today'}],
+        dimensions:[{name:'date'}], metrics:[{name:'totalUsers'}],
+        orderBys:[{dimension:{dimensionName:'date'}}]})
+    ]);
+
+    renderKpis(summary);
+    renderCharts(countries, devices, daily);
+  } catch(e) {
+    document.getElementById('kpi-grid').innerHTML =
+      `<div class="loader" style="grid-column:span 4;color:#ef4444">
+        Erreur API. Vérifie ton Property ID et ton API Key.<br>
+        <small style="opacity:.6">${e.message}</small>
+      </div>`;
+    document.getElementById('charts-grid').innerHTML = '';
+  }
+}
+
+function renderKpiLoader() {
+  document.getElementById('kpi-grid').innerHTML =
+    `<div class="loader" style="grid-column:span 4"><div class="spinner"></div><br>Chargement…</div>`;
+}
+function renderChartsLoader() {
+  document.getElementById('charts-grid').innerHTML =
+    `<div class="loader" style="grid-column:span 3"><div class="spinner"></div><br>Chargement…</div>`;
+}
+
+function renderKpis(data) {
+  const m = data.rows?.[0]?.metricValues || [];
+  const kpis = [
+    {lbl:'Visiteurs uniques', val: fmt(m[0]?.value), sub:'Total Users'},
+    {lbl:'Sessions',          val: fmt(m[1]?.value), sub:'Visites totales'},
+    {lbl:'Pages vues',        val: fmt(m[2]?.value), sub:'Page Views'},
+    {lbl:'Taux de rebond',    val: pct(m[3]?.value), sub:'Bounce Rate'},
+  ];
+  document.getElementById('kpi-grid').innerHTML = kpis.map(k =>
+    `<div class="kpi-card">
+      <p class="kpi-lbl">${k.lbl}</p>
+      <p class="kpi-val">${k.val || '—'}</p>
+      <p class="kpi-sub">${k.sub}</p>
+    </div>`
+  ).join('');
+}
+
+function renderCharts(countries, devices, daily) {
+  // Countries
+  const cRows = countries.rows || [];
+  const maxC = parseInt(cRows[0]?.metricValues?.[0]?.value || 1);
+  const countriesHtml = cRows.map(r => {
+    const name = r.dimensionValues[0].value;
+    const count = parseInt(r.metricValues[0].value);
+    const w = Math.round((count/maxC)*100);
+    return `<div class="country-row">
+      <span class="country-name">${name}</span>
+      <div class="country-bar-wrap"><div class="country-bar" style="width:${w}%"></div></div>
+      <span class="country-count">${fmt(count)}</span>
+    </div>`;
+  }).join('');
+
+  // Devices
+  const dRows = devices.rows || [];
+  const dLabels = dRows.map(r => {
+    const d = r.dimensionValues[0].value;
+    return d==='mobile'?'Mobile':d==='desktop'?'Desktop':d==='tablet'?'Tablette':d;
+  });
+  const dData = dRows.map(r => parseInt(r.metricValues[0].value));
+  const dColors = ['#3b82f6','#8b5cf6','#22c55e','#f59e0b'];
+
+  // Daily trend
+  const dates = (daily.rows||[]).map(r => {
+    const d = r.dimensionValues[0].value;
+    return `${d.slice(6,8)}/${d.slice(4,6)}`;
+  });
+  const vals = (daily.rows||[]).map(r => parseInt(r.metricValues[0].value));
+
+  if (devicesChart) devicesChart.destroy();
+
+  document.getElementById('charts-grid').innerHTML = `
+    <div class="chart-card wide">
+      <p class="chart-title">Visiteurs par jour</p>
+      <canvas id="dailyChart" height="80"></canvas>
+    </div>
+    <div class="chart-card">
+      <p class="chart-title">Appareils</p>
+      <canvas id="deviceChart" height="160"></canvas>
+    </div>
+    <div class="chart-card wide">
+      <p class="chart-title">Top pays</p>
+      <div id="countries-list">${countriesHtml || '<p style="color:var(--muted);font-size:.8rem">Aucune donnée</p>'}</div>
+    </div>
+    <div class="chart-card">
+      <p class="chart-title">Répartition appareils</p>
+      <div id="device-legend"></div>
+    </div>
+  `;
+
+  // Daily chart
+  new Chart(document.getElementById('dailyChart'), {
+    type: 'line',
+    data: {labels: dates, datasets:[{
+      data: vals, borderColor:'#3b82f6', backgroundColor:'rgba(59,130,246,.08)',
+      borderWidth:2, pointRadius:3, pointBackgroundColor:'#3b82f6', fill:true, tension:.4
+    }]},
+    options:{plugins:{legend:{display:false}}, scales:{
+      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#555',font:{size:10}}},
+      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#555',font:{size:10}}}
+    }}
+  });
+
+  // Device donut
+  devicesChart = new Chart(document.getElementById('deviceChart'), {
+    type: 'doughnut',
+    data: {labels: dLabels, datasets:[{data:dData, backgroundColor:dColors, borderWidth:0, hoverOffset:4}]},
+    options:{cutout:'72%', plugins:{legend:{display:false}}}
+  });
+
+  // Device legend
+  const total = dData.reduce((a,b)=>a+b,0)||1;
+  document.getElementById('device-legend').innerHTML = dRows.map((r,i) => {
+    const name = dLabels[i];
+    const v = dData[i];
+    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <span style="width:8px;height:8px;border-radius:50%;background:${dColors[i]};flex-shrink:0"></span>
+      <span style="font-size:.8rem;font-weight:600;flex:1">${name}</span>
+      <span style="font-size:.75rem;color:var(--muted);font-weight:600">${Math.round(v/total*100)}%</span>
+    </div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>
