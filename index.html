@@ -222,6 +222,41 @@
             transform: translateY(0);
         }
 
+        /* Lightbox Zen */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            cursor: zoom-out;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .lightbox.show img {
+            transform: scale(1);
+        }
+
         /* Input Styles */
         .input-zen {
             width: 100%;
@@ -390,19 +425,19 @@
             <div class="project-grid">
                 <template x-for="(project, index) in projects">
                     <template x-if="index > 0">
-                        <div class="space-y-8 group reveal" x-intersect="$el.classList.add('active')">
-                            <div class="project-frame aspect-video">
+                        <div class="space-y-6 reveal" x-intersect="$el.classList.add('active')">
+                            <div class="project-frame aspect-[16/10] cursor-zoom-in" @click="openLightbox(project.images[0])">
                                 <img :src="project.images[0]" :alt="project[currentLang].title">
                             </div>
-                            <div class="space-y-4">
-                                <h3 class="text-3xl tracking-tight" x-text="project[currentLang].title"></h3>
-                                <p class="text-muted leading-relaxed line-clamp-2" x-text="project[currentLang].description"></p>
-                                <div class="flex gap-6 pt-4">
+                            <div class="space-y-3">
+                                <h3 class="text-2xl tracking-tight" x-text="project[currentLang].title"></h3>
+                                <p class="text-muted text-sm leading-relaxed" x-text="project[currentLang].description"></p>
+                                <div class="flex gap-4 pt-2">
                                     <template x-if="project.links.github">
-                                        <a :href="project.links.github" class="text-xs font-black uppercase tracking-widest hover:text-accent underline underline-offset-8">GitHub</a>
+                                        <a :href="project.links.github" class="text-[10px] font-black uppercase tracking-widest hover:text-accent underline underline-offset-8">GitHub</a>
                                     </template>
                                     <template x-if="project.links.demo">
-                                        <a :href="project.links.demo" class="text-xs font-black uppercase tracking-widest hover:text-accent underline underline-offset-8">Demo</a>
+                                        <a :href="project.links.demo" class="text-[10px] font-black uppercase tracking-widest hover:text-accent underline underline-offset-8">Demo</a>
                                     </template>
                                 </div>
                             </div>
@@ -420,9 +455,8 @@
                 <div class="reveal" x-intersect="$el.classList.add('active')">
                     <h2 class="text-7xl lg:text-8xl font-black tracking-tighter mb-12">Discutons de<br>votre projet<span class="text-accent">.</span></h2>
                     <p class="text-xl font-medium mb-12 text-black/60">Disponible pour des missions freelance ou des collaborations ambitieuses.</p>
-                    <div class="space-y-6 font-bold text-3xl tracking-tighter">
-                        <a href="mailto:assogbamanuel6@gmail.com" class="block hover:text-accent transition-colors">assogbamanuel6@gmail.com</a>
-                        <p class="opacity-30">Cotonou, Bénin / Remote</p>
+                    <div class="font-bold text-3xl tracking-tighter">
+                        <a href="mailto:assogbamanuel6@gmail.com" class="hover:text-accent transition-colors">assogbamanuel6@gmail.com</a>
                     </div>
                 </div>
 
@@ -459,11 +493,10 @@
         </div>
     </footer>
 
-    <!-- Back to Top -->
-    <button @click="scrollToTop()" x-show="showBackToTop" x-transition
-        class="fixed bottom-12 right-12 bg-accent text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-[100] text-xl">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- Lightbox -->
+    <div class="lightbox" :class="{ 'show': lightbox.show }" @click="closeLightbox()">
+        <img :src="lightbox.image" alt="Lightbox Preview">
+    </div>
 
     <script src="assets/script.js"></script>
 </body>
