@@ -64,7 +64,7 @@ function app() {
                     title: "Le Transporteur",
                     description: "Comprehensive urban logistics and delivery platform (Client, Courier, Admin) featuring a real-time price negotiation system."
                 },
-                type: "Mobile / Web",
+                type: "Mobile",
                 tech: ["Flutter", "Dart", "Monorepo", "Hive", "Geolocator", "Maps"],
                 images: [
                     "assets/projects/le_transporteur/1.png",
