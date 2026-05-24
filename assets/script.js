@@ -65,7 +65,8 @@ function app() {
                     "assets/projects/gridcss/3.png",
                 ],
                 links: {
-                    github: "https://github.com/manuelh6/grid-generator",
+                    github: null,
+                    gitlab: "https://gitlab.com/learnperso/react/grid-generator/",
                     demo: null
                 }
             },
