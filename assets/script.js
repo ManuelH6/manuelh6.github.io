@@ -21,7 +21,11 @@ function app() {
         // Lightbox
         lightbox: {
             show: false,
-            image: ''
+            images: [],
+            currentIndex: 0,
+            get currentImage() {
+                return this.images[this.currentIndex] || '';
+            }
         },
 
         // Projects data
@@ -62,7 +66,10 @@ function app() {
                 images: [
                     "assets/projects/fieldoz/1.png",
                     "assets/projects/fieldoz/2.png",
+                    "assets/projects/fieldoz/3.png",
                     "assets/projects/fieldoz/4.png",
+                    "assets/projects/fieldoz/5.png",
+                    "assets/projects/fieldoz/6.png",
                 ],
                 links: {
                     github: null,
@@ -490,7 +497,7 @@ function app() {
             // Skip index 0 (featured project)
             const rest = this.projects.slice(1);
             if (this.activeFilter === 'all') return rest;
-            if (this.activeFilter === 'web')    return rest.filter(p => p.type.toLowerCase().includes('web'));
+            if (this.activeFilter === 'web') return rest.filter(p => p.type.toLowerCase().includes('web'));
             if (this.activeFilter === 'mobile') return rest.filter(p => p.type.toLowerCase().includes('mobile'));
             return rest;
         },
@@ -528,31 +535,50 @@ function app() {
 
 
 
-        openLightbox(image) {
+        openLightbox(images, index = 0) {
+            this.lightbox.images = Array.isArray(images) ? images : [images];
+            this.lightbox.currentIndex = index;
             this.lightbox.show = true;
-            this.lightbox.image = image;
             document.body.style.overflow = 'hidden';
 
-            // Détection automatique de l'orientation
-            const img = new Image();
-            img.src = image;
-            img.onload = () => {
-                if (img.height > img.width) {
-                    // Image portrait
-                    document.querySelector('.lightbox-image')?.classList.add('portrait');
-                    document.querySelector('.lightbox-image')?.classList.remove('landscape');
-                } else {
-                    // Image paysage
-                    document.querySelector('.lightbox-image')?.classList.add('landscape');
-                    document.querySelector('.lightbox-image')?.classList.remove('portrait');
-                }
-            };
+            this.detectOrientation();
         },
 
         closeLightbox() {
             this.lightbox.show = false;
-            this.lightbox.image = '';
             document.body.style.overflow = 'auto';
+        },
+
+        nextImage() {
+            if (this.lightbox.images.length <= 1) return;
+            this.lightbox.currentIndex = (this.lightbox.currentIndex + 1) % this.lightbox.images.length;
+            this.detectOrientation();
+        },
+
+        prevImage() {
+            if (this.lightbox.images.length <= 1) return;
+            this.lightbox.currentIndex = (this.lightbox.currentIndex - 1 + this.lightbox.images.length) % this.lightbox.images.length;
+            this.detectOrientation();
+        },
+
+        detectOrientation() {
+            if (!this.lightbox.currentImage) return;
+            const img = new Image();
+            img.src = this.lightbox.currentImage;
+            img.onload = () => {
+                const lbImg = document.querySelector('.lightbox-image');
+                if (lbImg) {
+                    if (img.height > img.width) {
+                        // Image portrait
+                        lbImg.classList.add('portrait');
+                        lbImg.classList.remove('landscape');
+                    } else {
+                        // Image paysage
+                        lbImg.classList.add('landscape');
+                        lbImg.classList.remove('portrait');
+                    }
+                }
+            };
         },
 
         validateForm() {
