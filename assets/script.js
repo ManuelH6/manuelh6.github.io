@@ -88,6 +88,7 @@ function app() {
                 ],
                 links: {
                     github: null,
+                    gitlab: "https://gitlab.com/assogbamanuel6/biodiversite-rbtwap-web",
                     demo: null
                 }
             },
@@ -109,6 +110,7 @@ function app() {
                 ],
                 links: {
                     github: null,
+                    gitlab: "https://gitlab.com/assogbamanuel6/learningapp/",
                     demo: null
                 }
             },
