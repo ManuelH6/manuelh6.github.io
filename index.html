@@ -935,8 +935,14 @@
                         <template x-for="t in projects[0].tech"><span class="tag" x-text="t"></span></template>
                     </div>
                     <div class="feat-btns">
-                        <a :href="projects[0].links.github" class="btn btn-primary">GitHub <i
-                                class="fab fa-github"></i></a>
+                        <template x-if="projects[0].links.github">
+                            <a :href="projects[0].links.github" class="btn btn-primary">GitHub <i
+                                    class="fab fa-github"></i></a>
+                        </template>
+                        <template x-if="projects[0].links.gitlab">
+                            <a :href="projects[0].links.gitlab" class="btn btn-primary">GitLab <i
+                                    class="fab fa-gitlab"></i></a>
+                        </template>
                         <template x-if="projects[0].links.demo">
                             <a :href="projects[0].links.demo" class="btn btn-ghost">Demo</a>
                         </template>
@@ -1031,8 +1037,9 @@
                             </div>
                             <div class="proj-links">
                                 <template x-if="p.links.github"><a :href="p.links.github">GitHub</a></template>
+                                <template x-if="p.links.gitlab"><a :href="p.links.gitlab">GitLab</a></template>
                                 <template x-if="p.links.demo"><a :href="p.links.demo">Demo</a></template>
-                                <template x-if="!p.links.github && !p.links.demo"><span
+                                <template x-if="!p.links.github && !p.links.gitlab && !p.links.demo"><span
                                         class="proj-conf">Confidentiel</span></template>
                             </div>
                         </div>

@@ -43,7 +43,8 @@ function app() {
                     "assets/projects/fieldoz/4.png",
                 ],
                 links: {
-                    github: "https://github.com/manuelh6/fieldoz",
+                    github: null,
+                    gitlab: "https://gitlab.com/learnperso/fieldoz/",
                     demo: null,
                 }
             },
