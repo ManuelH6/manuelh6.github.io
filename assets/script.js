@@ -28,6 +28,28 @@ function app() {
         projects: [
             {
                 fr: {
+                    title: "Le Transporteur",
+                    description: "Plateforme complète de logistique et de livraison (Client, Livreur, Admin) avec système de négociation de prix en temps réel."
+                },
+                en: {
+                    title: "Le Transporteur",
+                    description: "Comprehensive urban logistics and delivery platform (Client, Courier, Admin) featuring a real-time price negotiation system."
+                },
+                type: "Mobile / Web",
+                tech: ["Flutter", "Dart", "Monorepo", "Hive", "Geolocator", "Maps"],
+                images: [
+                    "assets/projects/le_transporteur/1.png",
+                    "assets/projects/le_transporteur/2.png",
+                    "assets/projects/le_transporteur/3.png",
+                ],
+                links: {
+                    github: null,
+                    gitlab: null,
+                    demo: null
+                }
+            },
+            {
+                fr: {
                     title: "FieldOz",
                     description: "Transformez les données complexes en rapports d'impact visuels. La clarté au service du social."
                 },
