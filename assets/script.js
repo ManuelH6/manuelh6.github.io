@@ -1,6 +1,7 @@
 function app() {
     return {
         currentLang: 'fr',
+        darkMode: localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : true,
         mobileMenuOpen: false,
         showNav: false,
         showBackToTop: false,
@@ -143,16 +144,16 @@ function app() {
             },
             {
                 fr: {
-                    title: "Exam & Jande",
-                    description: "Système d'évaluation de compétences et d'acquisition de langues locales adapté aux agents de terrain sans bagage technique préalable."
+                    title: "Exam",
+                    description: "Évaluation des compétences via des examens gamifiés et ludiques."
                 },
                 en: {
-                    title: "Exam & Jande",
-                    description: "Competency evaluation and local language training system tailored for field workers."
+                    title: "Exam",
+                    description: "Platform that provides continuous skill assessment through gamified exams, enabling a fun and motivating way for learners to track their progress."
                 },
-                type: "Web & Pédagogie",
+                type: "Web",
                 category: "web systemes",
-                tech: ["Laravel", "Livewire", "Alpine.js", "SQLite"],
+                tech: ["Laravel", "Bootstrap", "MySQL", "JQuery", "JQuery UI"],
                 images: [
                     "assets/projects/eval/1.jpeg",
                     "assets/projects/eval/2.jpeg",
@@ -166,16 +167,16 @@ function app() {
             },
             {
                 fr: {
-                    title: "iKnow — Audit Terrain",
-                    description: "Suivi transparent des activités opérationnelles pour les consortiums d'ONG. Indexation instantanée et archivage AWS S3."
+                    title: "iKnow",
+                    description: "Suivi temps réel des activités terrain pour les ONG partenaires."
                 },
                 en: {
-                    title: "iKnow — Field Audit",
-                    description: "Real-time field activity monitoring platform for partner NGO consortiums. Instant indexing and S3 object storage."
+                    title: "iKnow",
+                    description: "Platform that enables partner NGOs to remotely monitor and track their field activities in real time, with summary dashboards, interactive maps, and tracking of funding indicators."
                 },
-                type: "Système & Données",
+                type: "Web",
                 category: "systemes web",
-                tech: ["PHP / Laravel", "AWS S3", "Chart.js", "REST APIs"],
+                tech: ["Laravel", "Bootstrap", "AWS S3", "Google Maps", "MySQL", "Rest API", "iNaturalist API", "Chart.js"],
                 images: [
                     "assets/projects/iknow/1.png",
                     "assets/projects/iknow/2.png",
@@ -526,7 +527,23 @@ function app() {
             return rest;
         },
 
+        toggleDarkMode() {
+            this.darkMode = !this.darkMode;
+            localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+            if (this.darkMode) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        },
+
         init() {
+            if (this.darkMode) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
             let ticking = false;
             window.addEventListener('scroll', () => {
                 if (!ticking) {
