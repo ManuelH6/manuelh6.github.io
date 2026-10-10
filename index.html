@@ -2,1202 +2,1399 @@
 <html lang="fr" x-data="app()" x-init="init()">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="web_standard" name="shell-type" />
 
     <!-- ═══ Google Analytics 4 ═══ -->
-    <!-- Remplace G-XXXXXXXXXX par ton Measurement ID depuis analytics.google.com -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPK859G051"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-HPK859G051', {
-            // Anonymise les IPs pour la conformité RGPD
             anonymize_ip: true,
-            // Nom de la page envoyé automatiquement
             send_page_view: true
         });
     </script>
-    <title
-        x-text="currentLang==='fr'?'Manuel Assogba - Développeur Full-Stack':'Manuel Assogba - Full-Stack Developer'">
-    </title>
+
+    <title>Manuel Assogba — Bâtisseur de Systèmes Utiles</title>
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
-    <link href="./src/output.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts: Plus Jakarta Sans & Ubuntu -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Ubuntu+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Material Symbols & FontAwesome -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Tailwind CSS CDN & Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#fbf8fc",
+                        "secondary-container": "#fe8c5e",
+                        "primary-container": "#00855d",
+                        "on-secondary-container": "#732600",
+                        "on-primary-fixed": "#002114",
+                        "surface-dim": "#dcd9dd",
+                        "surface-bright": "#fbf8fc",
+                        "tertiary-fixed-dim": "#ffb3b6",
+                        "tertiary-fixed": "#ffdada",
+                        "surface-tint": "#006c4a",
+                        "primary": "#006948",
+                        "on-tertiary-fixed-variant": "#920028",
+                        "surface-container-highest": "#e4e1e6",
+                        "background": "#fbf8fc",
+                        "primary-fixed-dim": "#68dba9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eae7eb",
+                        "on-surface": "#1b1b1e",
+                        "tertiary": "#ba0035",
+                        "on-background": "#1b1b1e",
+                        "surface-variant": "#e4e1e6",
+                        "surface-container-low": "#f6f2f7",
+                        "inverse-surface": "#303033",
+                        "inverse-on-surface": "#f3f0f4",
+                        "secondary-fixed-dim": "#ffb599",
+                        "on-surface-variant": "#3d4a42",
+                        "inverse-primary": "#68dba9",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary-container": "#e21e49",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f0edf1",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#005137",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#85f8c4",
+                        "on-error-container": "#93000a",
+                        "secondary": "#9d431b",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#40000c",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#7e2c04",
+                        "outline": "#6d7a72",
+                        "on-primary-container": "#f5fff7",
+                        "outline-variant": "#bccac0",
+                        "on-secondary-fixed": "#370e00",
+                        "secondary-fixed": "#ffdbce"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "gutter-desktop": "1.5rem",
+                        "margin": "1rem",
+                        "space-md": "1rem",
+                        "space-lg": "1.5rem",
+                        "space-xl": "2.5rem",
+                        "space-sm": "0.5rem",
+                        "space-xs": "0.25rem",
+                        "gutter": "1rem",
+                        "margin-desktop": "2.5rem"
+                    },
+                    fontFamily: {
+                        "sans": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "display": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "ubuntu": ["'Ubuntu'", "sans-serif"],
+                        "mono": ["'Ubuntu Mono'", "'Ubuntu'", "monospace"],
+                        "metric-xl": ["'Ubuntu'", "sans-serif"],
+                        "metric-md": ["'Ubuntu'", "sans-serif"],
+                        "body-lg": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "headline-lg-mobile": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "body-sm": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "headline-md": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "label-caps": ["'Ubuntu'", "sans-serif"],
+                        "metric-xl-mobile": ["'Ubuntu'", "sans-serif"],
+                        "code-sm": ["'Ubuntu Mono'", "'Ubuntu'", "monospace"],
+                        "display-lg-mobile": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "body-md": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "headline-lg": ["'Plus Jakarta Sans'", "sans-serif"],
+                        "display-lg": ["'Plus Jakarta Sans'", "sans-serif"]
+                    },
+                    fontSize: {
+                        "metric-xl": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "metric-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+                        "metric-xl-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+                        "code-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display-lg": ["56px", { "lineHeight": "60px", "letterSpacing": "-0.03em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        };
+    </script>
+
     <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box
-        }
-
         [x-cloak] {
-            display: none !important
-        }
-
-        :root {
-            --bg: #0a0a0a;
-            --fg: #fafafa;
-            --muted: #777;
-            --accent: #3b82f6;
-            --border: rgba(255, 255, 255, 0.08)
+            display: none !important;
         }
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px
+            scroll-padding-top: 90px;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--fg);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fbf8fc;
+            color: #1b1b1e;
             -webkit-font-smoothing: antialiased;
-            margin: 0
-        }
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-weight: 900;
-            letter-spacing: -0.04em;
-            line-height: 1.1;
-            margin: 0
-        }
-
-        /* Layout */
-        .wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px
-        }
-
-        section {
-            padding: 96px 0
-        }
-
-        /* Nav */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 26px 0;
-            transition: all .35s ease
-        }
-
-        nav.scrolled {
-            padding: 12px 0;
-            background: rgba(10, 10, 10, .97);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border)
-        }
-
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center
-        }
-
-        .nav-logo {
-            font-size: 1.1rem;
-            font-weight: 900;
-            letter-spacing: -.04em;
-            text-decoration: none;
-            color: var(--fg)
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 36px
-        }
-
-        .nav-links a {
-            font-size: .7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            color: var(--fg);
-            text-decoration: none;
-            transition: color .2s
-        }
-
-        .nav-links a:hover {
-            color: var(--accent)
-        }
-
-        .nav-lang {
-            font-size: .7rem;
-            font-weight: 900;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, .2);
-            color: var(--fg);
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all .2s;
-            letter-spacing: .05em
-        }
-
-        .nav-lang:hover {
-            background: var(--fg);
-            color: var(--bg)
-        }
-
-        .nav-burger {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--fg);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 4px
-        }
-
-        /* Mobile menu */
-        .mob-menu {
-            position: fixed;
-            inset: 0;
-            z-index: 150;
-            background: #050505;
-            padding: 80px 32px 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 0
-        }
-
-        .mob-menu a {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -.04em;
-            color: var(--fg);
-            text-decoration: none;
-            padding: 18px 0;
-            border-bottom: 1px solid var(--border);
-            display: block
-        }
-
-        /* Typography system */
-        .lbl {
-            display: block;
-            font-size: .62rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: .35em;
-            color: var(--accent);
-            margin-bottom: .6rem
-        }
-
-        .sec-title {
-            font-size: clamp(1.9rem, 5vw, 2.8rem);
-            margin-bottom: 2rem
-        }
-
-        .hero-title {
-            font-size: clamp(2.6rem, 8vw, 5rem);
-            font-weight: 900;
-            margin-bottom: 20px
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 11px 22px;
-            font-size: .78rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: all .25s ease;
-            border: none
-        }
-
-        .btn-primary {
-            background: var(--fg);
-            color: var(--bg)
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 255, 255, .12)
-        }
-
-        .btn-ghost {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, .2);
-            color: var(--fg)
-        }
-
-        .btn-ghost:hover {
-            background: var(--fg);
-            color: var(--bg)
-        }
-
-        /* Hero */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center
-        }
-
-        .hero-sub {
-            font-size: 1rem;
-            color: var(--muted);
-            max-width: 520px;
-            margin-bottom: 32px;
-            font-weight: 500;
-            line-height: 1.7
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap
-        }
-
-        /* Featured */
-        #featured {
-            background: #080808;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 72px 0
-        }
-
-        .featured-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: start
-        }
-
-        .feat-img {
-            height: 360px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            background: #111;
-            position: relative
-        }
-
-        .feat-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            display: block;
-            transition: transform .7s ease
-        }
-
-        .feat-img:hover img {
-            transform: scale(1.03)
-        }
-
-        .feat-info {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            padding-top: 4px
-        }
-
-        .feat-info h3 {
-            font-size: 1.6rem;
-            margin-top: 4px
-        }
-
-        .feat-desc {
-            font-size: .875rem;
-            color: var(--muted);
-            line-height: 1.7
-        }
-
-        .feat-btns {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 4px
-        }
-
-        /* Tags */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px
-        }
-
-        .tag {
-            font-size: .62rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-            border: 1px solid var(--border);
-            padding: 5px 9px;
-            border-radius: 5px;
-            color: var(--fg);
-            transition: border-color .2s
-        }
-
-        .tag:hover {
-            border-color: rgba(255, 255, 255, .3)
-        }
-
-        /* About */
-        #about {
-            padding: 96px 0
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 7fr 5fr;
-            gap: 64px;
-            align-items: start
-        }
-
-        .about-sub {
-            font-size: .875rem;
-            color: var(--muted);
-            line-height: 1.75;
-            max-width: 480px;
-            margin-bottom: 40px
-        }
-
-        /* Timeline */
-        .tl-item {
-            position: relative;
-            padding-left: 22px;
-            border-left: 1px solid var(--border);
-            padding-bottom: 28px
-        }
-
-        .tl-item:last-child {
-            padding-bottom: 0
-        }
-
-        .tl-item::before {
-            content: '';
-            position: absolute;
-            left: -4px;
-            top: 5px;
-            width: 7px;
-            height: 7px;
-            background: var(--bg);
-            border: 2px solid var(--accent);
-            border-radius: 50%
-        }
-
-        .tl-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 8px;
-            margin-bottom: 2px;
-            flex-wrap: wrap
-        }
-
-        .tl-pos {
-            font-size: .8rem;
-            font-weight: 900;
-            letter-spacing: -.01em
-        }
-
-        .tl-period {
-            font-size: .65rem;
-            font-weight: 600;
-            color: var(--muted);
-            white-space: nowrap;
-            text-transform: uppercase;
-            letter-spacing: .08em
-        }
-
-        .tl-co {
-            font-size: .65rem;
-            font-weight: 900;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            margin-bottom: 4px
-        }
-
-        .tl-desc {
-            font-size: .75rem;
-            color: var(--muted);
-            line-height: 1.65
-        }
-
-        /* Skills right column */
-        .skills-col {
-            padding-top: 0
-        }
-
-        .sk-group {
-            margin-bottom: 28px
-        }
-
-        .sk-group:last-child {
-            margin-bottom: 0
-        }
-
-        .sk-lbl {
-            font-size: .6rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: .15em;
-            color: var(--muted);
-            margin-bottom: 8px
-        }
-
-        .soft-list {
-            list-style: none;
+            margin: 0;
             padding: 0;
-            margin: 0
         }
 
-        .soft-list li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: .8rem;
-            font-weight: 500;
-            color: var(--muted);
-            padding: 6px 0;
-            border-bottom: 1px solid var(--border)
+        .font-ubuntu {
+            font-family: 'Ubuntu', sans-serif;
         }
 
-        .soft-list li:last-child {
-            border-bottom: none
-        }
-
-        .soft-dot {
-            width: 4px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 50%;
-            flex-shrink: 0
-        }
-
-        .skills-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 28px 0
-        }
-
-        /* Projects */
-        #projects {
-            background: #070707;
-            border-top: 1px solid var(--border);
-            padding: 96px 0
-        }
-
-        .filters {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 40px
-        }
-
-        .fbtn {
-            font-size: .62rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            padding: 7px 14px;
-            border-radius: 5px;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            background: transparent;
-            cursor: pointer;
-            transition: all .2s
-        }
-
-        .fbtn:hover,
-        .fbtn.on {
-            color: var(--fg);
-            border-color: rgba(255, 255, 255, .3);
-            background: rgba(255, 255, 255, .05)
-        }
-
-        .proj-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px
-        }
-
-        .proj-card {
-            background: #0f0f0f;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: border-color .3s
-        }
-
-        .proj-card:hover {
-            border-color: rgba(255, 255, 255, .18)
-        }
-
-        .proj-thumb {
-            height: 190px;
-            overflow: hidden;
-            flex-shrink: 0
-        }
-
-        .proj-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            display: block;
-            transition: transform .5s ease
-        }
-
-        .proj-card:hover .proj-thumb img {
-            transform: scale(1.04)
-        }
-
-        .proj-body {
-            padding: 18px 20px 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column
-        }
-
-        .proj-type {
-            font-size: .6rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            color: var(--accent)
-        }
-
-        .proj-title {
-            font-size: .95rem;
-            font-weight: 900;
-            letter-spacing: -.02em;
-            margin: 4px 0 8px
-        }
-
-        .proj-desc {
-            font-size: .75rem;
-            color: var(--muted);
-            line-height: 1.65;
-            margin-bottom: 12px;
-            flex: 1
-        }
-
-        .proj-links {
-            display: flex;
-            gap: 16px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-            margin-top: auto
-        }
-
-        .proj-links a {
-            font-size: .6rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            color: var(--muted);
-            text-decoration: none;
-            transition: color .2s
-        }
-
-        .proj-links a:hover {
-            color: var(--fg)
-        }
-
-        .proj-conf {
-            font-size: .6rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            color: rgba(255, 255, 255, .15)
-        }
-
-        /* Contact */
-        #contact {
-            background: #080808;
-            border-top: 1px solid var(--border);
-            padding: 96px 0
-        }
-
-        .contact-wrap {
-            max-width: 560px;
-            margin: 0 auto;
-            text-align: center
-        }
-
-        .contact-email {
-            font-size: clamp(1rem, 2.8vw, 1.5rem);
-            font-weight: 900;
-            letter-spacing: -.02em;
-            color: var(--fg);
-            text-decoration: none;
-            word-break: break-all;
-            transition: color .2s;
-            display: inline-block;
-            margin-bottom: 48px
-        }
-
-        .contact-email:hover {
-            color: var(--accent)
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 24px
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 24px
-        }
-
-        .form-lbl {
-            font-size: .62rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: .15em;
-            color: var(--muted)
-        }
-
-        .inp {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, .12);
-            padding: 10px 0;
-            font-size: .9rem;
-            font-weight: 500;
-            color: var(--fg);
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            transition: border-color .25s
-        }
-
-        .inp:focus {
-            border-color: var(--accent)
-        }
-
-        .inp::placeholder {
-            color: rgba(255, 255, 255, .18);
-            font-weight: 400
-        }
-
-        .btn-submit {
-            width: 100%;
-            justify-content: center;
-            padding: 14px;
-            font-size: .8rem;
-            margin-top: 8px
-        }
-
-        .form-msg {
-            text-align: center;
-            font-size: .8rem;
-            font-weight: 600;
-            margin-top: 12px
-        }
-
-        /* Footer */
-        footer {
-            padding: 48px 0;
-            background: #000;
-            border-top: 1px solid var(--border)
-        }
-
-        .foot-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 24px;
-            flex-wrap: wrap
-        }
-
-        .foot-copy {
-            font-size: .65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .2em;
-            color: var(--muted)
-        }
-
-        .foot-links {
-            display: flex;
-            gap: 28px
-        }
-
-        .foot-links a {
-            font-size: .65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .2em;
-            color: var(--muted);
-            text-decoration: none;
-            transition: color .2s
-        }
-
-        .foot-links a:hover {
-            color: var(--fg)
-        }
-
-        /* Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: all .8s cubic-bezier(.2, 1, .3, 1)
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0)
-        }
-
-        /* Lightbox */
+        /* Lightbox Custom Styles */
         .lightbox {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, .96);
+            background: rgba(15, 15, 18, 0.94);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 32px;
-            cursor: zoom-out;
+            padding: 24px;
             opacity: 0;
             pointer-events: none;
-            transition: opacity .35s
+            transition: opacity .3s ease;
         }
 
         .lightbox.show {
             opacity: 1;
-            pointer-events: all
+            pointer-events: all;
         }
 
         .lightbox img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 92vw;
+            max-height: 88vh;
             object-fit: contain;
             border-radius: 8px;
-            box-shadow: 0 32px 80px rgba(0, 0, 0, .6);
-            transform: scale(.92);
-            transition: transform .4s cubic-bezier(.2, 1, .3, 1)
+            box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.7);
+            transform: scale(0.95);
+            transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .lightbox.show img {
-            transform: scale(1)
+            transform: scale(1);
         }
 
-        /* Lightbox Navigation */
         .lb-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            font-size: 1.2rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             z-index: 1001;
+            backdrop-filter: blur(4px);
         }
+
         .lb-nav:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) scale(1.1);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-50%) scale(1.08);
         }
-        .lb-prev { left: 20px; }
-        .lb-next { right: 20px; }
+
+        .lb-prev { left: 24px; }
+        .lb-next { right: 24px; }
+
         .lb-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
+            top: 24px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            font-size: 1.2rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             z-index: 1001;
+            backdrop-filter: blur(4px);
         }
+
         .lb-close:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.08);
         }
+
         .lb-counter {
             position: absolute;
-            bottom: 20px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            background: rgba(0,0,0,0.6);
-            padding: 5px 15px;
-            border-radius: 20px;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            background: rgba(27, 27, 30, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 18px;
+            border-radius: 9999px;
+            backdrop-filter: blur(6px);
         }
+
         .gallery-indicator {
             position: absolute;
-            bottom: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(27, 27, 30, 0.85);
+            color: #fff;
             padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: 700;
+            border-radius: 9999px;
+            font-size: 0.68rem;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 6px;
             pointer-events: none;
             backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             z-index: 10;
         }
 
-        /* Responsive */
-        @media(max-width:900px) {
-
-            .featured-grid,
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 32px
-            }
-
-            .feat-img {
-                height: 280px
-            }
-
-            .proj-grid {
-                grid-template-columns: 1fr
-            }
-
-            .form-row {
-                grid-template-columns: 1fr
-            }
-
-            .foot-inner {
-                flex-direction: column;
-                text-align: center
-            }
+        /* Subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        @media(max-width:680px) {
-            .nav-links {
-                display: none
-            }
+        ::-webkit-scrollbar-track {
+            background: #f0edf1;
+        }
 
-            .nav-burger {
-                display: block
-            }
+        ::-webkit-scrollbar-thumb {
+            background: #bccac0;
+            border-radius: 4px;
+        }
 
-            section {
-                padding: 64px 0
-            }
-
-            #featured {
-                padding: 56px 0
-            }
-
-            #projects {
-                padding: 64px 0
-            }
-
-            #contact {
-                padding: 64px 0
-            }
-
-            .hero-btns {
-                flex-direction: column;
-                align-items: flex-start
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #006948;
         }
     </style>
 </head>
 
-<body x-cloak>
+<body class="bg-surface text-on-surface font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed" x-cloak>
 
-    <!-- NAV -->
-    <nav :class="{'scrolled':scrollProgress>3}">
-        <div class="wrap nav-inner">
-            <a href="#" class="nav-logo">MANUEL<span style="color:var(--accent)">.</span></a>
-            <div class="nav-links">
-                <a href="#featured">Focus</a>
-                <a href="#about">Parcours</a>
-                <a href="#projects">Projets</a>
-                <a href="#contact">Contact</a>
-                <button class="nav-lang" @click="toggleLanguage()" x-text="currentLang==='fr'?'EN':'FR'"></button>
-            </div>
-            <button class="nav-burger" @click="mobileMenuOpen=!mobileMenuOpen" aria-label="Menu">
-                <i class="fas" :class="mobileMenuOpen?'fa-times':'fa-bars'"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <div x-show="mobileMenuOpen" class="mob-menu" x-transition:enter="transition ease-out duration-250"
-        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0">
-        <a href="#featured" @click="mobileMenuOpen=false">Focus</a>
-        <a href="#about" @click="mobileMenuOpen=false">Parcours</a>
-        <a href="#projects" @click="mobileMenuOpen=false">Projets</a>
-        <a href="#contact" @click="mobileMenuOpen=false">Contact</a>
-    </div>
-
-    <!-- HERO -->
-    <section id="hero">
-        <div class="wrap">
-            <div class="reveal" x-intersect="$el.classList.add('active')">
-                <span class="lbl">Full-Stack Architect</span>
-                <h1 class="hero-title" x-text="texts[currentLang].hero.title"></h1>
-                <p class="hero-sub" x-text="texts[currentLang].hero.subtitle"></p>
-                <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">Mes Réalisations <i class="fas fa-arrow-down"></i></a>
-                    <a href="#contact" class="btn btn-ghost">Travaillons ensemble</a>
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.03)] border-b border-surface-container-high/60 transition-all">
+        <div class="h-20 w-full px-margin md:px-margin-desktop flex items-center justify-between gap-space-md max-w-7xl mx-auto">
+            <div class="flex items-center gap-space-lg">
+                <a class="flex flex-col group" href="#focus">
+                    <span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant group-hover:text-primary transition-colors font-ubuntu font-bold">Manuel Assogba</span>
+                    <span class="font-code-sm text-code-sm text-outline font-ubuntu">Full-Stack // System Architect</span>
+                </a>
+                <div class="hidden sm:flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-low rounded border border-surface-container-high/50">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-medium">Dispo • Missions à Impact</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- FEATURED -->
-    <section id="featured">
-        <div class="wrap">
-            <div class="reveal" x-intersect="$el.classList.add('active')">
-                <span class="lbl">Sélection Focus</span>
-                <h2 class="sec-title">Projet Phare<span style="color:var(--accent)">.</span></h2>
-            </div>
-            <div class="featured-grid reveal" x-intersect="$el.classList.add('active')">
-                <div class="feat-img" style="cursor:zoom-in;" @click="openLightbox(projects[0].images)">
-                    <img :src="projects[0].images[0]" alt="Featured Project">
-                    <template x-if="projects[0].images && projects[0].images.length > 1">
-                        <div class="gallery-indicator">
-                            <i class="far fa-images"></i> <span x-text="projects[0].images.length"></span>
-                        </div>
-                    </template>
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-space-xs bg-surface-container-lowest px-space-xs py-space-xs rounded shadow-[0_1px_4px_rgba(0,0,0,0.02)] border border-surface-container-high">
+                <a href="#focus" class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded">Focus</a>
+                <a href="#projet-phare" class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded">Projet Phare</a>
+                <a href="#philosophie" class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded">Doctrine</a>
+                <a href="#projets" class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded">Réalisations</a>
+                <a href="#parcours" class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded">Parcours</a>
+                <a href="#competences" class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded">Outils</a>
+                <a href="#contact" class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded">Contact</a>
+            </nav>
+
+            <!-- Actions & Avatar -->
+            <div class="flex items-center gap-space-md">
+                <a class="hidden md:flex items-center gap-space-xs px-space-md py-space-xs bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-primary hover:text-on-primary transition-all font-ubuntu"
+                    href="#contact">
+                    <span>Initier un Projet</span>
+                    <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+                </a>
+                <div class="relative group cursor-pointer" title="Manuel Assogba">
+                    <img src="assets/profile.jpg" alt="Manuel Assogba" class="w-9 h-9 rounded-full object-cover border-2 border-primary/30 shadow-sm" />
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary border-2 border-white rounded-full"></span>
                 </div>
-                <div class="feat-info">
-                    <div>
-                        <span class="lbl" style="margin-bottom:.3rem" x-text="projects[0].type"></span>
-                        <h3 x-text="projects[0][currentLang].title"></h3>
-                    </div>
-                    <p class="feat-desc" x-text="projects[0][currentLang].description"></p>
-                    <div class="tags">
-                        <template x-for="t in projects[0].tech"><span class="tag" x-text="t"></span></template>
-                    </div>
-                    <div class="feat-btns">
-                        <template x-if="projects[0].links.github">
-                            <a :href="projects[0].links.github" class="btn btn-primary">GitHub <i
-                                    class="fab fa-github"></i></a>
-                        </template>
-                        <template x-if="projects[0].links.gitlab">
-                            <a :href="projects[0].links.gitlab" class="btn btn-primary">GitLab <i
-                                    class="fab fa-gitlab"></i></a>
-                        </template>
-                        <template x-if="projects[0].links.demo">
-                            <a :href="projects[0].links.demo" class="btn btn-ghost">Demo</a>
-                        </template>
-                    </div>
-                </div>
+                <!-- Mobile Burger -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 text-on-surface hover:text-primary transition-colors focus:outline-none" aria-label="Menu">
+                    <span class="material-symbols-outlined text-[26px]" x-text="mobileMenuOpen ? 'close' : 'menu'">menu</span>
+                </button>
             </div>
         </div>
-    </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="wrap">
-            <div class="about-grid">
-                <!-- Timeline -->
-                <div class="reveal" x-intersect="$el.classList.add('active')">
-                    <span class="lbl">Parcours</span>
-                    <h2 class="sec-title">L'approche<span style="color:var(--accent)">.</span></h2>
-                    <p class="about-sub" x-text="texts[currentLang].about.content"></p>
-                    <template x-for="item in texts[currentLang].experience.items">
-                        <div class="tl-item">
-                            <div class="tl-head">
-                                <span class="tl-pos" x-text="item.position||item.title"></span>
-                                <span class="tl-period" x-text="item.period"></span>
-                            </div>
-                            <p class="tl-co" x-text="item.company"></p>
-                            <p class="tl-desc" x-text="item.description"></p>
-                        </div>
-                    </template>
-                </div>
-                <!-- Skills -->
-                <div class="skills-col reveal" x-intersect="$el.classList.add('active')">
-                    <span class="lbl">Compétences</span>
-                    <h2 class="sec-title">Expertise<span style="color:var(--accent)">.</span></h2>
-                    <div class="sk-group">
-                        <p class="sk-lbl">Backend</p>
-                        <div class="tags">
-                            <template x-for="s in ['PHP / Laravel','Node.js','REST APIs','Architecture']"><span
-                                    class="tag" x-text="s"></span></template>
-                        </div>
-                    </div>
-                    <div class="sk-group">
-                        <p class="sk-lbl">Frontend</p>
-                        <div class="tags">
-                            <template x-for="s in ['React / Next.js','Tailwind CSS','Alpine.js','Flutter']"><span
-                                    class="tag" x-text="s"></span></template>
-                        </div>
-                    </div>
-                    <div class="sk-group">
-                        <p class="sk-lbl">Outils &amp; DevOps</p>
-                        <div class="tags">
-                            <template x-for="s in ['Git / GitHub','Docker','AWS S3','CPanel','Figma']"><span class="tag"
-                                    x-text="s"></span></template>
-                        </div>
-                    </div>
-                    <hr class="skills-divider">
-                    <span class="lbl">Soft Skills</span>
-                    <ul class="soft-list">
-                        <template x-for="skill in texts[currentLang].softSkills.items">
-                            <li><span class="soft-dot"></span><span x-text="skill"></span></li>
-                        </template>
-                    </ul>
-                </div>
-            </div>
+        <!-- Mobile Drawer -->
+        <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-surface-container-lowest border-b border-surface-container-high px-margin py-space-md flex flex-col gap-space-sm shadow-lg">
+            <a href="#focus" @click="mobileMenuOpen = false" class="py-2 text-on-surface font-medium hover:text-primary transition-colors">Focus</a>
+            <a href="#projet-phare" @click="mobileMenuOpen = false" class="py-2 text-on-surface font-medium hover:text-primary transition-colors">Projet Phare</a>
+            <a href="#philosophie" @click="mobileMenuOpen = false" class="py-2 text-on-surface font-medium hover:text-primary transition-colors">Doctrine &amp; Démarche</a>
+            <a href="#projets" @click="mobileMenuOpen = false" class="py-2 text-on-surface font-medium hover:text-primary transition-colors">Réalisations</a>
+            <a href="#parcours" @click="mobileMenuOpen = false" class="py-2 text-on-surface font-medium hover:text-primary transition-colors">Parcours</a>
+            <a href="#competences" @click="mobileMenuOpen = false" class="py-2 text-on-surface font-medium hover:text-primary transition-colors">Boîte à Outils</a>
+            <a href="#contact" @click="mobileMenuOpen = false" class="py-2 text-on-surface font-medium hover:text-primary transition-colors">Contact Direct</a>
+            <a href="#contact" @click="mobileMenuOpen = false" class="mt-2 py-3 bg-inverse-surface text-inverse-on-surface text-center rounded font-label-caps uppercase font-ubuntu">Initier un Projet</a>
         </div>
-    </section>
+    </header>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="wrap">
-            <div class="reveal" x-intersect="$el.classList.add('active')">
-                <span class="lbl">Galerie</span>
-                <h2 class="sec-title">Réalisations<span style="color:var(--accent)">.</span></h2>
-                <div class="filters">
-                    <button class="fbtn" :class="{on:activeFilter==='all'}" @click="setFilter('all')">Tous</button>
-                    <button class="fbtn" :class="{on:activeFilter==='web'}" @click="setFilter('web')">Web</button>
-                    <button class="fbtn" :class="{on:activeFilter==='mobile'}"
-                        @click="setFilter('mobile')">Mobile</button>
+    <main class="w-full pt-20 bg-surface">
+        <div class="flex flex-col w-full text-on-surface max-w-7xl mx-auto">
+
+            <!-- ==========================================
+                 HERO : L'ENGAGEMENT SANS COMPROMIS
+                 ========================================== -->
+            <section id="focus" class="w-full px-margin md:px-margin-desktop py-space-xl flex flex-col gap-space-xl">
+                <!-- Status & Position Meta Header -->
+                <div class="flex flex-wrap items-center justify-between gap-space-md border-b-0 pb-space-sm">
+                    <div class="flex items-center gap-space-sm bg-surface-container-high px-space-md py-space-xs rounded border border-surface-container-highest/60">
+                        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                        <span class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider font-ubuntu font-bold">
+                            DISPONIBLE POUR MISSIONS À FORT IMPACT • COTONOU / REMOTE
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-space-md font-code-sm text-code-sm text-outline font-ubuntu">
+                        <span>UTC+01:00</span>
+                        <span>•</span>
+                        <span>LATENCE RÉSEAU RÉDUITE</span>
+                        <span>•</span>
+                        <span class="text-primary font-medium">FIELD-PROVEN</span>
+                    </div>
                 </div>
-            </div>
-            <div class="proj-grid">
-                <template x-for="(p,i) in filteredProjects()" :key="i">
-                    <div class="proj-card reveal" x-intersect="$el.classList.add('active')">
-                        <div class="proj-thumb" style="cursor:zoom-in; position: relative;" @click="openLightbox(p.images)">
-                            <img :src="p.images[0]" :alt="p[currentLang].title">
-                            <template x-if="p.images && p.images.length > 1">
-                                <div class="gallery-indicator">
-                                    <i class="far fa-images"></i> <span x-text="p.images.length"></span>
+
+                <!-- Main Typographic Hook -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end">
+                    <div class="lg:col-span-8 flex flex-col gap-space-md">
+                        <div class="font-label-caps text-label-caps text-primary uppercase tracking-widest font-ubuntu font-bold">
+                            FULL-STACK &amp; ARCHITECTURE EN MILIEUX CONTRAINTS
+                        </div>
+                        <h1 class="font-display-lg text-display-lg font-bold tracking-tight text-on-surface">
+                            Je ne code pas pour faire briller des abstractions.
+                            <span class="text-primary block mt-space-xs">Je construis des systèmes robustes qui tiennent le choc du réel.</span>
+                        </h1>
+                    </div>
+                    <div class="lg:col-span-4 flex flex-col gap-space-md bg-surface-container-low p-space-lg rounded shadow-sm border border-surface-container-high/60">
+                        <div class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold">Prémisse Opérationnelle</div>
+                        <p class="font-body-md text-body-md text-on-surface-variant">
+                            4+ ans forgés au contact du terrain, des parcs nationaux et des institutions internationales (GIZ). Pas de dépendances superflues, pas de factures de cloud gonflées : du code rapide, sobre et directement utile à ceux qui l’utilisent.
+                        </p>
+                        <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+                            <a class="px-space-md py-space-sm bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-primary hover:text-on-primary transition-all flex items-center gap-space-xs font-ubuntu font-medium"
+                                href="#projets">
+                                <span>Explorer les Systèmes</span>
+                                <span class="material-symbols-outlined text-[16px]">south</span>
+                            </a>
+                            <a class="px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-container-high transition-colors flex items-center gap-space-xs border border-surface-container-high font-ubuntu font-medium"
+                                href="#contact">
+                                <span>Discuter d’un projet</span>
+                                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact Ledger Indicators -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+                    <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-xs shadow-sm border border-surface-container-high/60">
+                        <div class="flex items-center justify-between">
+                            <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-medium">EXPÉRIENCE RÉELLE</span>
+                            <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                        </div>
+                        <span class="font-metric-xl text-metric-xl text-on-surface font-ubuntu">5<span class="text-primary text-[28px]">ans</span></span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">De terrain sans compromis technologique</span>
+                    </div>
+                    <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-xs shadow-sm border border-surface-container-high/60">
+                        <div class="flex items-center justify-between">
+                            <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-medium">SOBRIÉTÉ ARCHITECTURALE</span>
+                            <span class="material-symbols-outlined text-secondary text-[18px]">block</span>
+                        </div>
+                        <span class="font-metric-xl text-metric-xl text-on-surface font-ubuntu">0<span class="text-secondary text-[28px]">dép.</span></span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Dépendance inutile ou abonnement imposé</span>
+                    </div>
+                    <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-xs shadow-sm border border-surface-container-high/60">
+                        <div class="flex items-center justify-between">
+                            <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-medium">OBJECTIF ULTIME</span>
+                            <span class="material-symbols-outlined text-primary text-[18px]">lock_open</span>
+                        </div>
+                        <span class="font-metric-xl text-metric-xl text-primary font-ubuntu">100<span class="text-on-surface text-[28px]">%</span></span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Orienté autonomie intégrale des équipes sur place</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 SECTION 2 : ÉTUDE DE CAS MAJEURE (FIELDOZ)
+                 ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl bg-surface-container-low rounded-xl my-4 border border-surface-container-high/60" id="projet-phare">
+                <div class="flex flex-col gap-space-lg">
+                    <!-- Section Tag -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-space-sm">
+                            <span class="w-2 h-2 bg-primary rounded-full"></span>
+                            <span class="font-label-caps text-label-caps uppercase text-primary tracking-wider font-ubuntu font-bold">Sélection Focus // Projet Phare</span>
+                        </div>
+                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">REF // CASE-01-FLDOZ</span>
+                    </div>
+
+                    <!-- Main Showcase Bento Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg bg-surface-container-lowest p-space-lg rounded shadow-sm border border-surface-container-high/60">
+                        <!-- Showcase Mockup Canvas -->
+                        <div class="lg:col-span-7 flex flex-col gap-space-md">
+                            <div class="relative w-full rounded overflow-hidden bg-surface-container-high aspect-[16/10] group cursor-pointer border border-surface-container-high"
+                                @click="openLightbox(projects[0].images)">
+                                <img class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                    src="assets/projects/fieldoz/1.png" alt="FieldOz Dashboard" />
+                                <div class="absolute top-space-sm left-space-sm bg-inverse-surface/90 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps backdrop-blur-sm font-ubuntu">
+                                    LIVE ENGINE // EDGE SYNC
                                 </div>
-                            </template>
-                        </div>
-                        <div class="proj-body">
-                            <span class="proj-type" x-text="p.type"></span>
-                            <h3 class="proj-title" x-text="p[currentLang].title"></h3>
-                            <p class="proj-desc" x-text="p[currentLang].description"></p>
-                            <div class="tags" style="margin-bottom:12px">
-                                <template x-for="t in p.tech"><span class="tag" x-text="t"></span></template>
+                                <div class="absolute bottom-space-sm left-space-sm bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface flex items-center gap-space-xs shadow-sm font-ubuntu">
+                                    <span class="material-symbols-outlined text-primary text-[14px]">offline_bolt</span>
+                                    <span>Sync hors-ligne validée</span>
+                                </div>
+                                <div class="gallery-indicator">
+                                    <i class="far fa-images"></i> <span>6 aperçus</span>
+                                </div>
                             </div>
-                            <div class="proj-links">
-                                <template x-if="p.links.github"><a :href="p.links.github">GitHub</a></template>
-                                <template x-if="p.links.gitlab"><a :href="p.links.gitlab">GitLab</a></template>
-                                <template x-if="p.links.demo"><a :href="p.links.demo">Demo</a></template>
-                                <template x-if="!p.links.github && !p.links.gitlab && !p.links.demo"><span
-                                        class="proj-conf">Confidentiel</span></template>
+                            <!-- Secondary Micro Metrics from Field -->
+                            <div class="grid grid-cols-3 gap-space-sm">
+                                <div class="bg-surface-container p-space-sm rounded flex flex-col">
+                                    <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu">Temps de charge</span>
+                                    <span class="font-metric-md text-metric-md text-primary font-ubuntu">&lt; 0.4s</span>
+                                </div>
+                                <div class="bg-surface-container p-space-sm rounded flex flex-col">
+                                    <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu">Consommation data</span>
+                                    <span class="font-metric-md text-metric-md text-on-surface font-ubuntu">-74%</span>
+                                </div>
+                                <div class="bg-surface-container p-space-sm rounded flex flex-col">
+                                    <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu">Disponibilité</span>
+                                    <span class="font-metric-md text-metric-md text-on-surface font-ubuntu">99.98%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Showcase Explanatory Rail -->
+                        <div class="lg:col-span-5 flex flex-col justify-between gap-space-md">
+                            <div class="flex flex-col gap-space-md">
+                                <div>
+                                    <span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest font-ubuntu font-bold">Plateforme SaaS d'Impact Social</span>
+                                    <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-space-xs">
+                                        FieldOz — Raconter le terrain sans distorsion.
+                                    </h2>
+                                </div>
+                                <p class="font-body-md text-body-md text-on-surface-variant">
+                                    Transformez des données de terrain complexes en rapports d'impact visuels et incontestables au service des communautés et bailleurs de fonds. Conçu pour continuer à tourner là où la connectivité oscille et où les équipements sont limités.
+                                </p>
+                                <!-- Technical Problem Solved Quote -->
+                                <div class="p-space-md bg-surface-container-low rounded border-l-4 border-primary flex flex-col gap-space-xs">
+                                    <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">Contrainte résolue</span>
+                                    <p class="font-body-sm text-body-sm italic text-on-surface">
+                                        « Quand le terrain n'a pas de 4G stable et que les serveurs doivent enregistrer sans faille des milliers de preuves géolocalisées, chaque octet compte. »
+                                    </p>
+                                </div>
+                                <!-- Stack Badges -->
+                                <div class="flex flex-col gap-space-xs">
+                                    <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu">Architecture &amp; Outils</span>
+                                    <div class="flex flex-wrap gap-space-xs">
+                                        <span class="px-space-sm py-space-xs bg-surface-container text-on-surface font-code-sm text-code-sm rounded font-ubuntu">Laravel 11</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container text-on-surface font-code-sm text-code-sm rounded font-ubuntu">Alpine.js</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container text-on-surface font-code-sm text-code-sm rounded font-ubuntu">Livewire 3</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container text-on-surface font-code-sm text-code-sm rounded font-ubuntu">Tailwind CSS</span>
+                                        <span class="px-space-sm py-space-xs bg-primary-container text-on-primary-container font-code-sm text-code-sm rounded font-ubuntu">SQLite Local Sync</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom Action -->
+                            <div class="flex items-center gap-space-md pt-space-md border-t border-surface-container-high/60">
+                                <a class="px-space-md py-space-sm bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-space-xs font-ubuntu font-medium"
+                                    href="https://gitlab.com/learnperso/fieldoz/" target="_blank">
+                                    <i class="fab fa-gitlab text-[15px]"></i>
+                                    <span>Architecture GitLab</span>
+                                </a>
+                                <span class="font-code-sm text-code-sm text-outline font-ubuntu">Audit Code // Clean</span>
                             </div>
                         </div>
                     </div>
-                </template>
-            </div>
-        </div>
-    </section>
+                </div>
+            </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="wrap">
-            <div class="contact-wrap">
-                <div class="reveal" x-intersect="$el.classList.add('active')" style="margin-bottom:40px">
-                    <span class="lbl">Contact</span>
-                    <h2 class="sec-title">Démarrons un projet<span style="color:var(--accent)">.</span></h2>
-                    <a href="mailto:assogbamanuel6@gmail.com" class="contact-email">assogbamanuel6@gmail.com</a>
-                </div>
-                <div class="reveal" x-intersect="$el.classList.add('active')">
-                    <form @submit.prevent="submitForm()">
-                        <div class="form-row">
-                            <div class="form-group" style="margin-bottom:0">
-                                <label class="form-lbl">Votre Nom</label>
-                                <input type="text" x-model="form.name" class="inp" placeholder="John Doe">
+            <!-- ==========================================
+                 SECTION 3 : L'ÉTHIQUE DU BÂTISSEUR
+                 ========================================== -->
+            <section id="philosophie" class="w-full px-margin md:px-margin-desktop py-space-xl">
+                <div class="flex flex-col gap-space-xl">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+                        <div>
+                            <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">Doctrine &amp; Démarche</span>
+                            <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-space-xs">
+                                L’Éthique du Bâtisseur : Trois Règles d’Airain.
+                            </h2>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                            Loin des effets de mode éphémères, chaque choix technique est pesé sur la balance du coût réel, de l'opérabilité sur 5 ans et de la clarté humaine.
+                        </p>
+                    </div>
+
+                    <!-- 3 Core Pillars Bento -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+                        <!-- Pilier 1 -->
+                        <div class="bg-surface-container-low p-space-lg rounded flex flex-col justify-between gap-space-lg shadow-sm border border-surface-container-high/60">
+                            <div class="flex flex-col gap-space-md">
+                                <div class="w-10 h-10 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-metric-md text-metric-md font-bold font-ubuntu">
+                                    01
+                                </div>
+                                <h3 class="font-headline-md text-headline-md font-bold text-on-surface">
+                                    Comprendre l'essence avant d'écrire une ligne.
+                                </h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">
+                                    Pourquoi empiler des briques complexes et des couches d'abstraction quand une solution logique, claire et bien modélisée résout le problème à la racine ? Le code le plus fiable est celui qu'on n'a pas besoin de maintenir.
+                                </p>
                             </div>
-                            <div class="form-group" style="margin-bottom:0">
-                                <label class="form-lbl">Email</label>
-                                <input type="email" x-model="form.email" class="inp" placeholder="john@example.com">
+                            <div class="font-code-sm text-code-sm text-primary pt-space-sm font-ubuntu font-medium">
+                                // Modélisation &gt; Accumulation
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-lbl">Message</label>
-                            <textarea x-model="form.message" rows="4" class="inp"
-                                placeholder="Parlez-moi de votre besoin..."></textarea>
+
+                        <!-- Pilier 2 -->
+                        <div class="bg-surface-container-low p-space-lg rounded flex flex-col justify-between gap-space-lg shadow-sm border border-surface-container-high/60">
+                            <div class="flex flex-col gap-space-md">
+                                <div class="w-10 h-10 rounded bg-secondary text-on-secondary flex items-center justify-center font-metric-md text-metric-md font-bold font-ubuntu">
+                                    02
+                                </div>
+                                <h3 class="font-headline-md text-headline-md font-bold text-on-surface">
+                                    Respect absolu du budget et de l’autonomie client.
+                                </h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">
+                                    Aucun abonnement SaaS mensuel coûteux imposé de force. On exploite les serveurs existants, on optimise avec Docker et des requêtes optimisées, en adaptant l'architecture aux vraies ressources disponibles.
+                                </p>
+                            </div>
+                            <div class="font-code-sm text-code-sm text-secondary pt-space-sm font-ubuntu font-medium">
+                                // Zéro dépendance captive
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-submit" :disabled="isSubmitting"
-                            x-text="isSubmitting?'Envoi...':'Envoyer le message'"></button>
-                        <p x-show="submitMessage" :style="submitSuccess?'color:#4ade80':'color:#f87171'"
-                            class="form-msg" x-text="submitMessage"></p>
-                    </form>
+
+                        <!-- Pilier 3 -->
+                        <div class="bg-surface-container-low p-space-lg rounded flex flex-col justify-between gap-space-lg shadow-sm border border-surface-container-high/60">
+                            <div class="flex flex-col gap-space-md">
+                                <div class="w-10 h-10 rounded bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-metric-md text-metric-md font-bold font-ubuntu">
+                                    03
+                                </div>
+                                <h3 class="font-headline-md text-headline-md font-bold text-on-surface">
+                                    L’interface doit parler la langue directe des gens.
+                                </h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">
+                                    Si un agent de terrain, un gestionnaire de réserve ou une directrice met plus de 90 secondes à comprendre un bouton ou un rapport, c'est que l'ingénieur a échoué. Zéro jargon cryptique, lisibilité chirurgicale.
+                                </p>
+                            </div>
+                            <div class="font-code-sm text-code-sm text-outline pt-space-sm font-ubuntu font-medium">
+                                // Clarté cognitive immédiate
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- ==========================================
+                 SECTION 4 : GALERIE DES RÉALISATIONS AVEC FILTRES
+                 ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl bg-surface-container rounded-xl my-4 border border-surface-container-high/60" id="projets">
+                <div class="flex flex-col gap-space-lg">
+                    <!-- Header + Filter Row -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+                        <div>
+                            <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">Systèmes Éprouvés</span>
+                            <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">
+                                Réalisations &amp; Registre Opérationnel
+                            </h2>
+                        </div>
+                        <!-- Interactive Category Switcher with Alpine.js -->
+                        <div class="flex items-center gap-space-xs bg-surface-container-lowest p-space-xs rounded shadow-sm border border-surface-container-high">
+                            <button class="filter-btn px-space-md py-space-xs font-label-caps text-label-caps uppercase rounded transition-colors font-ubuntu font-medium cursor-pointer"
+                                :class="activeFilter === 'all' ? 'bg-inverse-surface text-inverse-on-surface active' : 'text-on-surface-variant hover:text-on-surface'"
+                                @click="setFilter('all')">
+                                Tous (7)
+                            </button>
+                            <button class="filter-btn px-space-md py-space-xs font-label-caps text-label-caps uppercase rounded transition-colors font-ubuntu font-medium cursor-pointer"
+                                :class="activeFilter === 'web' ? 'bg-inverse-surface text-inverse-on-surface active' : 'text-on-surface-variant hover:text-on-surface'"
+                                @click="setFilter('web')">
+                                Web
+                            </button>
+                            <button class="filter-btn px-space-md py-space-xs font-label-caps text-label-caps uppercase rounded transition-colors font-ubuntu font-medium cursor-pointer"
+                                :class="activeFilter === 'mobile' ? 'bg-inverse-surface text-inverse-on-surface active' : 'text-on-surface-variant hover:text-on-surface'"
+                                @click="setFilter('mobile')">
+                                Mobile
+                            </button>
+                            <button class="filter-btn px-space-md py-space-xs font-label-caps text-label-caps uppercase rounded transition-colors font-ubuntu font-medium cursor-pointer"
+                                :class="activeFilter === 'systemes' ? 'bg-inverse-surface text-inverse-on-surface active' : 'text-on-surface-variant hover:text-on-surface'"
+                                @click="setFilter('systemes')">
+                                Systèmes &amp; ONG
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Realisations Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+
+                        <!-- Card 1: BiodivCenter -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group border border-surface-container-high/60 transition-all hover:shadow-md"
+                            x-show="activeFilter === 'all' || activeFilter === 'web' || activeFilter === 'systemes'">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden cursor-pointer"
+                                @click="openLightbox(projects[3].images)">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    src="assets/projects/biodivcenter/1.jpeg" alt="BiodivCenter" />
+                                <div class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps font-ubuntu">
+                                    GIZ // PARCS WAP
+                                </div>
+                                <div class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface font-ubuntu">
+                                    API INATURALIST
+                                </div>
+                                <div class="gallery-indicator">
+                                    <i class="far fa-images"></i> <span>3</span>
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-medium">Web / Système Critique</span>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">2021-2024</span>
+                                    </div>
+                                    <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-space-xs">
+                                        BiodivCenter
+                                    </h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Monitoring de la faune et valorisation des espèces pour les centres de conservation. Télémétrie drones, cartographie Leaflet et synchronisation en direct.
+                                    </p>
+                                </div>
+                                <div class="flex flex-col gap-space-xs pt-space-xs">
+                                    <div class="flex flex-wrap gap-space-xs">
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Laravel</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Leaflet.js</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">MySQL</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Flutter</span>
+                                    </div>
+                                    <div class="pt-2 flex items-center justify-between border-t border-surface-container-high/60 mt-1">
+                                        <a href="https://gitlab.com/assogbamanuel6/biodiversite-rbtwap-web" target="_blank" class="font-code-sm text-code-sm text-primary hover:underline flex items-center gap-1 font-ubuntu font-medium">
+                                            <i class="fab fa-gitlab"></i> GitLab Dépôt
+                                        </a>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">GIZ Bénin</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Le Transporteur / Beninfy -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group border border-surface-container-high/60 transition-all hover:shadow-md"
+                            x-show="activeFilter === 'all' || activeFilter === 'mobile'">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden cursor-pointer"
+                                @click="openLightbox(projects[1].images)">
+                                <img class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                                    src="assets/projects/le_transporteur/client_1.jpg" alt="Le Transporteur" />
+                                <div class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps font-ubuntu">
+                                    GÉOLOCALISATION
+                                </div>
+                                <div class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface font-ubuntu">
+                                    FLUTTER ENGINE
+                                </div>
+                                <div class="gallery-indicator">
+                                    <i class="far fa-images"></i> <span>19</span>
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-secondary uppercase font-ubuntu font-medium">Mobile &amp; Flotte</span>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">Production</span>
+                                    </div>
+                                    <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-space-xs">
+                                        Le Transporteur
+                                    </h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Suite logistique complète (Client, Livreur, Superviseur) avec calcul d'itinéraires adapté au réseau routier et négociation de tarification en direct.
+                                    </p>
+                                </div>
+                                <div class="flex flex-col gap-space-xs pt-space-xs">
+                                    <div class="flex flex-wrap gap-space-xs">
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Flutter</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Dart</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Google Maps</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Hive DB</span>
+                                    </div>
+                                    <div class="pt-2 flex items-center justify-between border-t border-surface-container-high/60 mt-1">
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">Monorepo Multi-Apps</span>
+                                        <span class="font-code-sm text-code-sm text-secondary font-ubuntu font-medium">Temps réel</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Grid Generator -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group border border-surface-container-high/60 transition-all hover:shadow-md"
+                            x-show="activeFilter === 'all' || activeFilter === 'web'">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden cursor-pointer"
+                                @click="openLightbox(projects[2].images)">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    src="assets/projects/gridcss/1.png" alt="Grid Generator" />
+                                <div class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps font-ubuntu">
+                                    DEV TOOLING
+                                </div>
+                                <div class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface font-ubuntu">
+                                    OPEN SOURCE
+                                </div>
+                                <div class="gallery-indicator">
+                                    <i class="far fa-images"></i> <span>3</span>
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-medium">Web &amp; Outil Core</span>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">Public</span>
+                                    </div>
+                                    <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-space-xs">
+                                        Grid Generator
+                                    </h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Générateur visuel de grilles CSS complexes avec drag-and-drop fluide pour faciliter la composition de mises en page responsives ultra-légères.
+                                    </p>
+                                </div>
+                                <div class="flex flex-col gap-space-xs pt-space-xs">
+                                    <div class="flex flex-wrap gap-space-xs">
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">TypeScript</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Next.js</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Tailwind CSS</span>
+                                    </div>
+                                    <div class="pt-2 flex items-center justify-between border-t border-surface-container-high/60 mt-1">
+                                        <a href="https://gitlab.com/learnperso/react/grid-generator/" target="_blank" class="font-code-sm text-code-sm text-primary hover:underline flex items-center gap-1 font-ubuntu font-medium">
+                                            <i class="fab fa-gitlab"></i> GitLab Code
+                                        </a>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">MIT License</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Iknow (Suivi Opérationnel ONG) -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group border border-surface-container-high/60 transition-all hover:shadow-md"
+                            x-show="activeFilter === 'all' || activeFilter === 'web' || activeFilter === 'systemes'">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden cursor-pointer"
+                                @click="openLightbox(projects[5].images)">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    src="assets/projects/iknow/1.png" alt="iKnow System" />
+                                <div class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps font-ubuntu">
+                                    ONG PARTENAIRES
+                                </div>
+                                <div class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface font-ubuntu">
+                                    AWS S3 + REST
+                                </div>
+                                <div class="gallery-indicator">
+                                    <i class="far fa-images"></i> <span>3</span>
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-medium">Système &amp; Données</span>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">Multisite</span>
+                                    </div>
+                                    <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-space-xs">
+                                        IKnow — Audit Terrain
+                                    </h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Suivi transparent des activités opérationnelles pour les consortiums d'ONG. Indexation instantanée de rapports volumineux avec compression et stockage cloud.
+                                    </p>
+                                </div>
+                                <div class="flex flex-col gap-space-xs pt-space-xs">
+                                    <div class="flex flex-wrap gap-space-xs">
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">PHP / Laravel</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">AWS S3</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Chart.js</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">REST APIs</span>
+                                    </div>
+                                    <div class="pt-2 flex items-center justify-between border-t border-surface-container-high/60 mt-1">
+                                        <a href="https://maisondestortues.org/nos-solutions/iknow" target="_blank" class="font-code-sm text-code-sm text-primary hover:underline flex items-center gap-1 font-ubuntu font-medium">
+                                            <span class="material-symbols-outlined text-[15px]">open_in_new</span> Voir la solution
+                                        </a>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">Maison des Tortues</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Exam & Jande -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group border border-surface-container-high/60 transition-all hover:shadow-md"
+                            x-show="activeFilter === 'all' || activeFilter === 'web' || activeFilter === 'systemes'">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden cursor-pointer"
+                                @click="openLightbox(projects[4].images)">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    src="assets/projects/eval/1.jpeg" alt="Exam & Jande" />
+                                <div class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps font-ubuntu">
+                                    ÉDUCATION LOCALE
+                                </div>
+                                <div class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface font-ubuntu">
+                                    BASSE LATENCE
+                                </div>
+                                <div class="gallery-indicator">
+                                    <i class="far fa-images"></i> <span>3</span>
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-secondary uppercase font-ubuntu font-medium">Web &amp; Pédagogie</span>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">Évaluations</span>
+                                    </div>
+                                    <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-space-xs">
+                                        Jande &amp; Exam
+                                    </h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Système d'évaluation de compétences et d'acquisition de langues locales adapté aux agents de terrain sans bagage technique préalable.
+                                    </p>
+                                </div>
+                                <div class="flex flex-col gap-space-xs pt-space-xs">
+                                    <div class="flex flex-wrap gap-space-xs">
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Laravel</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Livewire</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Alpine.js</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">SQLite</span>
+                                    </div>
+                                    <div class="pt-2 flex items-center justify-between border-t border-surface-container-high/60 mt-1">
+                                        <a href="https://gitlab.com/assogbamanuel6/learningapp/" target="_blank" class="font-code-sm text-code-sm text-primary hover:underline flex items-center gap-1 font-ubuntu font-medium">
+                                            <i class="fab fa-gitlab"></i> GitLab Dépôt
+                                        </a>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">DYRA ONG</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 6: Beninfy Mobile -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group border border-surface-container-high/60 transition-all hover:shadow-md"
+                            x-show="activeFilter === 'all' || activeFilter === 'mobile'">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden cursor-pointer"
+                                @click="openLightbox(projects[6].images)">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    src="assets/projects/beninfy/1.png" alt="Beninfy Mobile" />
+                                <div class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps font-ubuntu">
+                                    CULTURE // BÉNIN
+                                </div>
+                                <div class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface font-ubuntu">
+                                    MAPS API
+                                </div>
+                                <div class="gallery-indicator">
+                                    <i class="far fa-images"></i> <span>3</span>
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-secondary uppercase font-ubuntu font-medium">Mobile &amp; Découverte</span>
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">Cross-Platform</span>
+                                    </div>
+                                    <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-space-xs">
+                                        Beninfy Mobile
+                                    </h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Guide culturel et touristique interactif du Bénin avec géolocalisation, suggestions patrimoniales dynamiques et fiches immersives.
+                                    </p>
+                                </div>
+                                <div class="flex flex-col gap-space-xs pt-space-xs">
+                                    <div class="flex flex-wrap gap-space-xs">
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Flutter</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Dart</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Google Maps</span>
+                                        <span class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded font-ubuntu">Figma</span>
+                                    </div>
+                                    <div class="pt-2 flex items-center justify-between border-t border-surface-container-high/60 mt-1">
+                                        <span class="font-code-sm text-code-sm text-outline font-ubuntu">Architecture Offline-First</span>
+                                        <span class="font-code-sm text-code-sm text-secondary font-ubuntu font-medium">Bénin Culture</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 7: Architecture & Infra Terrain -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group border border-surface-container-high/60 transition-all hover:shadow-md"
+                            x-show="activeFilter === 'all' || activeFilter === 'systemes'">
+                            <div class="p-space-lg flex flex-col justify-between flex-1 gap-space-md bg-inverse-surface text-inverse-on-surface">
+                                <div class="flex flex-col gap-space-md">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">Topology &amp; Ops</span>
+                                        <span class="material-symbols-outlined text-primary text-[20px]">hub</span>
+                                    </div>
+                                    <h3 class="font-headline-md text-headline-md font-bold">
+                                        Micro-Serveurs &amp; Edge Relays
+                                    </h3>
+                                    <p class="font-body-sm text-body-sm text-inverse-on-surface/80">
+                                        Installation et conteneurisation de serveurs autonomes sur matériel reconditionné pour bases de données déconnectées (Bénin, Niger, Burkina). Redondance automatique dès reconnexion réseau.
+                                    </p>
+                                    <!-- Terminal snippet aesthetic -->
+                                    <div class="bg-black/40 p-space-sm rounded font-code-sm text-code-sm text-primary flex flex-col gap-space-xs border border-white/10 font-ubuntu">
+                                        <span>$ docker compose up --detach</span>
+                                        <span class="text-inverse-on-surface/70">✔ edge_sync: healthy [0.08s]</span>
+                                        <span class="text-inverse-on-surface/70">✔ zero_cloud_cost: true</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-space-xs pt-space-sm border-t border-inverse-on-surface/10">
+                                    <span class="px-space-sm py-space-xs bg-on-surface/30 font-code-sm text-code-sm rounded font-ubuntu">Docker</span>
+                                    <span class="px-space-sm py-space-xs bg-on-surface/30 font-code-sm text-code-sm rounded font-ubuntu">Nginx</span>
+                                    <span class="px-space-sm py-space-xs bg-on-surface/30 font-code-sm text-code-sm rounded font-ubuntu">Bash</span>
+                                    <span class="px-space-sm py-space-xs bg-on-surface/30 font-code-sm text-code-sm rounded font-ubuntu">cPanel</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 SECTION 5 : PARCOURS & VÉRITÉ DU TERRAIN
+                 ========================================== -->
+            <section id="parcours" class="w-full px-margin md:px-margin-desktop py-space-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+                    <!-- Left Narrative Column -->
+                    <div class="lg:col-span-5 flex flex-col gap-space-md">
+                        <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">Ce qui m’a forgé</span>
+                        <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">
+                            Une rigueur née des contraintes réelles.
+                        </h2>
+                        <div class="flex flex-col gap-space-md font-body-md text-body-md text-on-surface-variant">
+                            <p>
+                                Mon approche du développement n'a pas débuté dans des bureaux climatisés avec de la fibre optique illimitée. Elle a été forgée en autodidacte exigeant face à des connexions instables, des matériels hétéroclites et la nécessité absolue de faire fonctionner les choses du premier coup.
+                            </p>
+                            <p>
+                                Lorsqu'on déploie une solution pour les agents des parcs WAP ou pour des équipes de santé publique en brousse, on comprend très vite qu'un bogue n'est pas un simple « ticket Jira » : c'est une mission arrêtée, un rapport financier bloqué ou une journée de patrouille perdue.
+                            </p>
+                            <p class="font-body-md text-body-md text-on-surface font-medium">
+                                C'est cette vérité de terrain qui me guide : épurer l'architecture, éliminer le superflu, livrer du code net que n'importe quelle équipe locale pourra s'approprier sans payer de consultants ad vitam aeternam.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-space-md pt-space-sm">
+                            <div class="flex flex-col">
+                                <span class="font-metric-md text-metric-md text-on-surface font-ubuntu font-bold">3 Pays</span>
+                                <span class="font-code-sm text-code-sm text-outline font-ubuntu">Bénin • Burkina • Niger</span>
+                            </div>
+                            <div class="h-8 w-px bg-surface-container-high"></div>
+                            <div class="flex flex-col">
+                                <span class="font-metric-md text-metric-md text-primary font-ubuntu font-bold">1 Semaine</span>
+                                <span class="font-code-sm text-code-sm text-outline font-ubuntu">Délai moyen MVP opérationnel</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Timeline Ledger -->
+                    <div class="lg:col-span-7 flex flex-col gap-space-md bg-surface-container-low p-space-lg rounded shadow-sm border border-surface-container-high/60">
+                        <div class="font-label-caps text-label-caps text-outline uppercase pb-space-xs font-ubuntu font-bold">
+                            Chronologie des Responsabilités &amp; Interventions
+                        </div>
+
+                        <!-- Item 1 -->
+                        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm pb-space-md bg-surface-container-lowest p-space-md rounded border border-surface-container-high/60 shadow-xs">
+                            <div class="flex flex-col gap-space-xs">
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="w-2 h-2 rounded-full bg-primary"></span>
+                                    <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">2024 — Présent</span>
+                                </div>
+                                <h4 class="font-headline-md text-headline-md font-bold text-on-surface">Architecte Systèmes Indépendant</h4>
+                                <span class="font-code-sm text-code-sm text-outline font-ubuntu">Maison des Tortues • ONG Internationales • Startups</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                    Conception de plateformes de collecte hors-ligne, interfaçage AWS S3, cartographie de biodiversité et tableaux de bord d'aide à la décision.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm pb-space-md bg-surface-container-lowest p-space-md rounded border border-surface-container-high/60 shadow-xs">
+                            <div class="flex flex-col gap-space-xs">
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                                    <span class="font-label-caps text-label-caps text-secondary uppercase font-ubuntu font-bold">2021 — 2024</span>
+                                </div>
+                                <h4 class="font-headline-md text-headline-md font-bold text-on-surface">Développeur Fullstack Lead // GIZ (Projet RBT-WAP)</h4>
+                                <span class="font-code-sm text-code-sm text-outline font-ubuntu">Coopération Allemande • Parcs Transfrontaliers</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                    Déploiement des outils de monitoring (BiodivCenter, WAP-Training), intégration des APIs naturalistes, documentation technique et formation des agents sur site.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm pb-space-md bg-surface-container-lowest p-space-md rounded border border-surface-container-high/60 shadow-xs">
+                            <div class="flex flex-col gap-space-xs">
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="w-2 h-2 rounded-full bg-outline"></span>
+                                    <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold">2020 — 2021</span>
+                                </div>
+                                <h4 class="font-headline-md text-headline-md font-bold text-on-surface">Ingénieur Frontend &amp; Mobilité</h4>
+                                <span class="font-code-sm text-code-sm text-outline font-ubuntu">JHS Corporate • Projets Freelance</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                    Développement mobile cross-platform Flutter, intégration de passerelles géolocalisées et audit de performance web.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 SECTION 6 : COMPÉTENCES & BOÎTE À OUTILS
+                 ========================================== -->
+            <section id="competences" class="w-full px-margin md:px-margin-desktop py-space-xl bg-surface-container-low rounded-xl my-4 border border-surface-container-high/60">
+                <div class="flex flex-col gap-space-xl">
+                    <div>
+                        <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">Maîtrise Technique</span>
+                        <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-space-xs">
+                            La Boîte à Outils Sans Artifice.
+                        </h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+                        <!-- Pillar: Backend -->
+                        <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-md shadow-sm border border-surface-container-high/60">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">BACKEND &amp; LOGIQUE</span>
+                                <span class="material-symbols-outlined text-primary text-[20px]">database</span>
+                            </div>
+                            <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface">
+                                <li class="flex items-center justify-between py-space-xs bg-surface-container-low px-space-sm rounded font-ubuntu">
+                                    <span>PHP / Laravel</span>
+                                    <span class="font-code-sm text-code-sm text-primary font-bold">Avancé</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Node.js / Express</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Robuste</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Python / Django</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Scraping/Data</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Architecture RESTful</span>
+                                    <span class="font-code-sm text-code-sm text-primary font-bold">Standard</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>MySQL &amp; SQLite Local</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Optimisé</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Pillar: Frontend & Mobile -->
+                        <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-md shadow-sm border border-surface-container-high/60">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-caps text-label-caps text-secondary uppercase font-ubuntu font-bold">FRONTEND &amp; MOBILE</span>
+                                <span class="material-symbols-outlined text-secondary text-[20px]">devices</span>
+                            </div>
+                            <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface">
+                                <li class="flex items-center justify-between py-space-xs bg-surface-container-low px-space-sm rounded font-ubuntu">
+                                    <span>Flutter / Dart</span>
+                                    <span class="font-code-sm text-code-sm text-secondary font-bold">Cross-platform</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>React / Next.js</span>
+                                    <span class="font-code-sm text-code-sm text-outline">SSR/SSG</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Tailwind CSS</span>
+                                    <span class="font-code-sm text-code-sm text-secondary font-bold">Zero Runtime</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Alpine.js &amp; Livewire</span>
+                                    <span class="font-code-sm text-code-sm text-secondary font-bold">Ultra-Léger</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>TypeScript</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Strict Type</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Pillar: Infra & DevOps -->
+                        <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-md shadow-sm border border-surface-container-high/60">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold">INFRASTRUCTURE</span>
+                                <span class="material-symbols-outlined text-on-surface text-[20px]">cloud_sync</span>
+                            </div>
+                            <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface">
+                                <li class="flex items-center justify-between py-space-xs bg-surface-container-low px-space-sm rounded font-ubuntu">
+                                    <span>Docker &amp; Compose</span>
+                                    <span class="font-code-sm text-code-sm text-on-surface font-bold">Reproductible</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>AWS S3 / Stockage Objet</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Frugal</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Nginx Reverse Proxy</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Performance</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Git &amp; GitLab CI</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Déploiement</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>cPanel / Linux VPS</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Autonome</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Pillar: Méthode Humaine -->
+                        <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-md shadow-sm border border-surface-container-high/60">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">POSTURE HUMAINE</span>
+                                <span class="material-symbols-outlined text-primary text-[20px]">handshake</span>
+                            </div>
+                            <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface">
+                                <li class="flex items-center justify-between py-space-xs bg-surface-container-low px-space-sm rounded font-ubuntu">
+                                    <span>Diagnostic Pragmatique</span>
+                                    <span class="font-code-sm text-code-sm text-primary font-bold">Sous 48h</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Transmission Pédagogique</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Sans jargon</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Documentation Complète</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Autonomie</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Résistance au Stress</span>
+                                    <span class="font-code-sm text-code-sm text-primary font-bold">Testé</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm font-ubuntu">
+                                    <span>Écoute Directe</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Constante</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 SECTION 7 : PRISE DE CONTACT DIRECTE
+                 ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl" id="contact">
+                <div class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded shadow-sm flex flex-col gap-space-xl border border-surface-container-high/60">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-space-lg">
+                        <div class="max-w-xl flex flex-col gap-space-sm">
+                            <span class="font-label-caps text-label-caps text-primary uppercase font-ubuntu font-bold">Communication Directe</span>
+                            <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">
+                                Démarrons un projet sans détours.
+                            </h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant">
+                                Que vous ayez besoin d'un audit de système existant, d'un outil de terrain sur-mesure ou d'une infrastructure robuste sans dépendance coûteuse, parlons directement du problème à résoudre.
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-space-xs bg-surface-container p-space-md rounded border border-surface-container-high">
+                            <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold">Adresse Officielle</span>
+                            <a class="font-metric-md text-metric-md text-primary hover:underline font-ubuntu font-bold"
+                                href="mailto:assogbamanuel6@gmail.com">
+                                assogbamanuel6@gmail.com
+                            </a>
+                            <span class="font-code-sm text-code-sm text-on-surface-variant font-ubuntu">Réponse garantie sous 24 heures ouvrées</span>
+                        </div>
+                    </div>
+
+                    <!-- Functional Form & Direct Channels -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+                        <!-- Form with Alpine.js handling -->
+                        <form class="lg:col-span-8 flex flex-col gap-space-md" @submit.prevent="submitForm()">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                                <div class="flex flex-col gap-space-xs">
+                                    <label class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold" for="name">Votre Nom / Organisation</label>
+                                    <input x-model="form.name"
+                                        class="w-full px-space-md py-space-sm bg-surface-container-low rounded font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-on-surface transition-all border border-surface-container-high/50"
+                                        id="name" placeholder="Ex. Aminata Diallo • ONG Sahel Verte" required type="text" />
+                                </div>
+                                <div class="flex flex-col gap-space-xs">
+                                    <label class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold" for="email">Votre Email Professionnel</label>
+                                    <input x-model="form.email"
+                                        class="w-full px-space-md py-space-sm bg-surface-container-low rounded font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-on-surface transition-all border border-surface-container-high/50"
+                                        id="email" placeholder="contact@organisation.org" required type="email" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-space-xs">
+                                <label class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold" for="project_type">Type de Besoin</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs">
+                                    <label class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded cursor-pointer hover:bg-surface-container transition-colors border border-surface-container-high/40">
+                                        <input x-model="form.project_type" class="text-primary focus:ring-0" name="project_type" type="radio" value="systeme" />
+                                        <span class="font-code-sm text-code-sm font-ubuntu">Système Web</span>
+                                    </label>
+                                    <label class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded cursor-pointer hover:bg-surface-container transition-colors border border-surface-container-high/40">
+                                        <input x-model="form.project_type" class="text-primary focus:ring-0" name="project_type" type="radio" value="mobile" />
+                                        <span class="font-code-sm text-code-sm font-ubuntu">App Mobile</span>
+                                    </label>
+                                    <label class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded cursor-pointer hover:bg-surface-container transition-colors border border-surface-container-high/40">
+                                        <input x-model="form.project_type" class="text-primary focus:ring-0" name="project_type" type="radio" value="audit" />
+                                        <span class="font-code-sm text-code-sm font-ubuntu">Audit &amp; Infra</span>
+                                    </label>
+                                    <label class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded cursor-pointer hover:bg-surface-container transition-colors border border-surface-container-high/40">
+                                        <input x-model="form.project_type" class="text-primary focus:ring-0" name="project_type" type="radio" value="conseil" />
+                                        <span class="font-code-sm text-code-sm font-ubuntu">Accompagnement</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-space-xs">
+                                <label class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold" for="message">Décrivez la contrainte ou l'objectif concret</label>
+                                <textarea x-model="form.message"
+                                    class="w-full p-space-md bg-surface-container-low rounded font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-on-surface transition-all resize-none border border-surface-container-high/50"
+                                    id="message" placeholder="Expliquez votre contexte : matériel existant, contraintes de connectivité, volumétrie de données estimée..."
+                                    required rows="4"></textarea>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm pt-space-xs">
+                                <span class="font-code-sm text-code-sm text-outline font-ubuntu">Données confidentielles • Aucun pistage tiers</span>
+                                <button class="px-space-lg py-space-sm bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-primary hover:text-on-primary transition-all flex items-center gap-space-xs font-ubuntu font-medium cursor-pointer"
+                                    type="submit" :disabled="isSubmitting">
+                                    <span x-text="isSubmitting ? 'Transmission...' : 'Transmettre la demande'">Transmettre la demande</span>
+                                    <span class="material-symbols-outlined text-[16px]">send</span>
+                                </button>
+                            </div>
+                            <p x-show="submitMessage" :class="submitSuccess ? 'text-primary' : 'text-error'" class="font-code-sm text-code-sm pt-space-xs font-ubuntu font-medium" x-text="submitMessage"></p>
+                        </form>
+
+                        <!-- Right Quick Contact Rail -->
+                        <div class="lg:col-span-4 flex flex-col justify-between gap-space-md bg-surface-container-low p-space-md rounded border border-surface-container-high/60">
+                            <div class="flex flex-col gap-space-md">
+                                <span class="font-label-caps text-label-caps text-outline uppercase font-ubuntu font-bold">Lignes Directes</span>
+                                <a class="p-space-md bg-surface-container-lowest rounded flex items-center justify-between hover:bg-surface-container transition-colors group border border-surface-container-high/50"
+                                    href="https://wa.me/22997232231" target="_blank">
+                                    <div class="flex items-center gap-space-sm">
+                                        <span class="material-symbols-outlined text-primary text-[24px]">chat</span>
+                                        <div class="flex flex-col">
+                                            <span class="font-headline-md text-headline-md font-bold text-on-surface text-[17px]">WhatsApp Direct</span>
+                                            <span class="font-code-sm text-code-sm text-outline font-ubuntu">Échanges rapides &amp; vocaux</span>
+                                        </div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                                </a>
+                                <a class="p-space-md bg-surface-container-lowest rounded flex items-center justify-between hover:bg-surface-container transition-colors group border border-surface-container-high/50"
+                                    href="https://linkedin.com/in/manuel-assogba-a0900a123/" target="_blank">
+                                    <div class="flex items-center gap-space-sm">
+                                        <i class="fab fa-linkedin text-on-surface text-[22px]"></i>
+                                        <div class="flex flex-col">
+                                            <span class="font-headline-md text-headline-md font-bold text-on-surface text-[17px]">Réseau LinkedIn</span>
+                                            <span class="font-code-sm text-code-sm text-outline font-ubuntu">Parcours vérifiable</span>
+                                        </div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                                </a>
+                                <a class="p-space-md bg-surface-container-lowest rounded flex items-center justify-between hover:bg-surface-container transition-colors group border border-surface-container-high/50"
+                                    href="https://github.com/manuelh6" target="_blank">
+                                    <div class="flex items-center gap-space-sm">
+                                        <i class="fab fa-github text-on-surface text-[22px]"></i>
+                                        <div class="flex flex-col">
+                                            <span class="font-headline-md text-headline-md font-bold text-on-surface text-[17px]">Dépôts GitHub</span>
+                                            <span class="font-code-sm text-code-sm text-outline font-ubuntu">Commits &amp; projets</span>
+                                        </div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                                </a>
+                            </div>
+                            <div class="p-space-sm bg-surface-container-lowest rounded text-center border border-surface-container-high/50">
+                                <span class="font-code-sm text-code-sm text-primary font-bold font-ubuntu">Bénin • Afrique de l'Ouest • Global Remote</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="wrap foot-inner">
-            <p class="foot-copy">© 2025 Manuel Assogba</p>
-            <div class="foot-links">
-                <a href="https://linkedin.com/in/manuel-assogba-a0900a123/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/manuelh6" target="_blank">GitHub</a>
+    <footer class="w-full bg-surface-container-low mt-space-xl border-t border-surface-container-high">
+        <div class="w-full px-margin md:px-margin-desktop py-space-xl flex flex-col gap-space-xl max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-space-lg">
+                <div class="max-w-md">
+                    <div class="font-label-caps text-label-caps uppercase text-primary mb-space-xs font-ubuntu font-bold">Manuel Assogba — Portfolio</div>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Conception de plateformes critiques, interfaces tangibles et topologies logicielles pour organisations à fort levier opérationnel.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-space-lg">
+                    <div class="flex flex-col gap-space-xs">
+                        <span class="font-label-caps text-label-caps uppercase text-outline font-ubuntu font-bold">Index</span>
+                        <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#focus">Focus</a>
+                        <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#projets">Réalisations</a>
+                        <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#parcours">Parcours</a>
+                    </div>
+                    <div class="flex flex-col gap-space-xs">
+                        <span class="font-label-caps text-label-caps uppercase text-outline font-ubuntu font-bold">Doctrine</span>
+                        <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#philosophie">Philosophie de Code</a>
+                        <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#competences">Boîte à Outils</a>
+                        <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#contact">Entrer en Contact</a>
+                    </div>
+                    <div class="flex flex-col gap-space-xs col-span-2 sm:col-span-1">
+                        <span class="font-label-caps text-label-caps uppercase text-outline font-ubuntu font-bold">Fréquence</span>
+                        <span class="font-code-sm text-code-sm text-on-surface font-ubuntu">Paris &amp; Remote</span>
+                        <span class="font-code-sm text-code-sm text-primary font-ubuntu font-bold">UTC+1 // Cotonou</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-md border-t border-surface-container-high/60 text-on-surface-variant">
+                <span class="font-code-sm text-code-sm font-ubuntu">© 2025 Manuel Assogba. Tous droits réservés.</span>
+                <div class="flex items-center gap-space-md">
+                    <span class="font-label-caps text-label-caps text-outline font-ubuntu">Latence: 0.14ms</span>
+                    <span class="font-label-caps text-label-caps text-primary font-ubuntu font-bold">Status: Systèmes Opérationnels</span>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" :class="{'show':lightbox.show}" @click.self="closeLightbox()" @keydown.window.escape="closeLightbox()" @keydown.window.right="nextImage()" @keydown.window.left="prevImage()">
-        <button class="lb-close" @click.stop="closeLightbox()"><i class="fas fa-times"></i></button>
+    <!-- LIGHTBOX MODAL (Preserved behavior with orientation, ESC key, next/prev navigation) -->
+    <div class="lightbox" :class="{'show': lightbox.show}" @click.self="closeLightbox()"
+        @keydown.window.escape="closeLightbox()" @keydown.window.right="nextImage()" @keydown.window.left="prevImage()">
+        <button class="lb-close" @click.stop="closeLightbox()" aria-label="Fermer"><i class="fas fa-times"></i></button>
         <template x-if="lightbox.images && lightbox.images.length > 1">
-            <button class="lb-nav lb-prev" @click.stop="prevImage()"><i class="fas fa-chevron-left"></i></button>
+            <button class="lb-nav lb-prev" @click.stop="prevImage()" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
         </template>
-        <img :src="lightbox.currentImage" alt="Preview" @click.stop="" class="lightbox-image">
+        <img :src="lightbox.currentImage" alt="Aperçu projet" @click.stop="" class="lightbox-image">
         <template x-if="lightbox.images && lightbox.images.length > 1">
-            <button class="lb-nav lb-next" @click.stop="nextImage()"><i class="fas fa-chevron-right"></i></button>
+            <button class="lb-nav lb-next" @click.stop="nextImage()" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
         </template>
         <template x-if="lightbox.images && lightbox.images.length > 1">
             <div class="lb-counter" x-text="(lightbox.currentIndex + 1) + ' / ' + lightbox.images.length"></div>
         </template>
     </div>
 
+    <!-- Script Application Logic -->
     <script src="assets/script.js"></script>
 </body>
 

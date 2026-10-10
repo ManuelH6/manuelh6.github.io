@@ -11,6 +11,7 @@ function app() {
         form: {
             name: '',
             email: '',
+            project_type: 'systeme',
             message: ''
         },
         errors: {},
@@ -65,6 +66,7 @@ function app() {
                     description: "Comprehensive urban logistics and delivery platform (Client, Courier, Admin) featuring a real-time price negotiation system."
                 },
                 type: "Mobile",
+                category: "mobile",
                 tech: ["Flutter", "Dart", "Monorepo", "Hive", "Geolocator", "Maps"],
                 images: [
                     "assets/projects/le_transporteur/client_1.jpg",
@@ -103,6 +105,7 @@ function app() {
                     description: "CSS Grid generator with drag-and-drop for complex layout prototyping."
                 },
                 type: "Web",
+                category: "web",
                 tech: ["JavaScript", "TypeScript", "Tailwind CSS", "Next.js"],
                 images: [
                     "assets/projects/gridcss/1.png",
@@ -125,6 +128,7 @@ function app() {
                     description: "Biodiversity monitoring platform for tracking and protecting local species."
                 },
                 type: "Web / Mobile",
+                category: "systemes web",
                 tech: ["Laravel", "Bootstrap", "MySQL/SQLite", "Leaflet.js", "Flutter", "iNaturalist API"],
                 images: [
                     "assets/projects/biodivcenter/1.jpeg",
@@ -139,15 +143,16 @@ function app() {
             },
             {
                 fr: {
-                    title: "Exam",
-                    description: "Évaluation des compétences via des examens gamifiés et ludiques."
+                    title: "Exam & Jande",
+                    description: "Système d'évaluation de compétences et d'acquisition de langues locales adapté aux agents de terrain sans bagage technique préalable."
                 },
                 en: {
-                    title: "Exam",
-                    description: "Platform that provides continuous skill assessment through gamified exams, enabling a fun and motivating way for learners to track their progress."
+                    title: "Exam & Jande",
+                    description: "Competency evaluation and local language training system tailored for field workers."
                 },
-                type: "Web",
-                tech: ["Laravel", "Bootstrap", "MySQL", "JQuery", "JQuery UI"],
+                type: "Web & Pédagogie",
+                category: "web systemes",
+                tech: ["Laravel", "Livewire", "Alpine.js", "SQLite"],
                 images: [
                     "assets/projects/eval/1.jpeg",
                     "assets/projects/eval/2.jpeg",
@@ -161,15 +166,16 @@ function app() {
             },
             {
                 fr: {
-                    title: "iKnow",
-                    description: "Suivi temps réel des activités terrain pour les ONG partenaires."
+                    title: "iKnow — Audit Terrain",
+                    description: "Suivi transparent des activités opérationnelles pour les consortiums d'ONG. Indexation instantanée et archivage AWS S3."
                 },
                 en: {
-                    title: "iKnow",
-                    description: "Platform that enables partner NGOs to remotely monitor and track their field activities in real time, with summary dashboards, interactive maps, and tracking of funding indicators."
+                    title: "iKnow — Field Audit",
+                    description: "Real-time field activity monitoring platform for partner NGO consortiums. Instant indexing and S3 object storage."
                 },
-                type: "Web",
-                tech: ["Laravel", "Bootstrap", "AWS S3", "Google Maps", "MySQL", "Rest API", "iNaturalist API", "Chart.js"],
+                type: "Système & Données",
+                category: "systemes web",
+                tech: ["PHP / Laravel", "AWS S3", "Chart.js", "REST APIs"],
                 images: [
                     "assets/projects/iknow/1.png",
                     "assets/projects/iknow/2.png",
@@ -190,6 +196,7 @@ function app() {
                     description: "Mobile app for cultural discovery in Benin with geolocation, interactive guides, and social sharing features."
                 },
                 type: "Mobile",
+                category: "mobile",
                 tech: ["Flutter", "Dart", "Google Maps API", "Figma"],
                 images: [
                     "assets/projects/beninfy/1.png",
@@ -513,8 +520,9 @@ function app() {
             // Skip index 0 (featured project)
             const rest = this.projects.slice(1);
             if (this.activeFilter === 'all') return rest;
-            if (this.activeFilter === 'web') return rest.filter(p => p.type.toLowerCase().includes('web'));
-            if (this.activeFilter === 'mobile') return rest.filter(p => p.type.toLowerCase().includes('mobile'));
+            if (this.activeFilter === 'web') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('web'));
+            if (this.activeFilter === 'mobile') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('mobile'));
+            if (this.activeFilter === 'systemes') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('systemes') || (p.type.toLowerCase()).includes('système'));
             return rest;
         },
 

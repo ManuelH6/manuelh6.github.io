@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="web_standard" name="shell-type" />
+    <title>Manuel Assogba — Bâtisseur de Systèmes Utiles</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        @layer base {
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                overscroll-behavior: none;
+            }
+
+            main>:first-child {
+                margin-top: 0 !important;
+            }
+
+            main>:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+        id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#fbf8fc", "secondary-container": "#fe8c5e", "primary-container": "#00855d", "on-secondary-container": "#732600", "on-primary-fixed": "#002114", "surface-dim": "#dcd9dd", "surface-bright": "#fbf8fc", "tertiary-fixed-dim": "#ffb3b6", "tertiary-fixed": "#ffdada", "surface-tint": "#006c4a", "primary": "#006948", "on-tertiary-fixed-variant": "#920028", "surface-container-highest": "#e4e1e6", "background": "#fbf8fc", "primary-fixed-dim": "#68dba9", "surface-container-lowest": "#ffffff", "surface-container-high": "#eae7eb", "on-surface": "#1b1b1e", "tertiary": "#ba0035", "on-background": "#1b1b1e", "surface-variant": "#e4e1e6", "surface-container-low": "#f6f2f7", "inverse-surface": "#303033", "inverse-on-surface": "#f3f0f4", "secondary-fixed-dim": "#ffb599", "on-surface-variant": "#3d4a42", "inverse-primary": "#68dba9", "on-tertiary-container": "#fffbff", "tertiary-container": "#e21e49", "on-secondary": "#ffffff", "surface-container": "#f0edf1", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#005137", "on-primary": "#ffffff", "primary-fixed": "#85f8c4", "on-error-container": "#93000a", "secondary": "#9d431b", "error": "#ba1a1a", "on-tertiary-fixed": "#40000c", "on-error": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed-variant": "#7e2c04", "outline": "#6d7a72", "on-primary-container": "#f5fff7", "outline-variant": "#bccac0", "on-secondary-fixed": "#370e00", "secondary-fixed": "#ffdbce" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter-desktop": "1.5rem", "margin": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1rem", "margin-desktop": "2.5rem" }, fontFamily: { "metric-xl": ["JetBrains Mono"], "metric-md": ["JetBrains Mono"], "body-lg": ["Space Grotesk"], "headline-lg-mobile": ["Space Grotesk"], "body-sm": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "label-caps": ["JetBrains Mono"], "metric-xl-mobile": ["JetBrains Mono"], "code-sm": ["JetBrains Mono"], "display-lg-mobile": ["Space Grotesk"], "body-md": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "display-lg": ["Space Grotesk"] }, fontSize: { "metric-xl": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "600" }], "metric-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }], "metric-xl-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "code-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }], "display-lg-mobile": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "display-lg": ["56px", { "lineHeight": "60px", "letterSpacing": "-0.03em", "fontWeight": "600" }] } } } };</script>
+</head>
+
+<body
+    class="bg-surface text-on-surface font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.03)]">
+        <div class="h-20 w-full px-margin md:px-margin-desktop flex items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-lg"><a class="flex flex-col group" data-path="focus" href="#"><span
+                        class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant group-hover:text-primary transition-colors">Manuel
+                        Assogba</span><span class="font-code-sm text-code-sm text-outline">Full-Stack // System
+                        Architect</span></a>
+                <div
+                    class="hidden sm:flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-low rounded">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span
+                        class="font-label-caps text-label-caps text-primary uppercase">Dispo Q2 2025</span></div>
+            </div>
+            <nav class="hidden lg:flex items-center gap-space-xs bg-surface-container-lowest px-space-xs py-space-xs rounded shadow-[0_1px_4px_rgba(0,0,0,0.02)]"
+                data-active-classes="bg-primary-container text-on-primary-container font-medium rounded"><a
+                    aria-current="page"
+                    class="px-space-md py-space-xs transition-colors bg-primary-container text-on-primary-container font-medium rounded"
+                    data-path="focus" href="#">Focus</a><a
+                    class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="realisations" href="#">Réalisations</a><a
+                    class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="parcours" href="#">Parcours</a><a
+                    class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="philosophie-de-code" href="#">Philosophie de Code</a><a
+                    class="px-space-md py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="contact" href="#">Contact</a></nav>
+            <div class="flex items-center gap-space-md"><a
+                    class="hidden md:flex items-center gap-space-xs px-space-md py-space-xs bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-primary hover:text-on-primary transition-all"
+                    data-path="contact" href="#"><span>Initier un Projet</span><span
+                        class="material-symbols-outlined text-[14px]">arrow_outward</span></a>
+                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span
+                        class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
+            </div>
+        </div>
+    </header>
+    <main class="w-full pt-20 bg-surface">
+        <div class="flex flex-col w-full text-on-surface">
+            <!-- ==========================================
+       HERO : L'ENGAGEMENT SANS COMPROMIS
+       ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl flex flex-col gap-space-xl">
+                <!-- Status & Position Meta Header -->
+                <div class="flex flex-wrap items-center justify-between gap-space-md border-b-0 pb-space-sm">
+                    <div
+                        class="flex items-center gap-space-sm bg-surface-container-high px-space-md py-space-xs rounded">
+                        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                        <span class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider">
+                            DISPONIBLE POUR MISSIONS À FORT IMPACT • COTONOU / REMOTE
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-space-md font-code-sm text-code-sm text-outline">
+                        <span>UTC+01:00</span>
+                        <span>•</span>
+                        <span>LATENCE RÉSEAU RÉDUITE</span>
+                        <span>•</span>
+                        <span class="text-primary font-medium">FIELD-PROVEN</span>
+                    </div>
+                </div>
+                <!-- Main Typographic Hook -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end">
+                    <div class="lg:col-span-8 flex flex-col gap-space-md">
+                        <div class="font-label-caps text-label-caps text-primary uppercase tracking-widest">
+                            FULL-STACK &amp; ARCHITECTURE EN MILIEUX CONTRAINTS
+                        </div>
+                        <h1 class="font-display-lg text-display-lg font-semibold tracking-tight text-on-surface">
+                            Je ne code pas pour faire briller des abstractions.
+                            <span class="text-primary block mt-space-xs">Je construis des systèmes robustes qui tiennent
+                                le choc du réel.</span>
+                        </h1>
+                    </div>
+                    <div
+                        class="lg:col-span-4 flex flex-col gap-space-md bg-surface-container-low p-space-lg rounded shadow-sm">
+                        <div class="font-label-caps text-label-caps text-outline uppercase">Prémisse Opérationnelle
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant">
+                            4+ ans forgés au contact du terrain, des parcs nationaux et des institutions internationales
+                            (GIZ). Pas de dépendances superflues, pas de factures de cloud gonflées : du code rapide,
+                            sobre et directement utile à ceux qui l’utilisent.
+                        </p>
+                        <div class="flex items-center gap-space-sm pt-space-xs">
+                            <a class="px-space-md py-space-sm bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-primary hover:text-on-primary transition-all flex items-center gap-space-xs"
+                                href="#projets">
+                                <span>Explorer les Systèmes</span>
+                                <span class="material-symbols-outlined text-[16px]">south</span>
+                            </a>
+                            <a class="px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-surface-container-high transition-colors flex items-center gap-space-xs"
+                                href="#contact">
+                                <span>Discuter d’un projet</span>
+                                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Impact Ledger Indicators -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+                    <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-xs shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="font-label-caps text-label-caps text-outline uppercase">EXPÉRIENCE
+                                RÉELLE</span>
+                            <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                        </div>
+                        <span class="font-metric-xl text-metric-xl text-on-surface">5<span
+                                class="text-primary text-[28px]">ans</span></span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">De terrain sans compromis
+                            technologique</span>
+                    </div>
+                    <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-xs shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="font-label-caps text-label-caps text-outline uppercase">SOBRIÉTÉ
+                                ARCHITECTURALE</span>
+                            <span class="material-symbols-outlined text-secondary text-[18px]">block</span>
+                        </div>
+                        <span class="font-metric-xl text-metric-xl text-on-surface">0<span
+                                class="text-secondary text-[28px]">dép.</span></span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Dépendance inutile ou abonnement
+                            imposé</span>
+                    </div>
+                    <div class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-xs shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="font-label-caps text-label-caps text-outline uppercase">OBJECTIF ULTIME</span>
+                            <span class="material-symbols-outlined text-primary text-[18px]">lock_open</span>
+                        </div>
+                        <span class="font-metric-xl text-metric-xl text-primary">100<span
+                                class="text-on-surface text-[28px]">%</span></span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Orienté autonomie intégrale des
+                            équipes sur place</span>
+                    </div>
+                </div>
+            </section>
+            <!-- ==========================================
+       SECTION 2 : ÉTUDE DE CAS MAJEURE (FIELDOZ)
+       ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl bg-surface-container-low"
+                id="projet-phare">
+                <div class="flex flex-col gap-space-lg">
+                    <!-- Section Tag -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-space-sm">
+                            <span class="w-2 h-2 bg-primary rounded-full"></span>
+                            <span
+                                class="font-label-caps text-label-caps uppercase text-primary tracking-wider">Sélection
+                                Focus // Projet Phare</span>
+                        </div>
+                        <span class="font-code-sm text-code-sm text-outline">REF // CASE-01-FLDOZ</span>
+                    </div>
+                    <!-- Main Showcase Bento Grid -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg bg-surface-container-lowest p-space-lg rounded shadow-sm">
+                        <!-- Showcase Mockup Canvas -->
+                        <div class="lg:col-span-7 flex flex-col gap-space-md">
+                            <div
+                                class="relative w-full rounded overflow-hidden bg-surface-container-high aspect-[16/10] group">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    data-alt="Modern web application dashboard named FieldOz presented on a crisp monitor screen. The UI displays interactive data visualizations for social impact initiatives with real-time field data, village telemetry indicators, offline sync statuses, and photo grids of agricultural development in West Africa, rendered in clean emerald green and warm earthy stone accents with sleek minimalist layout."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7NFv7oRWVvUDvPgqRl1dPAWEOWEre9k3-7ZOpmuup38bN9ON-cL6KShK1VTPvOKnFodrAlZi_Xfunh83helwEjOkpkwux0f_tp2IFMyfrKdR5Z3hyAiVpgwp5nEV1OmLAwIpy-9fgw-wf35_06hoKLgsbRixnb24yQ9BQ9_THuHazssNQiiBOceYKfasRmAMw1t7-0SoCw3LV89D7HDUK1JsKC5CCHfKh1Z00TiPcqv90q_oE7ts46A" />
+                                <div
+                                    class="absolute top-space-sm left-space-sm bg-inverse-surface/90 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps backdrop-blur-sm">
+                                    LIVE ENGINE // EDGE SYNC
+                                </div>
+                                <div
+                                    class="absolute bottom-space-sm right-space-sm bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface flex items-center gap-space-xs shadow-sm">
+                                    <span class="material-symbols-outlined text-primary text-[14px]">offline_bolt</span>
+                                    <span>Sync hors-ligne validée</span>
+                                </div>
+                            </div>
+                            <!-- Secondary Micro Metrics from Field -->
+                            <div class="grid grid-cols-3 gap-space-sm">
+                                <div class="bg-surface-container p-space-sm rounded flex flex-col">
+                                    <span class="font-label-caps text-label-caps text-outline uppercase">Temps de
+                                        charge</span>
+                                    <span class="font-metric-md text-metric-md text-primary">&lt; 0.4s</span>
+                                </div>
+                                <div class="bg-surface-container p-space-sm rounded flex flex-col">
+                                    <span class="font-label-caps text-label-caps text-outline uppercase">Consommation
+                                        data</span>
+                                    <span class="font-metric-md text-metric-md text-on-surface">-74%</span>
+                                </div>
+                                <div class="bg-surface-container p-space-sm rounded flex flex-col">
+                                    <span
+                                        class="font-label-caps text-label-caps text-outline uppercase">Disponibilité</span>
+                                    <span class="font-metric-md text-metric-md text-on-surface">99.98%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Showcase Explanatory Rail -->
+                        <div class="lg:col-span-5 flex flex-col justify-between gap-space-md">
+                            <div class="flex flex-col gap-space-md">
+                                <div>
+                                    <span
+                                        class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Plateforme
+                                        SaaS d'Impact Social</span>
+                                    <h2
+                                        class="font-headline-lg text-headline-lg font-semibold text-on-surface mt-space-xs">
+                                        FieldOz — Raconter le terrain sans distorsion.
+                                    </h2>
+                                </div>
+                                <p class="font-body-md text-body-md text-on-surface-variant">
+                                    Transformez des données de terrain complexes en rapports d'impact visuels et
+                                    incontestables au service des communautés et bailleurs de fonds. Conçu pour
+                                    continuer à tourner là où la connectivité oscille et où les équipements sont
+                                    limités.
+                                </p>
+                                <!-- Technical Problem Solved Quote -->
+                                <div
+                                    class="p-space-md bg-surface-container-low rounded border-l-4 border-primary flex flex-col gap-space-xs">
+                                    <span class="font-label-caps text-label-caps text-primary uppercase">Contrainte
+                                        résolue</span>
+                                    <p class="font-body-sm text-body-sm italic text-on-surface">
+                                        « Quand le terrain n'a pas de 4G stable et que les serveurs doivent enregistrer
+                                        sans faille des milliers de preuves géolocalisées, chaque octet compte. »
+                                    </p>
+                                </div>
+                                <!-- Stack Badges -->
+                                <div class="flex flex-col gap-space-xs">
+                                    <span class="font-label-caps text-label-caps text-outline uppercase">Architecture
+                                        &amp; Outils</span>
+                                    <div class="flex flex-wrap gap-space-xs">
+                                        <span
+                                            class="px-space-sm py-space-xs bg-surface-container text-on-surface font-code-sm text-code-sm rounded">Laravel
+                                            11</span>
+                                        <span
+                                            class="px-space-sm py-space-xs bg-surface-container text-on-surface font-code-sm text-code-sm rounded">Alpine.js</span>
+                                        <span
+                                            class="px-space-sm py-space-xs bg-surface-container text-on-surface font-code-sm text-code-sm rounded">Livewire
+                                            3</span>
+                                        <span
+                                            class="px-space-sm py-space-xs bg-surface-container text-on-surface font-code-sm text-code-sm rounded">Tailwind
+                                            CSS</span>
+                                        <span
+                                            class="px-space-sm py-space-xs bg-primary-container text-on-primary-container font-code-sm text-code-sm rounded">SQLite
+                                            Local Sync</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom Action -->
+                            <div class="flex items-center gap-space-md pt-space-md">
+                                <a class="px-space-md py-space-sm bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-space-xs"
+                                    href="https://github.com" target="_blank">
+                                    <span class="material-symbols-outlined text-[16px]">terminal</span>
+                                    <span>Architecture GitLab / Public</span>
+                                </a>
+                                <span class="font-code-sm text-code-sm text-outline">Audit Code // Clean</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ==========================================
+       SECTION 3 : L'ÉTHIQUE DU BÂTISSEUR
+       ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl">
+                <div class="flex flex-col gap-space-xl">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+                        <div>
+                            <span class="font-label-caps text-label-caps text-primary uppercase">Doctrine &amp;
+                                Démarche</span>
+                            <h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface mt-space-xs">
+                                L’Éthique du Bâtisseur : Trois Règles d’Airain.
+                            </h2>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                            Loin des effets de mode éphémères, chaque choix technique est pesé sur la balance du coût
+                            réel, de l'opérabilité sur 5 ans et de la clarté humaine.
+                        </p>
+                    </div>
+                    <!-- 3 Core Pillars Bento -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+                        <!-- Pilier 1 -->
+                        <div
+                            class="bg-surface-container-low p-space-lg rounded flex flex-col justify-between gap-space-lg shadow-sm">
+                            <div class="flex flex-col gap-space-md">
+                                <div
+                                    class="w-10 h-10 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-metric-md text-metric-md font-semibold">
+                                    01
+                                </div>
+                                <h3 class="font-headline-md text-headline-md font-semibold text-on-surface">
+                                    Comprendre l'essence avant d'écrire une ligne.
+                                </h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">
+                                    Pourquoi empiler des briques complexes et des couches d'abstraction quand une
+                                    solution logique, claire et bien modélisée résout le problème à la racine ? Le code
+                                    le plus fiable est celui qu'on n'a pas besoin de maintenir.
+                                </p>
+                            </div>
+                            <div class="font-code-sm text-code-sm text-primary pt-space-sm">
+                                // Modélisation &gt; Accumulation
+                            </div>
+                        </div>
+                        <!-- Pilier 2 -->
+                        <div
+                            class="bg-surface-container-low p-space-lg rounded flex flex-col justify-between gap-space-lg shadow-sm">
+                            <div class="flex flex-col gap-space-md">
+                                <div
+                                    class="w-10 h-10 rounded bg-secondary text-on-secondary flex items-center justify-center font-metric-md text-metric-md font-semibold">
+                                    02
+                                </div>
+                                <h3 class="font-headline-md text-headline-md font-semibold text-on-surface">
+                                    Respect absolu du budget et de l’autonomie client.
+                                </h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">
+                                    Aucun abonnement SaaS mensuel coûteux imposé de force. On exploite les serveurs
+                                    existants, on optimise avec Docker et des requêtes optimisées, en adaptant
+                                    l'architecture aux vraies ressources disponibles.
+                                </p>
+                            </div>
+                            <div class="font-code-sm text-code-sm text-secondary pt-space-sm">
+                                // Zéro dépendance captive
+                            </div>
+                        </div>
+                        <!-- Pilier 3 -->
+                        <div
+                            class="bg-surface-container-low p-space-lg rounded flex flex-col justify-between gap-space-lg shadow-sm">
+                            <div class="flex flex-col gap-space-md">
+                                <div
+                                    class="w-10 h-10 rounded bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-metric-md text-metric-md font-semibold">
+                                    03
+                                </div>
+                                <h3 class="font-headline-md text-headline-md font-semibold text-on-surface">
+                                    L’interface doit parler la langue directe des gens.
+                                </h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">
+                                    Si un agent de terrain, un gestionnaire de réserve ou une directrice met plus de 90
+                                    secondes à comprendre un bouton ou un rapport, c'est que l'ingénieur a échoué. Zéro
+                                    jargon cryptique, lisibilité chirurgicale.
+                                </p>
+                            </div>
+                            <div class="font-code-sm text-code-sm text-outline pt-space-sm">
+                                // Clarté cognitive immédiate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ==========================================
+       SECTION 4 : GALERIE DES RÉALISATIONS AVEC FILTRES
+       ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl bg-surface-container" id="projets">
+                <div class="flex flex-col gap-space-lg">
+                    <!-- Header + Filter Row -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+                        <div>
+                            <span class="font-label-caps text-label-caps text-primary uppercase">Systèmes
+                                Éprouvés</span>
+                            <h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface">
+                                Réalisations &amp; Registre Opérationnel
+                            </h2>
+                        </div>
+                        <!-- Interactive Category Switcher -->
+                        <div
+                            class="flex items-center gap-space-xs bg-surface-container-lowest p-space-xs rounded shadow-sm">
+                            <button
+                                class="filter-btn active px-space-md py-space-xs font-label-caps text-label-caps uppercase rounded bg-inverse-surface text-inverse-on-surface transition-colors"
+                                data-filter="all">
+                                Tous (6)
+                            </button>
+                            <button
+                                class="filter-btn px-space-md py-space-xs font-label-caps text-label-caps uppercase rounded text-on-surface-variant hover:text-on-surface transition-colors"
+                                data-filter="web">
+                                Web
+                            </button>
+                            <button
+                                class="filter-btn px-space-md py-space-xs font-label-caps text-label-caps uppercase rounded text-on-surface-variant hover:text-on-surface transition-colors"
+                                data-filter="mobile">
+                                Mobile
+                            </button>
+                            <button
+                                class="filter-btn px-space-md py-space-xs font-label-caps text-label-caps uppercase rounded text-on-surface-variant hover:text-on-surface transition-colors"
+                                data-filter="systemes">
+                                Systèmes &amp; ONG
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Realisations Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="projects-container">
+                        <!-- Card 1: BiodivCenter -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group"
+                            data-category="systemes web">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    data-alt="Modern web interface of BiodivCenter for Maison des Tortues and WAP National Parks. Clean biodiversity monitoring dashboard showing turtle nesting coordinates, geospatial map pins over coastal mangrove reserves, observation counters, and species classification cards in subtle sage green and sandy neutrals."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCQDcp0ubXd0KK2zeD1X6-rMdX8rWIL0y9BEKZEblNopO3KauMFtEaF1Gl2od5VD_pqqFycashn5OJ3Tm0O3fOAFphyOqI_RWExJr6jzUQG8Am7WKQMaMLXKrNP-i6kJwMNrinXsBbKe6JB90Exc9O8s3UpTRTTRw59PCxL29biNkhNodvF_QLHdNHZD0AKEBmYXTodoL-EgpJ7pzslNZ2lsK5T3893VYYPYH0SDlUrE7U6LsC9NXHeA" />
+                                <div
+                                    class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps">
+                                    GIZ // PARCS WAP
+                                </div>
+                                <div
+                                    class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface">
+                                    API INATURALIST
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-primary uppercase">Web /
+                                            Système Critique</span>
+                                        <span class="font-code-sm text-code-sm text-outline">2024-2025</span>
+                                    </div>
+                                    <h3
+                                        class="font-headline-md text-headline-md font-semibold text-on-surface mt-space-xs">
+                                        BiodivCenter</h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Monitoring de la faune et valorisation des espèces pour les centres de
+                                        conservation. Télémétrie drones, cartographie Leaflet et synchronisation en
+                                        direct.
+                                    </p>
+                                </div>
+                                <div class="flex flex-wrap gap-space-xs pt-space-xs">
+                                    <span
+                                        class="px-space-xs py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Laravel</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Leaflet.js</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">MySQL</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Flutter</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2: Le Transporteur / Beninfy -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group"
+                            data-category="mobile">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    data-alt="Mobile interface screen of Le Transporteur and Beninfy courier app. Shows delivery route progress bar, interactive geolocation pins, client pickup validation terminal, and real-time offline payment receipt in dark minimalist editorial layout with amber and forest green accents."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV5JUa0t3SDT4YerNX1bdMnmkk4cxSB4a0-n0-joqzPF5sHO4Sk4l0b537HKRv0ffGjyZmS8yPhh-fyCRePjh5OZBV8e_7vQzrA_C_5Ol-5Wv6N65bKdnd-chhuPazZfMa58Z1itO2cuMKw19iyBJe282imDg3VSaYnnXa6QG0XtW3jQ-Q2Yaqii9eY-VGIsugkmOX7_IbYxR-EyCOr3uSJgVe8cV5Tths6ppxHqtzfDgLUFBXK6Ti1w" />
+                                <div
+                                    class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps">
+                                    GÉOLOCALISATION
+                                </div>
+                                <div
+                                    class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface">
+                                    FLUTTER ENGINE
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-secondary uppercase">Mobile
+                                            &amp; Flotte</span>
+                                        <span class="font-code-sm text-code-sm text-outline">Production</span>
+                                    </div>
+                                    <h3
+                                        class="font-headline-md text-headline-md font-semibold text-on-surface mt-space-xs">
+                                        Le Transporteur / Beninfy</h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Suite logistique complète (Client, Livreur, Superviseur) avec calcul
+                                        d'itinéraires adapté au réseau routier ouest-africain et négociation de
+                                        tarification.
+                                    </p>
+                                </div>
+                                <div class="flex flex-wrap gap-space-xs pt-space-xs">
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Flutter</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Dart</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Google
+                                        Maps API</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Hive
+                                        DB</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3: Grid Generator -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group"
+                            data-category="web">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    data-alt="Interactive browser screen showing CSS Grid Generator developer application. Monochromatic tool layout with drag-and-drop structural wireframes, visual alignment lines, real-time generated Tailwind and CSS output code block, crisp typographic styling with dark theme accents."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIBJMx7tr7BLMGb9VB1pWABWFBz88jj5bhJOL5cxeDLta2efm77m1-m7QDOUmsocJSlBLaOIIyuDpzdPctGHr8t1MJhbtRbsqC4Q12Rt8gW1kGVfwvcCu9yjwjuzfFoAY9g1LXKCM3j4YUwEdjkxeNLOZ0ScJ3NdKq8xvvYQz2e3-Jnu2ygJvzcsvoiIctaFHGxJaDSNeuLU_7pq-h0K7UKAPcr764LdNclO4OVMzueCHUAnE5KtkiNg" />
+                                <div
+                                    class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps">
+                                    DEV TOOLING
+                                </div>
+                                <div
+                                    class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface">
+                                    OPEN SOURCE
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-primary uppercase">Web &amp;
+                                            Outil Core</span>
+                                        <span class="font-code-sm text-code-sm text-outline">Public</span>
+                                    </div>
+                                    <h3
+                                        class="font-headline-md text-headline-md font-semibold text-on-surface mt-space-xs">
+                                        Grid Generator</h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Générateur visuel de grilles CSS complexes avec drag-and-drop fluide pour
+                                        faciliter la composition de mises en page responsives ultra-légères.
+                                    </p>
+                                </div>
+                                <div class="flex flex-wrap gap-space-xs pt-space-xs">
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">TypeScript</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Next.js</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Tailwind
+                                        CSS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 4: Iknow (Suivi Opérationnel ONG) -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group"
+                            data-category="systemes web">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    data-alt="Editorial screenshot of Iknow operational tracking system for international non-governmental organizations. Clean grid interface with financial budget consumption curves, field worker mission checkpoints, document archives, and telemetry graphs in charcoal and emerald tones."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuClSq9CnbftObbqobUz_laQ0j0FGEiTUual6eG03gE7EPiccOUBvamWqhZrpCMJy0P5nvGaJLaFzpcPI0hUEOUUOh2EFBfzCZGz2RfEGkm8MeOpau2zX_xLTc4lTOjnqAG0sJlUB4Fw7Z42Kms64No2XXpz1a2pYDcdBr0hXZosqj1ReqjrMS7PaeVIWIeyewdRT5iwFBItblhlZjNDALU_VqtN3yxOdu00NSNblbtQkAiOFpW6V0foNg" />
+                                <div
+                                    class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps">
+                                    ONG PARTENAIRES
+                                </div>
+                                <div
+                                    class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface">
+                                    AWS S3 + REST
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-primary uppercase">Système
+                                            &amp; Données</span>
+                                        <span class="font-code-sm text-code-sm text-outline">Multisite</span>
+                                    </div>
+                                    <h3
+                                        class="font-headline-md text-headline-md font-semibold text-on-surface mt-space-xs">
+                                        IKnow — Audit Terrain</h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Suivi transparent des activités opérationnelles pour les consortiums d'ONG.
+                                        Indexation instantanée de rapports volumineux avec compression sur stockage
+                                        objet.
+                                    </p>
+                                </div>
+                                <div class="flex flex-wrap gap-space-xs pt-space-xs">
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">PHP
+                                        / Laravel</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">AWS
+                                        S3</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Chart.js</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">REST
+                                        APIs</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 5: Exam & Jande -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group"
+                            data-category="web systemes">
+                            <div class="relative w-full aspect-[16/10] bg-surface-container-high overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    data-alt="Modern web interface of Jande and Exam e-learning evaluation suite. Features gamified assessment modules, interactive language flashcards, real-time score calculation bar, and clear typography for literacy training in rural communities with crisp monochrome layout and subtle warm ochre highlights."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbG9xouDn6KyAJbenBlRt2RHuCSdu-JYYQwO4pXTdXkX8d0Jw8V3OETar6oXDO6xq--ayfa-YeEFdTlDjBksE199oIPts5X1nHNaOHXtPzK9O-mLC4Iff9zbHXFZddBoA4yhcRIGSFF0WhamzU0JfJkYKDRvOZtBoinylr7jMzHKyjC2YpRM_yrNn3_Di_-mErHUhqKycLtXZ4UQLOGeUE14E4sY22Y5AOCIZjLc7upJzQfa1wfBBmJw" />
+                                <div
+                                    class="absolute top-space-xs left-space-xs bg-inverse-surface/80 text-inverse-on-surface px-space-sm py-space-xs rounded font-label-caps text-label-caps">
+                                    ÉDUCATION LOCALE
+                                </div>
+                                <div
+                                    class="absolute bottom-space-xs right-space-xs bg-surface-container-lowest/90 px-space-sm py-space-xs rounded font-code-sm text-code-sm text-on-surface">
+                                    BASSE LATENCE
+                                </div>
+                            </div>
+                            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-md">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-secondary uppercase">Web &amp;
+                                            Pédagogie</span>
+                                        <span class="font-code-sm text-code-sm text-outline">Évaluations</span>
+                                    </div>
+                                    <h3
+                                        class="font-headline-md text-headline-md font-semibold text-on-surface mt-space-xs">
+                                        Jande &amp; Exam</h3>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                        Système d'évaluation de compétences et d'acquisition de langues locales adapté
+                                        aux agents de terrain sans bagage technique préalable.
+                                    </p>
+                                </div>
+                                <div class="flex flex-wrap gap-space-xs pt-space-xs">
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Laravel</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Livewire</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">Alpine.js</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-surface-container font-code-sm text-code-sm text-on-surface rounded">SQLite</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 6: Architecture & Infra Terrain -->
+                        <div class="project-card flex flex-col bg-surface-container-lowest rounded overflow-hidden shadow-sm group"
+                            data-category="systemes">
+                            <div
+                                class="p-space-lg flex flex-col justify-between flex-1 gap-space-md bg-inverse-surface text-inverse-on-surface">
+                                <div class="flex flex-col gap-space-md">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-label-caps text-label-caps text-primary uppercase">Topology
+                                            &amp; Ops</span>
+                                        <span class="material-symbols-outlined text-primary text-[20px]">hub</span>
+                                    </div>
+                                    <h3 class="font-headline-md text-headline-md font-semibold">Micro-Serveurs &amp;
+                                        Edge Relays</h3>
+                                    <p class="font-body-sm text-body-sm text-inverse-on-surface/80">
+                                        Installation et conteneurisation de serveurs autonomes sur matériel
+                                        reconditionné pour bases de données déconnectées (Bénin, Niger, Burkina).
+                                        Redondance automatique dès reconnexion réseau.
+                                    </p>
+                                    <!-- Terminal snippet aesthetic -->
+                                    <div
+                                        class="bg-on-surface/40 p-space-sm rounded font-code-sm text-code-sm text-primary flex flex-col gap-space-xs">
+                                        <span>$ docker compose up --detach</span>
+                                        <span class="text-inverse-on-surface/70">✔ edge_sync: healthy [0.08s]</span>
+                                        <span class="text-inverse-on-surface/70">✔ zero_cloud_cost: true</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex flex-wrap gap-space-xs pt-space-sm border-t border-inverse-on-surface/10">
+                                    <span
+                                        class="px-space-sm py-space-xs bg-on-surface/30 font-code-sm text-code-sm rounded">Docker</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-on-surface/30 font-code-sm text-code-sm rounded">Nginx</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-on-surface/30 font-code-sm text-code-sm rounded">Bash</span>
+                                    <span
+                                        class="px-space-sm py-space-xs bg-on-surface/30 font-code-sm text-code-sm rounded">cPanel</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ==========================================
+       SECTION 5 : PARCOURS & VÉRITÉ DU TERRAIN
+       ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+                    <!-- Left Narrative Column -->
+                    <div class="lg:col-span-5 flex flex-col gap-space-md">
+                        <span class="font-label-caps text-label-caps text-primary uppercase">Ce qui m’a forgé</span>
+                        <h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface">
+                            Une rigueur née des contraintes réelles.
+                        </h2>
+                        <div class="flex flex-col gap-space-md font-body-md text-body-md text-on-surface-variant">
+                            <p>
+                                Mon approche du développement n'a pas débuté dans des bureaux climatisés avec de la
+                                fibre optique illimitée. Elle a été forgée en autodidacte exigeant face à des connexions
+                                instables, des matériels hétéroclites et la nécessité absolue de faire fonctionner les
+                                choses du premier coup.
+                            </p>
+                            <p>
+                                Lorsqu'on déploie une solution pour les agents des parcs WAP ou pour des équipes de
+                                santé publique en brousse, on comprend très vite qu'un bogue n'est pas un simple «
+                                ticket Jira » : c'est une mission arrêtée, un rapport financier bloqué ou une journée de
+                                patrouille perdue.
+                            </p>
+                            <p class="font-body-md text-body-md text-on-surface font-medium">
+                                C'est cette vérité de terrain qui me guide : épurer l'architecture, éliminer le
+                                superflu, livrer du code net que n'importe quelle équipe locale pourra s'approprier sans
+                                payer de consultants ad vitam aeternam.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-space-md pt-space-sm">
+                            <div class="flex flex-col">
+                                <span class="font-metric-md text-metric-md text-on-surface">3 Pays</span>
+                                <span class="font-code-sm text-code-sm text-outline">Bénin • Burkina • Niger</span>
+                            </div>
+                            <div class="h-8 w-px bg-surface-container-high"></div>
+                            <div class="flex flex-col">
+                                <span class="font-metric-md text-metric-md text-primary">1 Semaine</span>
+                                <span class="font-code-sm text-code-sm text-outline">Délai moyen MVP opérationnel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Timeline Ledger -->
+                    <div
+                        class="lg:col-span-7 flex flex-col gap-space-md bg-surface-container-low p-space-lg rounded shadow-sm">
+                        <div class="font-label-caps text-label-caps text-outline uppercase pb-space-xs">
+                            Chronologie des Responsabilités &amp; Interventions
+                        </div>
+                        <!-- Item 1 -->
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm pb-space-md bg-surface-container-lowest p-space-md rounded">
+                            <div class="flex flex-col gap-space-xs">
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="w-2 h-2 rounded-full bg-primary"></span>
+                                    <span class="font-label-caps text-label-caps text-primary uppercase">2024 —
+                                        Présent</span>
+                                </div>
+                                <h4 class="font-headline-md text-headline-md font-semibold text-on-surface">Architecte
+                                    Systèmes Indépendant</h4>
+                                <span class="font-code-sm text-code-sm text-outline">Maison des Tortues • ONG
+                                    Internationales • Startups</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                    Conception de plateformes de collecte hors-ligne, interfaçage AWS S3, cartographie
+                                    de biodiversité et tableaux de bord d'aide à la décision.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm pb-space-md bg-surface-container-lowest p-space-md rounded">
+                            <div class="flex flex-col gap-space-xs">
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                                    <span class="font-label-caps text-label-caps text-secondary uppercase">2021 —
+                                        2024</span>
+                                </div>
+                                <h4 class="font-headline-md text-headline-md font-semibold text-on-surface">Développeur
+                                    Fullstack Lead // GIZ (Projet RBT-WAP)</h4>
+                                <span class="font-code-sm text-code-sm text-outline">Coopération Allemande • Parcs
+                                    Transfrontaliers</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                    Déploiement des outils de monitoring (BiodivCenter, WAP-Training), intégration des
+                                    APIs naturalistes, documentation technique et formation des agents sur site.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm pb-space-md bg-surface-container-lowest p-space-md rounded">
+                            <div class="flex flex-col gap-space-xs">
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="w-2 h-2 rounded-full bg-outline"></span>
+                                    <span class="font-label-caps text-label-caps text-outline uppercase">2020 —
+                                        2021</span>
+                                </div>
+                                <h4 class="font-headline-md text-headline-md font-semibold text-on-surface">Ingénieur
+                                    Frontend &amp; Mobilité</h4>
+                                <span class="font-code-sm text-code-sm text-outline">JHS Corporate • Projets
+                                    Freelance</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                                    Développement mobile cross-platform Flutter, intégration de passerelles
+                                    géolocalisées et audit de performance web.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ==========================================
+       SECTION 6 : COMPÉTENCES & BOÎTE À OUTILS
+       ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl bg-surface-container-low">
+                <div class="flex flex-col gap-space-xl">
+                    <div>
+                        <span class="font-label-caps text-label-caps text-primary uppercase">Maîtrise Technique</span>
+                        <h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface mt-space-xs">
+                            La Boîte à Outils Sans Artifice.
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+                        <!-- Pillar: Backend -->
+                        <div
+                            class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-md shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-caps text-label-caps text-primary uppercase">BACKEND &amp;
+                                    LOGIQUE</span>
+                                <span class="material-symbols-outlined text-primary text-[20px]">database</span>
+                            </div>
+                            <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface">
+                                <li
+                                    class="flex items-center justify-between py-space-xs bg-surface-container-low px-space-sm rounded">
+                                    <span>PHP / Laravel</span>
+                                    <span class="font-code-sm text-code-sm text-primary">Avancé</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Node.js / Express</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Robuste</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Python / Django</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Scraping/Data</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Architecture RESTful</span>
+                                    <span class="font-code-sm text-code-sm text-primary">Standard</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>MySQL &amp; SQLite Local</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Optimisé</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Pillar: Frontend & Mobile -->
+                        <div
+                            class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-md shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-caps text-label-caps text-secondary uppercase">FRONTEND &amp;
+                                    MOBILE</span>
+                                <span class="material-symbols-outlined text-secondary text-[20px]">devices</span>
+                            </div>
+                            <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface">
+                                <li
+                                    class="flex items-center justify-between py-space-xs bg-surface-container-low px-space-sm rounded">
+                                    <span>Flutter / Dart</span>
+                                    <span class="font-code-sm text-code-sm text-secondary">Cross-platform</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>React / Next.js</span>
+                                    <span class="font-code-sm text-code-sm text-outline">SSR/SSG</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Tailwind CSS</span>
+                                    <span class="font-code-sm text-code-sm text-secondary">Zero Runtime</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Alpine.js &amp; Livewire</span>
+                                    <span class="font-code-sm text-code-sm text-secondary">Ultra-Léger</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>TypeScript</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Strict Type</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Pillar: Infra & DevOps -->
+                        <div
+                            class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-md shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="font-label-caps text-label-caps text-outline uppercase">INFRASTRUCTURE</span>
+                                <span class="material-symbols-outlined text-on-surface text-[20px]">cloud_sync</span>
+                            </div>
+                            <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface">
+                                <li
+                                    class="flex items-center justify-between py-space-xs bg-surface-container-low px-space-sm rounded">
+                                    <span>Docker &amp; Compose</span>
+                                    <span class="font-code-sm text-code-sm text-on-surface">Reproductible</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>AWS S3 / Stockage Objet</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Stockage frugal</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Nginx Reverse Proxy</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Performance</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Git &amp; GitLab CI</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Déploiement</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>cPanel / Linux VPS</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Autonome</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Pillar: Méthode Humaine -->
+                        <div
+                            class="bg-surface-container-lowest p-space-md rounded flex flex-col gap-space-md shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-caps text-label-caps text-primary uppercase">POSTURE
+                                    HUMAINE</span>
+                                <span class="material-symbols-outlined text-primary text-[20px]">handshake</span>
+                            </div>
+                            <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface">
+                                <li
+                                    class="flex items-center justify-between py-space-xs bg-surface-container-low px-space-sm rounded">
+                                    <span>Diagnostic Pragmatique</span>
+                                    <span class="font-code-sm text-code-sm text-primary">Sous 48h</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Transmission Pédagogique</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Sans jargon</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Documentation Complète</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Autonomie</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Résistance au Stress</span>
+                                    <span class="font-code-sm text-code-sm text-primary">Testé</span>
+                                </li>
+                                <li class="flex items-center justify-between py-space-xs px-space-sm">
+                                    <span>Écoute Directe Utilisateur</span>
+                                    <span class="font-code-sm text-code-sm text-outline">Constante</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ==========================================
+       SECTION 7 : PRISE DE CONTACT DIRECTE
+       ========================================== -->
+            <section class="w-full px-margin md:px-margin-desktop py-space-xl" id="contact">
+                <div
+                    class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded shadow-sm flex flex-col gap-space-xl">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-space-lg">
+                        <div class="max-w-xl flex flex-col gap-space-sm">
+                            <span class="font-label-caps text-label-caps text-primary uppercase">Communication
+                                Directe</span>
+                            <h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface">
+                                Démarrons un projet sans détours.
+                            </h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant">
+                                Que vous ayez besoin d'un audit de système existant, d'un outil de terrain sur-mesure ou
+                                d'une infrastructure robuste sans dépendance coûteuse, parlons directement du problème à
+                                résoudre.
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-space-xs bg-surface-container p-space-md rounded">
+                            <span class="font-label-caps text-label-caps text-outline uppercase">Adresse
+                                Officielle</span>
+                            <a class="font-metric-md text-metric-md text-primary hover:underline"
+                                href="mailto:assogbamanuel6@gmail.com">
+                                assogbamanuel6@gmail.com
+                            </a>
+                            <span class="font-code-sm text-code-sm text-on-surface-variant">Réponse garantie sous 24
+                                heures ouvrées</span>
+                        </div>
+                    </div>
+                    <!-- Functional Form & Direct Channels -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+                        <!-- Form -->
+                        <form class="lg:col-span-8 flex flex-col gap-space-md"
+                            onsubmit="event.preventDefault(); alert('Message enregistré. Manuel Assogba vous répondra personnellement sous 24h.');">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                                <div class="flex flex-col gap-space-xs">
+                                    <label class="font-label-caps text-label-caps text-outline uppercase"
+                                        for="name">Votre Nom / Organisation</label>
+                                    <input
+                                        class="w-full px-space-md py-space-sm bg-surface-container-low rounded font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-on-surface transition-all"
+                                        id="name" placeholder="Ex. Aminata Diallo • ONG Sahel Verte" required=""
+                                        type="text" />
+                                </div>
+                                <div class="flex flex-col gap-space-xs">
+                                    <label class="font-label-caps text-label-caps text-outline uppercase"
+                                        for="email">Votre Email Professionnel</label>
+                                    <input
+                                        class="w-full px-space-md py-space-sm bg-surface-container-low rounded font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-on-surface transition-all"
+                                        id="email" placeholder="contact@organisation.org" required="" type="email" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-space-xs">
+                                <label class="font-label-caps text-label-caps text-outline uppercase" for="context">Type
+                                    de Besoin</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs">
+                                    <label
+                                        class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded cursor-pointer hover:bg-surface-container transition-colors">
+                                        <input checked="" class="text-primary focus:ring-0" name="project_type"
+                                            type="radio" value="systeme" />
+                                        <span class="font-code-sm text-code-sm">Système Web</span>
+                                    </label>
+                                    <label
+                                        class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded cursor-pointer hover:bg-surface-container transition-colors">
+                                        <input class="text-primary focus:ring-0" name="project_type" type="radio"
+                                            value="mobile" />
+                                        <span class="font-code-sm text-code-sm">App Mobile</span>
+                                    </label>
+                                    <label
+                                        class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded cursor-pointer hover:bg-surface-container transition-colors">
+                                        <input class="text-primary focus:ring-0" name="project_type" type="radio"
+                                            value="audit" />
+                                        <span class="font-code-sm text-code-sm">Audit &amp; Infra</span>
+                                    </label>
+                                    <label
+                                        class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded cursor-pointer hover:bg-surface-container transition-colors">
+                                        <input class="text-primary focus:ring-0" name="project_type" type="radio"
+                                            value="conseil" />
+                                        <span class="font-code-sm text-code-sm">Accompagnement</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-space-xs">
+                                <label class="font-label-caps text-label-caps text-outline uppercase"
+                                    for="message">Décrivez la contrainte ou l'objectif concret</label>
+                                <textarea
+                                    class="w-full p-space-md bg-surface-container-low rounded font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-on-surface transition-all resize-none"
+                                    id="message"
+                                    placeholder="Expliquez votre contexte : matériel existant, contraintes de connectivité, volumétrie de données estimée..."
+                                    required="" rows="4"></textarea>
+                            </div>
+                            <div class="flex items-center justify-between pt-space-xs">
+                                <span class="font-code-sm text-code-sm text-outline">Données confidentielles • Aucun
+                                    pistage tiers</span>
+                                <button
+                                    class="px-space-lg py-space-sm bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase rounded hover:bg-primary hover:text-on-primary transition-all flex items-center gap-space-xs"
+                                    type="submit">
+                                    <span>Transmettre la demande</span>
+                                    <span class="material-symbols-outlined text-[16px]">send</span>
+                                </button>
+                            </div>
+                        </form>
+                        <!-- Right Quick Contact Rail -->
+                        <div
+                            class="lg:col-span-4 flex flex-col justify-between gap-space-md bg-surface-container-low p-space-md rounded">
+                            <div class="flex flex-col gap-space-md">
+                                <span class="font-label-caps text-label-caps text-outline uppercase">Lignes
+                                    Directes</span>
+                                <a class="p-space-md bg-surface-container-lowest rounded flex items-center justify-between hover:bg-surface-container transition-colors group"
+                                    href="https://wa.me/22900000000" target="_blank">
+                                    <div class="flex items-center gap-space-sm">
+                                        <span class="material-symbols-outlined text-primary text-[24px]">chat</span>
+                                        <div class="flex flex-col">
+                                            <span
+                                                class="font-headline-md text-headline-md font-semibold text-on-surface text-[17px]">WhatsApp
+                                                Direct</span>
+                                            <span class="font-code-sm text-code-sm text-outline">Échanges rapides &amp;
+                                                vocaux</span>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                                </a>
+                                <a class="p-space-md bg-surface-container-lowest rounded flex items-center justify-between hover:bg-surface-container transition-colors group"
+                                    href="https://linkedin.com" target="_blank">
+                                    <div class="flex items-center gap-space-sm">
+                                        <span class="material-symbols-outlined text-on-surface text-[24px]">badge</span>
+                                        <div class="flex flex-col">
+                                            <span
+                                                class="font-headline-md text-headline-md font-semibold text-on-surface text-[17px]">Réseau
+                                                LinkedIn</span>
+                                            <span class="font-code-sm text-code-sm text-outline">Parcours
+                                                vérifiable</span>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                                </a>
+                                <a class="p-space-md bg-surface-container-lowest rounded flex items-center justify-between hover:bg-surface-container transition-colors group"
+                                    href="https://github.com" target="_blank">
+                                    <div class="flex items-center gap-space-sm">
+                                        <span class="material-symbols-outlined text-on-surface text-[24px]">code</span>
+                                        <div class="flex flex-col">
+                                            <span
+                                                class="font-headline-md text-headline-md font-semibold text-on-surface text-[17px]">Dépôts
+                                                GitHub</span>
+                                            <span class="font-code-sm text-code-sm text-outline">Commits &amp;
+                                                contributions</span>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                                </a>
+                            </div>
+                            <div class="p-space-sm bg-surface-container-lowest rounded text-center">
+                                <span class="font-code-sm text-code-sm text-primary font-medium">Bénin • Afrique de
+                                    l'Ouest • Global Remote</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Interactive JavaScript for Real-time Realisations Filtering -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const filterButtons = document.querySelectorAll('.filter-btn');
+                    const projectCards = document.querySelectorAll('.project-card');
+
+                    filterButtons.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            // Reset button styles
+                            filterButtons.forEach(b => {
+                                b.classList.remove('bg-inverse-surface', 'text-inverse-on-surface', 'active');
+                                b.classList.add('text-on-surface-variant');
+                            });
+
+                            // Set active button
+                            btn.classList.add('bg-inverse-surface', 'text-inverse-on-surface', 'active');
+                            btn.classList.remove('text-on-surface-variant');
+
+                            const filter = btn.getAttribute('data-filter');
+
+                            // Filter cards
+                            projectCards.forEach(card => {
+                                if (filter === 'all') {
+                                    card.style.display = 'flex';
+                                } else {
+                                    const categories = card.getAttribute('data-category') || '';
+                                    if (categories.includes(filter)) {
+                                        card.style.display = 'flex';
+                                    } else {
+                                        card.style.display = 'none';
+                                    }
+                                }
+                            });
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </main>
+    <footer class="w-full bg-surface-container-low mt-space-xl">
+        <div class="w-full px-margin md:px-margin-desktop py-space-xl flex flex-col gap-space-xl">
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-space-lg">
+                <div class="max-w-md">
+                    <div class="font-label-caps text-label-caps uppercase text-primary mb-space-xs">Manuel Assogba —
+                        Portfolio</div>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Conception de plateformes critiques,
+                        interfaces tangibles et topologies logicielles pour organisations à fort levier opérationnel.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-space-lg">
+                    <div class="flex flex-col gap-space-xs"><span
+                            class="font-label-caps text-label-caps uppercase text-outline">Index</span><a
+                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                            data-path="focus" href="#">Focus</a><a
+                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                            data-path="realisations" href="#">Réalisations</a><a
+                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                            data-path="parcours" href="#">Parcours</a></div>
+                    <div class="flex flex-col gap-space-xs"><span
+                            class="font-label-caps text-label-caps uppercase text-outline">Doctrine</span><a
+                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                            data-path="philosophie-de-code" href="#">Philosophie de Code</a><a
+                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                            data-path="contact" href="#">Entrer en Contact</a></div>
+                    <div class="flex flex-col gap-space-xs col-span-2 sm:col-span-1"><span
+                            class="font-label-caps text-label-caps uppercase text-outline">Fréquence</span><span
+                            class="font-code-sm text-code-sm text-on-surface">Paris &amp; Remote</span><span
+                            class="font-code-sm text-code-sm text-primary">UTC+1 // Cotonou</span></div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-md bg-surface-container-low text-on-surface-variant">
+                <span class="font-code-sm text-code-sm">© 2025 Manuel Assogba. Tous droits réservés.</span>
+                <div class="flex items-center gap-space-md"><span
+                        class="font-label-caps text-label-caps text-outline">Latence: 0.14ms</span><span
+                        class="font-label-caps text-label-caps text-primary">Status: Systèmes Opérationnels</span></div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
