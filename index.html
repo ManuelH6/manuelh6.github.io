@@ -305,9 +305,32 @@
 
 <body class="bg-surface-bg text-text-high antialiased selection:bg-accent-green selection:text-surface-bg" x-cloak>
 
+    <!-- TOP STATUS STRIP (INDUSTRIAL TICKER) -->
+    <aside aria-label="System status bar"
+        class="w-full bg-surface-panel border-b border-border-tech text-[11px] font-mono tracking-wider py-1.5 px-4 md:px-8 flex items-center justify-between z-50 relative overflow-hidden">
+        <div class="flex items-center gap-4">
+            <span class="flex items-center gap-2 text-accent-green font-semibold relative">
+                <span class="w-2 h-2 rounded-full bg-accent-green animate-ping absolute"></span>
+                <span class="w-2 h-2 rounded-full bg-accent-green"></span>
+                <span class="ml-3">SYSTEM OPERATIONAL // COTONOU [UTC+1]</span>
+            </span>
+            <span class="hidden md:inline text-text-faint">|</span>
+            <span class="hidden md:inline text-text-mid">LATENCE : <span class="text-text-high">0.14ms</span></span>
+            <span class="hidden lg:inline text-text-faint">|</span>
+            <span class="hidden lg:inline text-text-mid">EXPÉRIENCE : <span class="text-accent-green-bright font-semibold">5 ANS TERRAIN</span></span>
+        </div>
+        <div class="flex items-center gap-3">
+            <span
+                class="px-2 py-0.5 border border-accent-amber/40 bg-accent-amber/10 text-accent-amber text-[10px] font-semibold bevel-tag">
+                DISPONIBLE Q4 2025
+            </span>
+            <span class="hidden sm:inline font-mono text-text-faint text-[10px]">BUILD: v4.82-PROD</span>
+        </div>
+    </aside>
+
     <!-- ==========================================
        NAVIGATION : NEO-BRUTALIST INDUSTRIAL BAR
-       ========================================== -->
+       ==========================================-->
     <header class="sticky top-0 w-full z-40 bg-surface-bg/90 backdrop-blur-md border-b border-border-tech transition-colors">
         <div class="max-w-7xl mx-auto h-20 px-4 md:px-8 flex items-center justify-between">
             <!-- Logo block -->
@@ -420,7 +443,7 @@
                         CONCEVOIR DES SYSTÈMES D'EXCEPTION. <br />
                         <span class="stroke-text hover:text-text-high transition-colors">BÂTIR POUR</span>
                         <span
-                            class="inline-block bg-accent-green text-surface-bg px-3 py-0 my-1 font-black transform -rotate-1 shadow-[6px_6px_0px_0px_#27272f]">
+                            class="inline-block bg-accent-green text-surface-bg px-3 py-0 my-1 font-black transform -rotate-1 shadow-[6px_6px_0px_0px_var(--text-high)]">
                             DURER.
                         </span>
                     </h1>
@@ -481,15 +504,15 @@
                     <div
                         class="bg-surface-panel border border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-amber transition-all shadow-sm">
                         <div class="flex items-center justify-between font-mono text-xs text-text-faint uppercase">
-                            <span>SYSTÈMES &amp; SAAS LIVRÉS</span>
-                            <span class="text-accent-amber font-bold">[PRODUCTION]</span>
+                            <span>SOBRIÉTÉ ARCHITECTURALE</span>
+                            <span class="text-accent-amber font-bold">[STRICT]</span>
                         </div>
                         <div class="my-3">
-                            <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high">07</span>
-                            <span class="font-mono text-2xl font-bold text-accent-amber">+</span>
+                            <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high">00</span>
+                            <span class="font-mono text-2xl font-bold text-accent-amber">DÉP.</span>
                         </div>
                         <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2">
-                            Plateformes web, mobiles &amp; télémétrie déployées
+                            Zéro abonnement SaaS captif imposé
                         </div>
                     </div>
                     <div
@@ -1599,7 +1622,9 @@
                     © 2025 Manuel Assogba. Tous droits réservés. Bâtisseur de Systèmes Utiles.
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-accent-green font-bold">SYSTÈMES OPÉRATIONNELS</span>
+                    <span>LATENCE: 0.14ms</span>
+                    <span class="text-text-faint">|</span>
+                    <span class="text-accent-green font-bold">STATUS: SYSTÈMES OPÉRATIONNELS</span>
                 </div>
             </div>
         </div>
