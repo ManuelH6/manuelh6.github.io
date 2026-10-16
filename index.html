@@ -469,13 +469,10 @@
                     <div
                         class="inline-flex items-center gap-2 px-3 py-1 bg-surface-panel border border-border-tech text-text-high">
                         <span class="w-2 h-2 bg-accent-green"></span>
-                        <span class="tracking-widest uppercase font-bold">ARCHITECTE LOGICIEL &amp; DÉVELOPPEUR
-                            FULL-STACK</span>
+                        <span class="tracking-widest uppercase font-bold" x-text="texts[currentLang].hero.role">ARCHITECTE LOGICIEL &amp; DÉVELOPPEUR FULL-STACK</span>
                     </div>
                     <div class="flex items-center gap-3 text-text-faint">
-                        <span>[GIZ / PARCS WAP / ONG]</span>
-                        <span class="text-text-faint">//</span>
-                        <span class="text-text-mid font-medium">EDGE &amp; OFFLINE-FIRST</span>
+                        <span x-text="texts[currentLang].hero.badgeSecondary">[GIZ / PARCS WAP / ONG] // EDGE &amp; OFFLINE-FIRST</span>
                     </div>
                 </div>
 
@@ -483,10 +480,11 @@
                 <div class="flex flex-col gap-6">
                     <h1
                         class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.92] text-text-high">
-                        CONCEVOIR DES SYSTÈMES D'EXCEPTION. <br />
-                        <span class="stroke-text hover:text-text-high transition-colors">BÂTIR POUR</span>
+                        <span x-text="texts[currentLang].hero.titlePart1">CONCEVOIR DES SYSTÈMES D'EXCEPTION.</span> <br />
+                        <span class="stroke-text hover:text-text-high transition-colors" x-text="texts[currentLang].hero.titlePart2">BÂTIR POUR</span>
                         <span
-                            class="inline-block bg-accent-green text-surface-bg px-3 py-0 my-1 font-black transform -rotate-1 shadow-[6px_6px_0px_0px_var(--text-high)]">
+                            class="inline-block bg-accent-green text-surface-bg px-3 py-0 my-1 font-black transform -rotate-1 shadow-[6px_6px_0px_0px_var(--text-high)]"
+                            x-text="texts[currentLang].hero.titleHighlight">
                             DURER.
                         </span>
                     </h1>
@@ -494,9 +492,8 @@
                         <div class="lg:col-span-8">
                             <p
                                 class="font-display font-medium text-xl sm:text-2xl lg:text-3xl text-text-high leading-snug">
-                                Je conçois et développe des architectures web et mobiles sur-mesure pour les entreprises
-                                et visions ambitieuses.
-                                <span class="text-accent-green block mt-2 font-normal">
+                                <span x-text="texts[currentLang].hero.subtitleMain">Je conçois et développe des architectures web et mobiles sur-mesure pour les entreprises et visions ambitieuses.</span>
+                                <span class="text-accent-green block mt-2 font-normal" x-text="texts[currentLang].hero.subtitleSub">
                                     Celles qui refusent le générique, exigent une rigueur technique absolue et veulent
                                     marquer les esprits par des solutions qui racontent une vraie histoire.
                                 </span>
@@ -507,21 +504,24 @@
                             class="lg:col-span-4 bg-surface-panel border-2 border-border-bright p-5 relative shadow-[6px_6px_0px_0px_#27272f]">
                             <div
                                 class="flex items-center justify-between border-b border-border-tech pb-2 mb-3 font-mono text-[11px] text-text-faint uppercase tracking-widest">
-                                <span>// PRÉMISSE OPÉRATIONNELLE</span>
-                                <span class="text-accent-green font-bold">STRICT-MODE</span>
+                                <span x-text="texts[currentLang].hero.premiseLabel">// PRÉMISSE OPÉRATIONNELLE</span>
+                                <span class="text-accent-green font-bold" x-text="texts[currentLang].hero.premiseMode">STRICT-MODE</span>
                             </div>
-                            <p class="font-body text-sm text-text-mid leading-relaxed">
-                                4+ ans forgés au contact du terrain, des réserves naturelles et des institutions
-                                internationales (GIZ). Pas de dépendances superflues, pas de factures cloud
-                                artificielles : du code sobre, mesurable et directement utile à ceux qui l’opèrent.
-                            </p>
+                            <div class="space-y-3 font-body text-xs text-text-mid leading-relaxed">
+                                <p x-text="texts[currentLang].hero.premiseTextP1">
+                                    5+ ans d'ingénierie forgés face aux contraintes du monde réel : institutions internationales (GIZ), régies de presse, FinTech et commerce de proximité.
+                                </p>
+                                <p x-text="texts[currentLang].hero.premiseTextP2">
+                                    Des systèmes de suivi, outils de collecte et systèmes d'aide à la décision aux PWA, passant par l'intégration de WebTV et passerelles de paiement. De l'intégration de flux structurés par IA/LLM aux interfaces adaptées aux utilisateurs déscolarisés : pas de dépendances superflues. Du code sobre, mesurable et directement utile à ceux qui l’opèrent.
+                                </p>
+                            </div>
                             <div class="mt-4 pt-3 border-t border-border-tech flex items-center gap-2 flex-wrap">
                                 <a class="flex-1 py-2 bg-text-high text-surface-bg font-mono text-xs font-bold text-center uppercase hover:bg-accent-green transition-colors"
-                                    href="#projets">
+                                    href="#projets" x-text="texts[currentLang].hero.ctaProjects">
                                     DÉCOUVRIR LES RÉALISATIONS
                                 </a>
                                 <a class="px-3 py-2 border border-border-bright hover:border-text-high transition-colors text-text-high font-mono text-xs font-bold uppercase"
-                                    href="#contact">
+                                    href="#contact" x-text="texts[currentLang].hero.ctaContact">
                                     ÉCHANGER
                                 </a>
                             </div>
@@ -531,51 +531,19 @@
 
                 <!-- Ledger Indicators (Fixed 3 Monumental Brutalist Metrics) -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-border-tech">
-                    <div
-                        class="bg-surface-panel border border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-green transition-all shadow-sm">
-                        <div class="flex items-center justify-between font-mono text-xs text-text-faint uppercase">
-                            <span>EXPÉRIENCE TERRAIN</span>
-                            <span class="text-accent-green font-bold">[VÉRIFIÉ]</span>
+                    <template x-for="(m, idx) in texts[currentLang].hero.metrics" :key="idx">
+                        <div class="bg-surface-panel border border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-green transition-all shadow-sm">
+                            <div class="flex items-center justify-between font-mono text-xs text-text-faint uppercase">
+                                <span x-text="m.label"></span>
+                                <span :class="idx === 1 ? 'text-accent-amber' : 'text-accent-green'" class="font-bold" x-text="m.tag"></span>
+                            </div>
+                            <div class="my-3">
+                                <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high" x-text="m.val"></span>
+                                <span :class="idx === 1 ? 'text-accent-amber' : 'text-accent-green'" class="font-mono text-2xl font-bold" x-text="m.unit"></span>
+                            </div>
+                            <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2" x-text="m.desc"></div>
                         </div>
-                        <div class="my-3">
-                            <span
-                                class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high">05</span>
-                            <span class="font-mono text-2xl font-bold text-accent-green">ANS</span>
-                        </div>
-                        <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2">
-                            Bénin • Niger • Burkina Faso
-                        </div>
-                    </div>
-                    <div
-                        class="bg-surface-panel border border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-amber transition-all shadow-sm">
-                        <div class="flex items-center justify-between font-mono text-xs text-text-faint uppercase">
-                            <span>SOBRIÉTÉ ARCHITECTURALE</span>
-                            <span class="text-accent-amber font-bold">[STRICT]</span>
-                        </div>
-                        <div class="my-3">
-                            <span
-                                class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high">00</span>
-                            <span class="font-mono text-2xl font-bold text-accent-amber">DÉP.</span>
-                        </div>
-                        <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2">
-                            Zéro abonnement SaaS captif imposé
-                        </div>
-                    </div>
-                    <div
-                        class="bg-surface-panel border border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-green transition-all shadow-sm">
-                        <div class="flex items-center justify-between font-mono text-xs text-text-faint uppercase">
-                            <span>OBJECTIF FINAL</span>
-                            <span class="text-accent-green font-bold">[MISSION]</span>
-                        </div>
-                        <div class="my-3">
-                            <span
-                                class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-accent-green">100</span>
-                            <span class="font-mono text-2xl font-bold text-text-high">%</span>
-                        </div>
-                        <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2">
-                            Autonomie totale des équipes locales
-                        </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </section>
