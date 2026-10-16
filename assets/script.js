@@ -273,53 +273,65 @@ function app() {
                     title: "Expérience professionnelle",
                     items: [
                         {
+                            position: "Architecte Logiciel",
+                            company: "FUND.lab",
+                            period: "Janvier 2026 – Maintenant",
+                            description: "Conception et développement de Business Checkup (diagnostic d’entreprise automatisé par arbres de décision, calculs financiers et génération de rapports stratégiques via IA) et architecture de Business Assist, la plateforme centrale de pilotage des missions du cabinet."
+                        },
+                        {
+                            position: "Co-fondateur & Développeur",
+                            company: "Akonta",
+                            period: "Septembre 2025 – Maintenant",
+                            description: "Architecture d’une PWA offline-first de gestion de stocks pour commerçants. Stockage local via IndexedDB (Dexie.js), synchronisation réseau, recherche instantanée, génération de QR codes, suivi des ventes et édition d’étiquettes."
+                        },
+                        {
+                            position: "Développeur Mobile",
+                            company: "Le Transporteur",
+                            period: "Février 2026 – Juin 2026",
+                            description: "Conception et développement d’une application mobile complète mettant en liaison les livreurs de l’entreprise et ses clients, avec suivi de livraison, géolocalisation et gestion de flotte."
+                        },
+                        {
                             position: "FieldOz",
                             company: "Projet personnel",
-                            period: "Juillet–Août 2025",
-                            description: "Plateforme SaaS transformant les données terrain en preuves d'impact visuelles pour les bailleurs de fonds."
+                            period: "2025",
+                            description: "Plateforme SaaS transformant des données terrain complexes en rapports d’impact visuels clairs pour les bailleurs de fonds et équipes de suivi."
                         },
                         {
                             position: "Grid Generator",
                             company: "Projet personnel",
-                            period: "Mai–Juin 2025",
-                            description: "Développement d'un générateur de grilles CSS interactives pour faciliter la création de layouts."
+                            period: "2025",
+                            description: "Générateur visuel de grilles CSS interactives et paramétrables pour faciliter la composition de layouts responsives."
                         },
                         {
                             position: "Jande",
                             company: "DYRA",
-                            period: "Mars-Avril 2025",
+                            period: "Mars–Avril 2025",
                             description: "Plateforme d’apprentissage en langue peulh permettant aux agents de terrain d’une ONG locale d’acquérir des notions clés et de tester leurs connaissances via des exercices QCM."
                         },
                         {
                             position: "Développeur Fullstack",
                             company: "Maison des Tortues",
-                            period: "2024–2025",
-                            description: "Système de monitoring temps réel (API, AWS S3) pour la préservation de la biodiversité."
+                            period: "Avril 2024 – Mai 2025",
+                            description: "Développement et maintenance de la plateforme iKnow (collecte de données terrain, suivi d’activités, aide à la décision). Configuration du stockage média sur AWS S3, déploiement cPanel, documentation technique et formation utilisateurs."
                         },
                         {
                             position: "Développeur Fullstack",
                             company: "Projet RBT-WAP (GIZ)",
-                            period: "2021–2024",
-                            description: "Développement de plateformes (BiodivCenter, WAP-Training), intégration API (iNaturalist, REST), documentation, UX/UI, Images 360, Pilotage Drône."
+                            period: "Juin 2021 – Mars 2024",
+                            description: "Conception et développement de plateformes d’évaluation et de collecte de données (BiodivCenter, Eval-FSOA, WAP-Training). Intégration API (iNaturalist, REST), moteurs de scoring, cartographie interactive. Formation des utilisateurs, traitement d’images 360 et pilotage drone Mavic 2 Pro."
                         },
                         {
-                            position: "Consultant SEO",
-                            company: "JHS Corporate",
-                            period: "2023",
-                            description: "Optimisation de plateformes WordPress, newsletters automatisées, analytics."
+                            position: "Consultant Web & SEO",
+                            company: "SAF Consulting & JHS Corporate",
+                            period: "Mai – Septembre 2023",
+                            description: "Refonte de 3 plateformes de presse sous WordPress. Automatisation des newsletters, intégration Google Actualités. Conception d’une chaîne TV en ligne (WebTV) avec système de diffusion vidéo automatisé et gestion de régies publicitaires (Afrikaad)."
                         },
                         {
-                            position: "Développeur mobile freelance",
+                            position: "Développeur Mobile Freelance",
                             company: "Beninfy",
-                            period: "2023",
-                            description: "Développement frontend mobile Flutter, intégration Google Maps API."
-                        },
-                        /* {
-                            position: "Stagiaire",
-                            company: "RAKHEM COMELI-GROUP",
-                            period: "2019–2020",
-                            description: "Développement de solutions web WordPress et gestion de l'infrastructure d'hébergement."
-                        } */
+                            period: "Avril – Décembre 2023",
+                            description: "Intégration frontend mobile Flutter d’après maquettes Figma pour une application de covoiturage. Intégration de l’API Google Maps et communication REST."
+                        }
                     ]
                 },
                 projects: {
@@ -359,7 +371,7 @@ function app() {
                     }
                 },
                 footer: {
-                    copyright: "© 2025 Tous droits réservés"
+                    copyright: "© 2026 Tous droits réservés"
                 }
             },
             en: {
@@ -422,53 +434,65 @@ function app() {
                     title: "Professional experience",
                     items: [
                         {
+                            position: "Software Architect",
+                            company: "FUND.lab",
+                            period: "January 2026 – Present",
+                            description: "Design and development of Business Checkup (automated company diagnostic using decision trees, financial algorithms and AI-structured strategic reports) and architecture of Business Assist, the firm’s central operations platform."
+                        },
+                        {
+                            position: "Co-founder & Developer",
+                            company: "Akonta",
+                            period: "September 2025 – Present",
+                            description: "Architecture of an offline-first PWA for inventory management targeting small retailers. Local storage via IndexedDB (Dexie.js), network sync, instant search, QR code generation, sales tracking and label printing."
+                        },
+                        {
+                            position: "Mobile Developer",
+                            company: "Le Transporteur",
+                            period: "February 2026 – June 2026",
+                            description: "Design and development of a full-featured mobile delivery app connecting the company’s couriers with its clients, featuring real-time tracking, geolocation and fleet management."
+                        },
+                        {
                             position: "FieldOz",
-                            company: "Personnal project",
-                            period: "July–August 2025",
-                            description: "Development of a platform that transforms NGO data into clear, visual reports, enabling them to showcase the real impact of their projects to partners and funders."
+                            company: "Personal project",
+                            period: "2025",
+                            description: "SaaS platform that transforms complex field data into clear visual impact reports for funders and monitoring teams."
                         },
                         {
                             position: "Grid Generator",
                             company: "Personal project",
-                            period: "May–June 2025",
-                            description: "Development of an interactive CSS grid generator to facilitate layout creation."
+                            period: "2025",
+                            description: "Visual generator for interactive and configurable CSS grids, simplifying the creation of responsive layouts."
                         },
                         {
                             position: "Fullstack Developer",
                             company: "DYRA",
                             period: "March–April 2025",
-                            description: "Learning platform in the Fulani (Peulh) language enabling field agents of a local NGO in Benin to acquire key concepts and test their knowledge through multiple-choice exercises."
+                            description: "Learning platform in the Fulani (Peulh) language enabling field agents of a local NGO to acquire key concepts and test their knowledge through multiple-choice exercises."
                         },
                         {
                             position: "Fullstack Developer",
                             company: "Maison des Tortues",
-                            period: "2024–2025",
-                            description: "Development of iKnow platform: API, AWS S3 integration, CPanel, technical documentation, user training."
+                            period: "April 2024 – May 2025",
+                            description: "Development and maintenance of the iKnow platform (field data collection, activity tracking, decision support). AWS S3 media storage setup, cPanel deployment, technical documentation and user training."
                         },
                         {
                             position: "Fullstack Developer",
                             company: "RBT-WAP Project (GIZ)",
-                            period: "2021–2024",
-                            description: "Platform development (BiodivCenter, WAP-Training), API integration (iNaturalist, REST), documentation, UX/UI, drone management."
+                            period: "June 2021 – March 2024",
+                            description: "Design and development of assessment and data collection platforms (BiodivCenter, Eval-FSOA, WAP-Training). API integration (iNaturalist, REST), automated scoring engines, interactive mapping. User training, 360° image/video processing and Mavic 2 Pro drone piloting."
                         },
                         {
-                            position: "SEO Consultant",
-                            company: "JHS Corporate",
-                            period: "2023",
-                            description: "WordPress platform optimization, automated newsletters, analytics."
+                            position: "Web & SEO Consultant",
+                            company: "SAF Consulting & JHS Corporate",
+                            period: "May – September 2023",
+                            description: "Redesign of 3 press platforms on WordPress. Newsletter automation, Google News integration. Design of an online TV channel (WebTV) with automated video broadcast system and ad network management (Afrikaad)."
                         },
                         {
                             position: "Freelance Mobile Developer",
                             company: "Beninfy",
-                            period: "2023",
-                            description: "Flutter mobile frontend development, Google Maps API integration."
+                            period: "April – December 2023",
+                            description: "Flutter mobile frontend integration from Figma designs for a carpooling app. Google Maps API integration and REST communication."
                         },
-                        /* {
-                            position: "Intern",
-                            company: "RAKHEM COMELI-GROUP",
-                            period: "2019–2020",
-                            description: "WordPress web solutions development and hosting infrastructure management."
-                        } */
                     ]
                 },
                 projects: {

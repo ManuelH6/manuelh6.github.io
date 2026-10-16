@@ -219,8 +219,13 @@
             transform: translateY(-50%) scale(1.08);
         }
 
-        .lb-prev { left: 24px; }
-        .lb-next { right: 24px; }
+        .lb-prev {
+            left: 24px;
+        }
+
+        .lb-next {
+            right: 24px;
+        }
 
         .lb-close {
             position: absolute;
@@ -317,21 +322,17 @@
             <span class="hidden md:inline text-text-faint">|</span>
             <span class="hidden md:inline text-text-mid">LATENCE : <span class="text-text-high">0.14ms</span></span>
             <span class="hidden lg:inline text-text-faint">|</span>
-            <span class="hidden lg:inline text-text-mid">EXPÉRIENCE : <span class="text-accent-green-bright font-semibold">5 ANS TERRAIN</span></span>
+            <span class="hidden lg:inline text-text-mid">EXPÉRIENCE : <span
+                    class="text-accent-green-bright font-semibold">+ 5 ANS </span></span>
         </div>
-        <div class="flex items-center gap-3">
-            <span
-                class="px-2 py-0.5 border border-accent-amber/40 bg-accent-amber/10 text-accent-amber text-[10px] font-semibold bevel-tag">
-                DISPONIBLE Q4 2025
-            </span>
-            <span class="hidden sm:inline font-mono text-text-faint text-[10px]">BUILD: v4.82-PROD</span>
-        </div>
+
     </aside>
 
     <!-- ==========================================
        NAVIGATION : NEO-BRUTALIST INDUSTRIAL BAR
        ==========================================-->
-    <header class="sticky top-0 w-full z-40 bg-surface-bg/90 backdrop-blur-md border-b border-border-tech transition-colors">
+    <header
+        class="sticky top-0 w-full z-40 bg-surface-bg/90 backdrop-blur-md border-b border-border-tech transition-colors">
         <div class="max-w-7xl mx-auto h-20 px-4 md:px-8 flex items-center justify-between">
             <!-- Logo block -->
             <a class="flex items-center gap-3 group" href="#focus">
@@ -372,10 +373,11 @@
                 <!-- Theme Toggle Button (Dark / Light) -->
                 <button @click="toggleDarkMode()"
                     class="p-2 border border-border-tech bg-surface-panel text-text-high hover:border-accent-green hover:text-accent-green transition-all font-mono text-xs flex items-center gap-1.5 shadow-[2px_2px_0px_0px_var(--border-tech)] cursor-pointer"
-                    :title="darkMode ? 'Passer au mode clair' : 'Passer au mode sombre'"
-                    aria-label="Toggle theme">
-                    <span class="material-symbols-outlined text-[18px]" x-text="darkMode ? 'light_mode' : 'dark_mode'">light_mode</span>
-                    <span class="hidden sm:inline font-mono text-[11px] font-bold" x-text="darkMode ? 'LIGHT' : 'DARK'">LIGHT</span>
+                    :title="darkMode ? 'Passer au mode clair' : 'Passer au mode sombre'" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined text-[18px]"
+                        x-text="darkMode ? 'light_mode' : 'dark_mode'">light_mode</span>
+                    <span class="hidden sm:inline font-mono text-[11px] font-bold"
+                        x-text="darkMode ? 'LIGHT' : 'DARK'">LIGHT</span>
                 </button>
 
                 <a class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase tracking-wider border border-accent-green hover:bg-text-high hover:border-text-high hover:text-surface-bg transition-all shadow-[4px_4px_0px_0px_#27272f]"
@@ -385,29 +387,46 @@
                 </a>
 
                 <div class="relative group cursor-pointer" title="Manuel Assogba">
-                    <img src="assets/profile.jpg" alt="Manuel Assogba" class="w-10 h-10 object-cover border-2 border-border-bright shadow-sm" />
-                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-accent-green border-2 border-surface-bg"></span>
+                    <img src="assets/profile.jpg" alt="Manuel Assogba"
+                        class="w-10 h-10 object-cover border-2 border-border-bright shadow-sm" />
+                    <span
+                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-accent-green border-2 border-surface-bg"></span>
                 </div>
 
                 <!-- Mobile Burger Button -->
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
                     class="lg:hidden p-2 text-text-high hover:text-accent-green transition-colors focus:outline-none"
                     aria-label="Menu">
-                    <span class="material-symbols-outlined text-[26px]" x-text="mobileMenuOpen ? 'close' : 'menu'">menu</span>
+                    <span class="material-symbols-outlined text-[26px]"
+                        x-text="mobileMenuOpen ? 'close' : 'menu'">menu</span>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Drawer Menu -->
-        <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-surface-panel border-b border-border-tech px-4 py-4 flex flex-col gap-2 shadow-xl">
-            <a href="#focus" @click="mobileMenuOpen = false" class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Focus</a>
-            <a href="#projet-phare" @click="mobileMenuOpen = false" class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Projet Phare</a>
-            <a href="#ethique" @click="mobileMenuOpen = false" class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Doctrine &amp; Démarche</a>
-            <a href="#projets" @click="mobileMenuOpen = false" class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Réalisations</a>
-            <a href="#parcours" @click="mobileMenuOpen = false" class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Parcours</a>
-            <a href="#outils" @click="mobileMenuOpen = false" class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Stack Technique</a>
-            <a href="#contact" @click="mobileMenuOpen = false" class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Contact Direct</a>
-            <a href="#contact" @click="mobileMenuOpen = false" class="mt-2 py-3 bg-accent-green text-surface-bg text-center font-mono font-bold text-xs uppercase">Initier un Projet</a>
+        <div x-show="mobileMenuOpen" x-transition
+            class="lg:hidden bg-surface-panel border-b border-border-tech px-4 py-4 flex flex-col gap-2 shadow-xl">
+            <a href="#focus" @click="mobileMenuOpen = false"
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Focus</a>
+            <a href="#projet-phare" @click="mobileMenuOpen = false"
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Projet
+                Phare</a>
+            <a href="#ethique" @click="mobileMenuOpen = false"
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Doctrine
+                &amp; Démarche</a>
+            <a href="#projets" @click="mobileMenuOpen = false"
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Réalisations</a>
+            <a href="#parcours" @click="mobileMenuOpen = false"
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Parcours</a>
+            <a href="#outils" @click="mobileMenuOpen = false"
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Stack
+                Technique</a>
+            <a href="#contact" @click="mobileMenuOpen = false"
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Contact
+                Direct</a>
+            <a href="#contact" @click="mobileMenuOpen = false"
+                class="mt-2 py-3 bg-accent-green text-surface-bg text-center font-mono font-bold text-xs uppercase">Initier
+                un Projet</a>
         </div>
     </header>
 
@@ -418,8 +437,11 @@
         <section class="relative w-full border-b border-border-tech grid-bg pt-12 pb-20 px-4 md:px-8 overflow-hidden"
             id="focus">
             <!-- Geometric Wireframe Accents -->
-            <div class="absolute -top-16 -right-16 w-96 h-96 border border-border-tech/40 rounded-full pointer-events-none"></div>
-            <div class="absolute top-40 right-24 w-64 h-64 border border-border-tech/30 rotate-45 pointer-events-none"></div>
+            <div
+                class="absolute -top-16 -right-16 w-96 h-96 border border-border-tech/40 rounded-full pointer-events-none">
+            </div>
+            <div class="absolute top-40 right-24 w-64 h-64 border border-border-tech/30 rotate-45 pointer-events-none">
+            </div>
 
             <div class="max-w-7xl mx-auto flex flex-col gap-12 relative z-10">
                 <!-- Engineering Badges Row -->
@@ -427,7 +449,8 @@
                     <div
                         class="inline-flex items-center gap-2 px-3 py-1 bg-surface-panel border border-border-tech text-text-high">
                         <span class="w-2 h-2 bg-accent-green"></span>
-                        <span class="tracking-widest uppercase font-bold">ARCHITECTE LOGICIEL &amp; DÉVELOPPEUR FULL-STACK</span>
+                        <span class="tracking-widest uppercase font-bold">ARCHITECTE LOGICIEL &amp; DÉVELOPPEUR
+                            FULL-STACK</span>
                     </div>
                     <div class="flex items-center gap-3 text-text-faint">
                         <span>[GIZ / PARCS WAP / ONG]</span>
@@ -449,7 +472,8 @@
                     </h1>
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
                         <div class="lg:col-span-8">
-                            <p class="font-display font-medium text-xl sm:text-2xl lg:text-3xl text-text-high leading-snug">
+                            <p
+                                class="font-display font-medium text-xl sm:text-2xl lg:text-3xl text-text-high leading-snug">
                                 Je conçois et développe des architectures web et mobiles sur-mesure pour les entreprises
                                 et visions ambitieuses.
                                 <span class="text-accent-green block mt-2 font-normal">
@@ -494,7 +518,8 @@
                             <span class="text-accent-green font-bold">[VÉRIFIÉ]</span>
                         </div>
                         <div class="my-3">
-                            <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high">05</span>
+                            <span
+                                class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high">05</span>
                             <span class="font-mono text-2xl font-bold text-accent-green">ANS</span>
                         </div>
                         <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2">
@@ -508,7 +533,8 @@
                             <span class="text-accent-amber font-bold">[STRICT]</span>
                         </div>
                         <div class="my-3">
-                            <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high">00</span>
+                            <span
+                                class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high">00</span>
                             <span class="font-mono text-2xl font-bold text-accent-amber">DÉP.</span>
                         </div>
                         <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2">
@@ -522,7 +548,8 @@
                             <span class="text-accent-green font-bold">[MISSION]</span>
                         </div>
                         <div class="my-3">
-                            <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-accent-green">100</span>
+                            <span
+                                class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-accent-green">100</span>
                             <span class="font-mono text-2xl font-bold text-text-high">%</span>
                         </div>
                         <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2">
@@ -539,13 +566,16 @@
         <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="projet-phare">
             <div class="max-w-7xl mx-auto flex flex-col gap-8">
                 <!-- Header row -->
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-tech pb-4">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-tech pb-4">
                     <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest flex items-center gap-2 font-bold">
+                        <div
+                            class="font-mono text-xs text-accent-green uppercase tracking-widest flex items-center gap-2 font-bold">
                             <span class="w-2 h-2 bg-accent-green"></span>
                             SÉLECTION FOCUS // PROJET PHARE
                         </div>
-                        <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
+                        <h2
+                            class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
                             FIELDOZ — IMPACT RÉEL &amp; TÉLÉMÉTRIE
                         </h2>
                     </div>
@@ -556,9 +586,11 @@
                 </div>
 
                 <!-- Heavy Architectural Chassis -->
-                <div class="border-2 border-border-bright bg-surface-panel grid grid-cols-1 lg:grid-cols-12 shadow-[8px_8px_0px_0px_#27272f]">
+                <div
+                    class="border-2 border-border-bright bg-surface-panel grid grid-cols-1 lg:grid-cols-12 shadow-[8px_8px_0px_0px_#27272f]">
                     <!-- Visual & Data Canvas (Col 7) -->
-                    <div class="lg:col-span-7 p-6 border-b lg:border-b-0 lg:border-r border-border-tech flex flex-col justify-between gap-6">
+                    <div
+                        class="lg:col-span-7 p-6 border-b lg:border-b-0 lg:border-r border-border-tech flex flex-col justify-between gap-6">
                         <!-- Monitor Frame with Lightbox Trigger -->
                         <div class="relative border-2 border-border-bright bg-black overflow-hidden group cursor-pointer"
                             @click="openLightbox(projects[0].images)">
@@ -568,7 +600,8 @@
                                     <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
                                     <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
                                     <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                                    <span class="ml-2 font-semibold text-text-mid font-mono">fieldoz.internal/telemetry/live</span>
+                                    <span
+                                        class="ml-2 font-semibold text-text-mid font-mono">fieldoz.internal/telemetry/live</span>
                                 </div>
                                 <span class="text-accent-green font-bold font-mono">EDGE_SYNC : OK</span>
                             </div>
@@ -588,7 +621,8 @@
                         <div class="grid grid-cols-3 gap-3 font-mono">
                             <div class="border border-border-tech bg-surface-subtle p-3 text-center">
                                 <div class="text-[10px] text-text-faint uppercase font-bold">TEMPS CHARGE</div>
-                                <div class="text-xl sm:text-2xl font-bold text-accent-green mt-1 font-mono">&lt; 0.4s</div>
+                                <div class="text-xl sm:text-2xl font-bold text-accent-green mt-1 font-mono">&lt; 0.4s
+                                </div>
                             </div>
                             <div class="border border-border-tech bg-surface-subtle p-3 text-center">
                                 <div class="text-[10px] text-text-faint uppercase font-bold">CONSO DATA</div>
@@ -596,7 +630,8 @@
                             </div>
                             <div class="border border-border-tech bg-surface-subtle p-3 text-center">
                                 <div class="text-[10px] text-text-faint uppercase font-bold">DISPONIBILITÉ</div>
-                                <div class="text-xl sm:text-2xl font-bold text-accent-green-bright mt-1 font-mono">99.98%</div>
+                                <div class="text-xl sm:text-2xl font-bold text-accent-green-bright mt-1 font-mono">
+                                    99.98%</div>
                             </div>
                         </div>
                     </div>
@@ -604,7 +639,8 @@
                     <!-- Technical Explanatory Panel (Col 5) -->
                     <div class="lg:col-span-5 p-6 flex flex-col justify-between gap-6 bg-surface-panel">
                         <div class="flex flex-col gap-4">
-                            <div class="inline-block font-mono text-[11px] text-accent-amber font-semibold tracking-wider uppercase">
+                            <div
+                                class="inline-block font-mono text-[11px] text-accent-amber font-semibold tracking-wider uppercase">
                                 // PLATEFORME SAAS D'IMPACT SOCIAL
                             </div>
                             <h3 class="font-display font-bold text-2xl text-text-high leading-tight">
@@ -616,7 +652,8 @@
                                 absolue aux bailleurs de fonds et aux équipes sur le terrain.
                             </p>
                             <div class="border-l-4 border-accent-green bg-surface-subtle p-4 border border-border-tech">
-                                <div class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold">
+                                <div
+                                    class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold">
                                     EXCELLENCE TECHNIQUE &amp; TERRAIN
                                 </div>
                                 <p class="font-mono text-xs text-text-high mt-1 italic leading-normal">
@@ -625,13 +662,22 @@
                                 </p>
                             </div>
                             <div class="flex flex-col gap-2 pt-2">
-                                <span class="font-mono text-[11px] text-text-faint uppercase tracking-wider">ARCHITECTURE DE PRODUCTION</span>
+                                <span
+                                    class="font-mono text-[11px] text-text-faint uppercase tracking-wider">ARCHITECTURE
+                                    DE PRODUCTION</span>
                                 <div class="flex flex-wrap gap-1.5 font-mono text-xs">
-                                    <span class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Laravel</span>
-                                    <span class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Livewire</span>
-                                    <span class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Alpine.js</span>
-                                    <span class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Tailwind CSS</span>
-                                    <span class="px-2.5 py-1 bg-accent-green/10 border border-accent-green text-accent-green font-semibold">SQLite / MySQL</span>
+                                    <span
+                                        class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Laravel</span>
+                                    <span
+                                        class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Livewire</span>
+                                    <span
+                                        class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Alpine.js</span>
+                                    <span
+                                        class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Tailwind
+                                        CSS</span>
+                                    <span
+                                        class="px-2.5 py-1 bg-accent-green/10 border border-accent-green text-accent-green font-semibold">SQLite
+                                        / MySQL</span>
                                 </div>
                             </div>
                         </div>
@@ -653,10 +699,13 @@
          ========================================== -->
         <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech" id="ethique">
             <div class="max-w-7xl mx-auto flex flex-col gap-10">
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-tech pb-4">
+                <div
+                    class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-tech pb-4">
                     <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">PHILOSOPHIE &amp; APPROCHE</div>
-                        <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1">
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">PHILOSOPHIE
+                            &amp; APPROCHE</div>
+                        <h2
+                            class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1">
                             UNE DÉMARCHE D'EXCELLENCE : PRÉCISION &amp; ARTISANAT.
                         </h2>
                     </div>
@@ -673,7 +722,8 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex items-center justify-between border-b border-border-tech pb-3">
                                 <span class="font-mono text-3xl font-black text-accent-green">[01]</span>
-                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE // COMPRÉHENSION</span>
+                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE
+                                    // COMPRÉHENSION</span>
                             </div>
                             <h3 class="font-display font-bold text-xl text-text-high leading-snug">
                                 La Clarté avant le Code
@@ -697,7 +747,8 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex items-center justify-between border-b border-border-tech pb-3">
                                 <span class="font-mono text-3xl font-black text-accent-amber">[02]</span>
-                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE // IDENTITÉ</span>
+                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE
+                                    // IDENTITÉ</span>
                             </div>
                             <h3 class="font-display font-bold text-xl text-text-high leading-snug">
                                 L'Esthétique qui Parle
@@ -721,7 +772,8 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex items-center justify-between border-b border-border-tech pb-3">
                                 <span class="font-mono text-3xl font-black text-text-high">[03]</span>
-                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE // PERFORMANCE</span>
+                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE
+                                    // PERFORMANCE</span>
                             </div>
                             <h3 class="font-display font-bold text-xl text-text-high leading-snug">
                                 L'Économie d'Énergie &amp; Performance
@@ -748,10 +800,13 @@
         <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="projets">
             <div class="max-w-7xl mx-auto flex flex-col gap-8">
                 <!-- Controls Header -->
-                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-border-tech pb-4">
+                <div
+                    class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-border-tech pb-4">
                     <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">SYSTÈMES ÉPROUVÉS SUR LE TERRAIN</div>
-                        <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">SYSTÈMES
+                            ÉPROUVÉS SUR LE TERRAIN</div>
+                        <h2
+                            class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
                             RÉALISATIONS &amp; REGISTRE OPÉRATIONNEL
                         </h2>
                     </div>
@@ -810,7 +865,8 @@
                         <div class="p-5 flex flex-col justify-between flex-1 gap-4">
                             <div>
                                 <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-green font-semibold uppercase font-mono">CONSERVATION / CRITIQUE</span>
+                                    <span class="text-accent-green font-semibold uppercase font-mono">CONSERVATION /
+                                        CRITIQUE</span>
                                     <span class="text-text-faint font-mono">2021-2024</span>
                                 </div>
                                 <h3
@@ -824,12 +880,17 @@
                             </div>
                             <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
                                 <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Laravel</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Leaflet.js</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">MySQL</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Laravel</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Leaflet.js</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">MySQL</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
                                 </div>
-                                <div class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                <div
+                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
                                     <a href="https://gitlab.com/assogbamanuel6/biodiversite-rbtwap-web" target="_blank"
                                         class="text-accent-green hover:underline flex items-center gap-1 font-bold">
                                         <i class="fab fa-gitlab"></i> Dépôt GitLab
@@ -862,7 +923,8 @@
                         <div class="p-5 flex flex-col justify-between flex-1 gap-4">
                             <div>
                                 <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-amber font-semibold uppercase font-mono">MOBILE &amp; FLOTTE</span>
+                                    <span class="text-accent-amber font-semibold uppercase font-mono">MOBILE &amp;
+                                        FLOTTE</span>
                                     <span class="text-text-faint font-mono">PRODUCTION</span>
                                 </div>
                                 <h3
@@ -876,12 +938,19 @@
                             </div>
                             <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
                                 <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Dart</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Google Maps API</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Hive DB</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Dart</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Google
+                                        Maps API</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Hive
+                                        DB</span>
                                 </div>
-                                <div class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                <div
+                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
                                     <span class="text-text-faint">Architecture Monorepo</span>
                                     <span class="text-accent-amber font-bold">Temps réel</span>
                                 </div>
@@ -911,7 +980,8 @@
                         <div class="p-5 flex flex-col justify-between flex-1 gap-4">
                             <div>
                                 <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-text-mid font-semibold uppercase font-mono">OUTIL ARCHITECTE</span>
+                                    <span class="text-text-mid font-semibold uppercase font-mono">OUTIL
+                                        ARCHITECTE</span>
                                     <span class="text-text-faint font-mono">PUBLIC</span>
                                 </div>
                                 <h3
@@ -925,11 +995,16 @@
                             </div>
                             <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
                                 <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">TypeScript</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Next.js</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Tailwind CSS</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">TypeScript</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Next.js</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Tailwind
+                                        CSS</span>
                                 </div>
-                                <div class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                <div
+                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
                                     <a href="https://gitlab.com/learnperso/react/grid-generator/" target="_blank"
                                         class="text-accent-green hover:underline flex items-center gap-1 font-bold">
                                         <i class="fab fa-gitlab"></i> Dépôt GitLab
@@ -962,7 +1037,8 @@
                         <div class="p-5 flex flex-col justify-between flex-1 gap-4">
                             <div>
                                 <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-green font-semibold uppercase font-mono">SYSTÈME &amp; DONNÉES</span>
+                                    <span class="text-accent-green font-semibold uppercase font-mono">SYSTÈME &amp;
+                                        DONNÉES</span>
                                     <span class="text-text-faint font-mono">MULTISITE</span>
                                 </div>
                                 <h3
@@ -976,15 +1052,24 @@
                             </div>
                             <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
                                 <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">PHP / Laravel</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">AWS S3</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Chart.js</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">REST APIs</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">PHP
+                                        / Laravel</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">AWS
+                                        S3</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Chart.js</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">REST
+                                        APIs</span>
                                 </div>
-                                <div class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                <div
+                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
                                     <a href="https://maisondestortues.org/nos-solutions/iknow" target="_blank"
                                         class="text-accent-green hover:underline flex items-center gap-1 font-bold">
-                                        <span class="material-symbols-outlined text-[15px]">open_in_new</span> Voir la solution
+                                        <span class="material-symbols-outlined text-[15px]">open_in_new</span> Voir la
+                                        solution
                                     </a>
                                     <span class="text-text-faint">Maison des Tortues</span>
                                 </div>
@@ -1014,7 +1099,8 @@
                         <div class="p-5 flex flex-col justify-between flex-1 gap-4">
                             <div>
                                 <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-amber font-semibold uppercase font-mono">PÉDAGOGIE &amp; TEST</span>
+                                    <span class="text-accent-amber font-semibold uppercase font-mono">PÉDAGOGIE &amp;
+                                        TEST</span>
                                     <span class="text-text-faint font-mono">OFFLINE</span>
                                 </div>
                                 <h3
@@ -1028,12 +1114,17 @@
                             </div>
                             <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
                                 <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Laravel</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Livewire</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Alpine.js</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">SQLite</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Laravel</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Livewire</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Alpine.js</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">SQLite</span>
                                 </div>
-                                <div class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                <div
+                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
                                     <a href="https://gitlab.com/assogbamanuel6/learningapp/" target="_blank"
                                         class="text-accent-green hover:underline flex items-center gap-1 font-bold">
                                         <i class="fab fa-gitlab"></i> Dépôt GitLab
@@ -1066,7 +1157,8 @@
                         <div class="p-5 flex flex-col justify-between flex-1 gap-4">
                             <div>
                                 <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-green font-semibold uppercase font-mono">MOBILE &amp; CULTURE</span>
+                                    <span class="text-accent-green font-semibold uppercase font-mono">MOBILE &amp;
+                                        CULTURE</span>
                                     <span class="text-text-faint font-mono">CROSS-PLATFORM</span>
                                 </div>
                                 <h3
@@ -1080,12 +1172,18 @@
                             </div>
                             <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
                                 <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Dart</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Google Maps API</span>
-                                    <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Figma</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Dart</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Google
+                                        Maps API</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Figma</span>
                                 </div>
-                                <div class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                <div
+                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
                                     <span class="text-text-faint">Offline-First Engine</span>
                                     <span class="text-accent-green font-bold">Bénin Culture</span>
                                 </div>
@@ -1100,7 +1198,8 @@
                             <div class="flex flex-col gap-3">
                                 <div
                                     class="flex items-center justify-between border-b border-border-tech pb-2 font-mono text-[11px]">
-                                    <span class="text-accent-green font-bold uppercase tracking-wider">TOPOLOGY // EDGE OPS</span>
+                                    <span class="text-accent-green font-bold uppercase tracking-wider">TOPOLOGY // EDGE
+                                        OPS</span>
                                     <span class="material-symbols-outlined text-accent-green text-[18px]">dns</span>
                                 </div>
                                 <h3
@@ -1109,7 +1208,8 @@
                                 </h3>
                                 <p class="font-body text-xs text-text-mid leading-relaxed">
                                     Installation et conteneurisation de serveurs autonomes sur matériel reconditionné
-                                    pour bases de données déconnectées (Bénin, Niger, Burkina). Redondance dès reconnexion.
+                                    pour bases de données déconnectées (Bénin, Niger, Burkina). Redondance dès
+                                    reconnexion.
                                 </p>
                                 <!-- Terminal Shell -->
                                 <div
@@ -1120,10 +1220,14 @@
                                 </div>
                             </div>
                             <div class="flex flex-wrap gap-1 font-mono text-[11px] pt-3 border-t border-border-tech">
-                                <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Docker</span>
-                                <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Nginx</span>
-                                <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Bash</span>
-                                <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">cPanel</span>
+                                <span
+                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Docker</span>
+                                <span
+                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Nginx</span>
+                                <span
+                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Bash</span>
+                                <span
+                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">cPanel</span>
                             </div>
                         </div>
                     </div>
@@ -1140,7 +1244,8 @@
                 <!-- Left Column: Story & Stance -->
                 <div class="lg:col-span-5 flex flex-col gap-6">
                     <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">EXPÉRIENCE &amp; VÉRITÉ BRUTE</div>
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">EXPÉRIENCE
+                            &amp; VÉRITÉ BRUTE</div>
                         <h2
                             class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1 leading-tight">
                             UNE RIGUEUR NÉE DES CONTRAINTES RÉELLES.
@@ -1158,7 +1263,8 @@
                             publique en brousse, on comprend très vite qu'un bogue n'est pas un simple « ticket Jira » :
                             c'est une mission arrêtée, un rapport financier bloqué ou une journée de patrouille perdue.
                         </p>
-                        <div class="p-4 border-l-2 border-accent-green bg-surface-panel font-mono text-xs text-text-high border border-border-tech">
+                        <div
+                            class="p-4 border-l-2 border-accent-green bg-surface-panel font-mono text-xs text-text-high border border-border-tech">
                             « Épurer l'architecture, éliminer le superflu, livrer du code net que n'importe quelle
                             équipe locale pourra s'approprier sans dépendre d'un tiers. »
                         </div>
@@ -1167,11 +1273,13 @@
                     <div class="grid grid-cols-2 gap-4 pt-2">
                         <div class="border border-border-tech bg-surface-panel p-3">
                             <div class="font-mono text-2xl font-bold text-text-high">03 PAYS</div>
-                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase">Bénin • Burkina • Niger</div>
+                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase">Bénin • Burkina • Niger
+                            </div>
                         </div>
                         <div class="border border-border-tech bg-surface-panel p-3">
                             <div class="font-mono text-2xl font-bold text-accent-green">1 SEMAINE</div>
-                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase">Délai moyen MVP opérationnel</div>
+                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase">Délai moyen MVP
+                                opérationnel</div>
                         </div>
                     </div>
                 </div>
@@ -1186,7 +1294,8 @@
                     <!-- Timeline item 1 -->
                     <div
                         class="bg-surface-panel border-2 border-border-bright p-5 hover:border-accent-green transition-all shadow-[4px_4px_0px_0px_#27272f]">
-                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
+                        <div
+                            class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
                             <span
                                 class="font-mono text-xs font-bold text-accent-green px-2 py-0.5 bg-accent-green/10 border border-accent-green/40">
                                 2024 — PRÉSENT
@@ -1208,7 +1317,8 @@
                     <!-- Timeline item 2 -->
                     <div
                         class="bg-surface-panel border-2 border-border-bright p-5 hover:border-accent-amber transition-all shadow-[4px_4px_0px_0px_#27272f]">
-                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
+                        <div
+                            class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
                             <span
                                 class="font-mono text-xs font-bold text-accent-amber px-2 py-0.5 bg-accent-amber/10 border border-accent-amber/40">
                                 2021 — 2024
@@ -1230,7 +1340,8 @@
                     <!-- Timeline item 3 -->
                     <div
                         class="bg-surface-panel border-2 border-border-bright p-5 hover:border-text-high transition-all shadow-[4px_4px_0px_0px_#27272f]">
-                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
+                        <div
+                            class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
                             <span
                                 class="font-mono text-xs font-bold text-text-high px-2 py-0.5 bg-surface-subtle border border-border-tech">
                                 2020 — 2021
@@ -1258,8 +1369,10 @@
         <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="outils">
             <div class="max-w-7xl mx-auto flex flex-col gap-10">
                 <div class="border-b border-border-tech pb-4">
-                    <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">MAÎTRISE TECHNIQUE DIRECTE</div>
-                    <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
+                    <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">MAÎTRISE
+                        TECHNIQUE DIRECTE</div>
+                    <h2
+                        class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
                         LA BOÎTE À OUTILS SANS ARTIFICE.
                     </h2>
                 </div>
@@ -1426,7 +1539,8 @@
                 <div
                     class="flex flex-col lg:flex-row lg:items-start justify-between gap-6 border-b border-border-tech pb-8 mb-8">
                     <div class="max-w-2xl">
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">// DIRECT COMM PROTOCOL</div>
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">// DIRECT
+                            COMM PROTOCOL</div>
                         <h2
                             class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1">
                             DÉMARRONS UN PROJET D'ENVERGURE.
@@ -1457,13 +1571,15 @@
                     <form class="lg:col-span-8 flex flex-col gap-5" @submit.prevent="submitForm()">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5 font-mono text-xs">
-                                <label class="text-text-faint uppercase tracking-wider font-bold" for="name">Votre Nom / Organisation</label>
+                                <label class="text-text-faint uppercase tracking-wider font-bold" for="name">Votre Nom /
+                                    Organisation</label>
                                 <input x-model="form.name"
                                     class="w-full px-3.5 py-3 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all"
                                     id="name" placeholder="Ex. Aminata Diallo • ONG Sahel" required="" type="text" />
                             </div>
                             <div class="flex flex-col gap-1.5 font-mono text-xs">
-                                <label class="text-text-faint uppercase tracking-wider font-bold" for="email">Votre Email Professionnel</label>
+                                <label class="text-text-faint uppercase tracking-wider font-bold" for="email">Votre
+                                    Email Professionnel</label>
                                 <input x-model="form.email"
                                     class="w-full px-3.5 py-3 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all"
                                     id="email" placeholder="contact@organisation.org" required="" type="email" />
@@ -1472,37 +1588,43 @@
 
                         <!-- Radio choices -->
                         <div class="flex flex-col gap-2 font-mono text-xs">
-                            <label class="text-text-faint uppercase tracking-wider font-bold">Type d'Intervention</label>
+                            <label class="text-text-faint uppercase tracking-wider font-bold">Type
+                                d'Intervention</label>
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                                 <label
                                     class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
-                                    <input x-model="form.project_type" class="text-accent-green focus:ring-0 bg-transparent"
-                                        name="project_type" type="radio" value="systeme" />
+                                    <input x-model="form.project_type"
+                                        class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
+                                        type="radio" value="systeme" />
                                     <span class="text-text-high text-[11px] font-mono">Système Web</span>
                                 </label>
                                 <label
                                     class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
-                                    <input x-model="form.project_type" class="text-accent-green focus:ring-0 bg-transparent"
-                                        name="project_type" type="radio" value="mobile" />
+                                    <input x-model="form.project_type"
+                                        class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
+                                        type="radio" value="mobile" />
                                     <span class="text-text-high text-[11px] font-mono">App Mobile</span>
                                 </label>
                                 <label
                                     class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
-                                    <input x-model="form.project_type" class="text-accent-green focus:ring-0 bg-transparent"
-                                        name="project_type" type="radio" value="audit" />
+                                    <input x-model="form.project_type"
+                                        class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
+                                        type="radio" value="audit" />
                                     <span class="text-text-high text-[11px] font-mono">Audit &amp; Infra</span>
                                 </label>
                                 <label
                                     class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
-                                    <input x-model="form.project_type" class="text-accent-green focus:ring-0 bg-transparent"
-                                        name="project_type" type="radio" value="conseil" />
+                                    <input x-model="form.project_type"
+                                        class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
+                                        type="radio" value="conseil" />
                                     <span class="text-text-high text-[11px] font-mono">Formation</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="flex flex-col gap-1.5 font-mono text-xs">
-                            <label class="text-text-faint uppercase tracking-wider font-bold" for="message">Décrivez la contrainte ou l'objectif concret</label>
+                            <label class="text-text-faint uppercase tracking-wider font-bold" for="message">Décrivez la
+                                contrainte ou l'objectif concret</label>
                             <textarea x-model="form.message"
                                 class="w-full p-3.5 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all resize-none"
                                 id="message"
@@ -1511,15 +1633,18 @@
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                            <span class="font-mono text-[11px] text-text-faint">Données confidentielles • Zéro pistage tiers</span>
+                            <span class="font-mono text-[11px] text-text-faint">Données confidentielles • Zéro pistage
+                                tiers</span>
                             <button
                                 class="w-full sm:w-auto px-8 py-3 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase hover:bg-text-high hover:text-surface-bg transition-all shadow-[4px_4px_0px_0px_#27272f] flex items-center justify-center gap-2 cursor-pointer"
                                 type="submit" :disabled="isSubmitting">
-                                <span x-text="isSubmitting ? 'TRANSMISSION...' : 'TRANSMETTRE LA DEMANDE'">TRANSMETTRE LA DEMANDE</span>
+                                <span x-text="isSubmitting ? 'TRANSMISSION...' : 'TRANSMETTRE LA DEMANDE'">TRANSMETTRE
+                                    LA DEMANDE</span>
                                 <span class="material-symbols-outlined text-[16px]">send</span>
                             </button>
                         </div>
-                        <p x-show="submitMessage" :class="submitSuccess ? 'text-accent-green' : 'text-red-500'" class="font-mono text-xs pt-1 font-bold" x-text="submitMessage"></p>
+                        <p x-show="submitMessage" :class="submitSuccess ? 'text-accent-green' : 'text-red-500'"
+                            class="font-mono text-xs pt-1 font-bold" x-text="submitMessage"></p>
                     </form>
 
                     <!-- Direct Channels Rail (Col 4) -->
@@ -1584,7 +1709,8 @@
     <!-- ==========================================
        FOOTER : INDUSTRIAL MANIFESTO & CREDITS
        ========================================== -->
-    <footer class="w-full bg-surface-panel border-t border-border-tech text-text-faint font-mono text-xs py-12 px-4 md:px-8">
+    <footer
+        class="w-full bg-surface-panel border-t border-border-tech text-text-faint font-mono text-xs py-12 px-4 md:px-8">
         <div class="max-w-7xl mx-auto flex flex-col gap-10">
             <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
                 <div class="max-w-md">
@@ -1600,14 +1726,18 @@
                     <div class="flex flex-col gap-2">
                         <span class="text-text-high font-bold uppercase tracking-wider">// INDEX</span>
                         <a class="text-text-mid hover:text-accent-green transition-colors" href="#focus">Focus</a>
-                        <a class="text-text-mid hover:text-accent-green transition-colors" href="#projets">Réalisations</a>
+                        <a class="text-text-mid hover:text-accent-green transition-colors"
+                            href="#projets">Réalisations</a>
                         <a class="text-text-mid hover:text-accent-green transition-colors" href="#parcours">Parcours</a>
                     </div>
                     <div class="flex flex-col gap-2">
                         <span class="text-text-high font-bold uppercase tracking-wider">// DOCTRINE</span>
-                        <a class="text-text-mid hover:text-accent-green transition-colors" href="#ethique">Règles d'Airain</a>
-                        <a class="text-text-mid hover:text-accent-green transition-colors" href="#outils">Stack Terrain</a>
-                        <a class="text-text-mid hover:text-accent-green transition-colors" href="#contact">Contact Direct</a>
+                        <a class="text-text-mid hover:text-accent-green transition-colors" href="#ethique">Règles
+                            d'Airain</a>
+                        <a class="text-text-mid hover:text-accent-green transition-colors" href="#outils">Stack
+                            Terrain</a>
+                        <a class="text-text-mid hover:text-accent-green transition-colors" href="#contact">Contact
+                            Direct</a>
                     </div>
                     <div class="flex flex-col gap-2 col-span-2 sm:col-span-1">
                         <span class="text-text-high font-bold uppercase tracking-wider">// LOCALISATION</span>
@@ -1619,7 +1749,7 @@
             <div
                 class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-tech pt-6 text-[10px] text-text-faint">
                 <div>
-                    © 2025 Manuel Assogba. Tous droits réservés. Bâtisseur de Systèmes Utiles.
+                    © 2026 Manuel Assogba. Tous droits réservés. Bâtisseur de Systèmes Utiles.
                 </div>
                 <div class="flex items-center gap-4">
                     <span>LATENCE: 0.14ms</span>
@@ -1635,11 +1765,13 @@
         @keydown.window.escape="closeLightbox()" @keydown.window.right="nextImage()" @keydown.window.left="prevImage()">
         <button class="lb-close" @click.stop="closeLightbox()" aria-label="Fermer"><i class="fas fa-times"></i></button>
         <template x-if="lightbox.images && lightbox.images.length > 1">
-            <button class="lb-nav lb-prev" @click.stop="prevImage()" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+            <button class="lb-nav lb-prev" @click.stop="prevImage()" aria-label="Précédent"><i
+                    class="fas fa-chevron-left"></i></button>
         </template>
         <img :src="lightbox.currentImage" alt="Aperçu projet" @click.stop="" class="lightbox-image" />
         <template x-if="lightbox.images && lightbox.images.length > 1">
-            <button class="lb-nav lb-next" @click.stop="nextImage()" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+            <button class="lb-nav lb-next" @click.stop="nextImage()" aria-label="Suivant"><i
+                    class="fas fa-chevron-right"></i></button>
         </template>
         <template x-if="lightbox.images && lightbox.images.length > 1">
             <div class="lb-counter" x-text="(lightbox.currentIndex + 1) + ' / ' + lightbox.images.length"></div>
