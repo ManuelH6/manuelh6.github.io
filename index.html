@@ -560,15 +560,17 @@
                         <div
                             class="font-mono text-xs text-accent-green uppercase tracking-widest flex items-center gap-2 font-bold">
                             <span class="w-2 h-2 bg-accent-green"></span>
-                            SÉLECTION FOCUS // PROJET PHARE
+                            <span x-text="texts[currentLang].featured.tag">SÉLECTION FOCUS // PROJET PHARE</span>
                         </div>
                         <h2
-                            class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
+                            class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
+                            x-text="texts[currentLang].featured.title">
                             FIELDOZ — IMPACT RÉEL &amp; TÉLÉMÉTRIE
                         </h2>
                     </div>
                     <span
-                        class="font-mono text-xs text-text-faint bg-surface-panel px-3 py-1 border border-border-tech self-start sm:self-auto">
+                        class="font-mono text-xs text-text-faint bg-surface-panel px-3 py-1 border border-border-tech self-start sm:self-auto"
+                        x-text="texts[currentLang].featured.ref">
                         REF: ARCH-CASE-01-FLDOZ
                     </span>
                 </div>
@@ -598,29 +600,24 @@
                             <div
                                 class="absolute bottom-3 left-3 bg-black/90 border border-zinc-700 px-3 py-1 font-mono text-[11px] text-white flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
-                                <span>SYNC HORS-LIGNE VÉRIFIÉE</span>
+                                <span x-text="texts[currentLang].featured.syncStatus">SYNC HORS-LIGNE VÉRIFIÉE</span>
                             </div>
                             <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span>6 aperçus</span>
+                                <i class="far fa-images"></i> <span x-text="projects[0].images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
                             </div>
                         </div>
 
                         <!-- Monospace Technical Ledger Cards -->
                         <div class="grid grid-cols-3 gap-3 font-mono">
-                            <div class="border border-border-tech bg-surface-subtle p-3 text-center">
-                                <div class="text-[10px] text-text-faint uppercase font-bold">TEMPS CHARGE</div>
-                                <div class="text-xl sm:text-2xl font-bold text-accent-green mt-1 font-mono">&lt; 0.4s
+                            <template x-for="(ind, iIdx) in texts[currentLang].featured.indicators" :key="iIdx">
+                                <div class="border border-border-tech bg-surface-subtle p-3 text-center">
+                                    <div class="text-[10px] text-text-faint uppercase font-bold" x-text="ind.label"></div>
+                                    <div class="text-xl sm:text-2xl font-bold mt-1 font-mono"
+                                        :class="iIdx === 1 ? 'text-text-high' : 'text-accent-green'"
+                                        x-text="ind.val">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="border border-border-tech bg-surface-subtle p-3 text-center">
-                                <div class="text-[10px] text-text-faint uppercase font-bold">CONSO DATA</div>
-                                <div class="text-xl sm:text-2xl font-bold text-text-high mt-1 font-mono">-74%</div>
-                            </div>
-                            <div class="border border-border-tech bg-surface-subtle p-3 text-center">
-                                <div class="text-[10px] text-text-faint uppercase font-bold">DISPONIBILITÉ</div>
-                                <div class="text-xl sm:text-2xl font-bold text-accent-green-bright mt-1 font-mono">
-                                    99.98%</div>
-                            </div>
+                            </template>
                         </div>
                     </div>
 
@@ -628,23 +625,28 @@
                     <div class="lg:col-span-5 p-6 flex flex-col justify-between gap-6 bg-surface-panel">
                         <div class="flex flex-col gap-4">
                             <div
-                                class="inline-block font-mono text-[11px] text-accent-amber font-semibold tracking-wider uppercase">
+                                class="inline-block font-mono text-[11px] text-accent-amber font-semibold tracking-wider uppercase"
+                                x-text="texts[currentLang].featured.sub">
                                 // PLATEFORME SAAS D'IMPACT SOCIAL
                             </div>
-                            <h3 class="font-display font-bold text-2xl text-text-high leading-tight">
+                            <h3 class="font-display font-bold text-2xl text-text-high leading-tight"
+                                x-text="texts[currentLang].featured.heading">
                                 FieldOz — Donner du relief à l'impact social
                             </h3>
-                            <p class="font-body text-sm text-text-mid leading-relaxed">
+                            <p class="font-body text-sm text-text-mid leading-relaxed"
+                                x-text="texts[currentLang].featured.description">
                                 Plateforme SaaS conçue pour transformer des données terrain complexes en récits visuels
                                 et rapports d'impact incontestables. Une architecture pensée pour offrir une clarté
                                 absolue aux bailleurs de fonds et aux équipes sur le terrain.
                             </p>
                             <div class="border-l-4 border-accent-green bg-surface-subtle p-4 border border-border-tech">
                                 <div
-                                    class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold">
+                                    class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold"
+                                    x-text="texts[currentLang].featured.quoteTitle">
                                     EXCELLENCE TECHNIQUE &amp; TERRAIN
                                 </div>
-                                <p class="font-mono text-xs text-text-high mt-1 italic leading-normal">
+                                <p class="font-mono text-xs text-text-high mt-1 italic leading-normal"
+                                    x-text="texts[currentLang].featured.quoteText">
                                     « Synthétiser l'essentiel, rendre tangibles les données critiques et garantir une
                                     fiabilité absolue en toutes conditions. »
                                 </p>
@@ -673,7 +675,7 @@
                             <a class="px-4 py-2.5 bg-text-high text-surface-bg font-mono font-bold text-xs uppercase flex items-center gap-2 hover:bg-accent-green hover:text-surface-bg transition-colors"
                                 href="https://gitlab.com/learnperso/fieldoz/" target="_blank">
                                 <i class="fab fa-gitlab text-[14px]"></i>
-                                <span>CODE SOURCE GITLAB / AUDIT</span>
+                                <span x-text="texts[currentLang].featured.liveLink">CODE SOURCE GITLAB / AUDIT</span>
                             </a>
                             <span class="font-mono text-[11px] text-accent-green font-bold">STATUS: DEPLOYED</span>
                         </div>
@@ -690,94 +692,37 @@
                 <div
                     class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-tech pb-4">
                     <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">PHILOSOPHIE
-                            &amp; APPROCHE</div>
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
+                            x-text="texts[currentLang].doctrine.tag">DOCTRINE D'INGÉNIERIE // RÈGLES D'AIRAIN</div>
                         <h2
-                            class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1">
-                            UNE DÉMARCHE D'EXCELLENCE : PRÉCISION &amp; ARTISANAT.
+                            class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1"
+                            x-text="texts[currentLang].doctrine.title">
+                            L'ANTITHÈSE DU CODE VERBEUX.
                         </h2>
                     </div>
-                    <p class="font-body text-sm text-text-mid max-w-md">
-                        Loin des effets de mode et du générique, chaque choix technique est pensé pour servir l'identité
-                        du projet, l'évolutivité long terme et l'impact visuel.
+                    <p class="font-body text-sm text-text-mid max-w-md"
+                        x-text="texts[currentLang].doctrine.desc">
+                        Les environnements complexes et le travail terrain ne pardonnent pas la complaisance technique. Chaque choix d'architecture obéit à 4 principes intangibles :
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Rule 01 -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-6 flex flex-col justify-between gap-8 relative shadow-[6px_6px_0px_0px_#27272f] hover:border-accent-green transition-colors group">
-                        <div class="flex flex-col gap-4">
-                            <div class="flex items-center justify-between border-b border-border-tech pb-3">
-                                <span class="font-mono text-3xl font-black text-accent-green">[01]</span>
-                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE
-                                    // COMPRÉHENSION</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <template x-for="r in texts[currentLang].doctrine.rules" :key="r.num">
+                        <div class="bg-surface-panel border-2 border-border-bright p-6 flex flex-col justify-between gap-6 relative shadow-[6px_6px_0px_0px_#27272f] hover:border-accent-green transition-colors group">
+                            <div class="flex flex-col gap-3">
+                                <div class="flex items-center justify-between border-b border-border-tech pb-2">
+                                    <span class="font-mono text-2xl font-black text-accent-green" x-text="'[' + r.num + ']'"></span>
+                                    <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">RÈGLE // STRICT</span>
+                                </div>
+                                <h3 class="font-display font-bold text-lg text-text-high leading-snug" x-text="r.title"></h3>
+                                <p class="font-body text-xs text-text-mid leading-relaxed" x-text="r.text"></p>
                             </div>
-                            <h3 class="font-display font-bold text-xl text-text-high leading-snug">
-                                La Clarté avant le Code
-                            </h3>
-                            <p class="font-body text-sm text-text-mid leading-relaxed">
-                                Un projet d'exception commence par une compréhension intime des enjeux métier. Avant la
-                                première ligne de code, chaque choix d'architecture est pensé pour éliminer la
-                                complexité inutile et garantir une évolutivité totale.
-                            </p>
-                        </div>
-                        <div
-                            class="font-mono text-xs text-accent-green border-t border-border-tech pt-3 flex items-center justify-between">
-                            <span>// Vision &amp; Modélisation</span>
-                            <span class="text-text-faint">PRINCIPE_01</span>
-                        </div>
-                    </div>
-
-                    <!-- Rule 02 -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-6 flex flex-col justify-between gap-8 relative shadow-[6px_6px_0px_0px_#27272f] hover:border-accent-amber transition-colors group">
-                        <div class="flex flex-col gap-4">
-                            <div class="flex items-center justify-between border-b border-border-tech pb-3">
-                                <span class="font-mono text-3xl font-black text-accent-amber">[02]</span>
-                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE
-                                    // IDENTITÉ</span>
+                            <div class="font-mono text-[11px] text-accent-green border-t border-border-tech pt-2 flex items-center justify-between">
+                                <span>// Invariant</span>
+                                <span class="text-text-faint font-bold" x-text="'R_' + r.num"></span>
                             </div>
-                            <h3 class="font-display font-bold text-xl text-text-high leading-snug">
-                                L'Esthétique qui Parle
-                            </h3>
-                            <p class="font-body text-sm text-text-mid leading-relaxed">
-                                Une interface ne doit pas seulement être jolie : elle doit incarner votre identité et
-                                captiver immédiatement. Je privilégie un design épuré, intemporel et performant où
-                                chaque détail visuel a un sens.
-                            </p>
                         </div>
-                        <div
-                            class="font-mono text-xs text-accent-amber border-t border-border-tech pt-3 flex items-center justify-between">
-                            <span>// Clarté &amp; Singularité</span>
-                            <span class="text-text-faint">PRINCIPE_02</span>
-                        </div>
-                    </div>
-
-                    <!-- Rule 03 -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-6 flex flex-col justify-between gap-8 relative shadow-[6px_6px_0px_0px_#27272f] hover:border-text-high transition-colors group">
-                        <div class="flex flex-col gap-4">
-                            <div class="flex items-center justify-between border-b border-border-tech pb-3">
-                                <span class="font-mono text-3xl font-black text-text-high">[03]</span>
-                                <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">PRINCIPE
-                                    // PERFORMANCE</span>
-                            </div>
-                            <h3 class="font-display font-bold text-xl text-text-high leading-snug">
-                                L'Économie d'Énergie &amp; Performance
-                            </h3>
-                            <p class="font-body text-sm text-text-mid leading-relaxed">
-                                La vraie puissance réside dans la sobriété. Des bases de données optimisées, un backend
-                                Laravel solide et une exécution fluide pour que le système reste rapide et robuste,
-                                quelle que soit la charge.
-                            </p>
-                        </div>
-                        <div
-                            class="font-mono text-xs text-text-high border-t border-border-tech pt-3 flex items-center justify-between">
-                            <span>// Robustesse &amp; Efficience</span>
-                            <span class="text-text-faint">PRINCIPE_03</span>
-                        </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </section>
@@ -1389,12 +1334,12 @@
             <div
                 class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-tech pt-6 text-[10px] text-text-faint">
                 <div>
-                    © 2026 Manuel Assogba. Tous droits réservés. Bâtisseur de Systèmes Utiles.
+                    © <span x-text="new Date().getFullYear()"></span> <span x-text="texts[currentLang].footer.copyright">Manuel Assogba. Tous droits réservés. Bâtisseur de Systèmes Utiles.</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span>LATENCE: 0.14ms</span>
                     <span class="text-text-faint">|</span>
-                    <span class="text-accent-green font-bold">STATUS: SYSTÈMES OPÉRATIONNELS</span>
+                    <span class="text-accent-green font-bold" x-text="texts[currentLang].footer.status">STATUS: SYSTÈMES OPÉRATIONNELS</span>
                 </div>
             </div>
         </div>
