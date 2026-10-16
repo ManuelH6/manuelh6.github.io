@@ -355,21 +355,29 @@
             <nav class="hidden lg:flex items-center gap-1 bg-surface-panel p-1.5 border border-border-tech"
                 data-active-classes="bg-text-high text-surface-bg font-bold">
                 <a class="px-3.5 py-1.5 font-mono text-xs uppercase text-surface-bg bg-text-high font-bold tracking-wider transition-all"
-                    href="#focus">Focus</a>
+                    href="#focus" x-text="texts[currentLang].nav.focus">Focus</a>
                 <a class="px-3.5 py-1.5 font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
-                    href="#projet-phare">Projet Phare</a>
+                    href="#projet-phare" x-text="texts[currentLang].nav.featured">Projet Phare</a>
                 <a class="px-3.5 py-1.5 font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
-                    href="#ethique">Doctrine</a>
+                    href="#ethique" x-text="texts[currentLang].nav.doctrine">Doctrine</a>
                 <a class="px-3.5 py-1.5 font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
-                    href="#projets">Réalisations</a>
+                    href="#projets" x-text="texts[currentLang].nav.projects">Réalisations</a>
                 <a class="px-3.5 py-1.5 font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
-                    href="#parcours">Parcours</a>
+                    href="#parcours" x-text="texts[currentLang].nav.parcours">Parcours</a>
                 <a class="px-3.5 py-1.5 font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
-                    href="#outils">Stack</a>
+                    href="#outils" x-text="texts[currentLang].nav.stack">Stack</a>
             </nav>
 
-            <!-- Actions: Theme Toggle, CTA & Avatar -->
-            <div class="flex items-center gap-3">
+            <!-- Actions: Language Toggle, Theme Toggle, CTA & Avatar -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Language Switcher Button (FR / EN) -->
+                <button @click="toggleLanguage()"
+                    class="p-2 border border-border-tech bg-surface-panel text-text-high hover:border-accent-green hover:text-accent-green transition-all font-mono text-xs flex items-center gap-1.5 shadow-[2px_2px_0px_0px_var(--border-tech)] cursor-pointer"
+                    :title="currentLang === 'fr' ? 'Switch to English' : 'Passer en Français'" aria-label="Toggle language">
+                    <span class="material-symbols-outlined text-[18px]">translate</span>
+                    <span class="font-mono text-[11px] font-bold" x-text="currentLang === 'fr' ? 'EN' : 'FR'">EN</span>
+                </button>
+
                 <!-- Theme Toggle Button (Dark / Light) -->
                 <button @click="toggleDarkMode()"
                     class="p-2 border border-border-tech bg-surface-panel text-text-high hover:border-accent-green hover:text-accent-green transition-all font-mono text-xs flex items-center gap-1.5 shadow-[2px_2px_0px_0px_var(--border-tech)] cursor-pointer"
@@ -382,7 +390,7 @@
 
                 <a class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase tracking-wider border border-accent-green hover:bg-text-high hover:border-text-high hover:text-surface-bg transition-all shadow-[4px_4px_0px_0px_#27272f]"
                     href="#contact">
-                    <span>INITIER UN PROJET</span>
+                    <span x-text="texts[currentLang].nav.cta">INITIER UN PROJET</span>
                     <span class="material-symbols-outlined text-[15px]">arrow_outward</span>
                 </a>
 
@@ -406,27 +414,39 @@
         <!-- Mobile Drawer Menu -->
         <div x-show="mobileMenuOpen" x-transition
             class="lg:hidden bg-surface-panel border-b border-border-tech px-4 py-4 flex flex-col gap-2 shadow-xl">
+            <!-- Mobile Language Switcher Row -->
+            <div class="flex items-center justify-between py-2 px-3 border-b border-border-tech mb-1">
+                <span class="font-mono text-xs uppercase text-text-faint font-bold">// LANGUE / LANGUAGE</span>
+                <button @click="toggleLanguage()"
+                    class="px-3 py-1 bg-surface-subtle border border-border-tech text-text-high font-mono text-xs font-bold flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px]">translate</span>
+                    <span x-text="currentLang === 'fr' ? 'Passer en English' : 'Passer en Français'"></span>
+                </button>
+            </div>
             <a href="#focus" @click="mobileMenuOpen = false"
-                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Focus</a>
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                x-text="texts[currentLang].nav.focus">Focus</a>
             <a href="#projet-phare" @click="mobileMenuOpen = false"
-                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Projet
-                Phare</a>
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                x-text="texts[currentLang].nav.featured">Projet Phare</a>
             <a href="#ethique" @click="mobileMenuOpen = false"
-                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Doctrine
-                &amp; Démarche</a>
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                x-text="texts[currentLang].nav.doctrine">Doctrine &amp; Démarche</a>
             <a href="#projets" @click="mobileMenuOpen = false"
-                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Réalisations</a>
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                x-text="texts[currentLang].nav.projects">Réalisations</a>
             <a href="#parcours" @click="mobileMenuOpen = false"
-                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Parcours</a>
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                x-text="texts[currentLang].nav.parcours">Parcours</a>
             <a href="#outils" @click="mobileMenuOpen = false"
-                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Stack
-                Technique</a>
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                x-text="texts[currentLang].nav.stack">Stack Technique</a>
             <a href="#contact" @click="mobileMenuOpen = false"
-                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors">Contact
-                Direct</a>
+                class="py-2 px-3 text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                x-text="texts[currentLang].nav.contact">Contact Direct</a>
             <a href="#contact" @click="mobileMenuOpen = false"
-                class="mt-2 py-3 bg-accent-green text-surface-bg text-center font-mono font-bold text-xs uppercase">Initier
-                un Projet</a>
+                class="mt-2 py-3 bg-accent-green text-surface-bg text-center font-mono font-bold text-xs uppercase"
+                x-text="texts[currentLang].nav.cta">Initier un Projet</a>
         </div>
     </header>
 
