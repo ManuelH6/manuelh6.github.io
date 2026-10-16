@@ -915,27 +915,27 @@
                 <!-- Left Column: Story & Stance -->
                 <div class="lg:col-span-5 flex flex-col gap-6">
                     <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">EXPÉRIENCE
-                            &amp; VÉRITÉ BRUTE</div>
-                        <h2
-                            class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1 leading-tight">
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
+                            x-text="texts[currentLang].parcours.tag">EXPÉRIENCE &amp; VÉRITÉ BRUTE</div>
+                        <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1 leading-tight"
+                            x-text="texts[currentLang].parcours.title">
                             UNE RIGUEUR NÉE DES CONTRAINTES RÉELLES.
                         </h2>
                     </div>
                     <div class="space-y-4 font-body text-sm text-text-mid leading-relaxed">
-                        <p>
+                        <p x-text="texts[currentLang].parcours.p1">
                             Mon approche du développement n'a pas débuté dans des bureaux aseptisés avec de la fibre
                             optique illimitée. Elle a été forgée en autodidacte exigeant face à des connexions
                             instables, des matériels hétéroclites et la nécessité absolue de faire fonctionner les
                             choses du premier coup.
                         </p>
-                        <p>
+                        <p x-text="texts[currentLang].parcours.p2">
                             Lorsqu'on déploie une solution pour les agents des parcs WAP ou pour des équipes de santé
                             publique en brousse, on comprend très vite qu'un bogue n'est pas un simple « ticket Jira » :
                             c'est une mission arrêtée, un rapport financier bloqué ou une journée de patrouille perdue.
                         </p>
-                        <div
-                            class="p-4 border-l-2 border-accent-green bg-surface-panel font-mono text-xs text-text-high border border-border-tech">
+                        <div class="p-4 border-l-2 border-accent-green bg-surface-panel font-mono text-xs text-text-high border border-border-tech"
+                            x-text="texts[currentLang].parcours.quote">
                             « Épurer l'architecture, éliminer le superflu, livrer du code net que n'importe quelle
                             équipe locale pourra s'approprier sans dépendre d'un tiers. »
                         </div>
@@ -943,94 +943,63 @@
                     <!-- Bottom Metric Ribbons -->
                     <div class="grid grid-cols-2 gap-4 pt-2">
                         <div class="border border-border-tech bg-surface-panel p-3">
-                            <div class="font-mono text-2xl font-bold text-text-high">03 PAYS</div>
-                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase">Bénin • Burkina • Niger
-                            </div>
+                            <div class="font-mono text-2xl font-bold text-text-high" x-text="texts[currentLang].parcours.countriesCount">03 PAYS</div>
+                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase" x-text="texts[currentLang].parcours.countriesList">Bénin • Burkina • Niger</div>
                         </div>
                         <div class="border border-border-tech bg-surface-panel p-3">
-                            <div class="font-mono text-2xl font-bold text-accent-green">1 SEMAINE</div>
-                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase">Délai moyen MVP
-                                opérationnel</div>
+                            <div class="font-mono text-2xl font-bold text-accent-green" x-text="texts[currentLang].parcours.mvpDelay">1 SEMAINE</div>
+                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase" x-text="texts[currentLang].parcours.mvpDesc">Délai moyen MVP opérationnel</div>
+                        </div>
+                    </div>
+
+                    <!-- Education Sub-panel on Left Column -->
+                    <div class="mt-4 border-t border-border-tech pt-6">
+                        <div class="font-mono text-xs text-text-faint uppercase tracking-widest pb-3 font-bold"
+                            x-text="texts[currentLang].parcours.educationTitle">
+                            // FORMATION ACADÉMIQUE &amp; CERTIFICATIONS
+                        </div>
+                        <div class="space-y-3">
+                            <template x-for="(edu, eIdx) in texts[currentLang].education.items" :key="eIdx">
+                                <div class="bg-surface-panel border border-border-tech p-3.5 shadow-sm hover:border-accent-green transition-colors">
+                                    <div class="flex items-center justify-between text-xs font-mono">
+                                        <span class="text-accent-green font-bold" x-text="edu.period"></span>
+                                        <span class="text-text-faint font-semibold" x-text="edu.school"></span>
+                                    </div>
+                                    <div class="font-display font-bold text-sm text-text-high mt-1" x-text="edu.title"></div>
+                                    <div class="font-body text-xs text-text-mid mt-1" x-text="edu.description"></div>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right Column: Timeline Ledger -->
                 <div class="lg:col-span-7 flex flex-col gap-4">
-                    <div
-                        class="font-mono text-xs text-text-faint uppercase tracking-widest border-b border-border-tech pb-2 font-bold">
+                    <div class="font-mono text-xs text-text-faint uppercase tracking-widest border-b border-border-tech pb-2 font-bold"
+                        x-text="texts[currentLang].parcours.timelineTitle">
                         // CHRONOLOGIE DES RESPONSABILITÉS &amp; DÉPLOIEMENTS
                     </div>
 
-                    <!-- Timeline item 1 -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-5 hover:border-accent-green transition-all shadow-[4px_4px_0px_0px_#27272f]">
-                        <div
-                            class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
-                            <span
-                                class="font-mono text-xs font-bold text-accent-green px-2 py-0.5 bg-accent-green/10 border border-accent-green/40">
-                                2024 — PRÉSENT
-                            </span>
-                            <span class="font-mono text-xs text-text-faint font-bold">INDÉPENDANT</span>
+                    <!-- Dynamic Experience items -->
+                    <template x-for="(exp, expIdx) in texts[currentLang].experience.items" :key="expIdx">
+                        <div class="bg-surface-panel border-2 border-border-bright p-5 hover:border-accent-green transition-all shadow-[4px_4px_0px_0px_#27272f]">
+                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
+                                <span class="font-mono text-xs font-bold text-accent-green px-2 py-0.5 bg-accent-green/10 border border-accent-green/40"
+                                    x-text="exp.period">
+                                </span>
+                                <span class="font-mono text-xs text-text-faint font-bold" x-text="exp.tag"></span>
+                            </div>
+                            <h3 class="font-display font-bold text-xl text-text-high" x-text="exp.position">
+                            </h3>
+                            <div class="font-mono text-xs text-accent-amber mt-0.5 font-bold" x-text="exp.company">
+                            </div>
+                            <p class="font-body text-xs text-text-mid mt-3 leading-relaxed" x-text="exp.description">
+                            </p>
                         </div>
-                        <h3 class="font-display font-bold text-xl text-text-high">
-                            Architecte Systèmes Indépendant
-                        </h3>
-                        <div class="font-mono text-xs text-text-faint mt-0.5">
-                            Maison des Tortues • ONG Internationales • Startups
-                        </div>
-                        <p class="font-body text-xs text-text-mid mt-3 leading-relaxed">
-                            Conception de plateformes de collecte hors-ligne, interfaçage AWS S3, cartographie de
-                            biodiversité et tableaux de bord d'aide à la décision pour le terrain.
-                        </p>
-                    </div>
-
-                    <!-- Timeline item 2 -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-5 hover:border-accent-amber transition-all shadow-[4px_4px_0px_0px_#27272f]">
-                        <div
-                            class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
-                            <span
-                                class="font-mono text-xs font-bold text-accent-amber px-2 py-0.5 bg-accent-amber/10 border border-accent-amber/40">
-                                2021 — 2024
-                            </span>
-                            <span class="font-mono text-xs text-text-faint font-bold">GIZ // INTERNATIONAL</span>
-                        </div>
-                        <h3 class="font-display font-bold text-xl text-text-high">
-                            Développeur Fullstack Lead // GIZ (Projet RBT-WAP)
-                        </h3>
-                        <div class="font-mono text-xs text-text-faint mt-0.5">
-                            Coopération Allemande • Parcs Transfrontaliers W-Arly-Pendjari
-                        </div>
-                        <p class="font-body text-xs text-text-mid mt-3 leading-relaxed">
-                            Déploiement des outils de monitoring (BiodivCenter, WAP-Training), intégration des APIs
-                            naturalistes, documentation technique et formation des agents sur site.
-                        </p>
-                    </div>
-
-                    <!-- Timeline item 3 -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-5 hover:border-text-high transition-all shadow-[4px_4px_0px_0px_#27272f]">
-                        <div
-                            class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
-                            <span
-                                class="font-mono text-xs font-bold text-text-high px-2 py-0.5 bg-surface-subtle border border-border-tech">
-                                2020 — 2021
-                            </span>
-                            <span class="font-mono text-xs text-text-faint font-bold">INGÉNIERIE MOBILITÉ</span>
-                        </div>
-                        <h3 class="font-display font-bold text-xl text-text-high">
-                            Ingénieur Frontend &amp; Mobilité
-                        </h3>
-                        <div class="font-mono text-xs text-text-faint mt-0.5">
-                            JHS Corporate • Projets Freelance
-                        </div>
-                        <p class="font-body text-xs text-text-mid mt-3 leading-relaxed">
-                            Développement mobile cross-platform Flutter, intégration de passerelles de géolocalisation
-                            et audit de performance web en conditions réseau dégradées.
-                        </p>
-                    </div>
+                    </template>
                 </div>
+            </div>
+        </section>
             </div>
         </section>
 
