@@ -1124,19 +1124,18 @@
                 <div
                     class="flex flex-col lg:flex-row lg:items-start justify-between gap-6 border-b border-border-tech pb-8 mb-8">
                     <div class="max-w-2xl">
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">// DIRECT
-                            COMM PROTOCOL</div>
-                        <h2
-                            class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1">
-                            DÉMARRONS UN PROJET D'ENVERGURE.
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
+                            x-text="texts[currentLang].contact.tag">// CANAL DIRECT // SANS INTERMÉDIAIRE</div>
+                        <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1"
+                            x-text="texts[currentLang].contact.title">
+                            PARLER D'UN SYSTÈME À BÂTIR.
                         </h2>
-                        <p class="font-body text-sm text-text-mid mt-2 leading-relaxed">
-                            Vous avez une vision ambitieuse, une plateforme complexe à concevoir ou un système existant
-                            à élever aux plus hauts standards ? Échangeons sur vos objectifs.
+                        <p class="font-body text-sm text-text-mid mt-2 leading-relaxed"
+                            x-text="texts[currentLang].contact.subtitle">
+                            Pas de standardiste, pas de commercial. Vos messages arrivent directement sur mon terminal de travail.
                         </p>
                         <p class="font-mono text-xs text-accent-green mt-2 font-bold">
-                            Intervention en autonomie complète, basée sur des livrables précis et un alignement
-                            stratégique clair dès le départ.
+                            Intervention en autonomie complète, basée sur des livrables précis et un alignement stratégique clair dès le départ.
                         </p>
                     </div>
                     <div
@@ -1156,25 +1155,25 @@
                     <form class="lg:col-span-8 flex flex-col gap-5" @submit.prevent="submitForm()">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5 font-mono text-xs">
-                                <label class="text-text-faint uppercase tracking-wider font-bold" for="name">Votre Nom /
-                                    Organisation</label>
+                                <label class="text-text-faint uppercase tracking-wider font-bold" for="name"
+                                    x-text="texts[currentLang].contact.form.nameLabel">NOM &amp; PRÉNOM</label>
                                 <input x-model="form.name"
                                     class="w-full px-3.5 py-3 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all"
-                                    id="name" placeholder="Ex. Aminata Diallo • ONG Sahel" required="" type="text" />
+                                    id="name" :placeholder="texts[currentLang].contact.form.namePlaceholder" required="" type="text" />
                             </div>
                             <div class="flex flex-col gap-1.5 font-mono text-xs">
-                                <label class="text-text-faint uppercase tracking-wider font-bold" for="email">Votre
-                                    Email Professionnel</label>
+                                <label class="text-text-faint uppercase tracking-wider font-bold" for="email"
+                                    x-text="texts[currentLang].contact.form.emailLabel">ADRESSE EMAIL PROFESSIONNELLE</label>
                                 <input x-model="form.email"
                                     class="w-full px-3.5 py-3 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all"
-                                    id="email" placeholder="contact@organisation.org" required="" type="email" />
+                                    id="email" :placeholder="texts[currentLang].contact.form.emailPlaceholder" required="" type="email" />
                             </div>
                         </div>
 
                         <!-- Radio choices -->
                         <div class="flex flex-col gap-2 font-mono text-xs">
-                            <label class="text-text-faint uppercase tracking-wider font-bold">Type
-                                d'Intervention</label>
+                            <label class="text-text-faint uppercase tracking-wider font-bold"
+                                x-text="texts[currentLang].contact.form.projectTypeLabel">NATURE DU SYSTÈME</label>
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                                 <label
                                     class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
@@ -1201,19 +1200,19 @@
                                     class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
                                     <input x-model="form.project_type"
                                         class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
-                                        type="radio" value="conseil" />
-                                    <span class="text-text-high text-[11px] font-mono">Formation</span>
+                                        type="radio" value="pwa" />
+                                    <span class="text-text-high text-[11px] font-mono">PWA Offline</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="flex flex-col gap-1.5 font-mono text-xs">
-                            <label class="text-text-faint uppercase tracking-wider font-bold" for="message">Décrivez la
-                                contrainte ou l'objectif concret</label>
+                            <label class="text-text-faint uppercase tracking-wider font-bold" for="message"
+                                x-text="texts[currentLang].contact.form.messageLabel">DÉTAILS DU PROJET OU DE LA MISSION</label>
                             <textarea x-model="form.message"
                                 class="w-full p-3.5 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all resize-none"
                                 id="message"
-                                placeholder="Détaillez le contexte opérationnel : réseau, utilisateurs visés, parc machine, volume de données..."
+                                :placeholder="texts[currentLang].contact.form.messagePlaceholder"
                                 required="" rows="4"></textarea>
                         </div>
 
@@ -1223,8 +1222,7 @@
                             <button
                                 class="w-full sm:w-auto px-8 py-3 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase hover:bg-text-high hover:text-surface-bg transition-all shadow-[4px_4px_0px_0px_#27272f] flex items-center justify-center gap-2 cursor-pointer"
                                 type="submit" :disabled="isSubmitting">
-                                <span x-text="isSubmitting ? 'TRANSMISSION...' : 'TRANSMETTRE LA DEMANDE'">TRANSMETTRE
-                                    LA DEMANDE</span>
+                                <span x-text="isSubmitting ? texts[currentLang].contact.form.submittingBtn : texts[currentLang].contact.form.submitBtn">TRANSMETTRE LA DEMANDE</span>
                                 <span class="material-symbols-outlined text-[16px]">send</span>
                             </button>
                         </div>
