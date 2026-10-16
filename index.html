@@ -791,10 +791,10 @@
                 <div
                     class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-border-tech pb-4">
                     <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">SYSTÈMES
-                            ÉPROUVÉS SUR LE TERRAIN</div>
-                        <h2
-                            class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
+                            x-text="texts[currentLang].projectsSection.tag">SYSTÈMES ÉPROUVÉS SUR LE TERRAIN</div>
+                        <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
+                            x-text="texts[currentLang].projectsSection.title">
                             RÉALISATIONS &amp; REGISTRE OPÉRATIONNEL
                         </h2>
                     </div>
@@ -805,420 +805,103 @@
                             class="filter-btn px-3.5 py-1.5 font-mono text-xs uppercase font-bold transition-all cursor-pointer"
                             :class="activeFilter === 'all' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
                             @click="setFilter('all')">
-                            TOUS (07)
+                            <span x-text="texts[currentLang].projectsSection.filters.all">TOUS</span>
+                            <span class="ml-1 text-[10px] opacity-75">(08)</span>
                         </button>
                         <button
                             class="filter-btn px-3.5 py-1.5 font-mono text-xs uppercase font-bold transition-all cursor-pointer"
                             :class="activeFilter === 'web' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('web')">
+                            @click="setFilter('web')"
+                            x-text="texts[currentLang].projectsSection.filters.web">
                             WEB
                         </button>
                         <button
                             class="filter-btn px-3.5 py-1.5 font-mono text-xs uppercase font-bold transition-all cursor-pointer"
                             :class="activeFilter === 'mobile' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('mobile')">
+                            @click="setFilter('mobile')"
+                            x-text="texts[currentLang].projectsSection.filters.mobile">
                             MOBILE
                         </button>
                         <button
                             class="filter-btn px-3.5 py-1.5 font-mono text-xs uppercase font-bold transition-all cursor-pointer"
                             :class="activeFilter === 'systemes' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('systemes')">
+                            @click="setFilter('systemes')"
+                            x-text="texts[currentLang].projectsSection.filters.systemes">
                             SYSTÈMES &amp; ONG
                         </button>
                     </div>
                 </div>
 
-                <!-- Heavy Cards Grid -->
+                <!-- Dynamic Reactive Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <template x-for="p in filteredProjects()" :key="p.id">
+                        <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_#27272f] group">
+                            <!-- Visual Frame with Lightbox Trigger -->
+                            <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
+                                @click="openLightbox(p.images)">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter brightness-95"
+                                    :src="p.images[0]" :alt="p[currentLang].title" />
+                                <div class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2 py-0.5 font-mono text-[10px] text-white"
+                                    x-text="p[currentLang].badge">
+                                </div>
+                                <div class="absolute bottom-2 right-2 bg-accent-green text-surface-bg px-2 py-0.5 font-mono text-[10px] font-bold"
+                                    x-text="p.type">
+                                </div>
+                                <div class="gallery-indicator">
+                                    <i class="far fa-images"></i> <span x-text="p.images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
+                                </div>
+                            </div>
 
-                    <!-- Card 1: BiodivCenter -->
-                    <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_#27272f] group"
-                        x-show="activeFilter === 'all' || activeFilter === 'web' || activeFilter === 'systemes'">
-                        <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
-                            @click="openLightbox(projects[3].images)">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter brightness-95"
-                                src="assets/projects/biodivcenter/1.jpeg" alt="BiodivCenter" />
-                            <div
-                                class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2 py-0.5 font-mono text-[10px] text-white">
-                                GIZ // PARCS WAP
-                            </div>
-                            <div
-                                class="absolute bottom-2 right-2 bg-accent-green text-surface-bg px-2 py-0.5 font-mono text-[10px] font-bold">
-                                API INATURALIST
-                            </div>
-                            <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span>3 photos</span>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col justify-between flex-1 gap-4">
-                            <div>
-                                <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-green font-semibold uppercase font-mono">CONSERVATION /
-                                        CRITIQUE</span>
-                                    <span class="text-text-faint font-mono">2021-2024</span>
+                            <!-- Card Details -->
+                            <div class="p-5 flex flex-col justify-between flex-1 gap-4">
+                                <div>
+                                    <div class="flex items-center justify-between font-mono text-[11px]">
+                                        <span class="text-accent-green font-semibold uppercase font-mono" x-text="p[currentLang].categoryLabel"></span>
+                                        <span class="text-text-faint font-mono" x-text="p[currentLang].subtitle"></span>
+                                    </div>
+                                    <h3 class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-green transition-colors"
+                                        x-text="p[currentLang].title">
+                                    </h3>
+                                    <p class="font-body text-xs text-text-mid mt-2 leading-relaxed"
+                                        x-text="p[currentLang].description">
+                                    </p>
                                 </div>
-                                <h3
-                                    class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-green transition-colors">
-                                    BiodivCenter
-                                </h3>
-                                <p class="font-body text-xs text-text-mid mt-2 leading-relaxed">
-                                    Monitoring de la faune et valorisation des espèces pour les centres de conservation.
-                                    Télémétrie drones, cartographie Leaflet et synchronisation en direct.
-                                </p>
-                            </div>
-                            <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
-                                <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Laravel</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Leaflet.js</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">MySQL</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
-                                </div>
-                                <div
-                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
-                                    <a href="https://gitlab.com/assogbamanuel6/biodiversite-rbtwap-web" target="_blank"
-                                        class="text-accent-green hover:underline flex items-center gap-1 font-bold">
-                                        <i class="fab fa-gitlab"></i> Dépôt GitLab
-                                    </a>
-                                    <span class="text-text-faint">GIZ Bénin</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Card 2: Le Transporteur / Beninfy -->
-                    <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-amber transition-all shadow-[6px_6px_0px_0px_#27272f] group"
-                        x-show="activeFilter === 'all' || activeFilter === 'mobile'">
-                        <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
-                            @click="openLightbox(projects[1].images)">
-                            <img class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300 filter brightness-95"
-                                src="assets/projects/le_transporteur/client_1.jpg" alt="Le Transporteur" />
-                            <div
-                                class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2 py-0.5 font-mono text-[10px] text-white">
-                                GÉOLOCALISATION
-                            </div>
-                            <div
-                                class="absolute bottom-2 right-2 bg-accent-amber text-surface-bg px-2 py-0.5 font-mono text-[10px] font-bold">
-                                FLUTTER ENGINE
-                            </div>
-                            <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span>19 photos</span>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col justify-between flex-1 gap-4">
-                            <div>
-                                <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-amber font-semibold uppercase font-mono">MOBILE &amp;
-                                        FLOTTE</span>
-                                    <span class="text-text-faint font-mono">PRODUCTION</span>
-                                </div>
-                                <h3
-                                    class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-amber transition-colors">
-                                    Le Transporteur / Beninfy
-                                </h3>
-                                <p class="font-body text-xs text-text-mid mt-2 leading-relaxed">
-                                    Suite logistique complète (Client, Livreur, Superviseur) avec calcul d'itinéraires
-                                    adapté au réseau routier et négociation de tarification en direct.
-                                </p>
-                            </div>
-                            <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
-                                <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Dart</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Google
-                                        Maps API</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Hive
-                                        DB</span>
-                                </div>
-                                <div
-                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
-                                    <span class="text-text-faint">Architecture Monorepo</span>
-                                    <span class="text-accent-amber font-bold">Temps réel</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
+                                    <!-- Tech tags -->
+                                    <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                                        <template x-for="techItem in p.tech" :key="techItem">
+                                            <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech" x-text="techItem"></span>
+                                        </template>
+                                    </div>
 
-                    <!-- Card 3: Grid Generator -->
-                    <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-text-high transition-all shadow-[6px_6px_0px_0px_#27272f] group"
-                        x-show="activeFilter === 'all' || activeFilter === 'web'">
-                        <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
-                            @click="openLightbox(projects[2].images)">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter brightness-95"
-                                src="assets/projects/gridcss/1.png" alt="Grid Generator" />
-                            <div
-                                class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2 py-0.5 font-mono text-[10px] text-white">
-                                DEV TOOLING
-                            </div>
-                            <div
-                                class="absolute bottom-2 right-2 bg-text-high text-surface-bg px-2 py-0.5 font-mono text-[10px] font-bold">
-                                OPEN SOURCE
-                            </div>
-                            <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span>3 photos</span>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col justify-between flex-1 gap-4">
-                            <div>
-                                <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-text-mid font-semibold uppercase font-mono">OUTIL
-                                        ARCHITECTE</span>
-                                    <span class="text-text-faint font-mono">PUBLIC</span>
-                                </div>
-                                <h3
-                                    class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-green transition-colors">
-                                    Grid Generator
-                                </h3>
-                                <p class="font-body text-xs text-text-mid mt-2 leading-relaxed">
-                                    Générateur visuel de grilles CSS complexes avec drag-and-drop fluide pour faciliter
-                                    la composition de mises en page responsives ultra-légères.
-                                </p>
-                            </div>
-                            <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
-                                <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">TypeScript</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Next.js</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Tailwind
-                                        CSS</span>
-                                </div>
-                                <div
-                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
-                                    <a href="https://gitlab.com/learnperso/react/grid-generator/" target="_blank"
-                                        class="text-accent-green hover:underline flex items-center gap-1 font-bold">
-                                        <i class="fab fa-gitlab"></i> Dépôt GitLab
-                                    </a>
-                                    <span class="text-text-faint">Open Source</span>
+                                    <!-- Links Footer -->
+                                    <div class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                        <div>
+                                            <template x-if="p.links.gitlab">
+                                                <a :href="p.links.gitlab" target="_blank"
+                                                    class="text-accent-green hover:underline flex items-center gap-1 font-bold">
+                                                    <i class="fab fa-gitlab"></i> <span x-text="texts[currentLang].projectsSection.viewGitlab"></span>
+                                                </a>
+                                            </template>
+                                            <template x-if="p.links.demo">
+                                                <a :href="p.links.demo" target="_blank"
+                                                    class="text-accent-green hover:underline flex items-center gap-1 font-bold">
+                                                    <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+                                                    <span x-text="texts[currentLang].projectsSection.viewSolution"></span>
+                                                </a>
+                                            </template>
+                                            <template x-if="!p.links.gitlab && !p.links.demo">
+                                                <span class="text-text-faint font-mono text-[11px]">// Production Private</span>
+                                            </template>
+                                        </div>
+                                        <span class="text-text-faint font-mono text-[11px]" x-text="p.id"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Card 4: Iknow -->
-                    <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_#27272f] group"
-                        x-show="activeFilter === 'all' || activeFilter === 'web' || activeFilter === 'systemes'">
-                        <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
-                            @click="openLightbox(projects[5].images)">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter brightness-95"
-                                src="assets/projects/iknow/1.png" alt="iKnow System" />
-                            <div
-                                class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2 py-0.5 font-mono text-[10px] text-white">
-                                ONG PARTENAIRES
-                            </div>
-                            <div
-                                class="absolute bottom-2 right-2 bg-accent-green text-surface-bg px-2 py-0.5 font-mono text-[10px] font-bold">
-                                AWS S3 + REST
-                            </div>
-                            <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span>3 photos</span>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col justify-between flex-1 gap-4">
-                            <div>
-                                <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-green font-semibold uppercase font-mono">SYSTÈME &amp;
-                                        DONNÉES</span>
-                                    <span class="text-text-faint font-mono">MULTISITE</span>
-                                </div>
-                                <h3
-                                    class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-green transition-colors">
-                                    IKnow — Audit Terrain
-                                </h3>
-                                <p class="font-body text-xs text-text-mid mt-2 leading-relaxed">
-                                    Suivi transparent des activités opérationnelles pour les consortiums d'ONG.
-                                    Indexation instantanée de rapports volumineux avec compression sur stockage objet.
-                                </p>
-                            </div>
-                            <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
-                                <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">PHP
-                                        / Laravel</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">AWS
-                                        S3</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Chart.js</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">REST
-                                        APIs</span>
-                                </div>
-                                <div
-                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
-                                    <a href="https://maisondestortues.org/nos-solutions/iknow" target="_blank"
-                                        class="text-accent-green hover:underline flex items-center gap-1 font-bold">
-                                        <span class="material-symbols-outlined text-[15px]">open_in_new</span> Voir la
-                                        solution
-                                    </a>
-                                    <span class="text-text-faint">Maison des Tortues</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 5: Jande & Exam -->
-                    <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-amber transition-all shadow-[6px_6px_0px_0px_#27272f] group"
-                        x-show="activeFilter === 'all' || activeFilter === 'web' || activeFilter === 'systemes'">
-                        <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
-                            @click="openLightbox(projects[4].images)">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter brightness-95"
-                                src="assets/projects/eval/1.jpeg" alt="Exam & Jande" />
-                            <div
-                                class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2 py-0.5 font-mono text-[10px] text-white">
-                                ÉDUCATION LOCALE
-                            </div>
-                            <div
-                                class="absolute bottom-2 right-2 bg-accent-amber text-surface-bg px-2 py-0.5 font-mono text-[10px] font-bold">
-                                BASSE LATENCE
-                            </div>
-                            <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span>3 photos</span>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col justify-between flex-1 gap-4">
-                            <div>
-                                <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-amber font-semibold uppercase font-mono">PÉDAGOGIE &amp;
-                                        TEST</span>
-                                    <span class="text-text-faint font-mono">OFFLINE</span>
-                                </div>
-                                <h3
-                                    class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-amber transition-colors">
-                                    Jande &amp; Exam
-                                </h3>
-                                <p class="font-body text-xs text-text-mid mt-2 leading-relaxed">
-                                    Système d'évaluation de compétences et d'acquisition de langues locales adapté aux
-                                    agents de terrain sans bagage technique préalable.
-                                </p>
-                            </div>
-                            <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
-                                <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Laravel</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Livewire</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Alpine.js</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">SQLite</span>
-                                </div>
-                                <div
-                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
-                                    <a href="https://gitlab.com/assogbamanuel6/learningapp/" target="_blank"
-                                        class="text-accent-green hover:underline flex items-center gap-1 font-bold">
-                                        <i class="fab fa-gitlab"></i> Dépôt GitLab
-                                    </a>
-                                    <span class="text-text-faint">DYRA ONG</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6: Beninfy Mobile -->
-                    <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_#27272f] group"
-                        x-show="activeFilter === 'all' || activeFilter === 'mobile'">
-                        <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
-                            @click="openLightbox(projects[6].images)">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter brightness-95"
-                                src="assets/projects/beninfy/1.png" alt="Beninfy Mobile" />
-                            <div
-                                class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2 py-0.5 font-mono text-[10px] text-white">
-                                CULTURE // BÉNIN
-                            </div>
-                            <div
-                                class="absolute bottom-2 right-2 bg-accent-green text-surface-bg px-2 py-0.5 font-mono text-[10px] font-bold">
-                                MAPS API
-                            </div>
-                            <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span>3 photos</span>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col justify-between flex-1 gap-4">
-                            <div>
-                                <div class="flex items-center justify-between font-mono text-[11px]">
-                                    <span class="text-accent-green font-semibold uppercase font-mono">MOBILE &amp;
-                                        CULTURE</span>
-                                    <span class="text-text-faint font-mono">CROSS-PLATFORM</span>
-                                </div>
-                                <h3
-                                    class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-green transition-colors">
-                                    Beninfy Mobile
-                                </h3>
-                                <p class="font-body text-xs text-text-mid mt-2 leading-relaxed">
-                                    Guide culturel et touristique interactif du Bénin avec géolocalisation, suggestions
-                                    patrimoniales dynamiques et fiches immersives.
-                                </p>
-                            </div>
-                            <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
-                                <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Flutter</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Dart</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Google
-                                        Maps API</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Figma</span>
-                                </div>
-                                <div
-                                    class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
-                                    <span class="text-text-faint">Offline-First Engine</span>
-                                    <span class="text-accent-green font-bold">Bénin Culture</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 7: Infrastructure & Edge -->
-                    <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_#27272f] group"
-                        x-show="activeFilter === 'all' || activeFilter === 'systemes'">
-                        <div class="p-6 flex flex-col justify-between flex-1 gap-4">
-                            <div class="flex flex-col gap-3">
-                                <div
-                                    class="flex items-center justify-between border-b border-border-tech pb-2 font-mono text-[11px]">
-                                    <span class="text-accent-green font-bold uppercase tracking-wider">TOPOLOGY // EDGE
-                                        OPS</span>
-                                    <span class="material-symbols-outlined text-accent-green text-[18px]">dns</span>
-                                </div>
-                                <h3
-                                    class="font-display font-bold text-xl text-text-high group-hover:text-accent-green transition-colors">
-                                    Micro-Serveurs &amp; Edge Relays
-                                </h3>
-                                <p class="font-body text-xs text-text-mid leading-relaxed">
-                                    Installation et conteneurisation de serveurs autonomes sur matériel reconditionné
-                                    pour bases de données déconnectées (Bénin, Niger, Burkina). Redondance dès
-                                    reconnexion.
-                                </p>
-                                <!-- Terminal Shell -->
-                                <div
-                                    class="bg-black/90 p-3 border border-zinc-800 font-mono text-[11px] text-accent-green mt-2 space-y-1">
-                                    <div>$ docker compose up --detach</div>
-                                    <div class="text-zinc-400">✔ edge_sync: healthy [0.08s]</div>
-                                    <div class="text-zinc-400">✔ zero_cloud_cost: true</div>
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap gap-1 font-mono text-[11px] pt-3 border-t border-border-tech">
-                                <span
-                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Docker</span>
-                                <span
-                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Nginx</span>
-                                <span
-                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">Bash</span>
-                                <span
-                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech">cPanel</span>
-                            </div>
-                        </div>
-                    </div>
+                    </template>
+                </div>
 
                 </div>
             </div>
