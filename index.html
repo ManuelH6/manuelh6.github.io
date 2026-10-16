@@ -373,7 +373,8 @@
                 <!-- Language Switcher Button (FR / EN) -->
                 <button @click="toggleLanguage()"
                     class="p-2 border border-border-tech bg-surface-panel text-text-high hover:border-accent-green hover:text-accent-green transition-all font-mono text-xs flex items-center gap-1.5 shadow-[2px_2px_0px_0px_var(--border-tech)] cursor-pointer"
-                    :title="currentLang === 'fr' ? 'Switch to English' : 'Passer en Français'" aria-label="Toggle language">
+                    :title="currentLang === 'fr' ? 'Switch to English' : 'Passer en Français'"
+                    aria-label="Toggle language">
                     <span class="material-symbols-outlined text-[18px]">translate</span>
                     <span class="font-mono text-[11px] font-bold" x-text="currentLang === 'fr' ? 'EN' : 'FR'">EN</span>
                 </button>
@@ -469,10 +470,13 @@
                     <div
                         class="inline-flex items-center gap-2 px-3 py-1 bg-surface-panel border border-border-tech text-text-high">
                         <span class="w-2 h-2 bg-accent-green"></span>
-                        <span class="tracking-widest uppercase font-bold" x-text="texts[currentLang].hero.role">ARCHITECTE LOGICIEL &amp; DÉVELOPPEUR FULL-STACK</span>
+                        <span class="tracking-widest uppercase font-bold"
+                            x-text="texts[currentLang].hero.role">ARCHITECTE LOGICIEL &amp; DÉVELOPPEUR
+                            FULL-STACK</span>
                     </div>
                     <div class="flex items-center gap-3 text-text-faint">
-                        <span x-text="texts[currentLang].hero.badgeSecondary">[GIZ / PARCS WAP / ONG] // EDGE &amp; OFFLINE-FIRST</span>
+                        <span x-text="texts[currentLang].hero.badgeSecondary">[GIZ / PARCS WAP / ONG] // EDGE &amp;
+                            OFFLINE-FIRST</span>
                     </div>
                 </div>
 
@@ -480,8 +484,10 @@
                 <div class="flex flex-col gap-6">
                     <h1
                         class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.92] text-text-high">
-                        <span x-text="texts[currentLang].hero.titlePart1">CONCEVOIR DES SYSTÈMES D'EXCEPTION.</span> <br />
-                        <span class="stroke-text hover:text-text-high transition-colors" x-text="texts[currentLang].hero.titlePart2">BÂTIR POUR</span>
+                        <span x-text="texts[currentLang].hero.titlePart1">CONCEVOIR DES SYSTÈMES D'EXCEPTION.</span>
+                        <br />
+                        <span class="stroke-text hover:text-text-high transition-colors"
+                            x-text="texts[currentLang].hero.titlePart2">BÂTIR POUR</span>
                         <span
                             class="inline-block bg-accent-green text-surface-bg px-3 py-0 my-1 font-black transform -rotate-1 shadow-[6px_6px_0px_0px_var(--text-high)]"
                             x-text="texts[currentLang].hero.titleHighlight">
@@ -492,8 +498,11 @@
                         <div class="lg:col-span-8">
                             <p
                                 class="font-display font-medium text-xl sm:text-2xl lg:text-3xl text-text-high leading-snug">
-                                <span x-text="texts[currentLang].hero.subtitleMain">Je conçois et développe des architectures web et mobiles sur-mesure pour les entreprises et visions ambitieuses.</span>
-                                <span class="text-accent-green block mt-2 font-normal" x-text="texts[currentLang].hero.subtitleSub">
+                                <span x-text="texts[currentLang].hero.subtitleMain">Je conçois et développe des
+                                    architectures web et mobiles sur-mesure pour les entreprises et visions
+                                    ambitieuses.</span>
+                                <span class="text-accent-green block mt-2 font-normal"
+                                    x-text="texts[currentLang].hero.subtitleSub">
                                     Celles qui refusent le générique, exigent une rigueur technique absolue et veulent
                                     marquer les esprits par des solutions qui racontent une vraie histoire.
                                 </span>
@@ -505,14 +514,20 @@
                             <div
                                 class="flex items-center justify-between border-b border-border-tech pb-2 mb-3 font-mono text-[11px] text-text-faint uppercase tracking-widest">
                                 <span x-text="texts[currentLang].hero.premiseLabel">// PRÉMISSE OPÉRATIONNELLE</span>
-                                <span class="text-accent-green font-bold" x-text="texts[currentLang].hero.premiseMode">STRICT-MODE</span>
+                                <span class="text-accent-green font-bold"
+                                    x-text="texts[currentLang].hero.premiseMode">STRICT-MODE</span>
                             </div>
                             <div class="space-y-3 font-body text-xs text-text-mid leading-relaxed">
                                 <p x-text="texts[currentLang].hero.premiseTextP1">
-                                    5+ ans d'ingénierie forgés face aux contraintes du monde réel : institutions internationales (GIZ), régies de presse, FinTech et commerce de proximité.
+                                    5+ ans d'ingénierie forgés face aux contraintes du monde réel : institutions
+                                    internationales (GIZ), régies de presse, FinTech et commerce de proximité.
                                 </p>
                                 <p x-text="texts[currentLang].hero.premiseTextP2">
-                                    Des systèmes de suivi, outils de collecte et systèmes d'aide à la décision aux PWA, passant par l'intégration de WebTV et passerelles de paiement. De l'intégration de flux structurés par IA/LLM aux interfaces adaptées aux utilisateurs déscolarisés : pas de dépendances superflues. Du code sobre, mesurable et directement utile à ceux qui l’opèrent.
+                                    Des systèmes de suivi, outils de collecte et systèmes d'aide à la décision aux PWA,
+                                    passant par l'intégration de WebTV et passerelles de paiement. De l'intégration de
+                                    flux structurés par IA/LLM aux interfaces adaptées aux utilisateurs déscolarisés :
+                                    pas de dépendances superflues. Du code sobre, mesurable et directement utile à ceux
+                                    qui l’opèrent.
                                 </p>
                             </div>
                             <div class="mt-4 pt-3 border-t border-border-tech flex items-center gap-2 flex-wrap">
@@ -532,16 +547,21 @@
                 <!-- Ledger Indicators (Fixed 3 Monumental Brutalist Metrics) -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-border-tech">
                     <template x-for="(m, idx) in texts[currentLang].hero.metrics" :key="idx">
-                        <div class="bg-surface-panel border border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-green transition-all shadow-sm">
+                        <div
+                            class="bg-surface-panel border border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-green transition-all shadow-sm">
                             <div class="flex items-center justify-between font-mono text-xs text-text-faint uppercase">
                                 <span x-text="m.label"></span>
-                                <span :class="idx === 1 ? 'text-accent-amber' : 'text-accent-green'" class="font-bold" x-text="m.tag"></span>
+                                <span :class="idx === 1 ? 'text-accent-amber' : 'text-accent-green'" class="font-bold"
+                                    x-text="m.tag"></span>
                             </div>
                             <div class="my-3">
-                                <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high" x-text="m.val"></span>
-                                <span :class="idx === 1 ? 'text-accent-amber' : 'text-accent-green'" class="font-mono text-2xl font-bold" x-text="m.unit"></span>
+                                <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high"
+                                    x-text="m.val"></span>
+                                <span :class="idx === 1 ? 'text-accent-amber' : 'text-accent-green'"
+                                    class="font-mono text-2xl font-bold" x-text="m.unit"></span>
                             </div>
-                            <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2" x-text="m.desc"></div>
+                            <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2"
+                                x-text="m.desc"></div>
                         </div>
                     </template>
                 </div>
@@ -562,8 +582,7 @@
                             <span class="w-2 h-2 bg-accent-green"></span>
                             <span x-text="texts[currentLang].featured.tag">SÉLECTION FOCUS // PROJET PHARE</span>
                         </div>
-                        <h2
-                            class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
+                        <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
                             x-text="texts[currentLang].featured.title">
                             FIELDOZ — IMPACT RÉEL &amp; TÉLÉMÉTRIE
                         </h2>
@@ -603,7 +622,8 @@
                                 <span x-text="texts[currentLang].featured.syncStatus">SYNC HORS-LIGNE VÉRIFIÉE</span>
                             </div>
                             <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span x-text="projects[0].images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
+                                <i class="far fa-images"></i> <span
+                                    x-text="projects[0].images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
                             </div>
                         </div>
 
@@ -611,10 +631,10 @@
                         <div class="grid grid-cols-3 gap-3 font-mono">
                             <template x-for="(ind, iIdx) in texts[currentLang].featured.indicators" :key="iIdx">
                                 <div class="border border-border-tech bg-surface-subtle p-3 text-center">
-                                    <div class="text-[10px] text-text-faint uppercase font-bold" x-text="ind.label"></div>
+                                    <div class="text-[10px] text-text-faint uppercase font-bold" x-text="ind.label">
+                                    </div>
                                     <div class="text-xl sm:text-2xl font-bold mt-1 font-mono"
-                                        :class="iIdx === 1 ? 'text-text-high' : 'text-accent-green'"
-                                        x-text="ind.val">
+                                        :class="iIdx === 1 ? 'text-text-high' : 'text-accent-green'" x-text="ind.val">
                                     </div>
                                 </div>
                             </template>
@@ -624,8 +644,7 @@
                     <!-- Technical Explanatory Panel (Col 5) -->
                     <div class="lg:col-span-5 p-6 flex flex-col justify-between gap-6 bg-surface-panel">
                         <div class="flex flex-col gap-4">
-                            <div
-                                class="inline-block font-mono text-[11px] text-accent-amber font-semibold tracking-wider uppercase"
+                            <div class="inline-block font-mono text-[11px] text-accent-amber font-semibold tracking-wider uppercase"
                                 x-text="texts[currentLang].featured.sub">
                                 // PLATEFORME SAAS D'IMPACT SOCIAL
                             </div>
@@ -640,8 +659,7 @@
                                 absolue aux bailleurs de fonds et aux équipes sur le terrain.
                             </p>
                             <div class="border-l-4 border-accent-green bg-surface-subtle p-4 border border-border-tech">
-                                <div
-                                    class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold"
+                                <div class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold"
                                     x-text="texts[currentLang].featured.quoteTitle">
                                     EXCELLENCE TECHNIQUE &amp; TERRAIN
                                 </div>
@@ -693,33 +711,38 @@
                     class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-tech pb-4">
                     <div>
                         <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
-                            x-text="texts[currentLang].doctrine.tag">DOCTRINE D'INGÉNIERIE // RÈGLES D'AIRAIN</div>
-                        <h2
-                            class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1"
+                            x-text="texts[currentLang].doctrine.tag">PHILOSOPHIE &amp; APPROCHE</div>
+                        <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1"
                             x-text="texts[currentLang].doctrine.title">
-                            L'ANTITHÈSE DU CODE VERBEUX.
+                            UNE DÉMARCHE D'EXCELLENCE : PRÉCISION &amp; ARTISANAT.
                         </h2>
                     </div>
-                    <p class="font-body text-sm text-text-mid max-w-md"
-                        x-text="texts[currentLang].doctrine.desc">
-                        Les environnements complexes et le travail terrain ne pardonnent pas la complaisance technique. Chaque choix d'architecture obéit à 4 principes intangibles :
+                    <p class="font-body text-sm text-text-mid max-w-md" x-text="texts[currentLang].doctrine.desc">
+                        Loin des effets de mode et du générique, chaque choix technique est pensé pour servir l'identité
+                        du projet, l'évolutivité long terme et l'impact visuel.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <template x-for="r in texts[currentLang].doctrine.rules" :key="r.num">
-                        <div class="bg-surface-panel border-2 border-border-bright p-6 flex flex-col justify-between gap-6 relative shadow-[6px_6px_0px_0px_#27272f] hover:border-accent-green transition-colors group">
-                            <div class="flex flex-col gap-3">
-                                <div class="flex items-center justify-between border-b border-border-tech pb-2">
-                                    <span class="font-mono text-2xl font-black text-accent-green" x-text="'[' + r.num + ']'"></span>
-                                    <span class="font-mono text-[10px] text-text-faint uppercase tracking-widest">RÈGLE // STRICT</span>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <template x-for="p in texts[currentLang].doctrine.principles" :key="p.num">
+                        <div class="bg-surface-panel border-2 border-border-bright p-6 flex flex-col justify-between gap-8 relative shadow-[6px_6px_0px_0px_#27272f] transition-colors group"
+                            :class="p.borderHover">
+                            <div class="flex flex-col gap-4">
+                                <div class="flex items-center justify-between border-b border-border-tech pb-3">
+                                    <span class="font-mono text-3xl font-black" :class="'text-' + p.colorClass"
+                                        x-text="'[' + p.num + ']'"></span>
+                                    <span
+                                        class="font-mono text-[10px] text-text-faint uppercase tracking-widest font-bold"
+                                        x-text="p.category"></span>
                                 </div>
-                                <h3 class="font-display font-bold text-lg text-text-high leading-snug" x-text="r.title"></h3>
-                                <p class="font-body text-xs text-text-mid leading-relaxed" x-text="r.text"></p>
+                                <h3 class="font-display font-bold text-xl text-text-high leading-snug" x-text="p.title">
+                                </h3>
+                                <p class="font-body text-sm text-text-mid leading-relaxed" x-text="p.text"></p>
                             </div>
-                            <div class="font-mono text-[11px] text-accent-green border-t border-border-tech pt-2 flex items-center justify-between">
-                                <span>// Invariant</span>
-                                <span class="text-text-faint font-bold" x-text="'R_' + r.num"></span>
+                            <div class="font-mono text-xs border-t border-border-tech pt-3 flex items-center justify-between"
+                                :class="'text-' + p.colorClass">
+                                <span x-text="p.footerLeft"></span>
+                                <span class="text-text-faint font-bold" x-text="p.footerRight"></span>
                             </div>
                         </div>
                     </template>
@@ -756,22 +779,19 @@
                         <button
                             class="filter-btn px-3.5 py-1.5 font-mono text-xs uppercase font-bold transition-all cursor-pointer"
                             :class="activeFilter === 'web' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('web')"
-                            x-text="texts[currentLang].projectsSection.filters.web">
+                            @click="setFilter('web')" x-text="texts[currentLang].projectsSection.filters.web">
                             WEB
                         </button>
                         <button
                             class="filter-btn px-3.5 py-1.5 font-mono text-xs uppercase font-bold transition-all cursor-pointer"
                             :class="activeFilter === 'mobile' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('mobile')"
-                            x-text="texts[currentLang].projectsSection.filters.mobile">
+                            @click="setFilter('mobile')" x-text="texts[currentLang].projectsSection.filters.mobile">
                             MOBILE
                         </button>
                         <button
                             class="filter-btn px-3.5 py-1.5 font-mono text-xs uppercase font-bold transition-all cursor-pointer"
                             :class="activeFilter === 'systemes' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('systemes')"
-                            x-text="texts[currentLang].projectsSection.filters.systemes">
+                            @click="setFilter('systemes')" x-text="texts[currentLang].projectsSection.filters.systemes">
                             SYSTÈMES &amp; ONG
                         </button>
                     </div>
@@ -780,7 +800,8 @@
                 <!-- Dynamic Reactive Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <template x-for="p in filteredProjects()" :key="p.id">
-                        <div class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_#27272f] group">
+                        <div
+                            class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_#27272f] group">
                             <!-- Visual Frame with Lightbox Trigger -->
                             <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
                                 @click="openLightbox(p.images)">
@@ -793,7 +814,8 @@
                                     x-text="p.type">
                                 </div>
                                 <div class="gallery-indicator">
-                                    <i class="far fa-images"></i> <span x-text="p.images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
+                                    <i class="far fa-images"></i> <span
+                                        x-text="p.images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
                                 </div>
                             </div>
 
@@ -801,7 +823,8 @@
                             <div class="p-5 flex flex-col justify-between flex-1 gap-4">
                                 <div>
                                     <div class="flex items-center justify-between font-mono text-[11px]">
-                                        <span class="text-accent-green font-semibold uppercase font-mono" x-text="p[currentLang].categoryLabel"></span>
+                                        <span class="text-accent-green font-semibold uppercase font-mono"
+                                            x-text="p[currentLang].categoryLabel"></span>
                                         <span class="text-text-faint font-mono" x-text="p[currentLang].subtitle"></span>
                                     </div>
                                     <h3 class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-green transition-colors"
@@ -816,28 +839,35 @@
                                     <!-- Tech tags -->
                                     <div class="flex flex-wrap gap-1 font-mono text-[11px]">
                                         <template x-for="techItem in p.tech" :key="techItem">
-                                            <span class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech" x-text="techItem"></span>
+                                            <span
+                                                class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech"
+                                                x-text="techItem"></span>
                                         </template>
                                     </div>
 
                                     <!-- Links Footer -->
-                                    <div class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                    <div
+                                        class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs">
                                         <div>
                                             <template x-if="p.links.gitlab">
                                                 <a :href="p.links.gitlab" target="_blank"
                                                     class="text-accent-green hover:underline flex items-center gap-1 font-bold">
-                                                    <i class="fab fa-gitlab"></i> <span x-text="texts[currentLang].projectsSection.viewGitlab"></span>
+                                                    <i class="fab fa-gitlab"></i> <span
+                                                        x-text="texts[currentLang].projectsSection.viewGitlab"></span>
                                                 </a>
                                             </template>
                                             <template x-if="p.links.demo">
                                                 <a :href="p.links.demo" target="_blank"
                                                     class="text-accent-green hover:underline flex items-center gap-1 font-bold">
-                                                    <span class="material-symbols-outlined text-[15px]">open_in_new</span>
-                                                    <span x-text="texts[currentLang].projectsSection.viewSolution"></span>
+                                                    <span
+                                                        class="material-symbols-outlined text-[15px]">open_in_new</span>
+                                                    <span
+                                                        x-text="texts[currentLang].projectsSection.viewSolution"></span>
                                                 </a>
                                             </template>
                                             <template x-if="!p.links.gitlab && !p.links.demo">
-                                                <span class="text-text-faint font-mono text-[11px]">// Production Private</span>
+                                                <span class="text-text-faint font-mono text-[11px]">// Production
+                                                    Private</span>
                                             </template>
                                         </div>
                                         <span class="text-text-faint font-mono text-[11px]" x-text="p.id"></span>
@@ -848,7 +878,7 @@
                     </template>
                 </div>
 
-                </div>
+            </div>
             </div>
         </section>
 
@@ -888,12 +918,16 @@
                     <!-- Bottom Metric Ribbons -->
                     <div class="grid grid-cols-2 gap-4 pt-2">
                         <div class="border border-border-tech bg-surface-panel p-3">
-                            <div class="font-mono text-2xl font-bold text-text-high" x-text="texts[currentLang].parcours.countriesCount">03 PAYS</div>
-                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase" x-text="texts[currentLang].parcours.countriesList">Bénin • Burkina • Niger</div>
+                            <div class="font-mono text-2xl font-bold text-text-high"
+                                x-text="texts[currentLang].parcours.countriesCount">03 PAYS</div>
+                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase"
+                                x-text="texts[currentLang].parcours.countriesList">Bénin - Burkina - Niger</div>
                         </div>
                         <div class="border border-border-tech bg-surface-panel p-3">
-                            <div class="font-mono text-2xl font-bold text-accent-green" x-text="texts[currentLang].parcours.mvpDelay">1 SEMAINE</div>
-                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase" x-text="texts[currentLang].parcours.mvpDesc">Délai moyen MVP opérationnel</div>
+                            <div class="font-mono text-2xl font-bold text-accent-green"
+                                x-text="texts[currentLang].parcours.mvpDelay">1 SEMAINE</div>
+                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase"
+                                x-text="texts[currentLang].parcours.mvpDesc">Délai moyen MVP opérationnel</div>
                         </div>
                     </div>
 
@@ -905,12 +939,14 @@
                         </div>
                         <div class="space-y-3">
                             <template x-for="(edu, eIdx) in texts[currentLang].education.items" :key="eIdx">
-                                <div class="bg-surface-panel border border-border-tech p-3.5 shadow-sm hover:border-accent-green transition-colors">
+                                <div
+                                    class="bg-surface-panel border border-border-tech p-3.5 shadow-sm hover:border-accent-green transition-colors">
                                     <div class="flex items-center justify-between text-xs font-mono">
                                         <span class="text-accent-green font-bold" x-text="edu.period"></span>
                                         <span class="text-text-faint font-semibold" x-text="edu.school"></span>
                                     </div>
-                                    <div class="font-display font-bold text-sm text-text-high mt-1" x-text="edu.title"></div>
+                                    <div class="font-display font-bold text-sm text-text-high mt-1" x-text="edu.title">
+                                    </div>
                                     <div class="font-body text-xs text-text-mid mt-1" x-text="edu.description"></div>
                                 </div>
                             </template>
@@ -927,9 +963,12 @@
 
                     <!-- Dynamic Experience items -->
                     <template x-for="(exp, expIdx) in texts[currentLang].experience.items" :key="expIdx">
-                        <div class="bg-surface-panel border-2 border-border-bright p-5 hover:border-accent-green transition-all shadow-[4px_4px_0px_0px_#27272f]">
-                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
-                                <span class="font-mono text-xs font-bold text-accent-green px-2 py-0.5 bg-accent-green/10 border border-accent-green/40"
+                        <div
+                            class="bg-surface-panel border-2 border-border-bright p-5 hover:border-accent-green transition-all shadow-[4px_4px_0px_0px_#27272f]">
+                            <div
+                                class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
+                                <span
+                                    class="font-mono text-xs font-bold text-accent-green px-2 py-0.5 bg-accent-green/10 border border-accent-green/40"
                                     x-text="exp.period">
                                 </span>
                                 <span class="font-mono text-xs text-text-faint font-bold" x-text="exp.tag"></span>
@@ -945,171 +984,47 @@
                 </div>
             </div>
         </section>
-            </div>
-        </section>
-
-        <!-- ==========================================
-         SECTION 6 : COMPÉTENCES & BOÎTE À OUTILS
-         ========================================== -->
+        SECTION 6 : COMPÉTENCES & BOÎTE À OUTILS
+        ========================================== -->
         <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="outils">
             <div class="max-w-7xl mx-auto flex flex-col gap-10">
                 <div class="border-b border-border-tech pb-4">
-                    <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold">MAÎTRISE
-                        TECHNIQUE DIRECTE</div>
-                    <h2
-                        class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1">
+                    <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
+                        x-text="texts[currentLang].skillsSection.tag">MAÎTRISE TECHNIQUE DIRECTE</div>
+                    <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
+                        x-text="texts[currentLang].skillsSection.title">
                         LA BOÎTE À OUTILS SANS ARTIFICE.
                     </h2>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
-                    <!-- Pillar: Backend -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f]">
-                        <div>
-                            <div
-                                class="flex items-center justify-between border-b border-border-tech pb-2 mb-4 text-xs font-bold text-accent-green">
-                                <span>01 // BACKEND &amp; DATA</span>
-                                <span class="material-symbols-outlined text-[16px]">database</span>
+                    <template x-for="pillar in texts[currentLang].skillsSection.pillars" :key="pillar.num">
+                        <div
+                            class="bg-surface-panel border-2 border-border-bright p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f] hover:border-accent-green transition-colors">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-border-tech pb-2 mb-4 text-xs font-bold"
+                                    :class="'text-' + pillar.color">
+                                    <span x-text="pillar.num + ' // ' + pillar.category"></span>
+                                    <span class="material-symbols-outlined text-[16px]" x-text="pillar.icon"></span>
+                                </div>
+                                <ul class="space-y-2 text-xs">
+                                    <template x-for="item in pillar.items" :key="item.name">
+                                        <li
+                                            class="flex items-center justify-between py-1 border-b border-border-tech/60">
+                                            <span
+                                                :class="item.highlight ? 'text-text-high font-medium' : 'text-text-mid'"
+                                                x-text="item.name"></span>
+                                            <span
+                                                :class="item.highlight ? 'text-' + pillar.color + ' font-semibold' : 'text-text-faint'"
+                                                x-text="item.badge"></span>
+                                        </li>
+                                    </template>
+                                </ul>
                             </div>
-                            <ul class="space-y-2 text-xs">
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-high">PHP / Laravel</span>
-                                    <span class="text-accent-green font-semibold">Avancé</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Node.js / Express</span>
-                                    <span class="text-text-faint">Robuste</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Python / Django</span>
-                                    <span class="text-text-faint">Data/Scrap</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Architecture REST</span>
-                                    <span class="text-accent-green font-semibold">Standard</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1">
-                                    <span class="text-text-mid">MySQL &amp; SQLite</span>
-                                    <span class="text-text-faint">Optimisé</span>
-                                </li>
-                            </ul>
+                            <div class="pt-4 border-t border-border-tech text-[10px] text-text-faint uppercase mt-4"
+                                x-text="pillar.tagline"></div>
                         </div>
-                        <div class="pt-4 border-t border-border-tech text-[10px] text-text-faint uppercase mt-4">
-                            // Core stability &amp; logic
-                        </div>
-                    </div>
-
-                    <!-- Pillar: Frontend & Mobile -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f]">
-                        <div>
-                            <div
-                                class="flex items-center justify-between border-b border-border-tech pb-2 mb-4 text-xs font-bold text-accent-amber">
-                                <span>02 // CLIENT &amp; MOBILE</span>
-                                <span class="material-symbols-outlined text-[16px]">devices</span>
-                            </div>
-                            <ul class="space-y-2 text-xs">
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-high">Flutter / Dart</span>
-                                    <span class="text-accent-amber font-semibold">Cross-platform</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">React / Next.js</span>
-                                    <span class="text-text-faint">SSR/SSG</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Tailwind CSS</span>
-                                    <span class="text-accent-amber font-semibold">Zero-Runtime</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Alpine &amp; Livewire</span>
-                                    <span class="text-accent-amber font-semibold">Ultra-Léger</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1">
-                                    <span class="text-text-mid">TypeScript</span>
-                                    <span class="text-text-faint">Strict Type</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="pt-4 border-t border-border-tech text-[10px] text-text-faint uppercase mt-4">
-                            // Reactive &amp; low overhead
-                        </div>
-                    </div>
-
-                    <!-- Pillar: Infra & DevOps -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f]">
-                        <div>
-                            <div
-                                class="flex items-center justify-between border-b border-border-tech pb-2 mb-4 text-xs font-bold text-text-high">
-                                <span>03 // INFRA &amp; EDGE</span>
-                                <span class="material-symbols-outlined text-[16px]">cloud_sync</span>
-                            </div>
-                            <ul class="space-y-2 text-xs">
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-high">Docker &amp; Compose</span>
-                                    <span class="text-text-high font-semibold">Reproductible</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">AWS S3 / Stockage</span>
-                                    <span class="text-text-faint">Frugal</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Nginx Reverse Proxy</span>
-                                    <span class="text-text-faint">Perf</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Git &amp; GitLab CI</span>
-                                    <span class="text-text-faint">Pipelines</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1">
-                                    <span class="text-text-mid">Linux VPS / cPanel</span>
-                                    <span class="text-text-faint">Autonome</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="pt-4 border-t border-border-tech text-[10px] text-text-faint uppercase mt-4">
-                            // Zero cloud sprawl
-                        </div>
-                    </div>
-
-                    <!-- Pillar: Posture Humaine -->
-                    <div
-                        class="bg-surface-panel border-2 border-border-bright p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f]">
-                        <div>
-                            <div
-                                class="flex items-center justify-between border-b border-border-tech pb-2 mb-4 text-xs font-bold text-accent-green">
-                                <span>04 // DÉMARCHE HUMAINE</span>
-                                <span class="material-symbols-outlined text-[16px]">handshake</span>
-                            </div>
-                            <ul class="space-y-2 text-xs">
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-high">Diagnostic Froid</span>
-                                    <span class="text-accent-green font-semibold">Sous 48h</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Pédagogie &amp; Accomp.</span>
-                                    <span class="text-text-faint">Sans jargon</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Documentation</span>
-                                    <span class="text-text-faint">Autonomie</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1 border-b border-border-tech/60">
-                                    <span class="text-text-mid">Gestion du Stress</span>
-                                    <span class="text-accent-green font-semibold">Éprouvé</span>
-                                </li>
-                                <li class="flex items-center justify-between py-1">
-                                    <span class="text-text-mid">Écoute Utilisateur</span>
-                                    <span class="text-text-faint">Directe</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="pt-4 border-t border-border-tech text-[10px] text-text-faint uppercase mt-4">
-                            // Pragmatisme opérationnel
-                        </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </section>
@@ -1128,162 +1043,171 @@
                             x-text="texts[currentLang].contact.tag">// CANAL DIRECT // SANS INTERMÉDIAIRE</div>
                         <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1"
                             x-text="texts[currentLang].contact.title">
-                            PARLER D'UN SYSTÈME À BÂTIR.
+                            DÉMARRONS UN PROJET D'ENVERGURE.
                         </h2>
                         <p class="font-body text-sm text-text-mid mt-2 leading-relaxed"
                             x-text="texts[currentLang].contact.subtitle">
-                            Pas de standardiste, pas de commercial. Vos messages arrivent directement sur mon terminal de travail.
+                            Pas de formulaire impersonnel ni de filtre commercial. Contactez-moi directement via les
+                            canaux ci-dessous pour échanger sur vos objectifs d'architecture, vos plateformes ou vos
+                            missions.
                         </p>
-                        <p class="font-mono text-xs text-accent-green mt-2 font-bold">
-                            Intervention en autonomie complète, basée sur des livrables précis et un alignement stratégique clair dès le départ.
+                        <p class="font-mono text-xs text-accent-green mt-2 font-bold"
+                            x-text="texts[currentLang].contact.guarantee">
+                            Intervention en autonomie complète, basée sur des livrables précis et un alignement
+                            stratégique clair dès le départ.
                         </p>
                     </div>
                     <div
                         class="border border-border-tech bg-surface-subtle p-4 font-mono text-xs flex flex-col gap-1 min-w-[280px]">
-                        <span class="text-text-faint text-[10px] uppercase font-bold">CANAL OFFICIEL // EMAIL</span>
+                        <span class="text-text-faint text-[10px] uppercase font-bold"
+                            x-text="texts[currentLang].contact.emailBadge">CANAL OFFICIEL // EMAIL</span>
                         <a class="text-base font-bold text-accent-green hover:underline"
                             href="mailto:assogbamanuel6@gmail.com">
                             assogbamanuel6@gmail.com
                         </a>
-                        <span class="text-text-faint text-[11px] mt-1">Garantie de réponse &lt; 24h ouvrées</span>
+                        <span class="text-text-faint text-[11px] mt-1"
+                            x-text="texts[currentLang].contact.emailResponseTime">Garantie de réponse &lt; 24h
+                            ouvrées</span>
                     </div>
                 </div>
 
-                <!-- Form + Direct buttons -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    <!-- Form (Col 8) -->
-                    <form class="lg:col-span-8 flex flex-col gap-5" @submit.prevent="submitForm()">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="flex flex-col gap-1.5 font-mono text-xs">
-                                <label class="text-text-faint uppercase tracking-wider font-bold" for="name"
-                                    x-text="texts[currentLang].contact.form.nameLabel">NOM &amp; PRÉNOM</label>
-                                <input x-model="form.name"
-                                    class="w-full px-3.5 py-3 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all"
-                                    id="name" :placeholder="texts[currentLang].contact.form.namePlaceholder" required="" type="text" />
-                            </div>
-                            <div class="flex flex-col gap-1.5 font-mono text-xs">
-                                <label class="text-text-faint uppercase tracking-wider font-bold" for="email"
-                                    x-text="texts[currentLang].contact.form.emailLabel">ADRESSE EMAIL PROFESSIONNELLE</label>
-                                <input x-model="form.email"
-                                    class="w-full px-3.5 py-3 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all"
-                                    id="email" :placeholder="texts[currentLang].contact.form.emailPlaceholder" required="" type="email" />
-                            </div>
-                        </div>
-
-                        <!-- Radio choices -->
-                        <div class="flex flex-col gap-2 font-mono text-xs">
-                            <label class="text-text-faint uppercase tracking-wider font-bold"
-                                x-text="texts[currentLang].contact.form.projectTypeLabel">NATURE DU SYSTÈME</label>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                                <label
-                                    class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
-                                    <input x-model="form.project_type"
-                                        class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
-                                        type="radio" value="systeme" />
-                                    <span class="text-text-high text-[11px] font-mono">Système Web</span>
-                                </label>
-                                <label
-                                    class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
-                                    <input x-model="form.project_type"
-                                        class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
-                                        type="radio" value="mobile" />
-                                    <span class="text-text-high text-[11px] font-mono">App Mobile</span>
-                                </label>
-                                <label
-                                    class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
-                                    <input x-model="form.project_type"
-                                        class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
-                                        type="radio" value="audit" />
-                                    <span class="text-text-high text-[11px] font-mono">Audit &amp; Infra</span>
-                                </label>
-                                <label
-                                    class="flex items-center gap-2 p-2.5 bg-surface-subtle border border-border-tech cursor-pointer hover:border-accent-green transition-colors">
-                                    <input x-model="form.project_type"
-                                        class="text-accent-green focus:ring-0 bg-transparent" name="project_type"
-                                        type="radio" value="pwa" />
-                                    <span class="text-text-high text-[11px] font-mono">PWA Offline</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-1.5 font-mono text-xs">
-                            <label class="text-text-faint uppercase tracking-wider font-bold" for="message"
-                                x-text="texts[currentLang].contact.form.messageLabel">DÉTAILS DU PROJET OU DE LA MISSION</label>
-                            <textarea x-model="form.message"
-                                class="w-full p-3.5 bg-surface-subtle border border-border-tech text-text-high text-xs font-mono focus:outline-none focus:border-accent-green transition-all resize-none"
-                                id="message"
-                                :placeholder="texts[currentLang].contact.form.messagePlaceholder"
-                                required="" rows="4"></textarea>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                            <span class="font-mono text-[11px] text-text-faint">Données confidentielles • Zéro pistage
-                                tiers</span>
-                            <button
-                                class="w-full sm:w-auto px-8 py-3 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase hover:bg-text-high hover:text-surface-bg transition-all shadow-[4px_4px_0px_0px_#27272f] flex items-center justify-center gap-2 cursor-pointer"
-                                type="submit" :disabled="isSubmitting">
-                                <span x-text="isSubmitting ? texts[currentLang].contact.form.submittingBtn : texts[currentLang].contact.form.submitBtn">TRANSMETTRE LA DEMANDE</span>
-                                <span class="material-symbols-outlined text-[16px]">send</span>
-                            </button>
-                        </div>
-                        <p x-show="submitMessage" :class="submitSuccess ? 'text-accent-green' : 'text-red-500'"
-                            class="font-mono text-xs pt-1 font-bold" x-text="submitMessage"></p>
-                    </form>
-
-                    <!-- Direct Channels Rail (Col 4) -->
+                <!-- 4 Direct Channels Neo-Brutalist Grid (NO FORM) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- WhatsApp Direct -->
                     <div
-                        class="lg:col-span-4 flex flex-col justify-between gap-4 border border-border-tech bg-surface-subtle p-5">
+                        class="bg-surface-subtle border-2 border-border-tech hover:border-accent-green transition-all p-6 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f] group">
                         <div class="flex flex-col gap-3 font-mono">
-                            <span
-                                class="text-xs text-text-faint uppercase tracking-widest border-b border-border-tech pb-2 font-bold">
-                                // LIGNES DIRECTES
-                            </span>
-                            <a class="p-3 bg-surface-panel border border-border-tech hover:border-accent-green transition-all flex items-center justify-between group"
-                                href="https://wa.me/22997232231" target="_blank">
-                                <div class="flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-accent-green text-[20px]">chat</span>
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="font-bold text-text-high text-xs group-hover:text-accent-green transition-colors">WhatsApp
-                                            Direct</span>
-                                        <span class="text-[10px] text-text-faint">Échanges rapides &amp; vocaux</span>
-                                    </div>
-                                </div>
-                                <span class="text-text-faint group-hover:text-text-high transition-colors">→</span>
-                            </a>
-                            <a class="p-3 bg-surface-panel border border-border-tech hover:border-text-high transition-all flex items-center justify-between group"
-                                href="https://linkedin.com/in/manuel-assogba-a0900a123/" target="_blank">
-                                <div class="flex items-center gap-3">
-                                    <i class="fab fa-linkedin text-text-high text-[18px]"></i>
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="font-bold text-text-high text-xs group-hover:text-accent-green transition-colors">Réseau
-                                            LinkedIn</span>
-                                        <span class="text-[10px] text-text-faint">Parcours vérifié &amp; pairs</span>
-                                    </div>
-                                </div>
-                                <span class="text-text-faint group-hover:text-text-high transition-colors">→</span>
-                            </a>
-                            <a class="p-3 bg-surface-panel border border-border-tech hover:border-accent-amber transition-all flex items-center justify-between group"
-                                href="https://github.com/manuelh6" target="_blank">
-                                <div class="flex items-center gap-3">
-                                    <i class="fab fa-github text-accent-amber text-[18px]"></i>
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="font-bold text-text-high text-xs group-hover:text-accent-amber transition-colors">Dépôts
-                                            GitHub</span>
-                                        <span class="text-[10px] text-text-faint">Commits &amp; architectures</span>
-                                    </div>
-                                </div>
-                                <span class="text-text-faint group-hover:text-text-high transition-colors">→</span>
-                            </a>
+                            <div class="flex items-center justify-between border-b border-border-tech pb-3">
+                                <span class="material-symbols-outlined text-accent-green text-[28px]">chat</span>
+                                <span class="text-[10px] text-accent-green font-bold uppercase tracking-wider">//
+                                    INSTANT</span>
+                            </div>
+                            <h3
+                                class="font-display font-bold text-lg text-text-high group-hover:text-accent-green transition-colors">
+                                WhatsApp Direct
+                            </h3>
+                            <p class="font-body text-xs text-text-mid leading-relaxed"
+                                x-text="texts[currentLang].contact.channels[0].desc">
+                                Échanges rapides, messages &amp; vocaux
+                            </p>
+                            <div class="font-mono text-xs font-bold text-text-high pt-2">
+                                +229 01 6151-2491
+                            </div>
                         </div>
-                        <div
-                            class="p-3 bg-surface-panel border border-border-tech font-mono text-[11px] text-text-faint text-center">
-                            COTONOU • AFRIQUE DE L'OUEST <br />
-                            <span class="text-accent-green font-bold">DISPONIBLE MISSIONS REMOTE MONDE</span>
+                        <div class="mt-6 pt-3 border-t border-border-tech">
+                            <a class="w-full py-2.5 px-3 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase flex items-center justify-center gap-2 hover:bg-text-high transition-colors"
+                                href="https://wa.me/2290161512491" target="_blank">
+                                <span x-text="texts[currentLang].contact.channels[0].action">Ouvrir WhatsApp →</span>
+                            </a>
                         </div>
                     </div>
+
+                    <!-- Email Professionnel -->
+                    <div
+                        class="bg-surface-subtle border-2 border-border-tech hover:border-accent-green transition-all p-6 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f] group">
+                        <div class="flex flex-col gap-3 font-mono">
+                            <div class="flex items-center justify-between border-b border-border-tech pb-3">
+                                <span class="material-symbols-outlined text-accent-green text-[28px]">mail</span>
+                                <span class="text-[10px] text-text-faint font-bold uppercase tracking-wider">//
+                                    FORMEL</span>
+                            </div>
+                            <h3
+                                class="font-display font-bold text-lg text-text-high group-hover:text-accent-green transition-colors">
+                                Email Professionnel
+                            </h3>
+                            <p class="font-body text-xs text-text-mid leading-relaxed"
+                                x-text="texts[currentLang].contact.channels[1].desc">
+                                Cahiers des charges, devis &amp; dossiers
+                            </p>
+                            <div class="font-mono text-xs font-bold text-text-high pt-2 break-all">
+                                assogbamanuel6@gmail.com
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-3 border-t border-border-tech">
+                            <a class="w-full py-2.5 px-3 bg-text-high text-surface-bg font-mono font-bold text-xs uppercase flex items-center justify-center gap-2 hover:bg-accent-green transition-colors"
+                                href="mailto:assogbamanuel6@gmail.com">
+                                <span x-text="texts[currentLang].contact.channels[1].action">Écrire un Email →</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn Network -->
+                    <div
+                        class="bg-surface-subtle border-2 border-border-tech hover:border-text-high transition-all p-6 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f] group">
+                        <div class="flex flex-col gap-3 font-mono">
+                            <div class="flex items-center justify-between border-b border-border-tech pb-3">
+                                <i class="fab fa-linkedin text-text-high text-[26px]"></i>
+                                <span class="text-[10px] text-text-faint font-bold uppercase tracking-wider">//
+                                    RÉSEAU</span>
+                            </div>
+                            <h3
+                                class="font-display font-bold text-lg text-text-high group-hover:text-accent-green transition-colors">
+                                Réseau LinkedIn
+                            </h3>
+                            <p class="font-body text-xs text-text-mid leading-relaxed"
+                                x-text="texts[currentLang].contact.channels[2].desc">
+                                Parcours vérifié &amp; réseau de pairs
+                            </p>
+                            <div class="font-mono text-xs font-bold text-text-mid pt-2">
+                                /in/manuel-assogba
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-3 border-t border-border-tech">
+                            <a class="w-full py-2.5 px-3 border border-border-bright hover:border-text-high text-text-high font-mono font-bold text-xs uppercase flex items-center justify-center gap-2 transition-colors hover:bg-surface-panel"
+                                href="https://linkedin.com/in/manuel-assogba-a0900a123/" target="_blank">
+                                <span x-text="texts[currentLang].contact.channels[2].action">Voir le profil →</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- GitHub & GitLab Repositories -->
+                    <div
+                        class="bg-surface-subtle border-2 border-border-tech hover:border-accent-amber transition-all p-6 flex flex-col justify-between shadow-[4px_4px_0px_0px_#27272f] group">
+                        <div class="flex flex-col gap-3 font-mono">
+                            <div class="flex items-center justify-between border-b border-border-tech pb-3">
+                                <div class="flex items-center gap-2">
+                                    <i class="fab fa-github text-accent-amber text-[24px]"></i>
+                                    <i class="fab fa-gitlab text-orange-400 text-[20px]"></i>
+                                </div>
+                                <span class="text-[10px] text-accent-amber font-bold uppercase tracking-wider">// CODE
+                                    SOURCE</span>
+                            </div>
+                            <h3
+                                class="font-display font-bold text-lg text-text-high group-hover:text-accent-amber transition-colors">
+                                GitHub &amp; GitLab
+                            </h3>
+                            <p class="font-body text-xs text-text-mid leading-relaxed"
+                                x-text="texts[currentLang].contact.channels[3].desc">
+                                Commits, architectures &amp; solutions
+                            </p>
+                            <div class="font-mono text-xs font-bold text-text-mid pt-2">
+                                manuelh6 - assogbamanuel6
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-3 border-t border-border-tech flex items-center gap-2">
+                            <a class="flex-1 py-2 px-2 bg-surface-panel border border-border-tech hover:border-accent-amber text-text-high font-mono font-bold text-[11px] uppercase text-center transition-colors"
+                                href="https://github.com/manuelh6" target="_blank">
+                                GitHub
+                            </a>
+                            <a class="flex-1 py-2 px-2 bg-surface-panel border border-border-tech hover:border-orange-400 text-text-high font-mono font-bold text-[11px] uppercase text-center transition-colors"
+                                href="https://gitlab.com/assogbamanuel6" target="_blank">
+                                GitLab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location & Availability footer strip -->
+                <div
+                    class="mt-8 p-4 bg-surface-subtle border border-border-tech font-mono text-xs text-center flex flex-col sm:flex-row items-center justify-between gap-2">
+                    <span class="text-text-faint font-bold tracking-wide"
+                        x-text="texts[currentLang].contact.locationText">
+                        COTONOU - AFRIQUE DE L'OUEST [UTC+1] — DISPONIBLE MISSIONS REMOTE MONDE
+                    </span>
+                    <span class="text-accent-green font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
+                        OPEN TO REMOTE
+                    </span>
                 </div>
             </div>
         </section>
@@ -1297,10 +1221,12 @@
         <div class="max-w-7xl mx-auto flex flex-col gap-10">
             <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
                 <div class="max-w-md">
-                    <div class="font-display font-black text-lg text-text-high uppercase tracking-tight">
-                        MANUEL ASSOGBA // ARCHITECTURE ROBUSTE
+                    <div class="font-display font-black text-xl text-text-high uppercase tracking-tight"
+                        x-text="texts[currentLang].footer.tagline">
+                        MANUEL ASSOGBA
                     </div>
-                    <p class="font-body text-xs text-text-mid mt-2 leading-relaxed">
+                    <p class="font-body text-xs text-text-mid mt-2 leading-relaxed"
+                        x-text="texts[currentLang].footer.desc">
                         Conception de plateformes critiques, interfaces sobres et topologies logicielles pour
                         organisations à fort enjeu opérationnel.
                     </p>
@@ -1315,8 +1241,8 @@
                     </div>
                     <div class="flex flex-col gap-2">
                         <span class="text-text-high font-bold uppercase tracking-wider">// DOCTRINE</span>
-                        <a class="text-text-mid hover:text-accent-green transition-colors" href="#ethique">Règles
-                            d'Airain</a>
+                        <a class="text-text-mid hover:text-accent-green transition-colors"
+                            href="#ethique">Philosophie</a>
                         <a class="text-text-mid hover:text-accent-green transition-colors" href="#outils">Stack
                             Terrain</a>
                         <a class="text-text-mid hover:text-accent-green transition-colors" href="#contact">Contact
@@ -1332,12 +1258,14 @@
             <div
                 class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-tech pt-6 text-[10px] text-text-faint">
                 <div>
-                    © <span x-text="new Date().getFullYear()"></span> <span x-text="texts[currentLang].footer.copyright">Manuel Assogba. Tous droits réservés. Bâtisseur de Systèmes Utiles.</span>
+                    © <span x-text="new Date().getFullYear()"></span> <span
+                        x-text="texts[currentLang].footer.copyright">Manuel Assogba. Tous droits réservés.</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span>LATENCE: 0.14ms</span>
                     <span class="text-text-faint">|</span>
-                    <span class="text-accent-green font-bold" x-text="texts[currentLang].footer.status">STATUS: SYSTÈMES OPÉRATIONNELS</span>
+                    <span class="text-accent-green font-bold" x-text="texts[currentLang].footer.status">STATUS: SYSTÈMES
+                        OPÉRATIONNELS</span>
                 </div>
             </div>
         </div>
