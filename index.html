@@ -52,10 +52,10 @@
                         "surface-card": "var(--surface-card)",
                         "border-tech": "var(--border-tech)",
                         "border-bright": "var(--border-bright)",
-                        "accent-green": "#10b981",
-                        "accent-green-bright": "#34d399",
-                        "accent-amber": "#f97316",
-                        "accent-amber-glow": "#ea580c",
+                        "accent-green": "var(--accent-green)",
+                        "accent-green-bright": "var(--accent-green-bright)",
+                        "accent-amber": "var(--accent-amber)",
+                        "accent-amber-glow": "var(--accent-amber-glow)",
                         "text-high": "var(--text-high)",
                         "text-mid": "var(--text-mid)",
                         "text-faint": "var(--text-faint)"
@@ -74,30 +74,38 @@
 
     <style>
         :root {
-            --surface-bg: #f5f5f8;
+            --surface-bg: #f6f6f3;
             --surface-panel: #ffffff;
-            --surface-subtle: #eaeaf1;
-            --surface-card: #fdfdfd;
-            --border-tech: #d4d4e0;
-            --border-bright: #9e9eb3;
-            --text-high: #0b0b0e;
-            --text-mid: #484856;
-            --text-faint: #636373;
-            --shadow-color: #d4d4e0;
-            --grid-line: rgba(0, 0, 0, 0.045);
+            --surface-subtle: #ebebe5;
+            --surface-card: #ffffff;
+            --border-tech: #d6d5ce;
+            --border-bright: #9c9b92;
+            --text-high: #111110;
+            --text-mid: #44443f;
+            --text-faint: #66665f;
+            --accent-green: #047857;
+            --accent-green-bright: #059669;
+            --accent-amber: #c2410c;
+            --accent-amber-glow: #9a3412;
+            --shadow-color: #d6d5ce;
+            --grid-line: rgba(17, 17, 16, 0.045);
         }
 
         .dark {
-            --surface-bg: #09090b;
-            --surface-panel: #111115;
-            --surface-subtle: #17171d;
-            --surface-card: #18181f;
-            --border-tech: #27272f;
-            --border-bright: #3f3f4e;
-            --text-high: #ffffff;
-            --text-mid: #a1a1aa;
-            --text-faint: #8b8b96;
-            --shadow-color: #27272f;
+            --surface-bg: #09090c;
+            --surface-panel: #121318;
+            --surface-subtle: #191b22;
+            --surface-card: #16181f;
+            --border-tech: #262934;
+            --border-bright: #3e4251;
+            --text-high: #f8fafc;
+            --text-mid: #a3a9b8;
+            --text-faint: #858c9e;
+            --accent-green: #10b981;
+            --accent-green-bright: #34d399;
+            --accent-amber: #fb923c;
+            --accent-amber-glow: #ea580c;
+            --shadow-color: #222530;
             --grid-line: rgba(255, 255, 255, 0.035);
         }
 
@@ -152,12 +160,8 @@
         }
 
         html:not(.dark) .stroke-text {
-            -webkit-text-stroke: 1.5px rgba(11, 11, 14, 0.35);
+            -webkit-text-stroke: 1.5px rgba(17, 17, 16, 0.35);
             color: transparent;
-        }
-
-        .bevel-tag {
-            clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
         }
 
         .lightbox {
@@ -325,22 +329,19 @@
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
+            background: var(--accent-green);
         }
     </style>
 </head>
 
 <body class="bg-surface-bg text-text-high antialiased selection:bg-accent-green selection:text-surface-bg" x-cloak>
 
-    <!-- Bandeau d'état et fuseau horaire -->
-    <aside aria-label="Statut et fuseau horaire"
+    <!-- Bandeau d'information supérieure -->
+    <aside aria-label="Localisation et fuseau horaire"
         class="w-full bg-surface-panel border-b border-border-tech text-[11px] font-mono tracking-wider py-1.5 px-4 md:px-8 flex items-center justify-between z-50 relative overflow-hidden">
         <div class="flex items-center gap-4">
-            <span class="flex items-center gap-2 text-accent-green font-semibold relative">
-                <span class="w-2 h-2 rounded-full bg-accent-green animate-ping absolute"></span>
-                <span class="w-2 h-2 rounded-full bg-accent-green"></span>
-                <span class="ml-3" x-text="texts[currentLang].statusStrip.operational">DISPONIBLE // COTONOU [UTC+1]</span>
-            </span>
+            <span class="text-accent-green font-semibold"
+                x-text="texts[currentLang].statusStrip.operational">COTONOU, BÉNIN (UTC+1) · MISSIONS SUR SITE &amp; À DISTANCE</span>
             <span class="hidden sm:inline text-text-faint">|</span>
             <span class="hidden sm:inline text-text-mid">
                 <span x-text="texts[currentLang].statusStrip.clockLabel">HEURE LOCALE :</span>
@@ -349,20 +350,20 @@
             <span class="hidden lg:inline text-text-faint">|</span>
             <span class="hidden lg:inline text-text-mid">
                 <span x-text="texts[currentLang].statusStrip.experienceLabel">EXPÉRIENCE :</span>
-                <span class="text-accent-green-bright font-semibold ml-1"
-                    x-text="texts[currentLang].statusStrip.experienceValue">+ 5 ANS</span>
+                <span class="text-accent-green font-semibold ml-1"
+                    x-text="texts[currentLang].statusStrip.experienceValue">6+ ANS</span>
             </span>
         </div>
     </aside>
 
     <!-- Navigation principale -->
     <header @keydown.window.escape="mobileMenuOpen = false"
-        class="sticky top-0 w-full z-40 bg-surface-bg/90 backdrop-blur-md border-b border-border-tech transition-colors">
+        class="sticky top-0 w-full z-40 bg-surface-bg/95 backdrop-blur-md border-b border-border-tech transition-colors relative">
         <div class="max-w-7xl mx-auto h-20 px-4 md:px-8 flex items-center justify-between gap-2">
             <!-- Identité -->
             <a class="flex items-center gap-3 group min-h-[44px]" href="#focus">
                 <div
-                    class="w-11 h-11 border-2 border-text-high bg-text-high text-surface-bg flex items-center justify-center font-mono font-bold text-lg group-hover:bg-accent-green group-hover:border-accent-green transition-all shadow-[3px_3px_0px_0px_#10b981]">
+                    class="w-11 h-11 border-2 border-text-high bg-text-high text-surface-bg flex items-center justify-center font-mono font-bold text-lg group-hover:bg-accent-green group-hover:border-accent-green transition-all shadow-[3px_3px_0px_0px_var(--accent-green)]">
                     MA
                 </div>
                 <div class="flex flex-col">
@@ -370,27 +371,34 @@
                         class="font-display font-black tracking-tight text-sm sm:text-base uppercase leading-none group-hover:text-accent-green transition-colors">
                         MANUEL ASSOGBA
                     </span>
-                    <span class="font-mono text-[10px] text-text-mid uppercase tracking-widest mt-1">
-                        // FULL-STACK &amp; SYSTEM ARCHITECT
+                    <span class="font-mono text-[10px] text-text-mid uppercase tracking-widest mt-1"
+                        x-text="texts[currentLang].nav.roleSub">
+                        ARCHITECTE LOGICIEL &amp; FULL-STACK
                     </span>
                 </div>
             </a>
 
-            <!-- Liens de navigation desktop -->
+            <!-- Liens de navigation desktop avec suivi de section active (Scroll-Spy) -->
             <nav class="hidden lg:flex items-center gap-2 bg-surface-panel p-1.5 border border-border-tech"
                 aria-label="Navigation principale">
-                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase text-surface-bg bg-text-high font-bold tracking-wider transition-all"
-                    href="#focus" x-text="texts[currentLang].nav.focus">Focus</a>
-                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
-                    href="#projet-phare" x-text="texts[currentLang].nav.featured">Projet Phare</a>
-                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
-                    href="#ethique" x-text="texts[currentLang].nav.doctrine">Doctrine</a>
-                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
+                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase tracking-wider transition-all"
+                    :class="activeSection === 'focus' ? 'bg-text-high text-surface-bg font-bold' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
+                    href="#focus" x-text="texts[currentLang].nav.focus">Accueil</a>
+                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase tracking-wider transition-all"
+                    :class="activeSection === 'approche' ? 'bg-text-high text-surface-bg font-bold' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
+                    href="#approche" x-text="texts[currentLang].nav.approche">Approche</a>
+                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase tracking-wider transition-all"
+                    :class="activeSection === 'projets' ? 'bg-text-high text-surface-bg font-bold' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
                     href="#projets" x-text="texts[currentLang].nav.projects">Réalisations</a>
-                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
+                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase tracking-wider transition-all"
+                    :class="activeSection === 'parcours' ? 'bg-text-high text-surface-bg font-bold' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
                     href="#parcours" x-text="texts[currentLang].nav.parcours">Parcours</a>
-                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase text-text-mid hover:text-text-high hover:bg-surface-subtle transition-all tracking-wider"
-                    href="#outils" x-text="texts[currentLang].nav.stack">Stack</a>
+                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase tracking-wider transition-all"
+                    :class="activeSection === 'outils' ? 'bg-text-high text-surface-bg font-bold' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
+                    href="#outils" x-text="texts[currentLang].nav.stack">Compétences</a>
+                <a class="min-h-[44px] px-3.5 inline-flex items-center font-mono text-xs uppercase tracking-wider transition-all"
+                    :class="activeSection === 'contact' ? 'bg-text-high text-surface-bg font-bold' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
+                    href="#contact" x-text="texts[currentLang].nav.contact">Contact</a>
             </nav>
 
             <!-- Contrôles : Langue, Thème, Contact & Menu Mobile -->
@@ -415,16 +423,9 @@
 
                 <a class="hidden sm:inline-flex min-h-[44px] items-center gap-2 px-5 py-2.5 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase tracking-wider border border-accent-green hover:bg-text-high hover:border-text-high hover:text-surface-bg transition-all shadow-[4px_4px_0px_0px_var(--shadow-color)]"
                     href="#contact">
-                    <span x-text="texts[currentLang].nav.cta">INITIER UN PROJET</span>
+                    <span x-text="texts[currentLang].nav.cta">DÉMARRER UN PROJET</span>
                     <span class="material-symbols-outlined text-[15px]">arrow_outward</span>
                 </a>
-
-                <div class="hidden xs:block relative group" title="Manuel Assogba">
-                    <img src="assets/profile.jpg" alt="Manuel Assogba"
-                        class="w-11 h-11 object-cover border-2 border-border-bright shadow-sm" />
-                    <span
-                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-accent-green border-2 border-surface-bg"></span>
-                </div>
 
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
                     class="lg:hidden min-h-[44px] min-w-[44px] border border-border-tech bg-surface-panel inline-flex items-center justify-center text-text-high hover:text-accent-green hover:border-accent-green transition-colors focus:outline-none cursor-pointer"
@@ -435,12 +436,18 @@
             </div>
         </div>
 
+        <!-- Barre de progression de lecture -->
+        <div class="w-full h-[2px] bg-transparent overflow-hidden">
+            <div class="h-full bg-accent-green transition-all duration-150 ease-out"
+                :style="'width: ' + scrollProgress + '%'"></div>
+        </div>
+
         <!-- Menu mobile -->
         <div x-show="mobileMenuOpen" x-transition
             class="lg:hidden bg-surface-panel border-b border-border-tech px-4 py-4 flex flex-col gap-2 shadow-xl">
             <div class="flex items-center justify-between pb-3 border-b border-border-tech mb-1 gap-2">
                 <span class="font-mono text-xs uppercase text-text-faint font-bold"
-                    x-text="texts[currentLang].nav.langLabel">// LANGUE</span>
+                    x-text="texts[currentLang].nav.langLabel">LANGUE DE L'INTERFACE</span>
                 <button @click="toggleLanguage()"
                     class="min-h-[44px] px-3.5 bg-surface-subtle border border-border-tech text-text-high font-mono text-xs font-bold inline-flex items-center gap-2 cursor-pointer">
                     <span class="material-symbols-outlined text-[18px]">translate</span>
@@ -448,34 +455,37 @@
                 </button>
             </div>
             <a href="#focus" @click="mobileMenuOpen = false"
-                class="min-h-[44px] px-3 flex items-center text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
-                x-text="texts[currentLang].nav.focus">Focus</a>
-            <a href="#projet-phare" @click="mobileMenuOpen = false"
-                class="min-h-[44px] px-3 flex items-center text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
-                x-text="texts[currentLang].nav.featured">Projet Phare</a>
-            <a href="#ethique" @click="mobileMenuOpen = false"
-                class="min-h-[44px] px-3 flex items-center text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
-                x-text="texts[currentLang].nav.doctrine">Doctrine</a>
+                class="min-h-[44px] px-3 flex items-center font-mono text-xs uppercase font-bold transition-colors"
+                :class="activeSection === 'focus' ? 'bg-text-high text-surface-bg' : 'text-text-high hover:bg-surface-subtle'"
+                x-text="texts[currentLang].nav.focus">Accueil</a>
+            <a href="#approche" @click="mobileMenuOpen = false"
+                class="min-h-[44px] px-3 flex items-center font-mono text-xs uppercase font-bold transition-colors"
+                :class="activeSection === 'approche' ? 'bg-text-high text-surface-bg' : 'text-text-high hover:bg-surface-subtle'"
+                x-text="texts[currentLang].nav.approche">Approche</a>
             <a href="#projets" @click="mobileMenuOpen = false"
-                class="min-h-[44px] px-3 flex items-center text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                class="min-h-[44px] px-3 flex items-center font-mono text-xs uppercase font-bold transition-colors"
+                :class="activeSection === 'projets' ? 'bg-text-high text-surface-bg' : 'text-text-high hover:bg-surface-subtle'"
                 x-text="texts[currentLang].nav.projects">Réalisations</a>
             <a href="#parcours" @click="mobileMenuOpen = false"
-                class="min-h-[44px] px-3 flex items-center text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
+                class="min-h-[44px] px-3 flex items-center font-mono text-xs uppercase font-bold transition-colors"
+                :class="activeSection === 'parcours' ? 'bg-text-high text-surface-bg' : 'text-text-high hover:bg-surface-subtle'"
                 x-text="texts[currentLang].nav.parcours">Parcours</a>
             <a href="#outils" @click="mobileMenuOpen = false"
-                class="min-h-[44px] px-3 flex items-center text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
-                x-text="texts[currentLang].nav.stack">Stack Technique</a>
+                class="min-h-[44px] px-3 flex items-center font-mono text-xs uppercase font-bold transition-colors"
+                :class="activeSection === 'outils' ? 'bg-text-high text-surface-bg' : 'text-text-high hover:bg-surface-subtle'"
+                x-text="texts[currentLang].nav.stack">Compétences</a>
             <a href="#contact" @click="mobileMenuOpen = false"
-                class="min-h-[44px] px-3 flex items-center text-text-high font-mono text-xs uppercase font-bold hover:bg-surface-subtle transition-colors"
-                x-text="texts[currentLang].nav.contact">Contact Direct</a>
+                class="min-h-[44px] px-3 flex items-center font-mono text-xs uppercase font-bold transition-colors"
+                :class="activeSection === 'contact' ? 'bg-text-high text-surface-bg' : 'text-text-high hover:bg-surface-subtle'"
+                x-text="texts[currentLang].nav.contact">Contact</a>
             <a href="#contact" @click="mobileMenuOpen = false"
                 class="mt-2 min-h-[46px] flex items-center justify-center bg-accent-green text-surface-bg text-center font-mono font-bold text-xs uppercase"
-                x-text="texts[currentLang].nav.cta">Initier un Projet</a>
+                x-text="texts[currentLang].nav.cta">Démarrer un projet</a>
         </div>
     </header>
 
     <main class="w-full relative">
-        <!-- Section 1 : Présentation & Positionnement -->
+        <!-- Chapitre 1 : Présentation & Positionnement -->
         <section class="relative w-full border-b border-border-tech grid-bg pt-12 pb-20 px-4 md:px-8 overflow-hidden"
             id="focus">
             <div
@@ -487,22 +497,20 @@
             <div class="max-w-7xl mx-auto flex flex-col gap-12 relative z-10">
                 <div class="flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
                     <div
-                        class="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-panel border border-border-tech text-text-high">
-                        <span class="w-2 h-2 bg-accent-green"></span>
+                        class="inline-flex items-center px-3.5 py-1.5 bg-surface-panel border-l-4 border-l-accent-green border border-border-tech text-text-high">
                         <span class="tracking-widest uppercase font-bold"
                             x-text="texts[currentLang].hero.role">ARCHITECTE LOGICIEL &amp; DÉVELOPPEUR
                             FULL-STACK</span>
                     </div>
-                    <div class="flex items-center gap-3 text-text-faint">
-                        <span x-text="texts[currentLang].hero.badgeSecondary">[GIZ / PARCS WAP / ONG] // EDGE &amp;
-                            OFFLINE-FIRST</span>
+                    <div class="flex items-center gap-3 text-text-mid font-semibold tracking-wider">
+                        <span x-text="texts[currentLang].hero.badgeSecondary">WEB · MOBILE · SYSTÈMES MÉTIER</span>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-6">
                     <h1
-                        class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.92] text-text-high">
-                        <span x-text="texts[currentLang].hero.titlePart1">CONCEVOIR DES SYSTÈMES D'EXCEPTION.</span>
+                        class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.94] text-text-high">
+                        <span x-text="texts[currentLang].hero.titlePart1">CONCEVOIR DES LOGICIELS QUI COMPTENT.</span>
                         <br />
                         <span class="stroke-text hover:text-text-high transition-colors"
                             x-text="texts[currentLang].hero.titlePart2">BÂTIR POUR</span>
@@ -512,72 +520,81 @@
                             DURER.
                         </span>
                     </h1>
+
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
-                        <div class="lg:col-span-8">
+                        <div class="lg:col-span-7 flex flex-col gap-6">
                             <p
                                 class="font-display font-medium text-xl sm:text-2xl lg:text-3xl text-text-high leading-snug">
-                                <span x-text="texts[currentLang].hero.subtitleMain">Je conçois et développe des
-                                    architectures web et mobiles sur-mesure pour les entreprises et visions
-                                    ambitieuses.</span>
-                                <span class="text-accent-green block mt-2 font-normal"
+                                <span x-text="texts[currentLang].hero.subtitleMain">Depuis plus de 6 ans, je conçois et
+                                    développe des applications web et mobiles sur-mesure pour les organisations
+                                    confrontées aux réalités du terrain.</span>
+                                <span class="text-accent-green block mt-3 font-normal text-lg sm:text-2xl"
                                     x-text="texts[currentLang].hero.subtitleSub">
-                                    Celles qui refusent le générique, exigent une rigueur technique absolue et veulent
-                                    marquer les esprits par des solutions qui racontent une vraie histoire.
+                                    Des parcs nationaux d'Afrique de l'Ouest aux cabinets de conseil et commerces de
+                                    proximité : je crée des outils clairs, solides et utiles dès le premier jour.
                                 </span>
                             </p>
-                        </div>
-                        <div
-                            class="lg:col-span-4 bg-surface-panel border-2 border-border-bright p-5 relative shadow-[6px_6px_0px_0px_var(--shadow-color)]">
-                            <div
-                                class="flex items-center justify-between border-b border-border-tech pb-2 mb-3 font-mono text-[11px] text-text-faint uppercase tracking-widest">
-                                <span x-text="texts[currentLang].hero.premiseLabel">// PRÉMISSE OPÉRATIONNELLE</span>
-                                <span class="text-accent-green font-bold"
-                                    x-text="texts[currentLang].hero.premiseMode">STRICT-MODE</span>
+
+                            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                                <a class="min-h-[48px] px-6 inline-flex items-center justify-center gap-2 bg-text-high text-surface-bg font-mono text-xs font-bold uppercase tracking-wider hover:bg-accent-green transition-colors shadow-[4px_4px_0px_0px_var(--shadow-color)]"
+                                    href="#projets">
+                                    <span x-text="texts[currentLang].hero.ctaProjects">VOIR LES RÉALISATIONS</span>
+                                    <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+                                </a>
+                                <a class="min-h-[48px] px-6 inline-flex items-center justify-center border-2 border-border-bright bg-surface-panel hover:border-accent-green hover:text-accent-green transition-colors text-text-high font-mono text-xs font-bold uppercase tracking-wider"
+                                    href="#contact" x-text="texts[currentLang].hero.ctaContact">
+                                    ME CONTACTER
+                                </a>
                             </div>
-                            <div class="space-y-3 font-body text-xs text-text-mid leading-relaxed">
+                        </div>
+
+                        <!-- Carte d'identité et d'engagement -->
+                        <div
+                            class="lg:col-span-5 bg-surface-panel border-2 border-border-bright p-6 relative shadow-[6px_6px_0px_0px_var(--shadow-color)]">
+                            <div class="flex items-center gap-4 border-b border-border-tech pb-4 mb-4">
+                                <img src="assets/profile.jpg" alt="Manuel Assogba"
+                                    class="w-16 h-16 object-cover border-2 border-accent-green shrink-0" />
+                                <div class="flex flex-col">
+                                    <span class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold"
+                                        x-text="texts[currentLang].hero.cardTag">ENGAGEMENT TERRAIN</span>
+                                    <span class="font-display font-bold text-lg text-text-high mt-0.5">Manuel Assogba</span>
+                                    <span class="font-mono text-xs text-text-faint"
+                                        x-text="texts[currentLang].hero.cardLocation">Cotonou, Bénin · Remote &amp; International</span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3 font-body text-xs sm:text-sm text-text-mid leading-relaxed">
                                 <p x-text="texts[currentLang].hero.premiseTextP1">
-                                    5+ ans d'ingénierie forgés face aux contraintes du monde réel : institutions
-                                    internationales (GIZ), régies de presse, FinTech et commerce de proximité.
+                                    Plus de 6 ans de développement au service d'institutions internationales (GIZ),
+                                    d'ONG de conservation, de la FinTech, des médias et du commerce local.
                                 </p>
                                 <p x-text="texts[currentLang].hero.premiseTextP2">
-                                    Des systèmes de suivi, outils de collecte et systèmes d'aide à la décision aux PWA,
-                                    passant par l'intégration de WebTV et passerelles de paiement. De l'intégration de
-                                    flux structurés par IA/LLM aux interfaces adaptées aux utilisateurs déscolarisés :
-                                    pas de dépendances superflues. Du code sobre, mesurable et directement utile à ceux
-                                    qui l’opèrent.
+                                    Qu'il s'agisse d'une application mobile fonctionnant sans réseau, d'un diagnostic
+                                    financier assisté par IA ou d'une plateforme cartographique, chaque projet est
+                                    écrit pour durer et rester simple à prendre en main.
                                 </p>
-                            </div>
-                            <div class="mt-4 pt-3 border-t border-border-tech flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                                <a class="flex-1 min-h-[44px] px-4 inline-flex items-center justify-center bg-text-high text-surface-bg font-mono text-xs font-bold text-center uppercase hover:bg-accent-green transition-colors"
-                                    href="#projets" x-text="texts[currentLang].hero.ctaProjects">
-                                    DÉCOUVRIR LES RÉALISATIONS
-                                </a>
-                                <a class="min-h-[44px] px-4 inline-flex items-center justify-center border border-border-bright hover:border-text-high transition-colors text-text-high font-mono text-xs font-bold uppercase"
-                                    href="#contact" x-text="texts[currentLang].hero.ctaContact">
-                                    ÉCHANGER
-                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Repères clés -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-border-tech">
+                <!-- 3 Indicateurs de carrière concrets -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-4 border-t border-border-tech">
                     <template x-for="(m, idx) in texts[currentLang].hero.metrics" :key="idx">
                         <div
-                            class="bg-surface-panel border border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-green transition-all shadow-sm">
+                            class="bg-surface-panel border-2 border-border-tech p-5 flex flex-col justify-between relative overflow-hidden group hover:border-accent-green transition-all shadow-[4px_4px_0px_0px_var(--shadow-color)]">
                             <div class="flex items-center justify-between font-mono text-xs text-text-faint uppercase">
-                                <span x-text="m.label"></span>
+                                <span class="font-bold text-text-mid" x-text="m.label"></span>
                                 <span :class="idx === 1 ? 'text-accent-amber' : 'text-accent-green'" class="font-bold"
                                     x-text="m.tag"></span>
                             </div>
-                            <div class="my-3">
+                            <div class="my-3 flex items-baseline gap-2">
                                 <span class="font-mono text-5xl md:text-6xl font-bold tracking-tight text-text-high"
                                     x-text="m.val"></span>
                                 <span :class="idx === 1 ? 'text-accent-amber' : 'text-accent-green'"
-                                    class="font-mono text-2xl font-bold" x-text="m.unit"></span>
+                                    class="font-mono text-xl sm:text-2xl font-bold" x-text="m.unit"></span>
                             </div>
-                            <div class="font-mono text-xs text-text-faint border-t border-border-tech pt-2"
+                            <div class="font-body text-xs text-text-mid border-t border-border-tech pt-2.5"
                                 x-text="m.desc"></div>
                         </div>
                     </template>
@@ -585,440 +602,503 @@
             </div>
         </section>
 
-        <!-- Section 2 : Étude de cas majeure (FieldOz) -->
-        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="projet-phare">
-            <div class="max-w-7xl mx-auto flex flex-col gap-8">
-                <div
-                    class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-tech pb-4">
-                    <div>
-                        <div
-                            class="font-mono text-xs text-accent-green uppercase tracking-widest flex items-center gap-2 font-bold">
-                            <span class="w-2 h-2 bg-accent-green"></span>
-                            <span x-text="texts[currentLang].featured.tag">SÉLECTION FOCUS // PROJET PHARE</span>
-                        </div>
-                        <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
-                            x-text="texts[currentLang].featured.title">
-                            FIELDOZ — IMPACT RÉEL &amp; TÉLÉMÉTRIE
+        <!-- Chapitre 2 : Histoire du Terrain & Principes de Travail -->
+        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="approche">
+            <div class="max-w-7xl mx-auto flex flex-col gap-12">
+                <!-- Récit de terrain -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-5 flex flex-col gap-4">
+                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
+                            x-text="texts[currentLang].approche.tag">HISTOIRE &amp; PHILOSOPHIE DE TRAVAIL</div>
+                        <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase leading-tight"
+                            x-text="texts[currentLang].approche.title">
+                            L'ÉCOLE DU TERRAIN : POURQUOI JE CODE AUTREMENT.
                         </h2>
-                    </div>
-                    <span
-                        class="font-mono text-xs text-text-faint bg-surface-panel px-3 py-1.5 border border-border-tech self-start sm:self-auto"
-                        x-text="texts[currentLang].featured.ref">
-                        REF: ARCH-CASE-01-FLDOZ
-                    </span>
-                </div>
 
-                <div
-                    class="border-2 border-border-bright bg-surface-panel grid grid-cols-1 lg:grid-cols-12 shadow-[8px_8px_0px_0px_var(--shadow-color)]">
-                    <div
-                        class="lg:col-span-7 p-6 border-b lg:border-b-0 lg:border-r border-border-tech flex flex-col justify-between gap-6">
-                        <div class="relative border-2 border-border-bright bg-black overflow-hidden group cursor-pointer"
-                            @click="openLightbox(projects[0].images)" role="button" tabindex="0"
-                            @keydown.enter="openLightbox(projects[0].images)"
-                            aria-label="Ouvrir la galerie d'images FieldOz">
-                            <div
-                                class="h-7 bg-surface-subtle border-b border-border-tech px-3 flex items-center justify-between font-mono text-[10px] text-text-faint">
-                                <div class="flex items-center gap-1.5">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                                    <span
-                                        class="ml-2 font-semibold text-text-mid font-mono truncate">fieldoz.internal/telemetry/live</span>
-                                </div>
-                                <span class="text-accent-green font-bold font-mono">EDGE_SYNC : OK</span>
-                            </div>
-                            <img class="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500 filter brightness-95 contrast-105"
-                                src="assets/projects/fieldoz/1.png" alt="FieldOz Dashboard" />
-                            <div
-                                class="absolute bottom-3 left-3 bg-black/90 border border-zinc-700 px-3 py-1 font-mono text-[11px] text-white hidden sm:flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
-                                <span x-text="texts[currentLang].featured.syncStatus">SYNC HORS-LIGNE VÉRIFIÉE</span>
-                            </div>
-                            <div class="gallery-indicator">
-                                <i class="far fa-images"></i> <span
-                                    x-text="projects[0].images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-3 gap-3 font-mono">
-                            <template x-for="(ind, iIdx) in texts[currentLang].featured.indicators" :key="iIdx">
-                                <div class="border border-border-tech bg-surface-subtle p-3 text-center">
-                                    <div class="text-[10px] text-text-faint uppercase font-bold" x-text="ind.label">
+                        <div class="grid grid-cols-2 gap-4 pt-2">
+                            <template x-for="(hl, hIdx) in texts[currentLang].approche.highlights" :key="hIdx">
+                                <div class="bg-surface-panel border border-border-tech p-4">
+                                    <div class="font-mono text-2xl sm:text-3xl font-bold"
+                                        :class="hIdx === 0 ? 'text-accent-green' : 'text-text-high'" x-text="hl.val">
                                     </div>
-                                    <div class="text-lg sm:text-2xl font-bold mt-1 font-mono"
-                                        :class="iIdx === 1 ? 'text-text-high' : 'text-accent-green'" x-text="ind.val">
-                                    </div>
+                                    <div class="font-body text-xs text-text-mid mt-1" x-text="hl.label"></div>
                                 </div>
                             </template>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-5 p-6 flex flex-col justify-between gap-6 bg-surface-panel">
-                        <div class="flex flex-col gap-4">
-                            <div class="inline-block font-mono text-[11px] text-accent-amber font-semibold tracking-wider uppercase"
-                                x-text="texts[currentLang].featured.sub">
-                                // PLATEFORME SAAS D'IMPACT SOCIAL
-                            </div>
-                            <h3 class="font-display font-bold text-2xl text-text-high leading-tight"
-                                x-text="texts[currentLang].featured.heading">
-                                FieldOz — Donner du relief à l'impact social
-                            </h3>
-                            <p class="font-body text-sm text-text-mid leading-relaxed"
-                                x-text="texts[currentLang].featured.description">
-                                Plateforme SaaS conçue pour transformer des données terrain complexes en récits visuels
-                                et rapports d'impact incontestables. Une architecture pensée pour offrir une clarté
-                                absolue aux bailleurs de fonds et aux équipes sur le terrain.
-                            </p>
-                            <div class="border-l-4 border-accent-green bg-surface-subtle p-4 border border-border-tech">
-                                <div class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold"
-                                    x-text="texts[currentLang].featured.quoteTitle">
-                                    EXCELLENCE TECHNIQUE &amp; TERRAIN
+                    <div
+                        class="lg:col-span-7 bg-surface-panel border-2 border-border-bright p-6 sm:p-8 shadow-[6px_6px_0px_0px_var(--shadow-color)] flex flex-col gap-4">
+                        <h3 class="font-display font-bold text-xl text-text-high"
+                            x-text="texts[currentLang].approche.storyTitle">
+                            Là où chaque ligne de code a une conséquence réelle
+                        </h3>
+                        <p class="font-body text-sm sm:text-base text-text-mid leading-relaxed"
+                            x-text="texts[currentLang].approche.p1">
+                            Ma façon de concevoir un logiciel ne s'est pas construite dans des bureaux coupés du monde
+                            avec une connexion fibre illimitée. Elle s'est forgée sur le terrain : face à des réseaux
+                            capricieux, des appareils très différents et l'obligation que l'outil fonctionne du premier
+                            coup.
+                        </p>
+                        <p class="font-body text-sm sm:text-base text-text-mid leading-relaxed"
+                            x-text="texts[currentLang].approche.p2">
+                            Lorsqu'on livre une application pour les écogardes des parcs du complexe WAP, pour des
+                            agents de santé en zone rurale ou pour un commerçant qui gère sa caisse avec Akonta, un bug
+                            n'est pas un simple ticket technique : c'est une patrouille retardée, un rapport bloqué ou
+                            une journée de vente perdue.
+                        </p>
+                        <blockquote
+                            class="p-4 border-l-4 border-accent-green bg-surface-subtle font-mono text-xs sm:text-sm text-text-high leading-relaxed mt-1"
+                            x-text="texts[currentLang].approche.quote">
+                            « Mon rôle n'est pas d'empiler des technologies à la mode, mais de résoudre un vrai
+                            problème métier avec un outil clair que vos équipes aiment utiliser. »
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Les 3 principes de travail -->
+                <div class="flex flex-col gap-6 pt-4 border-t border-border-tech">
+                    <div class="font-mono text-xs text-text-faint uppercase tracking-widest font-bold"
+                        x-text="texts[currentLang].approche.principlesTitle">
+                        TROIS PRINCIPES QUI GUIDENT CHAQUE PROJET
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <template x-for="p in texts[currentLang].approche.principles" :key="p.num">
+                            <div class="bg-surface-panel border-2 border-border-bright p-6 flex flex-col justify-between gap-6 relative shadow-[6px_6px_0px_0px_var(--shadow-color)] transition-colors group"
+                                :class="p.borderHover">
+                                <div class="flex flex-col gap-4">
+                                    <div class="flex items-center justify-between border-b border-border-tech pb-3">
+                                        <span class="font-mono text-3xl font-black" :class="'text-' + p.colorClass"
+                                            x-text="p.num"></span>
+                                        <span
+                                            class="font-mono text-[11px] text-text-faint uppercase tracking-wider font-bold"
+                                            x-text="p.category"></span>
+                                    </div>
+                                    <h3 class="font-display font-bold text-xl text-text-high leading-snug"
+                                        x-text="p.title">
+                                    </h3>
+                                    <p class="font-body text-sm text-text-mid leading-relaxed" x-text="p.text"></p>
                                 </div>
-                                <p class="font-mono text-xs text-text-high mt-1 italic leading-normal"
-                                    x-text="texts[currentLang].featured.quoteText">
-                                    « Synthétiser l'essentiel, rendre tangibles les données critiques et garantir une
-                                    fiabilité absolue en toutes conditions. »
-                                </p>
-                            </div>
-                            <div class="flex flex-col gap-2 pt-2">
-                                <span class="font-mono text-[11px] text-text-faint uppercase tracking-wider"
-                                    x-text="texts[currentLang].featured.stackLabel">ARCHITECTURE DE PRODUCTION</span>
-                                <div class="flex flex-wrap gap-1.5 font-mono text-xs">
-                                    <span
-                                        class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Laravel</span>
-                                    <span
-                                        class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Livewire</span>
-                                    <span
-                                        class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Alpine.js</span>
-                                    <span
-                                        class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Tailwind
-                                        CSS</span>
-                                    <span
-                                        class="px-2.5 py-1 bg-accent-green/10 border border-accent-green text-accent-green font-semibold">SQLite
-                                        / MySQL</span>
+                                <div class="font-mono text-xs border-t border-border-tech pt-3 flex items-center justify-between"
+                                    :class="'text-' + p.colorClass">
+                                    <span class="font-semibold" x-text="p.footerLeft"></span>
+                                    <span class="text-text-faint font-bold" x-text="p.footerRight"></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pt-4 border-t border-border-tech flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                            <a class="min-h-[44px] px-4 py-2.5 bg-text-high text-surface-bg font-mono font-bold text-xs uppercase inline-flex items-center justify-center gap-2 hover:bg-accent-green hover:text-surface-bg transition-colors"
-                                href="https://gitlab.com/learnperso/fieldoz/" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-gitlab text-[14px]"></i>
-                                <span x-text="texts[currentLang].featured.liveLink">Explorer le dépôt GitLab</span>
-                            </a>
-                            <span class="font-mono text-[11px] text-accent-green font-bold text-center sm:text-right"
-                                x-text="texts[currentLang].featured.statusBadge">STATUT : DÉPLOYÉ</span>
-                        </div>
+                        </template>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 3 : Philosophie & Démarche -->
-        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech" id="ethique">
-            <div class="max-w-7xl mx-auto flex flex-col gap-10">
-                <div
-                    class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-tech pb-4">
-                    <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
-                            x-text="texts[currentLang].doctrine.tag">PHILOSOPHIE &amp; APPROCHE</div>
-                        <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1"
-                            x-text="texts[currentLang].doctrine.title">
-                            UNE DÉMARCHE D'EXCELLENCE : PRÉCISION &amp; ARTISANAT.
-                        </h2>
-                    </div>
-                    <p class="font-body text-sm text-text-mid max-w-md" x-text="texts[currentLang].doctrine.desc">
-                        Loin des effets de mode et du générique, chaque choix technique est pensé pour servir l'identité
-                        du projet, l'évolutivité long terme et l'impact visuel.
-                    </p>
-                </div>
+        <!-- Chapitre 3 : Réalisations (Étude de cas FieldOz + Galerie complète) -->
+        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech" id="projets">
+            <div class="max-w-7xl mx-auto flex flex-col gap-16">
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <template x-for="p in texts[currentLang].doctrine.principles" :key="p.num">
-                        <div class="bg-surface-panel border-2 border-border-bright p-6 flex flex-col justify-between gap-8 relative shadow-[6px_6px_0px_0px_var(--shadow-color)] transition-colors group"
-                            :class="p.borderHover">
-                            <div class="flex flex-col gap-4">
-                                <div class="flex items-center justify-between border-b border-border-tech pb-3">
-                                    <span class="font-mono text-3xl font-black" :class="'text-' + p.colorClass"
-                                        x-text="'[' + p.num + ']'"></span>
-                                    <span
-                                        class="font-mono text-[10px] text-text-faint uppercase tracking-widest font-bold"
-                                        x-text="p.category"></span>
-                                </div>
-                                <h3 class="font-display font-bold text-xl text-text-high leading-snug" x-text="p.title">
-                                </h3>
-                                <p class="font-body text-sm text-text-mid leading-relaxed" x-text="p.text"></p>
+                <!-- Sous-partie A : Étude de cas FieldOz -->
+                <div class="flex flex-col gap-8">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-tech pb-4">
+                        <div>
+                            <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
+                                x-text="texts[currentLang].featured.tag">
+                                ÉTUDE DE CAS À LA UNE
                             </div>
-                            <div class="font-mono text-xs border-t border-border-tech pt-3 flex items-center justify-between"
-                                :class="'text-' + p.colorClass">
-                                <span x-text="p.footerLeft"></span>
-                                <span class="text-text-faint font-bold" x-text="p.footerRight"></span>
-                            </div>
+                            <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
+                                x-text="texts[currentLang].featured.title">
+                                FIELDOZ — TRANSFORMER LES DONNÉES TERRAIN EN PREUVES D'IMPACT
+                            </h2>
                         </div>
-                    </template>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4 : Galerie des Réalisations -->
-        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="projets">
-            <div class="max-w-7xl mx-auto flex flex-col gap-8">
-                <div
-                    class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-border-tech pb-4">
-                    <div>
-                        <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
-                            x-text="texts[currentLang].projectsSection.tag">RÉALISATIONS SUR-MESURE // SÉLECTION SÉLECTIVE</div>
-                        <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
-                            x-text="texts[currentLang].projectsSection.title">
-                            DES SYSTÈMES ÉPROUVÉS EN PRODUCTION.
-                        </h2>
+                        <span
+                            class="font-mono text-xs text-text-mid bg-surface-panel px-3 py-1.5 border border-border-tech self-start sm:self-auto font-semibold"
+                            x-text="texts[currentLang].featured.ref">
+                            ÉTUDE DE CAS · WEB &amp; DONNÉES
+                        </span>
                     </div>
 
-                    <!-- Filtres par catégorie (Grille 2x2 tactile >= 44px sur mobile, barre en ligne sur grand écran) -->
-                    <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 p-1.5 bg-surface-panel border border-border-tech">
-                        <button
-                            class="filter-btn min-h-[44px] px-3.5 py-2 font-mono text-xs uppercase font-bold transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
-                            :class="activeFilter === 'all' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('all')">
-                            <span x-text="texts[currentLang].projectsSection.filters.all">TOUS</span>
-                            <span class="text-[10px] opacity-75" x-text="'(' + countByFilter('all') + ')'">(08)</span>
-                        </button>
-                        <button
-                            class="filter-btn min-h-[44px] px-3.5 py-2 font-mono text-xs uppercase font-bold transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
-                            :class="activeFilter === 'web' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('web')">
-                            <span x-text="texts[currentLang].projectsSection.filters.web">WEB &amp; SAAS</span>
-                            <span class="text-[10px] opacity-75" x-text="'(' + countByFilter('web') + ')'"></span>
-                        </button>
-                        <button
-                            class="filter-btn min-h-[44px] px-3.5 py-2 font-mono text-xs uppercase font-bold transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
-                            :class="activeFilter === 'mobile' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('mobile')">
-                            <span x-text="texts[currentLang].projectsSection.filters.mobile">MOBILE</span>
-                            <span class="text-[10px] opacity-75" x-text="'(' + countByFilter('mobile') + ')'"></span>
-                        </button>
-                        <button
-                            class="filter-btn min-h-[44px] px-3.5 py-2 font-mono text-xs uppercase font-bold transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
-                            :class="activeFilter === 'systemes' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
-                            @click="setFilter('systemes')">
-                            <span x-text="texts[currentLang].projectsSection.filters.systemes">SYSTÈMES &amp; ONG</span>
-                            <span class="text-[10px] opacity-75" x-text="'(' + countByFilter('systemes') + ')'"></span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Grille des projets -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <template x-for="p in filteredProjects()" :key="p.id">
+                    <div
+                        class="border-2 border-border-bright bg-surface-panel grid grid-cols-1 lg:grid-cols-12 shadow-[8px_8px_0px_0px_var(--shadow-color)]">
                         <div
-                            class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_var(--shadow-color)] group">
-                            <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
-                                @click="openLightbox(p.images)" role="button" tabindex="0"
-                                @keydown.enter="openLightbox(p.images)">
-                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter brightness-95"
-                                    :src="p.images[0]" :alt="p[currentLang].title" loading="lazy" />
-                                <div class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2 py-0.5 font-mono text-[10px] text-white"
-                                    x-text="p[currentLang].badge">
+                            class="lg:col-span-7 p-6 border-b lg:border-b-0 lg:border-r border-border-tech flex flex-col justify-between gap-6">
+                            <div class="relative border-2 border-border-bright bg-black overflow-hidden group cursor-pointer"
+                                @click="openLightbox(projects[0].images)" role="button" tabindex="0"
+                                @keydown.enter="openLightbox(projects[0].images)"
+                                aria-label="Ouvrir la galerie d'images FieldOz">
+                                <div
+                                    class="h-8 bg-surface-subtle border-b border-border-tech px-3 flex items-center justify-between font-mono text-[11px] text-text-mid">
+                                    <span class="font-semibold truncate"
+                                        x-text="texts[currentLang].featured.windowTitle">Aperçu de l'interface FieldOz</span>
+                                    <span class="text-accent-green font-bold"
+                                        x-text="texts[currentLang].featured.windowAction">Cliquer pour agrandir les 6 écrans</span>
                                 </div>
-                                <div class="absolute bottom-2 left-2 bg-accent-green text-surface-bg px-2 py-0.5 font-mono text-[10px] font-bold"
-                                    x-text="p.type">
+                                <img class="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500 filter brightness-95 contrast-105"
+                                    src="assets/projects/fieldoz/1.png" alt="FieldOz Dashboard" />
+                                <div
+                                    class="absolute bottom-3 left-3 bg-black/90 border border-zinc-700 px-3 py-1 font-mono text-[11px] text-white hidden sm:flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[15px] text-accent-green">photo_library</span>
+                                    <span x-text="texts[currentLang].featured.syncStatus">Consultable en galerie (6 captures)</span>
                                 </div>
                                 <div class="gallery-indicator">
                                     <i class="far fa-images"></i> <span
-                                        x-text="p.images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
+                                        x-text="projects[0].images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
                                 </div>
                             </div>
 
-                            <div class="p-5 flex flex-col justify-between flex-1 gap-4">
-                                <div>
-                                    <div class="flex items-center justify-between gap-2 font-mono text-[11px]">
-                                        <span class="text-accent-green font-semibold uppercase font-mono truncate"
-                                            x-text="p[currentLang].categoryLabel"></span>
-                                        <span class="text-text-faint font-mono shrink-0" x-text="p[currentLang].subtitle"></span>
-                                    </div>
-                                    <h3 class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-green transition-colors"
-                                        x-text="p[currentLang].title">
-                                    </h3>
-                                    <p class="font-body text-xs text-text-mid mt-2 leading-relaxed"
-                                        x-text="p[currentLang].description">
-                                    </p>
-                                </div>
-
-                                <div class="flex flex-col gap-2 pt-2 border-t border-border-tech">
-                                    <div class="flex flex-wrap gap-1 font-mono text-[11px]">
-                                        <template x-for="techItem in p.tech" :key="techItem">
-                                            <span
-                                                class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech"
-                                                x-text="techItem"></span>
-                                        </template>
-                                    </div>
-
-                                    <div
-                                        class="pt-2 flex items-center justify-between border-t border-border-tech/60 mt-1 font-mono text-xs min-h-[44px]">
-                                        <div>
-                                            <template x-if="p.links.gitlab">
-                                                <a :href="p.links.gitlab" target="_blank" rel="noopener noreferrer"
-                                                    class="min-h-[44px] text-accent-green hover:underline inline-flex items-center gap-1.5 font-bold">
-                                                    <i class="fab fa-gitlab"></i> <span
-                                                        x-text="texts[currentLang].projectsSection.viewGitlab"></span>
-                                                </a>
-                                            </template>
-                                            <template x-if="p.links.demo">
-                                                <a :href="p.links.demo" target="_blank" rel="noopener noreferrer"
-                                                    class="min-h-[44px] text-accent-green hover:underline inline-flex items-center gap-1.5 font-bold">
-                                                    <span
-                                                        class="material-symbols-outlined text-[16px]">open_in_new</span>
-                                                    <span
-                                                        x-text="texts[currentLang].projectsSection.viewSolution"></span>
-                                                </a>
-                                            </template>
-                                            <template x-if="!p.links.gitlab && !p.links.demo">
-                                                <span class="text-text-faint font-mono text-[11px] inline-flex items-center min-h-[44px]"
-                                                    x-text="texts[currentLang].projectsSection.privateLabel">// Déploiement Privé</span>
-                                            </template>
+                            <div class="grid grid-cols-3 gap-3 font-mono">
+                                <template x-for="(ind, iIdx) in texts[currentLang].featured.indicators" :key="iIdx">
+                                    <div class="border border-border-tech bg-surface-subtle p-3 text-center">
+                                        <div class="text-[10px] text-text-faint uppercase font-bold" x-text="ind.label">
                                         </div>
-                                        <span class="text-text-faint font-mono text-[11px]" x-text="p.id"></span>
+                                        <div class="text-lg sm:text-2xl font-bold mt-1 font-mono"
+                                            :class="iIdx === 1 ? 'text-text-high' : 'text-accent-green'" x-text="ind.val">
+                                        </div>
                                     </div>
-                                </div>
+                                </template>
                             </div>
                         </div>
-                    </template>
+
+                        <div class="lg:col-span-5 p-6 flex flex-col justify-between gap-6 bg-surface-panel">
+                            <div class="flex flex-col gap-4">
+                                <div class="inline-block font-mono text-[11px] text-accent-amber font-bold tracking-wider uppercase"
+                                    x-text="texts[currentLang].featured.sub">
+                                    PLATEFORME DE SUIVI &amp; RAPPORTS D'IMPACT
+                                </div>
+                                <h3 class="font-display font-bold text-2xl text-text-high leading-tight"
+                                    x-text="texts[currentLang].featured.heading">
+                                    FieldOz — Donner une voix claire aux actions de terrain
+                                </h3>
+                                <p class="font-body text-sm text-text-mid leading-relaxed"
+                                    x-text="texts[currentLang].featured.description">
+                                    Les organisations de terrain passent souvent des semaines à consolider des fichiers
+                                    dispersés pour prouver l'impact de leurs missions. FieldOz rassemble les données
+                                    collectées sur le terrain et les transforme automatiquement en bilans visuels
+                                    compréhensibles par les décideurs et les partenaires financiers.
+                                </p>
+                                <div class="border-l-4 border-accent-green bg-surface-subtle p-4 border border-border-tech">
+                                    <div class="font-mono text-[10px] text-accent-green uppercase tracking-widest font-bold"
+                                        x-text="texts[currentLang].featured.quoteTitle">
+                                        OBJECTIF DU PROJET
+                                    </div>
+                                    <p class="font-mono text-xs text-text-high mt-1 italic leading-normal"
+                                        x-text="texts[currentLang].featured.quoteText">
+                                        « Permettre aux équipes opérationnelles de présenter leurs résultats clairement,
+                                        sans perdre des jours dans des tableurs complexes. »
+                                    </p>
+                                </div>
+                                <div class="flex flex-col gap-2 pt-2">
+                                    <span class="font-mono text-[11px] text-text-faint uppercase tracking-wider font-bold"
+                                        x-text="texts[currentLang].featured.stackLabel">TECHNOLOGIES UTILISÉES</span>
+                                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                                        <span
+                                            class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Laravel</span>
+                                        <span
+                                            class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Livewire</span>
+                                        <span
+                                            class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Alpine.js</span>
+                                        <span
+                                            class="px-2.5 py-1 bg-surface-subtle border border-border-tech text-text-high">Tailwind
+                                            CSS</span>
+                                        <span
+                                            class="px-2.5 py-1 bg-accent-green/10 border border-accent-green text-accent-green font-semibold">SQLite
+                                            / MySQL</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4 border-t border-border-tech flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <button type="button" @click="openLightbox(projects[0].images)"
+                                    class="min-h-[44px] px-4 py-2.5 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase inline-flex items-center justify-center gap-2 hover:bg-text-high hover:text-surface-bg transition-colors cursor-pointer">
+                                    <i class="far fa-images text-[14px]"></i>
+                                    <span x-text="texts[currentLang].featured.openGalleryBtn">Voir les 6 captures d'écran</span>
+                                </button>
+                                <a class="min-h-[44px] px-4 py-2.5 border border-border-bright bg-surface-subtle text-text-high font-mono font-bold text-xs uppercase inline-flex items-center justify-center gap-2 hover:border-accent-green hover:text-accent-green transition-colors"
+                                    href="https://gitlab.com/learnperso/fieldoz/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-gitlab text-[14px]"></i>
+                                    <span x-text="texts[currentLang].featured.liveLink">Consulter le code sur GitLab</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sous-partie B : Galerie filtrable des autres réalisations -->
+                <div class="flex flex-col gap-8 pt-6 border-t border-border-tech">
+                    <div
+                        class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-border-tech pb-4">
+                        <div class="max-w-2xl">
+                            <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
+                                x-text="texts[currentLang].projectsSection.tag">PORTFOLIO DES RÉALISATIONS</div>
+                            <h3 class="font-display font-black text-2xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
+                                x-text="texts[currentLang].projectsSection.title">
+                                9 SYSTÈMES CONÇUS POUR DES BESOINS RÉELS.
+                            </h3>
+                            <p class="font-body text-sm text-text-mid mt-2"
+                                x-text="texts[currentLang].projectsSection.subtitle">
+                                Parcourez l'ensemble des applications web, mobiles et systèmes métier développés ces
+                                dernières années. Cliquez sur une carte ou sur « Voir les captures » pour inspecter
+                                chaque écran en détail.
+                            </p>
+                        </div>
+
+                        <!-- Filtres par catégorie -->
+                        <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 p-1.5 bg-surface-panel border border-border-tech self-start lg:self-end">
+                            <button
+                                class="filter-btn min-h-[44px] px-3.5 py-2 font-mono text-xs uppercase font-bold transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
+                                :class="activeFilter === 'all' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
+                                @click="setFilter('all')">
+                                <span x-text="texts[currentLang].projectsSection.filters.all">Tous les projets</span>
+                                <span class="text-[10px] opacity-75" x-text="'(' + countByFilter('all') + ')'">(08)</span>
+                            </button>
+                            <button
+                                class="filter-btn min-h-[44px] px-3.5 py-2 font-mono text-xs uppercase font-bold transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
+                                :class="activeFilter === 'web' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
+                                @click="setFilter('web')">
+                                <span x-text="texts[currentLang].projectsSection.filters.web">Web &amp; Plateformes</span>
+                                <span class="text-[10px] opacity-75" x-text="'(' + countByFilter('web') + ')'"></span>
+                            </button>
+                            <button
+                                class="filter-btn min-h-[44px] px-3.5 py-2 font-mono text-xs uppercase font-bold transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
+                                :class="activeFilter === 'mobile' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
+                                @click="setFilter('mobile')">
+                                <span x-text="texts[currentLang].projectsSection.filters.mobile">Applications Mobiles</span>
+                                <span class="text-[10px] opacity-75" x-text="'(' + countByFilter('mobile') + ')'"></span>
+                            </button>
+                            <button
+                                class="filter-btn min-h-[44px] px-3.5 py-2 font-mono text-xs uppercase font-bold transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
+                                :class="activeFilter === 'systemes' ? 'bg-text-high text-surface-bg active shadow-sm' : 'text-text-mid hover:text-text-high hover:bg-surface-subtle'"
+                                @click="setFilter('systemes')">
+                                <span x-text="texts[currentLang].projectsSection.filters.systemes">Systèmes &amp; Terrain</span>
+                                <span class="text-[10px] opacity-75" x-text="'(' + countByFilter('systemes') + ')'"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Grille des projets -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <template x-for="p in filteredProjects()" :key="p.id">
+                            <div
+                                class="project-card flex flex-col bg-surface-panel border-2 border-border-bright hover:border-accent-green transition-all shadow-[6px_6px_0px_0px_var(--shadow-color)] group">
+                                <div class="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-border-tech cursor-pointer"
+                                    @click="openLightbox(p.images)" role="button" tabindex="0"
+                                    @keydown.enter="openLightbox(p.images)">
+                                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 filter brightness-95"
+                                        :src="p.images[0]" :alt="p[currentLang].title" loading="lazy" />
+                                    <div class="absolute top-2 left-2 bg-black/90 border border-zinc-700 px-2.5 py-0.5 font-mono text-[10px] text-white font-semibold"
+                                        x-text="p[currentLang].badge">
+                                    </div>
+                                    <div class="absolute bottom-2 left-2 bg-accent-green text-surface-bg px-2.5 py-0.5 font-mono text-[10px] font-bold"
+                                        x-text="p.type">
+                                    </div>
+                                    <div class="gallery-indicator">
+                                        <i class="far fa-images"></i> <span
+                                            x-text="p.images.length + ' ' + texts[currentLang].projectsSection.photosCount"></span>
+                                    </div>
+                                </div>
+
+                                <div class="p-5 flex flex-col justify-between flex-1 gap-4">
+                                    <div>
+                                        <div class="flex items-center justify-between gap-2 font-mono text-[11px]">
+                                            <span class="text-accent-green font-bold uppercase font-mono truncate"
+                                                x-text="p[currentLang].categoryLabel"></span>
+                                            <span class="text-text-faint font-mono shrink-0"
+                                                x-text="p[currentLang].subtitle"></span>
+                                        </div>
+                                        <h4 class="font-display font-bold text-xl text-text-high mt-1 group-hover:text-accent-green transition-colors"
+                                            x-text="p[currentLang].title">
+                                        </h4>
+                                        <p class="font-body text-xs sm:text-sm text-text-mid mt-2 leading-relaxed"
+                                            x-text="p[currentLang].description">
+                                        </p>
+                                    </div>
+
+                                    <div class="flex flex-col gap-3 pt-3 border-t border-border-tech">
+                                        <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                            <template x-for="techItem in p.tech" :key="techItem">
+                                                <span
+                                                    class="px-2 py-0.5 bg-surface-subtle text-text-high border border-border-tech"
+                                                    x-text="techItem"></span>
+                                            </template>
+                                        </div>
+
+                                        <!-- Pied de carte avec bouton d'action explicite vers la galerie -->
+                                        <div
+                                            class="pt-2 flex flex-wrap items-center justify-between gap-2 border-t border-border-tech/60 mt-1 font-mono text-xs">
+                                            <button type="button" @click="openLightbox(p.images)"
+                                                class="min-h-[44px] px-3 py-1.5 bg-surface-subtle border border-border-tech hover:border-accent-green hover:text-accent-green text-text-high font-mono text-xs font-bold inline-flex items-center gap-1.5 transition-colors cursor-pointer">
+                                                <i class="far fa-images text-[13px] text-accent-green"></i>
+                                                <span
+                                                    x-text="texts[currentLang].projectsSection.viewScreenshots + ' (' + p.images.length + ')'"></span>
+                                            </button>
+
+                                            <div>
+                                                <template x-if="p.links.gitlab">
+                                                    <a :href="p.links.gitlab" target="_blank" rel="noopener noreferrer"
+                                                        class="min-h-[44px] px-2.5 text-accent-green hover:underline inline-flex items-center gap-1.5 font-bold">
+                                                        <i class="fab fa-gitlab"></i> <span
+                                                            x-text="texts[currentLang].projectsSection.viewGitlab"></span>
+                                                    </a>
+                                                </template>
+                                                <template x-if="p.links.demo">
+                                                    <a :href="p.links.demo" target="_blank" rel="noopener noreferrer"
+                                                        class="min-h-[44px] px-2.5 text-accent-green hover:underline inline-flex items-center gap-1.5 font-bold">
+                                                        <span
+                                                            class="material-symbols-outlined text-[16px]">open_in_new</span>
+                                                        <span
+                                                            x-text="texts[currentLang].projectsSection.viewSolution"></span>
+                                                    </a>
+                                                </template>
+                                                <template x-if="!p.links.gitlab && !p.links.demo">
+                                                    <span
+                                                        class="text-text-faint font-mono text-[11px] inline-flex items-center min-h-[44px] px-1"
+                                                        x-text="texts[currentLang].projectsSection.privateLabel">Projet interne client</span>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 5 : Parcours & Expérience -->
-        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech" id="parcours">
+        <!-- Chapitre 4 : Parcours Professionnel & Académique -->
+        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="parcours">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Colonne gauche : Introduction & Formation académique -->
                 <div class="lg:col-span-5 flex flex-col gap-6">
                     <div>
                         <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
-                            x-text="texts[currentLang].parcours.tag">EXPÉRIENCE &amp; VÉRITÉ BRUTE</div>
-                        <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1 leading-tight"
+                            x-text="texts[currentLang].parcours.tag">PARCOURS PROFESSIONNEL &amp; ACADÉMIQUE</div>
+                        <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1 leading-tight"
                             x-text="texts[currentLang].parcours.title">
-                            UNE RIGUEUR NÉE DES CONTRAINTES RÉELLES.
+                            6 ANNÉES D'EXPÉRIENCE ENTRE ARCHITECTURE, WEB ET MOBILE.
                         </h2>
-                    </div>
-                    <div class="space-y-4 font-body text-sm text-text-mid leading-relaxed">
-                        <p x-text="texts[currentLang].parcours.p1">
-                            Mon approche du développement n'a pas débuté dans des bureaux aseptisés avec de la fibre
-                            optique illimitée. Elle a été forgée en autodidacte exigeant face à des connexions
-                            instables, des matériels hétéroclites et la nécessité absolue de faire fonctionner les
-                            choses du premier coup.
+                        <p class="font-body text-sm text-text-mid mt-3 leading-relaxed"
+                            x-text="texts[currentLang].parcours.intro">
+                            De mes premières missions de développement jusqu'à l'architecture de plateformes complètes en
+                            FinTech et en conservation environnementale, voici les étapes clés de mon parcours.
                         </p>
-                        <p x-text="texts[currentLang].parcours.p2">
-                            Lorsqu'on déploie une solution pour les agents des parcs WAP ou pour des équipes de santé
-                            publique en brousse, on comprend très vite qu'un bogue n'est pas un simple « ticket Jira » :
-                            c'est une mission arrêtée, un rapport financier bloqué ou une journée de patrouille perdue.
-                        </p>
-                        <div class="p-4 border-l-2 border-accent-green bg-surface-panel font-mono text-xs text-text-high border border-border-tech"
-                            x-text="texts[currentLang].parcours.quote">
-                            « Épurer l'architecture, éliminer le superflu, livrer du code net que n'importe quelle
-                            équipe locale pourra s'approprier sans dépendre d'un tiers. »
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 pt-2">
-                        <div class="border border-border-tech bg-surface-panel p-3">
-                            <div class="font-mono text-2xl font-bold text-text-high"
-                                x-text="texts[currentLang].parcours.countriesCount">03 PAYS</div>
-                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase"
-                                x-text="texts[currentLang].parcours.countriesList">Bénin - Burkina - Niger</div>
-                        </div>
-                        <div class="border border-border-tech bg-surface-panel p-3">
-                            <div class="font-mono text-2xl font-bold text-accent-green"
-                                x-text="texts[currentLang].parcours.mvpDelay">1 SEMAINE</div>
-                            <div class="font-mono text-[10px] text-text-faint mt-1 uppercase"
-                                x-text="texts[currentLang].parcours.mvpDesc">Délai moyen MVP opérationnel</div>
-                        </div>
                     </div>
 
-                    <div class="mt-4 border-t border-border-tech pt-6">
-                        <div class="font-mono text-xs text-text-faint uppercase tracking-widest pb-3 font-bold"
+                    <div class="border-t border-border-tech pt-6">
+                        <div class="font-mono text-xs text-text-faint uppercase tracking-widest pb-4 font-bold"
                             x-text="texts[currentLang].parcours.educationTitle">
-                            // FORMATION ACADÉMIQUE &amp; CERTIFICATIONS
+                            FORMATION ACADÉMIQUE &amp; CERTIFICATIONS
                         </div>
-                        <div class="space-y-3">
+                        <div class="space-y-4">
                             <template x-for="(edu, eIdx) in texts[currentLang].education.items" :key="eIdx">
                                 <div
-                                    class="bg-surface-panel border border-border-tech p-3.5 shadow-sm hover:border-accent-green transition-colors">
-                                    <div class="flex items-center justify-between text-xs font-mono">
+                                    class="bg-surface-panel border-2 border-border-tech p-4 shadow-sm hover:border-accent-green transition-colors">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
                                         <span class="text-accent-green font-bold" x-text="edu.period"></span>
                                         <span class="text-text-faint font-semibold" x-text="edu.school"></span>
                                     </div>
-                                    <div class="font-display font-bold text-sm text-text-high mt-1" x-text="edu.title">
+                                    <div class="font-display font-bold text-base text-text-high mt-1.5"
+                                        x-text="edu.title">
                                     </div>
-                                    <div class="font-body text-xs text-text-mid mt-1" x-text="edu.description"></div>
+                                    <div class="font-body text-xs text-text-mid mt-1 leading-relaxed"
+                                        x-text="edu.description"></div>
                                 </div>
                             </template>
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 flex flex-col gap-4">
+                <!-- Colonne droite : Chronologie verticale des missions -->
+                <div class="lg:col-span-7 flex flex-col gap-5">
                     <div class="font-mono text-xs text-text-faint uppercase tracking-widest border-b border-border-tech pb-2 font-bold"
                         x-text="texts[currentLang].parcours.timelineTitle">
-                        // CHRONOLOGIE DES RESPONSABILITÉS &amp; DÉPLOIEMENTS
+                        RESPONSABILITÉS &amp; MISSIONS RÉALISÉES
                     </div>
 
-                    <template x-for="(exp, expIdx) in texts[currentLang].experience.items" :key="expIdx">
-                        <div
-                            class="bg-surface-panel border-2 border-border-bright p-5 hover:border-accent-green transition-all shadow-[4px_4px_0px_0px_var(--shadow-color)]">
-                            <div
-                                class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2 mb-3">
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-border-bright space-y-5">
+                        <template x-for="(exp, expIdx) in texts[currentLang].experience.items" :key="expIdx">
+                            <div class="relative">
+                                <!-- Repère sur la ligne du temps -->
                                 <span
-                                    class="font-mono text-xs font-bold text-accent-green px-2 py-0.5 bg-accent-green/10 border border-accent-green/40"
-                                    x-text="exp.period">
-                                </span>
-                                <span class="font-mono text-xs text-text-faint font-bold" x-text="exp.tag"></span>
+                                    class="absolute -left-[31px] sm:-left-[39px] top-5 w-3.5 h-3.5 border-2"
+                                    :class="exp.isCurrent ? 'bg-accent-green border-surface-bg ring-2 ring-accent-green' : 'bg-surface-panel border-border-bright'"></span>
+
+                                <div class="bg-surface-panel border-2 p-5 transition-all shadow-[4px_4px_0px_0px_var(--shadow-color)]"
+                                    :class="exp.isCurrent ? 'border-accent-green' : 'border-border-bright hover:border-accent-green'">
+                                    <div
+                                        class="flex flex-wrap items-center justify-between gap-2 border-b border-border-tech pb-2.5 mb-3">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <span
+                                                class="font-mono text-xs font-bold px-2.5 py-0.5 border"
+                                                :class="exp.isCurrent ? 'text-surface-bg bg-accent-green border-accent-green' : 'text-accent-green bg-accent-green/10 border-accent-green/40'"
+                                                x-text="exp.period">
+                                            </span>
+                                            <template x-if="exp.isCurrent">
+                                                <span
+                                                    class="font-mono text-[10px] uppercase font-bold px-2 py-0.5 bg-surface-subtle text-accent-green border border-accent-green/50"
+                                                    x-text="texts[currentLang].parcours.currentBadge">En poste</span>
+                                            </template>
+                                        </div>
+                                        <span class="font-mono text-xs text-text-faint font-bold"
+                                            x-text="exp.tag"></span>
+                                    </div>
+                                    <h3 class="font-display font-bold text-xl text-text-high" x-text="exp.position">
+                                    </h3>
+                                    <div class="font-mono text-xs text-accent-amber mt-0.5 font-bold"
+                                        x-text="exp.company">
+                                    </div>
+                                    <p class="font-body text-xs sm:text-sm text-text-mid mt-3 leading-relaxed"
+                                        x-text="exp.description">
+                                    </p>
+                                </div>
                             </div>
-                            <h3 class="font-display font-bold text-xl text-text-high" x-text="exp.position">
-                            </h3>
-                            <div class="font-mono text-xs text-accent-amber mt-0.5 font-bold" x-text="exp.company">
-                            </div>
-                            <p class="font-body text-xs text-text-mid mt-3 leading-relaxed" x-text="exp.description">
-                            </p>
-                        </div>
-                    </template>
+                        </template>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 6 : Compétences & Boîte à Outils -->
-        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="outils">
+        <!-- Chapitre 5 : Compétences & Boîte à Outils -->
+        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech" id="outils">
             <div class="max-w-7xl mx-auto flex flex-col gap-10">
-                <div class="border-b border-border-tech pb-4">
+                <div class="border-b border-border-tech pb-4 max-w-2xl">
                     <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
-                        x-text="texts[currentLang].skillsSection.tag">MAÎTRISE TECHNIQUE DIRECTE</div>
+                        x-text="texts[currentLang].skillsSection.tag">COMPÉTENCES TECHNIQUES</div>
                     <h2 class="font-display font-black text-3xl sm:text-4xl text-text-high tracking-tight uppercase mt-1"
                         x-text="texts[currentLang].skillsSection.title">
-                        LA BOÎTE À OUTILS SANS ARTIFICE.
+                        LES OUTILS QUE J'UTILISE AU QUOTIDIEN.
                     </h2>
+                    <p class="font-body text-sm text-text-mid mt-2"
+                        x-text="texts[currentLang].skillsSection.subtitle">
+                        Des technologies choisies pour leur fiabilité en production, leur clarté de maintenance et leur
+                        adaptation aux contraintes de chaque projet.
+                    </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 font-mono">
                     <template x-for="pillar in texts[currentLang].skillsSection.pillars" :key="pillar.num">
                         <div
                             class="bg-surface-panel border-2 border-border-bright p-5 flex flex-col justify-between shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:border-accent-green transition-colors">
                             <div>
-                                <div class="flex items-center justify-between border-b border-border-tech pb-2 mb-4 text-xs font-bold"
+                                <div class="flex items-center justify-between border-b border-border-tech pb-2.5 mb-4 text-xs font-bold"
                                     :class="'text-' + pillar.color">
-                                    <span x-text="pillar.num + ' // ' + pillar.category"></span>
-                                    <span class="material-symbols-outlined text-[16px]" x-text="pillar.icon"></span>
+                                    <span x-text="pillar.num + ' · ' + pillar.category"></span>
+                                    <span class="material-symbols-outlined text-[18px]" x-text="pillar.icon"></span>
                                 </div>
-                                <ul class="space-y-2 text-xs">
+                                <ul class="space-y-2.5 text-xs">
                                     <template x-for="item in pillar.items" :key="item.name">
                                         <li
-                                            class="flex items-center justify-between py-1 border-b border-border-tech/60">
+                                            class="flex items-center justify-between py-1 border-b border-border-tech/60 gap-2">
                                             <span
-                                                :class="item.highlight ? 'text-text-high font-medium' : 'text-text-mid'"
+                                                :class="item.highlight ? 'text-text-high font-semibold' : 'text-text-mid'"
                                                 x-text="item.name"></span>
                                             <span
-                                                :class="item.highlight ? 'text-' + pillar.color + ' font-semibold' : 'text-text-faint'"
+                                                :class="item.highlight ? 'text-' + pillar.color + ' font-bold' : 'text-text-faint'"
+                                                class="text-[11px] shrink-0"
                                                 x-text="item.badge"></span>
                                         </li>
                                     </template>
                                 </ul>
                             </div>
-                            <div class="pt-4 border-t border-border-tech text-[10px] text-text-faint uppercase mt-4"
+                            <div class="pt-4 border-t border-border-tech text-[11px] text-text-faint mt-4"
                                 x-text="pillar.tagline"></div>
                         </div>
                     </template>
@@ -1026,41 +1106,41 @@
             </div>
         </section>
 
-        <!-- Section 7 : Prise de Contact Directe -->
-        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech" id="contact">
+        <!-- Chapitre 6 : Prise de Contact Directe -->
+        <section class="w-full py-20 px-4 md:px-8 border-b border-border-tech bg-surface-subtle" id="contact">
             <div
                 class="max-w-7xl mx-auto border-2 border-border-bright bg-surface-panel p-6 sm:p-10 shadow-[8px_8px_0px_0px_var(--shadow-color)]">
                 <div
                     class="flex flex-col lg:flex-row lg:items-start justify-between gap-6 border-b border-border-tech pb-8 mb-8">
                     <div class="max-w-2xl">
                         <div class="font-mono text-xs text-accent-green uppercase tracking-widest font-bold"
-                            x-text="texts[currentLang].contact.tag">// CANAL DIRECT // SANS INTERMÉDIAIRE</div>
+                            x-text="texts[currentLang].contact.tag">CONTACT DIRECT &amp; ÉCHANGES</div>
                         <h2 class="font-display font-black text-3xl sm:text-5xl text-text-high tracking-tight uppercase mt-1"
                             x-text="texts[currentLang].contact.title">
-                            DÉMARRONS UN PROJET D'ENVERGURE.
+                            PARLONS DE VOTRE PROCHAIN PROJET.
                         </h2>
-                        <p class="font-body text-sm text-text-mid mt-2 leading-relaxed"
+                        <p class="font-body text-sm sm:text-base text-text-mid mt-2 leading-relaxed"
                             x-text="texts[currentLang].contact.subtitle">
-                            Pas de formulaire impersonnel ni de filtre commercial. Contactez-moi directement via les
-                            canaux ci-dessous pour échanger sur vos objectifs d'architecture, vos plateformes ou vos
-                            missions.
+                            Vous avez besoin de concevoir une nouvelle plateforme, de lancer une application mobile ou
+                            de faire évoluer un outil existant ? Écrivez-moi directement par le canal qui vous convient
+                            le mieux.
                         </p>
-                        <p class="font-mono text-xs text-accent-green mt-2 font-bold"
+                        <p class="font-mono text-xs text-accent-green mt-3 font-bold"
                             x-text="texts[currentLang].contact.guarantee">
-                            Intervention en autonomie complète, basée sur des livrables précis et un alignement
-                            stratégique clair dès le départ.
+                            Échange direct avec moi, sans intermédiaire commercial, avec un retour clair sur la
+                            faisabilité et les étapes de réalisation.
                         </p>
                     </div>
                     <div
-                        class="border border-border-tech bg-surface-subtle p-4 font-mono text-xs flex flex-col gap-1 min-w-[280px]">
+                        class="border-2 border-border-tech bg-surface-subtle p-4 font-mono text-xs flex flex-col gap-1 min-w-[280px]">
                         <span class="text-text-faint text-[10px] uppercase font-bold"
-                            x-text="texts[currentLang].contact.emailBadge">CANAL OFFICIEL // EMAIL</span>
+                            x-text="texts[currentLang].contact.emailBadge">ADRESSE EMAIL DIRECTE</span>
                         <a class="min-h-[44px] inline-flex items-center text-base font-bold text-accent-green hover:underline"
                             href="mailto:assogbamanuel6@gmail.com">
                             assogbamanuel6@gmail.com
                         </a>
-                        <span class="text-text-faint text-[11px]"
-                            x-text="texts[currentLang].contact.emailResponseTime">Garantie de réponse &lt; 24h
+                        <span class="text-text-mid text-[11px]"
+                            x-text="texts[currentLang].contact.emailResponseTime">Réponse garantie sous 24h
                             ouvrées</span>
                     </div>
                 </div>
@@ -1074,7 +1154,7 @@
                             <div class="flex items-center justify-between border-b border-border-tech pb-3">
                                 <span class="material-symbols-outlined text-accent-green text-[28px]">chat</span>
                                 <span class="text-[10px] text-accent-green font-bold uppercase tracking-wider"
-                                    x-text="texts[currentLang].contact.channels[0].tag">// INSTANT</span>
+                                    x-text="texts[currentLang].contact.channels[0].tag">MESSAGERIE RAPIDE</span>
                             </div>
                             <h3 class="font-display font-bold text-lg text-text-high group-hover:text-accent-green transition-colors"
                                 x-text="texts[currentLang].contact.channels[0].title">
@@ -1082,7 +1162,7 @@
                             </h3>
                             <p class="font-body text-xs text-text-mid leading-relaxed"
                                 x-text="texts[currentLang].contact.channels[0].desc">
-                                Échanges rapides, messages &amp; vocaux
+                                Idéal pour un premier échange rapide par message ou note vocale
                             </p>
                             <div class="font-mono text-xs font-bold text-text-high pt-2"
                                 x-text="texts[currentLang].contact.channels[0].value">
@@ -1092,7 +1172,7 @@
                         <div class="mt-6 pt-3 border-t border-border-tech">
                             <a class="w-full min-h-[44px] py-2.5 px-3 bg-accent-green text-surface-bg font-mono font-bold text-xs uppercase flex items-center justify-center gap-2 hover:bg-text-high transition-colors"
                                 href="https://wa.me/2290161512491" target="_blank" rel="noopener noreferrer">
-                                <span x-text="texts[currentLang].contact.channels[0].action">Ouvrir WhatsApp →</span>
+                                <span x-text="texts[currentLang].contact.channels[0].action">Écrire sur WhatsApp →</span>
                             </a>
                         </div>
                     </div>
@@ -1104,7 +1184,7 @@
                             <div class="flex items-center justify-between border-b border-border-tech pb-3">
                                 <span class="material-symbols-outlined text-accent-green text-[28px]">mail</span>
                                 <span class="text-[10px] text-text-faint font-bold uppercase tracking-wider"
-                                    x-text="texts[currentLang].contact.channels[1].tag">// FORMEL</span>
+                                    x-text="texts[currentLang].contact.channels[1].tag">DOSSIERS &amp; CAHIERS DES CHARGES</span>
                             </div>
                             <h3 class="font-display font-bold text-lg text-text-high group-hover:text-accent-green transition-colors"
                                 x-text="texts[currentLang].contact.channels[1].title">
@@ -1112,7 +1192,7 @@
                             </h3>
                             <p class="font-body text-xs text-text-mid leading-relaxed"
                                 x-text="texts[currentLang].contact.channels[1].desc">
-                                Cahiers des charges, devis &amp; dossiers
+                                Pour me transmettre vos besoins détaillés, documents ou propositions
                             </p>
                             <div class="font-mono text-xs font-bold text-text-high pt-2 break-all"
                                 x-text="texts[currentLang].contact.channels[1].value">
@@ -1122,7 +1202,7 @@
                         <div class="mt-6 pt-3 border-t border-border-tech">
                             <a class="w-full min-h-[44px] py-2.5 px-3 bg-text-high text-surface-bg font-mono font-bold text-xs uppercase flex items-center justify-center gap-2 hover:bg-accent-green transition-colors"
                                 href="mailto:assogbamanuel6@gmail.com">
-                                <span x-text="texts[currentLang].contact.channels[1].action">Écrire un Email →</span>
+                                <span x-text="texts[currentLang].contact.channels[1].action">Envoyer un email →</span>
                             </a>
                         </div>
                     </div>
@@ -1134,25 +1214,25 @@
                             <div class="flex items-center justify-between border-b border-border-tech pb-3">
                                 <i class="fab fa-linkedin text-text-high text-[26px]"></i>
                                 <span class="text-[10px] text-text-faint font-bold uppercase tracking-wider"
-                                    x-text="texts[currentLang].contact.channels[2].tag">// RÉSEAU</span>
+                                    x-text="texts[currentLang].contact.channels[2].tag">RÉSEAU PROFESSIONNEL</span>
                             </div>
                             <h3 class="font-display font-bold text-lg text-text-high group-hover:text-accent-green transition-colors"
                                 x-text="texts[currentLang].contact.channels[2].title">
-                                Réseau LinkedIn
+                                Profil LinkedIn
                             </h3>
                             <p class="font-body text-xs text-text-mid leading-relaxed"
                                 x-text="texts[currentLang].contact.channels[2].desc">
-                                Parcours vérifié &amp; réseau de pairs
+                                Consultez mon parcours détaillé et échangeons dans votre réseau
                             </p>
                             <div class="font-mono text-xs font-bold text-text-mid pt-2"
                                 x-text="texts[currentLang].contact.channels[2].value">
-                                /in/manuel-assogba
+                                linkedin.com/in/manuel-assogba
                             </div>
                         </div>
                         <div class="mt-6 pt-3 border-t border-border-tech">
                             <a class="w-full min-h-[44px] py-2.5 px-3 border border-border-bright hover:border-text-high text-text-high font-mono font-bold text-xs uppercase flex items-center justify-center gap-2 transition-colors hover:bg-surface-panel"
                                 href="https://linkedin.com/in/manuel-assogba-a0900a123/" target="_blank" rel="noopener noreferrer">
-                                <span x-text="texts[currentLang].contact.channels[2].action">Voir le profil →</span>
+                                <span x-text="texts[currentLang].contact.channels[2].action">Ouvrir LinkedIn →</span>
                             </a>
                         </div>
                     </div>
@@ -1164,10 +1244,10 @@
                             <div class="flex items-center justify-between border-b border-border-tech pb-3">
                                 <div class="flex items-center gap-2">
                                     <i class="fab fa-github text-accent-amber text-[24px]"></i>
-                                    <i class="fab fa-gitlab text-orange-400 text-[20px]"></i>
+                                    <i class="fab fa-gitlab text-accent-amber text-[20px]"></i>
                                 </div>
                                 <span class="text-[10px] text-accent-amber font-bold uppercase tracking-wider"
-                                    x-text="texts[currentLang].contact.channels[3].tag">// CODE SOURCE</span>
+                                    x-text="texts[currentLang].contact.channels[3].tag">DÉPÔTS DE CODE</span>
                             </div>
                             <h3 class="font-display font-bold text-lg text-text-high group-hover:text-accent-amber transition-colors"
                                 x-text="texts[currentLang].contact.channels[3].title">
@@ -1175,11 +1255,11 @@
                             </h3>
                             <p class="font-body text-xs text-text-mid leading-relaxed"
                                 x-text="texts[currentLang].contact.channels[3].desc">
-                                Commits, architectures &amp; solutions
+                                Explorez mes projets publics, contributions et dépôts open source
                             </p>
                             <div class="font-mono text-xs font-bold text-text-mid pt-2"
                                 x-text="texts[currentLang].contact.channels[3].value">
-                                manuelh6 - assogbamanuel6
+                                manuelh6 · assogbamanuel6
                             </div>
                         </div>
                         <div class="mt-6 pt-3 border-t border-border-tech flex items-center gap-2">
@@ -1187,7 +1267,7 @@
                                 href="https://github.com/manuelh6" target="_blank" rel="noopener noreferrer">
                                 GitHub
                             </a>
-                            <a class="flex-1 min-h-[44px] py-2 px-2 bg-surface-panel border border-border-tech hover:border-orange-400 text-text-high font-mono font-bold text-[11px] uppercase inline-flex items-center justify-center transition-colors"
+                            <a class="flex-1 min-h-[44px] py-2 px-2 bg-surface-panel border border-border-tech hover:border-accent-amber text-text-high font-mono font-bold text-[11px] uppercase inline-flex items-center justify-center transition-colors"
                                 href="https://gitlab.com/assogbamanuel6" target="_blank" rel="noopener noreferrer">
                                 GitLab
                             </a>
@@ -1195,16 +1275,16 @@
                     </div>
                 </div>
 
-                <!-- Localisation & Disponibilité -->
+                <!-- Localisation & Disponibilité (sans pastille à point) -->
                 <div
                     class="mt-8 p-4 bg-surface-subtle border border-border-tech font-mono text-xs text-center flex flex-col sm:flex-row items-center justify-between gap-2">
-                    <span class="text-text-faint font-bold tracking-wide"
+                    <span class="text-text-mid font-semibold tracking-wide"
                         x-text="texts[currentLang].contact.locationText">
-                        COTONOU - AFRIQUE DE L'OUEST [UTC+1] — DISPONIBLE MISSIONS REMOTE MONDE
+                        Basé à Cotonou (Bénin, UTC+1) — Disponible pour des missions en Afrique et à l'international
                     </span>
-                    <span class="text-accent-green font-bold flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
-                        <span x-text="texts[currentLang].contact.remoteBadge">DISPONIBLE EN REMOTE</span>
+                    <span class="text-accent-green font-bold uppercase tracking-wider px-3 py-1 border border-accent-green/40 bg-accent-green/10"
+                        x-text="texts[currentLang].contact.remoteBadge">
+                        Missions à distance &amp; sur site
                     </span>
                 </div>
             </div>
@@ -1223,16 +1303,16 @@
                     </div>
                     <p class="font-body text-xs text-text-mid mt-2 leading-relaxed"
                         x-text="texts[currentLang].footer.desc">
-                        Conception de plateformes critiques, interfaces sobres et topologies logicielles pour
-                        organisations à fort enjeu opérationnel.
+                        Architecte logiciel et développeur Full-Stack. Conception d'applications web, mobiles et
+                        systèmes métier pensés pour le terrain et bâtis pour durer.
                     </p>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 text-[11px]">
                     <div class="flex flex-col gap-2">
                         <span class="text-text-high font-bold uppercase tracking-wider"
-                            x-text="texts[currentLang].footer.colIndex">// INDEX</span>
+                            x-text="texts[currentLang].footer.colIndex">NAVIGATION</span>
                         <a class="min-h-[44px] sm:min-h-0 flex items-center text-text-mid hover:text-accent-green transition-colors"
-                            href="#focus" x-text="texts[currentLang].nav.focus">Focus</a>
+                            href="#focus" x-text="texts[currentLang].nav.focus">Accueil</a>
                         <a class="min-h-[44px] sm:min-h-0 flex items-center text-text-mid hover:text-accent-green transition-colors"
                             href="#projets" x-text="texts[currentLang].nav.projects">Réalisations</a>
                         <a class="min-h-[44px] sm:min-h-0 flex items-center text-text-mid hover:text-accent-green transition-colors"
@@ -1240,25 +1320,25 @@
                     </div>
                     <div class="flex flex-col gap-2">
                         <span class="text-text-high font-bold uppercase tracking-wider"
-                            x-text="texts[currentLang].footer.colDoctrine">// DOCTRINE</span>
+                            x-text="texts[currentLang].footer.colDoctrine">EXPLORER</span>
                         <a class="min-h-[44px] sm:min-h-0 flex items-center text-text-mid hover:text-accent-green transition-colors"
-                            href="#ethique" x-text="texts[currentLang].footer.philosophyLink">Philosophie</a>
+                            href="#approche" x-text="texts[currentLang].footer.philosophyLink">Mon approche</a>
                         <a class="min-h-[44px] sm:min-h-0 flex items-center text-text-mid hover:text-accent-green transition-colors"
-                            href="#outils" x-text="texts[currentLang].footer.stackLink">Stack Terrain</a>
+                            href="#outils" x-text="texts[currentLang].footer.stackLink">Compétences</a>
                         <a class="min-h-[44px] sm:min-h-0 flex items-center text-text-mid hover:text-accent-green transition-colors"
-                            href="#contact" x-text="texts[currentLang].footer.contactLink">Contact Direct</a>
+                            href="#contact" x-text="texts[currentLang].footer.contactLink">Me contacter</a>
                     </div>
                     <div class="flex flex-col gap-2 col-span-2 sm:col-span-1">
                         <span class="text-text-high font-bold uppercase tracking-wider"
-                            x-text="texts[currentLang].footer.colLocation">// LOCALISATION</span>
-                        <span class="text-text-mid" x-text="texts[currentLang].footer.city">Cotonou (Bénin)</span>
+                            x-text="texts[currentLang].footer.colLocation">COORDONNÉES</span>
+                        <span class="text-text-mid" x-text="texts[currentLang].footer.city">Cotonou, Bénin</span>
                         <span class="text-accent-green font-bold"
-                            x-text="texts[currentLang].footer.timezone">UTC+1 // Remote Global</span>
+                            x-text="texts[currentLang].footer.timezone">Fuseau UTC+1 · Remote International</span>
                     </div>
                 </div>
             </div>
             <div
-                class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-tech pt-6 text-[10px] text-text-faint">
+                class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-tech pt-6 text-[11px] text-text-faint">
                 <div>
                     © <span x-text="new Date().getFullYear()"></span> <span
                         x-text="texts[currentLang].footer.copyright">Manuel Assogba. Tous droits réservés.</span>
@@ -1269,12 +1349,19 @@
                         <span class="text-text-high font-bold ml-1" x-text="localTime"></span>
                     </span>
                     <span class="text-text-faint">|</span>
-                    <span class="text-accent-green font-bold" x-text="texts[currentLang].footer.status">STATUT : SYSTÈMES
-                        OPÉRATIONNELS</span>
+                    <span class="text-accent-green font-bold" x-text="texts[currentLang].footer.status">Portfolio mis à jour · 2026</span>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Bouton flottant Retour en haut (44x44px minimum) -->
+    <button type="button" x-show="showBackToTop" x-transition.opacity @click="scrollToTop()"
+        class="fixed bottom-6 right-6 z-40 min-w-[46px] min-h-[46px] bg-surface-panel border-2 border-border-bright hover:border-accent-green text-text-high hover:text-accent-green shadow-[4px_4px_0px_0px_var(--shadow-color)] flex items-center justify-center transition-colors cursor-pointer"
+        :aria-label="currentLang === 'fr' ? 'Retour en haut de page' : 'Back to top'"
+        :title="currentLang === 'fr' ? 'Retour en haut' : 'Back to top'">
+        <span class="material-symbols-outlined text-[22px]">arrow_upward</span>
+    </button>
 
     <!-- Lightbox de visualisation des captures -->
     <div class="lightbox" :class="{'show': lightbox.show}" @click.self="closeLightbox()"

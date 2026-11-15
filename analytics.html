@@ -37,9 +37,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 
 .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0;overflow:hidden;height:800px}
 
-.status{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--muted)}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.status{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--muted);font-weight:600}
 </style>
 </head>
 <body>
@@ -61,7 +59,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
     <div class="top-bar">
       <div>
         <div class="dash-logo">MANUEL<span>.</span>analytics</div>
-        <div class="status" style="margin-top:6px"><span class="dot"></span>Looker Studio</div>
+        <div class="status" style="margin-top:6px">Tableau de bord Looker Studio</div>
       </div>
       <div class="top-right">
         <button class="logout-btn" onclick="logout()">Déconnexion</button>

@@ -6,6 +6,7 @@ function app() {
         showNav: false,
         showBackToTop: false,
         scrollProgress: 0,
+        activeSection: 'focus',
         activeFilter: 'all',
         localTime: '',
         clockInterval: null,
@@ -27,17 +28,17 @@ function app() {
                 tech: ["Laravel", "Livewire", "Tailwind CSS", "Alpine.js", "MySQL"],
                 fr: {
                     title: "FieldOz",
-                    badge: "SAAS // IMPACT",
-                    categoryLabel: "PLATEFORME SAAS D'IMPACT SOCIAL",
-                    subtitle: "Projet personnel - 2025",
-                    description: "Plateforme SaaS conçue pour transformer des données terrain complexes en récits visuels et rapports d'impact incontestables. Une architecture pensée pour offrir une clarté absolue aux bailleurs de fonds et aux équipes sur le terrain."
+                    badge: "SAAS · IMPACT TERRAIN",
+                    categoryLabel: "SUIVI & RAPPORTS D'IMPACT",
+                    subtitle: "Projet personnel · 2025",
+                    description: "Plateforme conçue pour transformer les données collectées sur le terrain en bilans visuels et rapports d'impact clairs, directement exploitables par les équipes de suivi et les bailleurs de fonds."
                 },
                 en: {
                     title: "FieldOz",
-                    badge: "SAAS // IMPACT",
-                    categoryLabel: "SOCIAL IMPACT SAAS PLATFORM",
-                    subtitle: "Personal project - 2025",
-                    description: "SaaS platform engineered to transform complex field data into undeniable visual impact narratives. Tailored to provide absolute clarity to international donors and field monitoring teams."
+                    badge: "SAAS · FIELD IMPACT",
+                    categoryLabel: "IMPACT TRACKING & REPORTING",
+                    subtitle: "Personal project · 2025",
+                    description: "Platform built to turn complex field data into clear visual stories and impact reports, immediately actionable for monitoring teams and international donors."
                 },
                 images: [
                     "assets/projects/fieldoz/1.png",
@@ -60,17 +61,17 @@ function app() {
                 tech: ["Laravel", "Livewire", "IA / LLM", "Alpine.js", "Chart.js", "PostgreSQL"],
                 fr: {
                     title: "Business Checkup",
-                    badge: "FINTECH // IA",
-                    categoryLabel: "FINTECH & IA",
-                    subtitle: "FUND.lab - Architecte Logiciel",
-                    description: "Diagnostic d'entreprise automatisé par arbres de décision, calculs financiers avancés et génération de rapports stratégiques propulsés par IA pour dirigeants et consultants d'affaires."
+                    badge: "FINTECH · CONSEIL",
+                    categoryLabel: "DIAGNOSTIC FINANCIER & IA",
+                    subtitle: "FUND.lab · Architecte Logiciel",
+                    description: "Outil de diagnostic d'entreprise combinant arbres de décision, calculs financiers automatisés et génération de rapports d'orientation assistés par IA pour les dirigeants et consultants."
                 },
                 en: {
                     title: "Business Checkup",
-                    badge: "FINTECH // AI",
-                    categoryLabel: "FINTECH & AI",
-                    subtitle: "FUND.lab - Software Architect",
-                    description: "Automated business diagnostic platform utilizing decision trees, advanced financial algorithms, and AI-powered strategic report generation for executives and advisory firms."
+                    badge: "FINTECH · ADVISORY",
+                    categoryLabel: "FINANCIAL DIAGNOSTIC & AI",
+                    subtitle: "FUND.lab · Software Architect",
+                    description: "Company diagnostic platform combining decision trees, automated financial ratios, and AI-assisted strategic report generation for executives and consultants."
                 },
                 images: [
                     "assets/projects/business_checkup/accueil_business_checkup.png",
@@ -95,20 +96,20 @@ function app() {
                 id: "akonta",
                 type: "Web / PWA",
                 category: "web systemes",
-                tech: ["PWA", "IndexedDB", "Dexie.js", "JavaScript", "Tailwind CSS", "QR Engine"],
+                tech: ["PWA", "IndexedDB", "Dexie.js", "JavaScript", "Tailwind CSS", "QR Codes"],
                 fr: {
                     title: "Akonta",
-                    badge: "COMMERCE // PWA",
-                    categoryLabel: "PWA & COMMERCE",
+                    badge: "COMMERCE · HORS-LIGNE",
+                    categoryLabel: "GESTION DE BOUTIQUE & STOCKS",
                     subtitle: "Co-fondateur & Développeur",
-                    description: "Application PWA 100% offline-first pour commerçants et TPE. Stockage local IndexedDB (Dexie.js), synchronisation réseau transparente, génération de QR codes, suivi des ventes et impression d'étiquettes."
+                    description: "Application web installable (PWA) fonctionnant sans connexion internet pour les commerçants : tenue des stocks en local (IndexedDB), synchronisation automatique, scan QR, suivi des ventes et impression d'étiquettes."
                 },
                 en: {
                     title: "Akonta",
-                    badge: "RETAIL // PWA",
-                    categoryLabel: "PWA & RETAIL",
+                    badge: "RETAIL · OFFLINE-FIRST",
+                    categoryLabel: "INVENTORY & POINT OF SALE",
                     subtitle: "Co-founder & Developer",
-                    description: "100% offline-first PWA for small merchants. Local IndexedDB storage (Dexie.js), background network sync, instant search, QR code generation, sales metrics, and label printing."
+                    description: "Offline-first Progressive Web App for local merchants: local IndexedDB storage (Dexie.js), automatic background sync, QR code scanning, daily sales tracking, and label printing."
                 },
                 images: [
                     "assets/projects/akonta/dashboard.png",
@@ -128,17 +129,17 @@ function app() {
                 tech: ["Flutter", "Dart", "Monorepo", "Google Maps API", "Hive DB", "REST API"],
                 fr: {
                     title: "Le Transporteur",
-                    badge: "LOGISTIQUE // FLOTTE",
-                    categoryLabel: "MOBILE & LOGISTIQUE",
-                    subtitle: "Développeur Mobile",
-                    description: "Suite logistique mobile complète (Client, Livreur, Superviseur) avec géolocalisation en direct, calcul d'itinéraires adapté au réseau routier et négociation de tarification en temps réel."
+                    badge: "LOGISTIQUE · FLOTTE",
+                    categoryLabel: "SUITE MOBILE DE LIVRAISON",
+                    subtitle: "Développeur Mobile · 2026",
+                    description: "Suite mobile complète réunissant clients, livreurs et superviseurs de flotte avec suivi GPS en direct, calcul d'itinéraires adapté au terrain et gestion des courses en temps réel."
                 },
                 en: {
                     title: "Le Transporteur",
-                    badge: "LOGISTICS // FLEET",
-                    categoryLabel: "MOBILE & LOGISTICS",
-                    subtitle: "Mobile Developer",
-                    description: "Comprehensive delivery and dispatch mobile suite (Client, Courier, Fleet Supervisor) featuring live GPS tracking, optimized route calculations, and real-time fee negotiation."
+                    badge: "LOGISTICS · FLEET",
+                    categoryLabel: "DELIVERY MOBILE SUITE",
+                    subtitle: "Mobile Developer · 2026",
+                    description: "End-to-end delivery mobile suite connecting clients, couriers, and fleet supervisors with live GPS tracking, route optimization, and real-time dispatch management."
                 },
                 images: [
                     "assets/projects/le_transporteur/client_1.jpg",
@@ -174,17 +175,17 @@ function app() {
                 tech: ["Laravel", "Leaflet.js", "MySQL", "Flutter", "iNaturalist API"],
                 fr: {
                     title: "BiodivCenter",
-                    badge: "GIZ // PARCS WAP",
-                    categoryLabel: "CONSERVATION / CRITIQUE",
-                    subtitle: "GIZ Bénin - 2021-2024",
-                    description: "Monitoring de la faune et valorisation des espèces pour les réserves transfrontalières WAP. Télémétrie drones, cartographie Leaflet et synchronisation en direct avec l'API iNaturalist."
+                    badge: "GIZ · PARCS WAP",
+                    categoryLabel: "BIODIVERSITÉ & CARTOGRAPHIE",
+                    subtitle: "GIZ Bénin · 2021–2024",
+                    description: "Plateforme de suivi de la faune et de recensement des espèces pour les réserves transfrontalières du complexe WAP (Bénin, Burkina Faso, Niger), reliée aux observations drones et à l'API iNaturalist."
                 },
                 en: {
                     title: "BiodivCenter",
-                    badge: "GIZ // WAP PARKS",
-                    categoryLabel: "CONSERVATION / CRITICAL",
-                    subtitle: "GIZ Benin - 2021-2024",
-                    description: "Wildlife monitoring and biodiversity census for transboundary protected areas. Drone telemetry, Leaflet GIS mapping, and live integration with the iNaturalist API."
+                    badge: "GIZ · WAP PARKS",
+                    categoryLabel: "BIODIVERSITY & GIS MAPPING",
+                    subtitle: "GIZ Benin · 2021–2024",
+                    description: "Wildlife monitoring and species inventory platform for the transboundary WAP national parks (Benin, Burkina Faso, Niger), integrating drone imagery, Leaflet GIS mapping, and the iNaturalist API."
                 },
                 images: [
                     "assets/projects/biodivcenter/1.jpeg",
@@ -201,20 +202,20 @@ function app() {
                 id: "iknow",
                 type: "Web",
                 category: "systemes web",
-                tech: ["Laravel", "AWS S3", "Bootstrap", "Chart.js", "REST APIs", "MySQL"],
+                tech: ["Laravel", "AWS S3", "Bootstrap", "Chart.js", "REST API", "MySQL"],
                 fr: {
-                    title: "IKnow — Audit Terrain",
-                    badge: "ONG PARTENAIRES",
-                    categoryLabel: "SYSTÈME & DONNÉES",
-                    subtitle: "Maison des Tortues - 2024-2025",
-                    description: "Suivi transparent des activités opérationnelles pour consortiums d'ONG. Indexation instantanée de rapports volumineux avec compression sur stockage objet AWS S3."
+                    title: "iKnow — Suivi d'Activités",
+                    badge: "ONG & PARTENAIRES",
+                    categoryLabel: "COLLECTE & AIDE À LA DÉCISION",
+                    subtitle: "Maison des Tortues · 2024–2025",
+                    description: "Système centralisé de suivi d'activités et de collecte documentaire pour un réseau d'ONG partenaires, avec archivage sur AWS S3 et tableaux de bord de pilotage."
                 },
                 en: {
-                    title: "IKnow — Field Audit",
+                    title: "iKnow — Activity Monitoring",
                     badge: "PARTNER NGOS",
-                    categoryLabel: "SYSTEMS & DATA",
-                    subtitle: "Maison des Tortues - 2024-2025",
-                    description: "Transparent operational tracking system for conservation NGO coalitions. Rapid report indexing, AWS S3 object storage compression, and executive dashboards."
+                    categoryLabel: "DATA COLLECTION & REPORTING",
+                    subtitle: "Maison des Tortues · 2024–2025",
+                    description: "Centralized activity monitoring and field documentation platform for partner NGOs, featuring AWS S3 media archiving and executive dashboards."
                 },
                 images: [
                     "assets/projects/iknow/1.png",
@@ -234,17 +235,17 @@ function app() {
                 tech: ["Laravel", "Livewire", "Alpine.js", "SQLite", "Bootstrap"],
                 fr: {
                     title: "Jande & Exam",
-                    badge: "ÉDUCATION LOCALE",
-                    categoryLabel: "PÉDAGOGIE & TEST",
-                    subtitle: "DYRA ONG - 2025",
-                    description: "Système d'évaluation de compétences et d'acquisition en langue peulh adapté aux agents de terrain sans bagage technique préalable. Résilient en basse connectivité."
+                    badge: "FORMATION LOCALE",
+                    categoryLabel: "APPRENTISSAGE EN LANGUE PEULH",
+                    subtitle: "DYRA ONG · 2025",
+                    description: "Outil d'apprentissage et d'évaluation de compétences en langue peulh, pensé avec des repères visuels et vocaux pour des agents de terrain peu familiers avec le numérique."
                 },
                 en: {
                     title: "Jande & Exam",
                     badge: "LOCAL EDUCATION",
-                    categoryLabel: "PEDAGOGY & TESTING",
-                    subtitle: "DYRA NGO - 2025",
-                    description: "Competency evaluation and local language (Fulani/Peulh) e-learning platform adapted for frontline field staff with zero technical prerequisites. Low-bandwidth optimized."
+                    categoryLabel: "FULANI LANGUAGE E-LEARNING",
+                    subtitle: "DYRA NGO · 2025",
+                    description: "Learning and skill-assessment platform in Fulani (Peulh), designed with intuitive visual cues for field staff with minimal digital literacy and low-bandwidth connections."
                 },
                 images: [
                     "assets/projects/eval/1.jpeg",
@@ -264,17 +265,17 @@ function app() {
                 tech: ["TypeScript", "Next.js", "Tailwind CSS", "Open Source"],
                 fr: {
                     title: "Grid Generator",
-                    badge: "DEV TOOLING",
-                    categoryLabel: "OUTIL ARCHITECTE",
-                    subtitle: "Projet personnel - Open Source",
-                    description: "Générateur visuel de grilles CSS interactives et paramétrables avec drag-and-drop fluide pour faciliter la composition de mises en page responsives ultra-légères."
+                    badge: "OUTIL DÉVELOPPEUR",
+                    categoryLabel: "OUTIL OPEN SOURCE",
+                    subtitle: "Projet personnel · Open Source",
+                    description: "Éditeur visuel interactif permettant de composer des grilles CSS sur-mesure par glisser-déposer et d'exporter directement un code propre et léger."
                 },
                 en: {
                     title: "Grid Generator",
-                    badge: "DEV TOOLING",
-                    categoryLabel: "ARCHITECT TOOL",
-                    subtitle: "Personal project - Open Source",
-                    description: "Interactive visual CSS grid generator with intuitive drag-and-drop mechanics for composing high-performance responsive web layouts."
+                    badge: "DEVELOPER TOOL",
+                    categoryLabel: "OPEN SOURCE UTILITY",
+                    subtitle: "Personal project · Open Source",
+                    description: "Interactive visual CSS grid builder with drag-and-drop controls that exports clean, responsive layout code."
                 },
                 images: [
                     "assets/projects/gridcss/1.png",
@@ -291,20 +292,20 @@ function app() {
                 id: "beninfy",
                 type: "Mobile",
                 category: "mobile",
-                tech: ["Flutter", "Dart", "Google Maps API", "Figma", "REST"],
+                tech: ["Flutter", "Dart", "Google Maps API", "Figma", "REST API"],
                 fr: {
                     title: "Beninfy Mobile",
-                    badge: "CULTURE // BÉNIN",
-                    categoryLabel: "MOBILE & CULTURE",
-                    subtitle: "Freelance - 2023",
-                    description: "Application mobile de covoiturage et découverte culturelle avec guidage cartographique Google Maps et communication API REST, intégrée d'après maquettes Figma."
+                    badge: "MOBILITÉ & TOURISME",
+                    categoryLabel: "APPLICATION FLUTTER",
+                    subtitle: "Mission Freelance · 2023",
+                    description: "Application mobile de covoiturage et de découverte culturelle au Bénin, intégrant le guidage cartographique Google Maps et une interface fidèle aux maquettes Figma."
                 },
                 en: {
                     title: "Beninfy Mobile",
-                    badge: "CULTURE // BENIN",
-                    categoryLabel: "MOBILE & CULTURE",
-                    subtitle: "Freelance - 2023",
-                    description: "Carpooling and cultural discovery mobile app featuring interactive Google Maps navigation and resilient REST API integration, built from Figma designs."
+                    badge: "MOBILITY & TOURISM",
+                    categoryLabel: "FLUTTER APPLICATION",
+                    subtitle: "Freelance Mission · 2023",
+                    description: "Carpooling and cultural discovery mobile app in Benin, integrating interactive Google Maps navigation and a pixel-accurate Flutter UI from Figma designs."
                 },
                 images: [
                     "assets/projects/beninfy/1.png",
@@ -327,177 +328,209 @@ function app() {
             fr: {
                 metaTitle: "Manuel Assogba — Architecte Logiciel & Développeur Full-Stack",
                 statusStrip: {
-                    operational: "DISPONIBLE // COTONOU [UTC+1]",
+                    operational: "COTONOU, BÉNIN (UTC+1) · MISSIONS SUR SITE & À DISTANCE",
                     clockLabel: "HEURE LOCALE :",
                     experienceLabel: "EXPÉRIENCE :",
-                    experienceValue: "+ 5 ANS"
+                    experienceValue: "6+ ANS"
                 },
                 nav: {
-                    focus: "Focus",
-                    featured: "Projet Phare",
-                    doctrine: "Doctrine",
+                    roleSub: "ARCHITECTE LOGICIEL & FULL-STACK",
+                    focus: "Accueil",
+                    approche: "Approche",
                     projects: "Réalisations",
                     parcours: "Parcours",
-                    stack: "Stack",
-                    contact: "Contact Direct",
-                    cta: "Initier un Projet",
-                    langLabel: "// LANGUE"
+                    stack: "Compétences",
+                    contact: "Contact",
+                    cta: "Démarrer un projet",
+                    langLabel: "LANGUE DE L'INTERFACE"
                 },
                 hero: {
                     role: "ARCHITECTE LOGICIEL & DÉVELOPPEUR FULL-STACK",
-                    badgeSecondary: "[GIZ / PARCS WAP / ONG] // EDGE & OFFLINE-FIRST",
-                    titlePart1: "CONCEVOIR DES SYSTÈMES D'EXCEPTION.",
+                    badgeSecondary: "WEB · MOBILE · SYSTÈMES MÉTIER",
+                    titlePart1: "CONCEVOIR DES LOGICIELS QUI COMPTENT.",
                     titlePart2: "BÂTIR POUR",
                     titleHighlight: "DURER.",
-                    subtitleMain: "Je conçois et développe des architectures web et mobiles sur-mesure pour les entreprises et visions ambitieuses.",
-                    subtitleSub: "Celles qui refusent le générique, exigent une rigueur technique absolue et veulent marquer les esprits par des solutions qui racontent une vraie histoire.",
-                    premiseLabel: "// PRÉMISSE OPÉRATIONNELLE",
-                    premiseMode: "STRICT-MODE",
-                    premiseTextP1: "5+ ans d'ingénierie forgés face aux contraintes du monde réel : institutions internationales (GIZ), régies de presse, FinTech et commerce de proximité.",
-                    premiseTextP2: "Des systèmes de suivi, outils de collecte et systèmes d'aide à la décision aux PWA, passant par l'intégration de WebTV et passerelles de paiement. De l'intégration de flux structurés par IA/LLM aux interfaces adaptées aux utilisateurs déscolarisés : pas de dépendances superflues. Du code sobre, mesurable et directement utile à ceux qui l’opèrent.",
-                    ctaProjects: "DÉCOUVRIR LES RÉALISATIONS",
-                    ctaContact: "ÉCHANGER",
+                    subtitleMain: "Depuis plus de 6 ans, je conçois et développe des applications web et mobiles sur-mesure pour les organisations confrontées aux réalités du terrain.",
+                    subtitleSub: "Des parcs nationaux d'Afrique de l'Ouest aux cabinets de conseil et commerces de proximité : je crée des outils clairs, solides et utiles dès le premier jour.",
+                    cardTag: "ENGAGEMENT TERRAIN",
+                    cardLocation: "Cotonou, Bénin · Remote & International",
+                    premiseTextP1: "Plus de 6 ans de développement au service d'institutions internationales (GIZ), d'ONG de conservation, de la FinTech, des médias et du commerce local.",
+                    premiseTextP2: "Qu'il s'agisse d'une application mobile fonctionnant sans réseau, d'un diagnostic financier assisté par IA ou d'une plateforme cartographique, chaque projet est écrit pour durer et rester simple à prendre en main.",
+                    ctaProjects: "VOIR LES RÉALISATIONS",
+                    ctaContact: "ME CONTACTER",
                     metrics: [
-                        { label: "EXPÉRIENCE TERRAIN", tag: "[VÉRIFIÉ]", val: "05", unit: "ANS", desc: "Bénin - Niger - Burkina Faso" },
-                        { label: "SOBRIÉTÉ ARCHITECTURALE", tag: "[STRICT]", val: "00", unit: "DÉP.", desc: "Zéro abonnement SaaS captif imposé" },
-                        { label: "OBJECTIF FINAL", tag: "[MISSION]", val: "100", unit: "%", desc: "Autonomie totale des équipes locales" }
+                        {
+                            label: "EXPÉRIENCE MÉTIER",
+                            tag: "DEPUIS 2020",
+                            val: "06+",
+                            unit: "ANS",
+                            desc: "Conception et développement Web, Mobile & Systèmes"
+                        },
+                        {
+                            label: "SYSTÈMES EN PRODUCTION",
+                            tag: "SUR-MESURE",
+                            val: "09+",
+                            unit: "PROJETS",
+                            desc: "Déployés pour la GIZ, des ONG, la FinTech et le commerce"
+                        },
+                        {
+                            label: "TERRAIN D'INTERVENTION",
+                            tag: "AFRIQUE & REMOTE",
+                            val: "03",
+                            unit: "PAYS",
+                            desc: "Outils opérés au Bénin, au Burkina Faso et au Niger"
+                        }
                     ]
                 },
-                featured: {
-                    tag: "SÉLECTION FOCUS // PROJET PHARE",
-                    title: "FIELDOZ — IMPACT RÉEL & TÉLÉMÉTRIE",
-                    ref: "REF: ARCH-CASE-01-FLDOZ",
-                    sub: "// PLATEFORME SAAS D'IMPACT SOCIAL",
-                    heading: "FieldOz — Donner du relief à l'impact social",
-                    description: "Plateforme SaaS conçue pour transformer des données terrain complexes en récits visuels et rapports d'impact incontestables. Une architecture pensée pour offrir une clarté absolue aux bailleurs de fonds et aux équipes sur le terrain.",
-                    quoteTitle: "EXCELLENCE TECHNIQUE & TERRAIN",
-                    quoteText: "« Synthétiser l'essentiel, rendre tangibles les données critiques et garantir une autonomie totale de pilotage sans intermédiaire. »",
-                    stackLabel: "ARCHITECTURE DE PRODUCTION",
-                    indicators: [
-                        { label: "TEMPS CHARGE", val: "< 0.4s" },
-                        { label: "CONSO DATA", val: "-74%" },
-                        { label: "DISPONIBILITÉ", val: "99.98%" }
+                approche: {
+                    tag: "HISTOIRE & PHILOSOPHIE DE TRAVAIL",
+                    title: "L'ÉCOLE DU TERRAIN : POURQUOI JE CODE AUTREMENT.",
+                    storyTitle: "Là où chaque ligne de code a une conséquence réelle",
+                    p1: "Ma façon de concevoir un logiciel ne s'est pas construite dans des bureaux coupés du monde avec une connexion fibre illimitée. Elle s'est forgée sur le terrain : face à des réseaux capricieux, des appareils très différents et l'obligation que l'outil fonctionne du premier coup.",
+                    p2: "Lorsqu'on livre une application pour les écogardes des parcs du complexe WAP, pour des agents de santé en zone rurale ou pour un commerçant qui gère sa caisse avec Akonta, un bug n'est pas un simple ticket technique : c'est une patrouille retardée, un rapport bloqué ou une journée de vente perdue.",
+                    quote: "« Mon rôle n'est pas d'empiler des technologies à la mode, mais de résoudre un vrai problème métier avec un outil clair que vos équipes aiment utiliser. »",
+                    highlights: [
+                        { val: "6+ ANS", label: "D'expérience concrète sur le terrain" },
+                        { val: "100 %", label: "Pensé pour l'autonomie de vos équipes" }
                     ],
-                    syncStatus: "SYNC HORS-LIGNE VÉRIFIÉE",
-                    liveLink: "Explorer le dépôt GitLab",
-                    statusBadge: "STATUT : DÉPLOYÉ"
-                },
-                doctrine: {
-                    tag: "PHILOSOPHIE & APPROCHE",
-                    title: "UNE DÉMARCHE D'EXCELLENCE : PRÉCISION & ARTISANAT.",
-                    desc: "Loin des effets de mode et du générique, chaque choix technique est pensé pour servir l'identité du projet, l'évolutivité long terme et l'impact visuel.",
+                    principlesTitle: "TROIS PRINCIPES QUI GUIDENT CHAQUE PROJET",
                     principles: [
                         {
                             num: "01",
-                            category: "PRINCIPE // COMPRÉHENSION",
-                            title: "La Clarté avant le Code",
-                            text: "Un projet d'exception commence par une compréhension intime des enjeux métier. Avant la première ligne de code, chaque choix d'architecture est pensé pour éliminer la complexité inutile et garantir une évolutivité totale.",
-                            footerLeft: "// Vision & Modélisation",
-                            footerRight: "PRINCIPE_01",
+                            category: "COMPRÉHENSION MÉTIER",
+                            title: "Comprendre le terrain avant d'écrire le code",
+                            text: "Un bon logiciel commence toujours par l'écoute de ceux qui vont l'utiliser au quotidien. Avant de coder, je mets à plat vos vrais besoins pour supprimer les étapes inutiles et construire une architecture qui évolue sereinement.",
+                            footerLeft: "Écoute & modélisation",
+                            footerRight: "Étape 01",
                             colorClass: "accent-green",
                             borderHover: "hover:border-accent-green"
                         },
                         {
                             num: "02",
-                            category: "PRINCIPE // IDENTITÉ",
-                            title: "L'Esthétique qui Parle",
-                            text: "Une interface ne doit pas seulement être jolie : elle doit incarner votre identité et captiver immédiatement. Je privilégie un design épuré, intemporel et performant où chaque détail visuel a un sens.",
-                            footerLeft: "// Clarté & Singularité",
-                            footerRight: "PRINCIPE_02",
+                            category: "CLARTÉ & IDENTITÉ",
+                            title: "Des interfaces lisibles qui racontent votre histoire",
+                            text: "Une interface réussie n'a pas besoin d'un long manuel d'utilisation. Je soigne la hiérarchie visuelle, les contrastes et les parcours sur mobile comme sur ordinateur pour que chaque écran parle le langage de votre métier.",
+                            footerLeft: "Design sobre & sur-mesure",
+                            footerRight: "Étape 02",
                             colorClass: "accent-amber",
                             borderHover: "hover:border-accent-amber"
                         },
                         {
                             num: "03",
-                            category: "PRINCIPE // PERFORMANCE",
-                            title: "L'Économie d'Énergie & Performance",
-                            text: "La vraie puissance réside dans la sobriété. Des bases de données optimisées, un backend Laravel solide et une exécution fluide pour que le système reste rapide et robuste, quelle que soit la charge.",
-                            footerLeft: "// Robustesse & Efficience",
-                            footerRight: "PRINCIPE_03",
+                            category: "FIABILITÉ & AUTONOMIE",
+                            title: "Des outils rapides, même quand le réseau faiblit",
+                            text: "Bases de données bien structurées, stockage hors-ligne quand le terrain l'exige et code proprement documenté : vous gardez la maîtrise complète de votre plateforme sur le long terme.",
+                            footerLeft: "Performance & pérennité",
+                            footerRight: "Étape 03",
                             colorClass: "text-high",
                             borderHover: "hover:border-text-high"
                         }
                     ]
                 },
+                featured: {
+                    tag: "ÉTUDE DE CAS À LA UNE",
+                    title: "FIELDOZ — TRANSFORMER LES DONNÉES TERRAIN EN PREUVES D'IMPACT",
+                    ref: "ÉTUDE DE CAS · WEB & DONNÉES",
+                    windowTitle: "Aperçu de l'interface FieldOz",
+                    windowAction: "Cliquer pour agrandir les 6 écrans",
+                    sub: "PLATEFORME DE SUIVI & RAPPORTS D'IMPACT",
+                    heading: "FieldOz — Donner une voix claire aux actions de terrain",
+                    description: "Les organisations de terrain passent souvent des semaines à consolider des fichiers dispersés pour prouver l'impact de leurs missions. FieldOz rassemble les données collectées sur le terrain et les transforme automatiquement en bilans visuels compréhensibles par les décideurs et les partenaires financiers.",
+                    quoteTitle: "OBJECTIF DU PROJET",
+                    quoteText: "« Permettre aux équipes opérationnelles de présenter leurs résultats clairement, sans perdre des jours dans des tableurs complexes. »",
+                    stackLabel: "TECHNOLOGIES UTILISÉES",
+                    indicators: [
+                        { label: "AFFICHAGE DES BILANS", val: "< 0.4s" },
+                        { label: "POIDS DES REQUÊTES", val: "-74 %" },
+                        { label: "MODE BASSES CONNEXIONS", val: "OPTIMISÉ" }
+                    ],
+                    syncStatus: "Consultable en galerie (6 captures)",
+                    liveLink: "Consulter le code sur GitLab",
+                    openGalleryBtn: "Voir les 6 captures d'écran",
+                    statusBadge: "Projet déployé · 2025"
+                },
                 projectsSection: {
-                    tag: "RÉALISATIONS SUR-MESURE // SÉLECTION SÉLECTIVE",
-                    title: "DES SYSTÈMES ÉPROUVÉS EN PRODUCTION.",
-                    subtitle: "Sélection d'architectures logicielles, PWA offline-first, applications mobiles et plateformes de données déployées face à des exigences métiers strictes.",
+                    tag: "PORTFOLIO DES RÉALISATIONS",
+                    title: "9 SYSTÈMES CONÇUS POUR DES BESOINS RÉELS.",
+                    subtitle: "Parcourez l'ensemble des applications web, mobiles et systèmes métier développés ces dernières années. Cliquez sur une carte ou sur « Voir les captures » pour inspecter chaque écran en détail.",
                     filters: {
-                        all: "TOUS",
-                        web: "WEB & SAAS",
-                        mobile: "MOBILE",
-                        systemes: "SYSTÈMES & ONG"
+                        all: "Tous les projets",
+                        web: "Web & Plateformes",
+                        mobile: "Applications Mobiles",
+                        systemes: "Systèmes & Terrain"
                     },
-                    photosCount: "photos",
-                    viewGitlab: "Dépôt GitLab",
-                    viewSolution: "Voir la solution",
-                    privateLabel: "// Déploiement Privé"
+                    photosCount: "captures",
+                    viewScreenshots: "Voir les captures",
+                    viewGitlab: "Code GitLab",
+                    viewSolution: "Voir le site",
+                    privateLabel: "Projet interne client"
                 },
                 parcours: {
-                    tag: "EXPÉRIENCE & VÉRITÉ BRUTE",
-                    title: "UNE RIGUEUR NÉE DES CONTRAINTES RÉELLES.",
-                    p1: "Mon approche du développement n'a pas débuté dans des bureaux aseptisés avec de la fibre optique illimitée. Elle a été forgée en autodidacte exigeant face à des connexions instables, des matériels hétéroclites et la nécessité absolue de faire fonctionner les choses du premier coup.",
-                    p2: "Lorsqu'on déploie une solution pour les agents des parcs WAP ou pour des équipes de santé publique en brousse, on comprend très vite qu'un bogue n'est pas un simple « ticket Jira » : c'est une mission arrêtée, un rapport financier bloqué ou une journée de patrouille perdue.",
-                    quote: "« Épurer l'architecture, éliminer le superflu, livrer du code net que n'importe quelle équipe locale pourra s'approprier sans dépendre d'un tiers. »",
-                    countriesCount: "03 PAYS",
-                    countriesList: "Bénin - Burkina - Niger",
-                    mvpDelay: "1 SEMAINE",
-                    mvpDesc: "Délai moyen MVP opérationnel",
-                    timelineTitle: "// CHRONOLOGIE DES RESPONSABILITÉS & DÉPLOIEMENTS",
-                    educationTitle: "// FORMATION ACADÉMIQUE & CERTIFICATIONS"
+                    tag: "PARCOURS PROFESSIONNEL & ACADÉMIQUE",
+                    title: "6 ANNÉES D'EXPÉRIENCE ENTRE ARCHITECTURE, WEB ET MOBILE.",
+                    intro: "De mes premières missions de développement jusqu'à l'architecture de plateformes complètes en FinTech et en conservation environnementale, voici les étapes clés de mon parcours.",
+                    currentBadge: "En poste",
+                    timelineTitle: "RESPONSABILITÉS & MISSIONS RÉALISÉES",
+                    educationTitle: "FORMATION ACADÉMIQUE & CERTIFICATIONS"
                 },
                 experience: {
                     title: "Expérience professionnelle",
                     items: [
                         {
+                            isCurrent: true,
                             position: "Architecte Logiciel",
                             company: "FUND.lab",
-                            period: "Janvier 2026 – Maintenant",
+                            period: "Janvier 2026 – Aujourd'hui",
                             tag: "FINTECH & IA",
-                            description: "Conception et développement de Business Checkup (diagnostic d’entreprise automatisé par arbres de décision, calculs financiers et génération de rapports stratégiques via IA) et architecture de Business Assist, la plateforme centrale de pilotage des missions du cabinet."
+                            description: "Conception et développement de Business Checkup (diagnostic d'entreprise par arbres de décision, calculs financiers et rapports d'orientation générés avec l'IA) et architecture de Business Assist, la plateforme interne de suivi des missions du cabinet."
                         },
                         {
+                            isCurrent: true,
                             position: "Co-fondateur & Développeur",
                             company: "Akonta",
-                            period: "Septembre 2025 – Maintenant",
-                            tag: "PWA OFFLINE-FIRST",
-                            description: "Architecture d’une PWA offline-first de gestion de stocks pour commerçants. Stockage local via IndexedDB (Dexie.js), synchronisation réseau, recherche instantanée, génération de QR codes, suivi des ventes et édition d’étiquettes."
+                            period: "Septembre 2025 – Aujourd'hui",
+                            tag: "COMMERCE & HORS-LIGNE",
+                            description: "Conception d'une application PWA hors-ligne de gestion de stocks et de ventes pour commerçants. Stockage local IndexedDB (Dexie.js), synchronisation en arrière-plan, génération de QR codes et impression d'étiquettes."
                         },
                         {
+                            isCurrent: false,
                             position: "Développeur Mobile",
                             company: "Le Transporteur",
                             period: "Février 2026 – Juin 2026",
-                            tag: "MOBILITÉ & FLOTTE",
-                            description: "Conception et développement d’une application mobile complète mettant en liaison les livreurs de l’entreprise et ses clients, avec suivi de livraison, géolocalisation et gestion de flotte."
+                            tag: "MOBILITÉ & LOGISTIQUE",
+                            description: "Développement d'une suite mobile complète en Flutter reliant clients, livreurs et gestionnaires de flotte, avec suivi de livraison sur carte en direct et gestion des courses."
                         },
                         {
-                            position: "Développeur Fullstack",
+                            isCurrent: false,
+                            position: "Développeur Full-Stack",
                             company: "Maison des Tortues",
                             period: "Avril 2024 – Mai 2025",
-                            tag: "CLOUD & TERRAIN",
-                            description: "Développement et maintenance de la plateforme iKnow (collecte de données terrain, suivi d’activités, aide à la décision). Configuration du stockage média sur AWS S3, déploiement cPanel, documentation technique et formation utilisateurs."
+                            tag: "ONG & DONNÉES TERRAIN",
+                            description: "Développement et évolution de la plateforme iKnow (collecte de données terrain, suivi d'activités et tableaux de bord). Mise en place du stockage sur AWS S3, déploiement serveur, documentation et formation des équipes."
                         },
                         {
-                            position: "Développeur Fullstack Lead",
+                            isCurrent: false,
+                            position: "Développeur Full-Stack Lead",
                             company: "Projet RBT-WAP (GIZ)",
                             period: "Juin 2021 – Mars 2024",
-                            tag: "INTERNATIONAL // PARCS WAP",
-                            description: "Conception et développement de plateformes d’évaluation et de collecte de données (BiodivCenter, Eval-FSOA, WAP-Training). Intégration API (iNaturalist, REST), moteurs de scoring, cartographie interactive. Formation des utilisateurs, traitement d’images 360 et pilotage drone Mavic 2 Pro."
+                            tag: "COOPÉRATION INTERNATIONALE · PARCS WAP",
+                            description: "Conception et déploiement d'outils d'évaluation et de suivi écologique (BiodivCenter, Eval-FSOA, WAP-Training) pour le complexe transfrontalier W-Arly-Pendjari. Cartographie interactive, connexion API iNaturalist, imagerie 360° et formation des agents sur le terrain."
                         },
                         {
-                            position: "Consultant Web & SEO",
+                            isCurrent: false,
+                            position: "Consultant Web & Médias",
                             company: "SAF Consulting & JHS Corporate",
                             period: "Mai – Septembre 2023",
                             tag: "PRESSE & WEBTV",
-                            description: "Refonte de 3 plateformes de presse sous WordPress. Automatisation des newsletters, intégration Google Actualités. Conception d’une chaîne TV en ligne (WebTV) avec système de diffusion vidéo automatisé et gestion de régies publicitaires (Afrikaad)."
+                            description: "Refonte de 3 portails de presse en ligne, automatisation des lettres d'information, référencement Google Actualités et mise en place d'une chaîne WebTV avec régie publicitaire (Afrikaad)."
                         },
                         {
+                            isCurrent: false,
                             position: "Développeur Mobile Freelance",
                             company: "Beninfy",
                             period: "Avril – Décembre 2023",
                             tag: "FLUTTER & CARTOGRAPHIE",
-                            description: "Intégration frontend mobile Flutter d’après maquettes Figma pour une application de covoiturage. Intégration de l’API Google Maps et communication REST."
+                            description: "Développement de l'application mobile Flutter de covoiturage et de découverte touristique à partir des maquettes Figma, avec intégration Google Maps et API REST."
                         }
                     ]
                 },
@@ -505,325 +538,358 @@ function app() {
                     title: "Formation académique & certifications",
                     items: [
                         {
-                            title: "Full Stack Web Development MERN",
-                            school: "Oak Academy | Udemy",
-                            period: "2022–2024",
-                            description: "Certification obtenue en Novembre 2024. Architecture MERN complète, API REST, state management et architectures réactives."
+                            title: "Certification Full-Stack Web Development (MERN)",
+                            school: "Oak Academy · Udemy",
+                            period: "2022 – 2024",
+                            description: "Obtenue en novembre 2024. Conception d'API REST, gestion d'état et applications web réactives."
                         },
                         {
-                            title: "Licence en Génie Logiciel",
+                            title: "Licence Professionnelle en Génie Logiciel",
                             school: "IFRI — Université d'Abomey-Calavi (UAC)",
-                            period: "2015–2019",
-                            description: "Diplôme obtenu en Septembre 2019. Conception logicielle, modélisation UML, bases de données relationnelles et algorithmique."
+                            period: "2015 – 2019",
+                            description: "Diplôme obtenu en septembre 2019. Architecture logicielle, modélisation UML/Merise, bases de données relationnelles et algorithmique."
                         },
                         {
-                            title: "Formation Préparatoire Math-Info",
+                            title: "Classes Préparatoires Mathématiques & Informatique",
                             school: "IMSP — Institut de Mathématiques et de Sciences Physiques",
-                            period: "2013–2015",
-                            description: "Bases théoriques solides en mathématiques discrètes, algèbre linéaire et logique informatique."
+                            period: "2013 – 2015",
+                            description: "Formation approfondie en mathématiques discrètes, algèbre linéaire et logique informatique."
                         }
                     ]
                 },
                 skillsSection: {
-                    tag: "MAÎTRISE TECHNIQUE DIRECTE",
-                    title: "LA BOÎTE À OUTILS SANS ARTIFICE.",
+                    tag: "COMPÉTENCES TECHNIQUES",
+                    title: "LES OUTILS QUE J'UTILISE AU QUOTIDIEN.",
+                    subtitle: "Des technologies choisies pour leur fiabilité en production, leur clarté de maintenance et leur adaptation aux contraintes de chaque projet.",
                     pillars: [
                         {
                             num: "01",
-                            category: "BACKEND & DATA",
+                            category: "BACKEND & DONNÉES",
                             icon: "database",
                             color: "accent-green",
-                            tagline: "// Stabilité, logique & persistance",
+                            tagline: "Logique métier, API & bases de données",
                             items: [
-                                { name: "PHP / Laravel", badge: "Avancé", highlight: true },
-                                { name: "Python / Django", badge: "En cours", highlight: false },
-                                { name: "Supabase & PostgreSQL", badge: "BaaS & SQL", highlight: true },
-                                { name: "MySQL & SQLite", badge: "Optimisé", highlight: false },
-                                { name: "Architecture REST", badge: "Standardisé", highlight: true }
+                                { name: "PHP / Laravel", badge: "Principal", highlight: true },
+                                { name: "Python / Django", badge: "Pratique", highlight: false },
+                                { name: "PostgreSQL & Supabase", badge: "SQL & Temps réel", highlight: true },
+                                { name: "MySQL & SQLite", badge: "Production", highlight: false },
+                                { name: "Conception d'API REST", badge: "Architecture", highlight: true }
                             ]
                         },
                         {
                             num: "02",
-                            category: "CLIENT & MOBILE",
+                            category: "INTERFACES & MOBILE",
                             icon: "devices",
                             color: "accent-amber",
-                            tagline: "// Réactivité, autonomie & légèreté",
+                            tagline: "Applications fluides en ligne comme hors-ligne",
                             items: [
-                                { name: "Flutter / Dart", badge: "Cross-platform", highlight: true },
-                                { name: "PWA / Dexie.js", badge: "Offline-first", highlight: true },
-                                { name: "Alpine.js & Livewire", badge: "Ultra-léger", highlight: true },
-                                { name: "Tailwind CSS & Bootstrap", badge: "Zero-Runtime", highlight: false },
-                                { name: "JavaScript & TypeScript", badge: "Strict Type", highlight: false }
+                                { name: "Flutter / Dart", badge: "iOS & Android", highlight: true },
+                                { name: "PWA & IndexedDB (Dexie.js)", badge: "Hors-ligne", highlight: true },
+                                { name: "Livewire & Alpine.js", badge: "Réactif", highlight: true },
+                                { name: "Tailwind CSS & Bootstrap", badge: "Responsive", highlight: false },
+                                { name: "JavaScript & TypeScript", badge: "Typage clair", highlight: false }
                             ]
                         },
                         {
                             num: "03",
-                            category: "CLOUD, DEVOPS & OUTILS",
+                            category: "SERVEURS & DÉPLOIEMENT",
                             icon: "cloud_sync",
                             color: "text-high",
-                            tagline: "// Déploiements maîtrisés & tooling",
+                            tagline: "Mise en ligne, stockage et suivi continu",
                             items: [
-                                { name: "Linux VPS", badge: "Autonome", highlight: true },
-                                { name: "cPanel & Déploiement", badge: "Production", highlight: false },
-                                { name: "AWS S3 / Stockage", badge: "Frugal", highlight: false },
-                                { name: "Git, GitLab & GitHub", badge: "Pipelines", highlight: true },
-                                { name: "Postman & Vite", badge: "Tests & Build", highlight: false }
+                                { name: "Serveurs Linux VPS", badge: "Administration", highlight: true },
+                                { name: "AWS S3 & Stockage Cloud", badge: "Médias & Sauvegardes", highlight: false },
+                                { name: "Git, GitLab & GitHub", badge: "Suivi de versions", highlight: true },
+                                { name: "Hébergement & cPanel", badge: "Mise en production", highlight: false },
+                                { name: "Postman & Outils de test", badge: "Validation API", highlight: false }
                             ]
                         },
                         {
                             num: "04",
-                            category: "IA & DÉMARCHE SYSTÈME",
+                            category: "ARCHITECTURE & IA MÉTIER",
                             icon: "psychology",
                             color: "accent-green",
-                            tagline: "// Ingénierie utile & pragmatisme",
+                            tagline: "Analyse, aide à la décision et accompagnement",
                             items: [
-                                { name: "Intégration IA & LLM", badge: "OpenAI / Claude API", highlight: true },
-                                { name: "Arbres de décision", badge: "Aide décision", highlight: true },
-                                { name: "Modélisation UML & Merise", badge: "Architecture", highlight: false },
-                                { name: "Diagnostic technique", badge: "Sous 48h", highlight: true },
-                                { name: "Pédagogie & Documentation", badge: "Autonomie", highlight: false }
+                                { name: "Intégration IA & LLM", badge: "OpenAI / Claude", highlight: true },
+                                { name: "Arbres de décision & Scoring", badge: "Diagnostic métier", highlight: true },
+                                { name: "Modélisation UML & Merise", badge: "Conception", highlight: false },
+                                { name: "Audit & Reprise de projets", badge: "Diagnostic rapide", highlight: true },
+                                { name: "Formation & Documentation", badge: "Transfert", highlight: false }
                             ]
                         }
                     ]
                 },
                 contact: {
-                    tag: "// CANAL DIRECT // SANS INTERMÉDIAIRE",
-                    title: "DÉMARRONS UN PROJET D'ENVERGURE.",
-                    subtitle: "Pas de formulaire impersonnel ni de filtre commercial. Contactez-moi directement via les canaux ci-dessous pour échanger sur vos objectifs d'architecture, vos plateformes ou vos missions.",
-                    guarantee: "Intervention en autonomie complète, basée sur des livrables précis et un alignement stratégique clair dès le départ.",
-                    emailBadge: "CANAL OFFICIEL // EMAIL",
-                    emailResponseTime: "Garantie de réponse < 24h ouvrées",
+                    tag: "CONTACT DIRECT & ÉCHANGES",
+                    title: "PARLONS DE VOTRE PROCHAIN PROJET.",
+                    subtitle: "Vous avez besoin de concevoir une nouvelle plateforme, de lancer une application mobile ou de faire évoluer un outil existant ? Écrivez-moi directement par le canal qui vous convient le mieux.",
+                    guarantee: "Échange direct avec moi, sans intermédiaire commercial, avec un retour clair sur la faisabilité et les étapes de réalisation.",
+                    emailBadge: "ADRESSE EMAIL DIRECTE",
+                    emailResponseTime: "Réponse garantie sous 24h ouvrées",
                     channels: [
                         {
                             id: "whatsapp",
-                            tag: "// INSTANT",
+                            tag: "MESSAGERIE RAPIDE",
                             title: "WhatsApp Direct",
-                            desc: "Échanges rapides, messages & vocaux",
+                            desc: "Idéal pour un premier échange rapide par message ou note vocale",
                             value: "+229 01 6151-2491",
                             link: "https://wa.me/2290161512491",
-                            action: "Ouvrir WhatsApp →"
+                            action: "Écrire sur WhatsApp →"
                         },
                         {
                             id: "email",
-                            tag: "// FORMEL",
+                            tag: "DOSSIERS & CAHIERS DES CHARGES",
                             title: "Email Professionnel",
-                            desc: "Cahiers des charges, devis & dossiers",
+                            desc: "Pour me transmettre vos besoins détaillés, documents ou propositions",
                             value: "assogbamanuel6@gmail.com",
                             link: "mailto:assogbamanuel6@gmail.com",
-                            action: "Écrire un Email →"
+                            action: "Envoyer un email →"
                         },
                         {
                             id: "linkedin",
-                            tag: "// RÉSEAU",
-                            title: "Réseau LinkedIn",
-                            desc: "Parcours vérifié & réseau de pairs",
-                            value: "/in/manuel-assogba",
+                            tag: "RÉSEAU PROFESSIONNEL",
+                            title: "Profil LinkedIn",
+                            desc: "Consultez mon parcours détaillé et échangeons dans votre réseau",
+                            value: "linkedin.com/in/manuel-assogba",
                             link: "https://linkedin.com/in/manuel-assogba-a0900a123/",
-                            action: "Voir le profil →"
+                            action: "Ouvrir LinkedIn →"
                         },
                         {
                             id: "github",
-                            tag: "// CODE SOURCE",
+                            tag: "DÉPÔTS DE CODE",
                             title: "GitHub & GitLab",
-                            desc: "Commits, architectures & solutions",
-                            value: "manuelh6 - assogbamanuel6",
+                            desc: "Explorez mes projets publics, contributions et dépôts open source",
+                            value: "manuelh6 · assogbamanuel6",
                             link: "https://github.com/manuelh6",
                             secondLink: "https://gitlab.com/assogbamanuel6"
                         }
                     ],
-                    locationText: "COTONOU - AFRIQUE DE L'OUEST [UTC+1] — DISPONIBLE MISSIONS REMOTE MONDE",
-                    remoteBadge: "DISPONIBLE EN REMOTE"
+                    locationText: "Basé à Cotonou (Bénin, UTC+1) — Disponible pour des missions en Afrique et à l'international",
+                    remoteBadge: "Missions à distance & sur site"
                 },
                 footer: {
                     tagline: "MANUEL ASSOGBA",
-                    desc: "Conception de plateformes critiques, interfaces sobres et topologies logicielles pour organisations à fort enjeu opérationnel.",
-                    colIndex: "// INDEX",
-                    colDoctrine: "// DOCTRINE",
-                    colLocation: "// LOCALISATION",
-                    philosophyLink: "Philosophie",
-                    stackLink: "Stack Terrain",
-                    contactLink: "Contact Direct",
-                    city: "Cotonou (Bénin)",
-                    timezone: "UTC+1 // Remote Global",
+                    desc: "Architecte logiciel et développeur Full-Stack. Conception d'applications web, mobiles et systèmes métier pensés pour le terrain et bâtis pour durer.",
+                    colIndex: "NAVIGATION",
+                    colDoctrine: "EXPLORER",
+                    colLocation: "COORDONNÉES",
+                    philosophyLink: "Mon approche",
+                    stackLink: "Compétences",
+                    contactLink: "Me contacter",
+                    city: "Cotonou, Bénin",
+                    timezone: "Fuseau UTC+1 · Remote International",
                     copyright: "Manuel Assogba. Tous droits réservés.",
-                    status: "STATUT : SYSTÈMES OPÉRATIONNELS"
+                    status: "Portfolio mis à jour · 2026"
                 }
             },
 
             en: {
                 metaTitle: "Manuel Assogba — Software Architect & Full-Stack Developer",
                 statusStrip: {
-                    operational: "AVAILABLE // COTONOU [UTC+1]",
+                    operational: "COTONOU, BENIN (UTC+1) · ON-SITE & REMOTE MISSIONS",
                     clockLabel: "LOCAL TIME:",
                     experienceLabel: "EXPERIENCE:",
-                    experienceValue: "5+ YRS"
+                    experienceValue: "6+ YRS"
                 },
                 nav: {
-                    focus: "Focus",
-                    featured: "Featured Project",
-                    doctrine: "Doctrine",
+                    roleSub: "SOFTWARE ARCHITECT & FULL-STACK",
+                    focus: "Home",
+                    approche: "Approach",
                     projects: "Projects",
                     parcours: "Experience",
-                    stack: "Stack",
-                    contact: "Direct Contact",
-                    cta: "Initiate a Project",
-                    langLabel: "// LANGUAGE"
+                    stack: "Skills",
+                    contact: "Contact",
+                    cta: "Start a project",
+                    langLabel: "INTERFACE LANGUAGE"
                 },
                 hero: {
                     role: "SOFTWARE ARCHITECT & FULL-STACK DEVELOPER",
-                    badgeSecondary: "[GIZ / WAP PARKS / NGOS] // EDGE & OFFLINE-FIRST",
-                    titlePart1: "ENGINEERING EXCEPTIONAL SYSTEMS.",
+                    badgeSecondary: "WEB · MOBILE · BUSINESS SYSTEMS",
+                    titlePart1: "BUILDING SOFTWARE THAT MATTERS.",
                     titlePart2: "BUILT TO",
                     titleHighlight: "LAST.",
-                    subtitleMain: "I design and build tailored web and mobile architectures for ambitious organizations and visions.",
-                    subtitleSub: "Those that reject the generic, demand uncompromising technical rigor, and aim to make a lasting impression through systems that tell an authentic story.",
-                    premiseLabel: "// OPERATIONAL PREMISE",
-                    premiseMode: "STRICT-MODE",
-                    premiseTextP1: "5+ years of software engineering forged in the face of real-world constraints: international organizations (GIZ), press syndicates, FinTech, and local retail.",
-                    premiseTextP2: "From monitoring systems, data collection tools, and decision-support platforms to offline-first PWAs, WebTV broadcasts, and payment gateways. From AI/LLM structured workflows to interfaces tailored for non-literate field staff: no superfluous dependencies. Frugal, measurable, durable code that directly serves those who operate it.",
-                    ctaProjects: "EXPLORE ACHIEVEMENTS",
+                    subtitleMain: "For over 6 years, I have designed and built custom web and mobile applications for organizations working in real-world conditions.",
+                    subtitleSub: "From West African national parks to advisory firms and local merchants: I build clear, reliable tools that teams can trust from day one.",
+                    cardTag: "FIELD COMMITMENT",
+                    cardLocation: "Cotonou, Benin · Remote & Worldwide",
+                    premiseTextP1: "Over 6 years of hands-on software engineering for international institutions (GIZ), conservation NGOs, FinTech firms, media outlets, and local retail.",
+                    premiseTextP2: "Whether building an offline-first mobile app, an AI-assisted financial diagnostic platform, or an interactive GIS mapping system, every project is crafted to last and remain easy to run.",
+                    ctaProjects: "EXPLORE PROJECTS",
                     ctaContact: "GET IN TOUCH",
                     metrics: [
-                        { label: "FIELD EXPERIENCE", tag: "[VERIFIED]", val: "05", unit: "YRS", desc: "Benin - Niger - Burkina Faso" },
-                        { label: "ARCHITECTURAL FRUGALITY", tag: "[STRICT]", val: "00", unit: "DEP.", desc: "Zero forced captive SaaS subscriptions" },
-                        { label: "PRIMARY OBJECTIVE", tag: "[MISSION]", val: "100", unit: "%", desc: "Total autonomy for local operational teams" }
+                        {
+                            label: "HANDS-ON EXPERIENCE",
+                            tag: "SINCE 2020",
+                            val: "06+",
+                            unit: "YRS",
+                            desc: "Designing and building Web, Mobile & Business Systems"
+                        },
+                        {
+                            label: "SYSTEMS IN PRODUCTION",
+                            tag: "CUSTOM-BUILT",
+                            val: "09+",
+                            unit: "PROJECTS",
+                            desc: "Deployed for GIZ, NGOs, FinTech firms, and local retail"
+                        },
+                        {
+                            label: "FIELD FOOTPRINT",
+                            tag: "AFRICA & REMOTE",
+                            val: "03",
+                            unit: "COUNTRIES",
+                            desc: "Systems actively used in Benin, Burkina Faso, and Niger"
+                        }
                     ]
                 },
-                featured: {
-                    tag: "FOCUS SELECTION // FEATURED PROJECT",
-                    title: "FIELDOZ — REAL IMPACT & TELEMETRY",
-                    ref: "REF: ARCH-CASE-01-FLDOZ",
-                    sub: "// SOCIAL IMPACT SAAS PLATFORM",
-                    heading: "FieldOz — Bringing Depth to Social Impact",
-                    description: "SaaS platform engineered to transform complex field data into undeniable visual impact narratives. Tailored to provide absolute clarity to international donors and field monitoring teams.",
-                    quoteTitle: "TECHNICAL & FIELD EXCELLENCE",
-                    quoteText: "“Synthesizing the essential, making critical data tangible, and securing complete operational autonomy with zero middlemen.”",
-                    stackLabel: "PRODUCTION ARCHITECTURE",
-                    indicators: [
-                        { label: "LOAD TIME", val: "< 0.4s" },
-                        { label: "DATA CONSUMPTION", val: "-74%" },
-                        { label: "AVAILABILITY", val: "99.98%" }
+                approche: {
+                    tag: "BACKGROUND & WORKING PHILOSOPHY",
+                    title: "THE SCHOOL OF THE FIELD: WHY I BUILD SOFTWARE DIFFERENTLY.",
+                    storyTitle: "Where every line of code has a real-world consequence",
+                    p1: "My approach to software wasn't shaped in isolated offices with unlimited fiber internet. It was forged in the field: dealing with unstable connections, diverse devices, and the strict necessity that tools work properly on the first try.",
+                    p2: "When you deploy an application for wildlife rangers in the WAP national parks, public health teams in rural areas, or a shopkeeper running their inventory on Akonta, a bug is never just a ticket on a board: it is a delayed patrol, a blocked report, or a lost day of sales.",
+                    quote: "“My job isn't to stack trendy technologies, but to solve real business problems with clear tools that your teams genuinely enjoy using.”",
+                    highlights: [
+                        { val: "6+ YRS", label: "Of practical field engineering" },
+                        { val: "100%", label: "Built for your team's long-term autonomy" }
                     ],
-                    syncStatus: "OFFLINE SYNC VERIFIED",
-                    liveLink: "Explore GitLab Repository",
-                    statusBadge: "STATUS: DEPLOYED"
-                },
-                doctrine: {
-                    tag: "PHILOSOPHY & APPROACH",
-                    title: "AN APPROACH TO EXCELLENCE: PRECISION & CRAFTSMANSHIP.",
-                    desc: "Far from passing trends and generic templates, every technical decision serves the project's identity, long-term scalability, and visual impact.",
+                    principlesTitle: "THREE PRINCIPLES GUIDING EVERY PROJECT",
                     principles: [
                         {
                             num: "01",
-                            category: "PRINCIPLE // COMPREHENSION",
-                            title: "Clarity Before Code",
-                            text: "An exceptional project begins with an intimate understanding of business objectives. Before writing the first line of code, every architectural choice is designed to eliminate unnecessary complexity and guarantee seamless scalability.",
-                            footerLeft: "// Vision & Modeling",
-                            footerRight: "PRINCIPLE_01",
+                            category: "BUSINESS UNDERSTANDING",
+                            title: "Understand the real workflow before writing code",
+                            text: "Great software always starts by listening to the people who will use it every day. Before coding, I map out your real workflows to remove unnecessary steps and design a clean, scalable foundation.",
+                            footerLeft: "Listening & system design",
+                            footerRight: "Step 01",
                             colorClass: "accent-green",
                             borderHover: "hover:border-accent-green"
                         },
                         {
                             num: "02",
-                            category: "PRINCIPLE // IDENTITY",
-                            title: "Aesthetics with Purpose",
-                            text: "An interface shouldn't just look pretty: it must embody your brand identity and captivate instantly. I prioritize a refined, timeless, and high-performance design where every visual detail serves a purpose.",
-                            footerLeft: "// Clarity & Distinction",
-                            footerRight: "PRINCIPLE_02",
+                            category: "CLARITY & IDENTITY",
+                            title: "Readable interfaces that tell your story",
+                            text: "A well-designed interface shouldn't require a thick user manual. I focus on visual hierarchy, strong contrast, and smooth mobile and desktop journeys so every screen speaks your business language.",
+                            footerLeft: "Clean, tailored design",
+                            footerRight: "Step 02",
                             colorClass: "accent-amber",
                             borderHover: "hover:border-accent-amber"
                         },
                         {
                             num: "03",
-                            category: "PRINCIPLE // PERFORMANCE",
-                            title: "Energy Efficiency & Performance",
-                            text: "True power lies in frugality. Optimized databases, a solid Laravel/Django backend, and fluid execution to keep the system fast and robust under any workload.",
-                            footerLeft: "// Robustness & Efficiency",
-                            footerRight: "PRINCIPLE_03",
+                            category: "RELIABILITY & AUTONOMY",
+                            title: "Fast, resilient tools even on weak networks",
+                            text: "Well-structured databases, offline storage when field conditions demand it, and clearly documented code: you stay in full control of your platform over the long run.",
+                            footerLeft: "Performance & longevity",
+                            footerRight: "Step 03",
                             colorClass: "text-high",
                             borderHover: "hover:border-text-high"
                         }
                     ]
                 },
+                featured: {
+                    tag: "FEATURED CASE STUDY",
+                    title: "FIELDOZ — TURNING FIELD DATA INTO CLEAR IMPACT STORIES",
+                    ref: "CASE STUDY · WEB & DATA",
+                    windowTitle: "FieldOz interface preview",
+                    windowAction: "Click to inspect all 6 screens",
+                    sub: "IMPACT TRACKING & REPORTING PLATFORM",
+                    heading: "FieldOz — Giving field operations a clear visual voice",
+                    description: "Field organizations often spend weeks consolidating scattered spreadsheets to prove the impact of their programs. FieldOz brings field data together and turns it into clear visual reports that decision-makers and funding partners can immediately understand.",
+                    quoteTitle: "PROJECT GOAL",
+                    quoteText: "“Empower operational teams to present their results with clarity, without losing days inside complex spreadsheets.”",
+                    stackLabel: "TECHNOLOGIES USED",
+                    indicators: [
+                        { label: "REPORT LOAD TIME", val: "< 0.4s" },
+                        { label: "PAYLOAD REDUCTION", val: "-74%" },
+                        { label: "LOW-BANDWIDTH MODE", val: "OPTIMIZED" }
+                    ],
+                    syncStatus: "Interactive gallery (6 screenshots)",
+                    liveLink: "View source on GitLab",
+                    openGalleryBtn: "View all 6 screenshots",
+                    statusBadge: "Deployed project · 2025"
+                },
                 projectsSection: {
-                    tag: "BESPOKE SYSTEMS // SELECTIVE SHOWCASE",
-                    title: "PROVEN IN PRODUCTION ENVIRONMENTS.",
-                    subtitle: "A curated selection of software architectures, offline-first PWAs, mobile applications, and mission-critical data systems deployed under rigorous operational demands.",
+                    tag: "PROJECT PORTFOLIO",
+                    title: "9 PRODUCTION SYSTEMS BUILT FOR REAL NEEDS.",
+                    subtitle: "Browse the web platforms, mobile apps, and business systems built over the past years. Click any project image or 'View screenshots' button to inspect every screen.",
                     filters: {
-                        all: "ALL",
-                        web: "WEB & SAAS",
-                        mobile: "MOBILE",
-                        systemes: "SYSTEMS & NGOS"
+                        all: "All Projects",
+                        web: "Web & Platforms",
+                        mobile: "Mobile Apps",
+                        systemes: "Systems & Field"
                     },
-                    photosCount: "photos",
-                    viewGitlab: "GitLab Repository",
-                    viewSolution: "View Solution",
-                    privateLabel: "// Private Deployment"
+                    photosCount: "screens",
+                    viewScreenshots: "View screenshots",
+                    viewGitlab: "GitLab Repo",
+                    viewSolution: "Live Website",
+                    privateLabel: "Private client system"
                 },
                 parcours: {
-                    tag: "EXPERIENCE & GROUND TRUTH",
-                    title: "RIGOR FORGED BY REAL-WORLD CONSTRAINTS.",
-                    p1: "My approach to engineering did not originate in sanitized tech hubs with unlimited gigabit fiber. It was forged as a demanding autodidact confronting erratic connectivity, heterogeneous hardware, and the absolute necessity of getting things right on the first try.",
-                    p2: "Deploying software for wildlife rangers in the WAP national parks or health teams in rural bushlands quickly teaches you that a bug is not a mere Jira ticket: it is a halted mission, an obstructed donor report, or a lost patrol day.",
-                    quote: "“Strip down the architecture, eliminate bloat, and deliver clean code that any local team can own without external dependency.”",
-                    countriesCount: "03 COUNTRIES",
-                    countriesList: "Benin - Burkina - Niger",
-                    mvpDelay: "1 WEEK",
-                    mvpDesc: "Average operational MVP turnaround",
-                    timelineTitle: "// CHRONOLOGY OF RESPONSIBILITIES & DEPLOYMENTS",
-                    educationTitle: "// ACADEMIC EDUCATION & CERTIFICATIONS"
+                    tag: "CAREER & EDUCATION",
+                    title: "6 YEARS OF EXPERIENCE ACROSS ARCHITECTURE, WEB & MOBILE.",
+                    intro: "From my first field deployments to architecting complete FinTech and environmental monitoring platforms, here are the key milestones of my journey.",
+                    currentBadge: "Current role",
+                    timelineTitle: "ROLES & DELIVERED MISSIONS",
+                    educationTitle: "ACADEMIC EDUCATION & CERTIFICATIONS"
                 },
                 experience: {
                     title: "Professional Experience",
                     items: [
                         {
+                            isCurrent: true,
                             position: "Software Architect",
                             company: "FUND.lab",
                             period: "January 2026 – Present",
                             tag: "FINTECH & AI",
-                            description: "Design and development of Business Checkup (automated company diagnostic powered by decision trees, financial algorithms, and AI-generated strategic reports) and architecture of Business Assist, the firm’s core operations platform."
+                            description: "Design and development of Business Checkup (automated company diagnostic powered by decision trees, financial calculations, and AI-assisted strategic reports) and architecture of Business Assist, the firm's internal mission management platform."
                         },
                         {
+                            isCurrent: true,
                             position: "Co-founder & Developer",
                             company: "Akonta",
                             period: "September 2025 – Present",
-                            tag: "OFFLINE-FIRST PWA",
-                            description: "Architecture of an offline-first PWA for small business inventory management. Local storage via IndexedDB (Dexie.js), background network sync, instant search, QR code generation, sales metrics, and barcode label printing."
+                            tag: "RETAIL & OFFLINE PWA",
+                            description: "Architecture of an offline-first PWA for merchant inventory and sales management. Local IndexedDB storage (Dexie.js), background synchronization, QR code generation, and label printing."
                         },
                         {
+                            isCurrent: false,
                             position: "Mobile Developer",
                             company: "Le Transporteur",
                             period: "February 2026 – June 2026",
-                            tag: "MOBILITY & FLEET",
-                            description: "Design and development of a full-featured delivery mobile app connecting couriers with clients, complete with live delivery tracking, GPS navigation, and fleet management."
+                            tag: "MOBILITY & LOGISTICS",
+                            description: "Development of a comprehensive Flutter mobile suite connecting clients, couriers, and fleet supervisors with live map tracking and delivery management."
                         },
                         {
-                            position: "Fullstack Developer",
+                            isCurrent: false,
+                            position: "Full-Stack Developer",
                             company: "Maison des Tortues",
                             period: "April 2024 – May 2025",
-                            tag: "CLOUD & FIELD",
-                            description: "Development and maintenance of the iKnow platform (field data collection, activity monitoring, decision support). AWS S3 object storage configuration, cPanel deployment, technical documentation, and user onboarding."
+                            tag: "NGO & FIELD DATA",
+                            description: "Development and maintenance of the iKnow platform (field data collection, activity monitoring, and decision dashboards). AWS S3 media archiving, server deployment, technical documentation, and user training."
                         },
                         {
-                            position: "Lead Fullstack Developer",
+                            isCurrent: false,
+                            position: "Lead Full-Stack Developer",
                             company: "RBT-WAP Project (GIZ)",
                             period: "June 2021 – March 2024",
-                            tag: "INTERNATIONAL // WAP PARKS",
-                            description: "Design and deployment of data collection and evaluation platforms (BiodivCenter, Eval-FSOA, WAP-Training). API integrations (iNaturalist, REST), automated scoring engines, interactive mapping. Ranger training, 360° imagery, and Mavic 2 Pro drone operations."
+                            tag: "INTERNATIONAL COOPERATION · WAP PARKS",
+                            description: "Design and deployment of ecological monitoring and evaluation platforms (BiodivCenter, Eval-FSOA, WAP-Training) for the W-Arly-Pendjari transboundary parks. Interactive GIS mapping, iNaturalist API integration, 360° imagery, and field staff training."
                         },
                         {
-                            position: "Web & SEO Consultant",
+                            isCurrent: false,
+                            position: "Web & Media Consultant",
                             company: "SAF Consulting & JHS Corporate",
                             period: "May – September 2023",
-                            tag: "PRESS & WEBTV",
-                            description: "Redesign of 3 digital press platforms on WordPress. Automated newsletters and Google News integration. Engineered an online TV channel (WebTV) with automated video broadcasts and digital advertising networks (Afrikaad)."
+                            tag: "DIGITAL PRESS & WEBTV",
+                            description: "Redesign of 3 digital press portals, automated newsletters, Google News integration, and creation of an online WebTV channel with ad network management (Afrikaad)."
                         },
                         {
+                            isCurrent: false,
                             position: "Freelance Mobile Developer",
                             company: "Beninfy",
                             period: "April – December 2023",
-                            tag: "FLUTTER & MAPS",
-                            description: "Flutter mobile frontend integration from Figma design systems for a carpooling and tourism app. Google Maps API integration and resilient REST communication."
+                            tag: "FLUTTER & MAPPING",
+                            description: "Development of a Flutter carpooling and cultural discovery mobile app from Figma designs, integrating Google Maps navigation and REST APIs."
                         }
                     ]
                 },
@@ -831,148 +897,149 @@ function app() {
                     title: "Academic Education & Certifications",
                     items: [
                         {
-                            title: "Full Stack Web Development MERN",
-                            school: "Oak Academy | Udemy",
-                            period: "2022–2024",
-                            description: "Certification obtained in November 2024. Full MERN stack architecture, RESTful API design, state management, and reactive systems."
+                            title: "Full-Stack Web Development Certification (MERN)",
+                            school: "Oak Academy · Udemy",
+                            period: "2022 – 2024",
+                            description: "Completed in November 2024. RESTful API design, state management, and reactive web applications."
                         },
                         {
                             title: "Bachelor's Degree in Software Engineering",
                             school: "IFRI — University of Abomey-Calavi (UAC)",
-                            period: "2015–2019",
-                            description: "Graduated in September 2019. Software architecture, UML systems modeling, relational database design, and algorithmic problem-solving."
+                            period: "2015 – 2019",
+                            description: "Graduated in September 2019. Software architecture, UML/Merise modeling, relational databases, and algorithms."
                         },
                         {
-                            title: "Math & Computer Science Preparatory Program",
+                            title: "Preparatory Program in Mathematics & Computer Science",
                             school: "IMSP — Institute of Mathematics and Physical Sciences",
-                            period: "2013–2015",
-                            description: "Rigorous theoretical foundations in discrete mathematics, linear algebra, and computational logic."
+                            period: "2013 – 2015",
+                            description: "Intensive foundation in discrete mathematics, linear algebra, and computational logic."
                         }
                     ]
                 },
                 skillsSection: {
-                    tag: "DIRECT TECHNICAL MASTERY",
-                    title: "THE UNVARNISHED TOOLBOX.",
+                    tag: "TECHNICAL SKILLS",
+                    title: "THE TOOLS I WORK WITH EVERY DAY.",
+                    subtitle: "Technologies chosen for their reliability in production, maintainability, and fit for real-world operational constraints.",
                     pillars: [
                         {
                             num: "01",
                             category: "BACKEND & DATA",
                             icon: "database",
                             color: "accent-green",
-                            tagline: "// Core stability, logic & persistence",
+                            tagline: "Business logic, APIs & relational databases",
                             items: [
-                                { name: "PHP / Laravel", badge: "Advanced", highlight: true },
-                                { name: "Python / Django", badge: "In Progress", highlight: false },
-                                { name: "Supabase & PostgreSQL", badge: "BaaS & SQL", highlight: true },
-                                { name: "MySQL & SQLite", badge: "Optimized", highlight: false },
-                                { name: "REST Architecture", badge: "Standardized", highlight: true }
+                                { name: "PHP / Laravel", badge: "Core Stack", highlight: true },
+                                { name: "Python / Django", badge: "Working", highlight: false },
+                                { name: "PostgreSQL & Supabase", badge: "SQL & Realtime", highlight: true },
+                                { name: "MySQL & SQLite", badge: "Production", highlight: false },
+                                { name: "REST API Design", badge: "Architecture", highlight: true }
                             ]
                         },
                         {
                             num: "02",
-                            category: "CLIENT & MOBILE",
+                            category: "FRONTEND & MOBILE",
                             icon: "devices",
                             color: "accent-amber",
-                            tagline: "// Reactive, offline & lightweight",
+                            tagline: "Responsive apps online and offline",
                             items: [
-                                { name: "Flutter / Dart", badge: "Cross-platform", highlight: true },
-                                { name: "PWA / Dexie.js", badge: "Offline-first", highlight: true },
-                                { name: "Alpine.js & Livewire", badge: "Ultra-light", highlight: true },
-                                { name: "Tailwind CSS & Bootstrap", badge: "Zero-Runtime", highlight: false },
-                                { name: "JavaScript & TypeScript", badge: "Strict Type", highlight: false }
+                                { name: "Flutter / Dart", badge: "iOS & Android", highlight: true },
+                                { name: "PWA & IndexedDB (Dexie.js)", badge: "Offline-first", highlight: true },
+                                { name: "Livewire & Alpine.js", badge: "Reactive UI", highlight: true },
+                                { name: "Tailwind CSS & Bootstrap", badge: "Responsive", highlight: false },
+                                { name: "JavaScript & TypeScript", badge: "Typed JS", highlight: false }
                             ]
                         },
                         {
                             num: "03",
-                            category: "CLOUD, DEVOPS & TOOLS",
+                            category: "SERVERS & DEPLOYMENT",
                             icon: "cloud_sync",
                             color: "text-high",
-                            tagline: "// Controlled deployments & tooling",
+                            tagline: "Hosting, cloud storage & version control",
                             items: [
-                                { name: "Linux VPS", badge: "Autonomous", highlight: true },
-                                { name: "cPanel & Hosting", badge: "Production", highlight: false },
-                                { name: "AWS S3 / Storage", badge: "Frugal", highlight: false },
-                                { name: "Git, GitLab & GitHub", badge: "Pipelines", highlight: true },
-                                { name: "Postman & Vite", badge: "Tests & Build", highlight: false }
+                                { name: "Linux VPS Servers", badge: "Administration", highlight: true },
+                                { name: "AWS S3 & Cloud Storage", badge: "Media & Backups", highlight: false },
+                                { name: "Git, GitLab & GitHub", badge: "Version Control", highlight: true },
+                                { name: "Web Hosting & cPanel", badge: "Deployment", highlight: false },
+                                { name: "Postman & API Testing", badge: "Verification", highlight: false }
                             ]
                         },
                         {
                             num: "04",
-                            category: "AI & SYSTEMS PRACTICE",
+                            category: "ARCHITECTURE & APPLIED AI",
                             icon: "psychology",
                             color: "accent-green",
-                            tagline: "// Pragmatic systems & AI integration",
+                            tagline: "System design, decision support & training",
                             items: [
-                                { name: "AI & LLM Integration", badge: "OpenAI / Claude API", highlight: true },
-                                { name: "Decision Trees", badge: "Decision Support", highlight: true },
-                                { name: "UML & Merise Modeling", badge: "Architecture", highlight: false },
-                                { name: "Technical Diagnostics", badge: "< 48h turnaround", highlight: true },
-                                { name: "Documentation & Training", badge: "Autonomy", highlight: false }
+                                { name: "AI & LLM Integration", badge: "OpenAI / Claude", highlight: true },
+                                { name: "Decision Trees & Scoring", badge: "Business Logic", highlight: true },
+                                { name: "UML & Merise Modeling", badge: "System Design", highlight: false },
+                                { name: "Codebase Audits & Recovery", badge: "Fast Turnaround", highlight: true },
+                                { name: "Team Training & Docs", badge: "Handover", highlight: false }
                             ]
                         }
                     ]
                 },
                 contact: {
-                    tag: "// DIRECT COMM PROTOCOL // ZERO MIDDLEMEN",
-                    title: "LET'S BUILD EXCEPTIONAL SYSTEMS.",
-                    subtitle: "No impersonal forms or sales gatekeepers. Reach out to me directly through the channels below to discuss your software architecture, platforms, or consulting missions.",
-                    guarantee: "Full autonomy engagement, grounded in concrete deliverables and clear strategic alignment from day one.",
-                    emailBadge: "OFFICIAL CHANNEL // EMAIL",
-                    emailResponseTime: "Guaranteed response < 24 business hours",
+                    tag: "DIRECT CONTACT",
+                    title: "LET'S DISCUSS YOUR NEXT PROJECT.",
+                    subtitle: "Looking to design a new web platform, launch a mobile application, or upgrade an existing business system? Reach out directly through whichever channel suits you best.",
+                    guarantee: "Direct collaboration with me, no sales middlemen, and a clear roadmap from our very first conversation.",
+                    emailBadge: "DIRECT EMAIL ADDRESS",
+                    emailResponseTime: "Response within 24 business hours",
                     channels: [
                         {
                             id: "whatsapp",
-                            tag: "// INSTANT",
+                            tag: "FAST MESSAGING",
                             title: "Direct WhatsApp",
-                            desc: "Fast messaging & voice exchanges",
+                            desc: "Ideal for a quick initial message or voice note",
                             value: "+229 01 6151-2491",
                             link: "https://wa.me/2290161512491",
-                            action: "Open WhatsApp →"
+                            action: "Message on WhatsApp →"
                         },
                         {
                             id: "email",
-                            tag: "// FORMAL",
+                            tag: "BRIEFS & PROPOSALS",
                             title: "Professional Email",
-                            desc: "Specifications, proposals & technical briefs",
+                            desc: "For project specifications, documents, and formal inquiries",
                             value: "assogbamanuel6@gmail.com",
                             link: "mailto:assogbamanuel6@gmail.com",
-                            action: "Send Email →"
+                            action: "Send an Email →"
                         },
                         {
                             id: "linkedin",
-                            tag: "// NETWORK",
-                            title: "LinkedIn Network",
-                            desc: "Verified background & professional peers",
-                            value: "/in/manuel-assogba",
+                            tag: "PROFESSIONAL NETWORK",
+                            title: "LinkedIn Profile",
+                            desc: "View my full background and connect on LinkedIn",
+                            value: "linkedin.com/in/manuel-assogba",
                             link: "https://linkedin.com/in/manuel-assogba-a0900a123/",
-                            action: "View Profile →"
+                            action: "Open LinkedIn →"
                         },
                         {
                             id: "github",
-                            tag: "// SOURCE CODE",
+                            tag: "CODE REPOSITORIES",
                             title: "GitHub & GitLab",
-                            desc: "Architectures, commits & open solutions",
-                            value: "manuelh6 - assogbamanuel6",
+                            desc: "Explore my public repositories and open-source work",
+                            value: "manuelh6 · assogbamanuel6",
                             link: "https://github.com/manuelh6",
                             secondLink: "https://gitlab.com/assogbamanuel6"
                         }
                     ],
-                    locationText: "COTONOU - WEST AFRICA [UTC+1] — AVAILABLE FOR REMOTE MISSIONS WORLDWIDE",
-                    remoteBadge: "OPEN TO REMOTE"
+                    locationText: "Based in Cotonou (Benin, UTC+1) — Available for remote and on-site missions worldwide",
+                    remoteBadge: "Remote & On-site Missions"
                 },
                 footer: {
                     tagline: "MANUEL ASSOGBA",
-                    desc: "Engineering mission-critical platforms, sober interfaces, and software architectures for high-stake operations.",
-                    colIndex: "// INDEX",
-                    colDoctrine: "// DOCTRINE",
-                    colLocation: "// LOCATION",
-                    philosophyLink: "Philosophy",
-                    stackLink: "Field Stack",
+                    desc: "Software Architect and Full-Stack Developer. Custom web applications, mobile apps, and business systems built for real-world reliability.",
+                    colIndex: "NAVIGATION",
+                    colDoctrine: "EXPLORE",
+                    colLocation: "LOCATION",
+                    philosophyLink: "My Approach",
+                    stackLink: "Technical Skills",
                     contactLink: "Direct Contact",
-                    city: "Cotonou (Benin)",
-                    timezone: "UTC+1 // Global Remote",
+                    city: "Cotonou, Benin",
+                    timezone: "UTC+1 Timezone · Worldwide Remote",
                     copyright: "Manuel Assogba. All rights reserved.",
-                    status: "STATUS: SYSTEMS OPERATIONAL"
+                    status: "Portfolio updated · 2026"
                 }
             }
         },
@@ -1074,10 +1141,21 @@ function app() {
         handleScroll() {
             const scrollTop = window.pageYOffset;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            this.scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            this.scrollProgress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
 
             this.showNav = scrollTop > 100;
             this.showBackToTop = scrollTop > 500;
+
+            const sectionIds = ['focus', 'approche', 'projets', 'parcours', 'outils', 'contact'];
+            const triggerOffset = window.scrollY + 180;
+            let current = 'focus';
+            for (const id of sectionIds) {
+                const el = document.getElementById(id);
+                if (el && el.offsetTop <= triggerOffset) {
+                    current = id;
+                }
+            }
+            this.activeSection = current;
         },
 
         scrollToTop() {
