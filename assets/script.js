@@ -7,20 +7,9 @@ function app() {
         showBackToTop: false,
         scrollProgress: 0,
         activeFilter: 'all',
+        localTime: '',
+        clockInterval: null,
 
-        // Form data
-        form: {
-            name: '',
-            email: '',
-            project_type: 'systeme',
-            message: ''
-        },
-        errors: {},
-        isSubmitting: false,
-        submitMessage: '',
-        submitSuccess: false,
-
-        // Lightbox
         lightbox: {
             show: false,
             images: [],
@@ -30,9 +19,7 @@ function app() {
             }
         },
 
-        // Projects data (Synchronized bilingual + real images)
         projects: [
-            // 0: FieldOz (Projet Phare - Section 2)
             {
                 id: "fieldoz",
                 type: "Web",
@@ -66,7 +53,6 @@ function app() {
                     demo: null
                 }
             },
-            // 1: Business Checkup (FUND.lab)
             {
                 id: "business-checkup",
                 type: "Web / IA",
@@ -105,7 +91,6 @@ function app() {
                     demo: null
                 }
             },
-            // 2: Akonta
             {
                 id: "akonta",
                 type: "Web / PWA",
@@ -136,7 +121,6 @@ function app() {
                     demo: null
                 }
             },
-            // 3: Le Transporteur
             {
                 id: "le-transporteur",
                 type: "Mobile",
@@ -183,7 +167,6 @@ function app() {
                     demo: null
                 }
             },
-            // 4: BiodivCenter (GIZ)
             {
                 id: "biodivcenter",
                 type: "Web / Mobile",
@@ -214,7 +197,6 @@ function app() {
                     demo: null
                 }
             },
-            // 5: iKnow (Maison des Tortues)
             {
                 id: "iknow",
                 type: "Web",
@@ -245,7 +227,6 @@ function app() {
                     demo: "https://maisondestortues.org/nos-solutions/iknow"
                 }
             },
-            // 6: Jande & Exam (DYRA)
             {
                 id: "jande-exam",
                 type: "Web",
@@ -276,7 +257,6 @@ function app() {
                     demo: null
                 }
             },
-            // 7: Grid Generator
             {
                 id: "grid-generator",
                 type: "Web",
@@ -307,7 +287,6 @@ function app() {
                     demo: null
                 }
             },
-            // 8: Beninfy Mobile
             {
                 id: "beninfy",
                 type: "Mobile",
@@ -344,9 +323,15 @@ function app() {
             }
         ],
 
-        // Texts for multilingual support (Full synchronization)
         texts: {
             fr: {
+                metaTitle: "Manuel Assogba — Architecte Logiciel & Développeur Full-Stack",
+                statusStrip: {
+                    operational: "DISPONIBLE // COTONOU [UTC+1]",
+                    clockLabel: "HEURE LOCALE :",
+                    experienceLabel: "EXPÉRIENCE :",
+                    experienceValue: "+ 5 ANS"
+                },
                 nav: {
                     focus: "Focus",
                     featured: "Projet Phare",
@@ -354,8 +339,9 @@ function app() {
                     projects: "Réalisations",
                     parcours: "Parcours",
                     stack: "Stack",
-                    contact: "Contact",
-                    cta: "Initier un Projet"
+                    contact: "Contact Direct",
+                    cta: "Initier un Projet",
+                    langLabel: "// LANGUE"
                 },
                 hero: {
                     role: "ARCHITECTE LOGICIEL & DÉVELOPPEUR FULL-STACK",
@@ -386,13 +372,15 @@ function app() {
                     description: "Plateforme SaaS conçue pour transformer des données terrain complexes en récits visuels et rapports d'impact incontestables. Une architecture pensée pour offrir une clarté absolue aux bailleurs de fonds et aux équipes sur le terrain.",
                     quoteTitle: "EXCELLENCE TECHNIQUE & TERRAIN",
                     quoteText: "« Synthétiser l'essentiel, rendre tangibles les données critiques et garantir une autonomie totale de pilotage sans intermédiaire. »",
+                    stackLabel: "ARCHITECTURE DE PRODUCTION",
                     indicators: [
                         { label: "TEMPS CHARGE", val: "< 0.4s" },
                         { label: "CONSO DATA", val: "-74%" },
                         { label: "DISPONIBILITÉ", val: "99.98%" }
                     ],
                     syncStatus: "SYNC HORS-LIGNE VÉRIFIÉE",
-                    liveLink: "Explorer le dépôt GitLab"
+                    liveLink: "Explorer le dépôt GitLab",
+                    statusBadge: "STATUT : DÉPLOYÉ"
                 },
                 doctrine: {
                     tag: "PHILOSOPHIE & APPROCHE",
@@ -436,14 +424,15 @@ function app() {
                     title: "DES SYSTÈMES ÉPROUVÉS EN PRODUCTION.",
                     subtitle: "Sélection d'architectures logicielles, PWA offline-first, applications mobiles et plateformes de données déployées face à des exigences métiers strictes.",
                     filters: {
-                        all: "TOUS LES SYSTÈMES",
+                        all: "TOUS",
                         web: "WEB & SAAS",
                         mobile: "MOBILE",
                         systemes: "SYSTÈMES & ONG"
                     },
                     photosCount: "photos",
                     viewGitlab: "Dépôt GitLab",
-                    viewSolution: "Voir la solution"
+                    viewSolution: "Voir la solution",
+                    privateLabel: "// Déploiement Privé"
                 },
                 parcours: {
                     tag: "EXPÉRIENCE & VÉRITÉ BRUTE",
@@ -598,7 +587,7 @@ function app() {
                     ]
                 },
                 contact: {
-                    tag: "// CANAL DIRECT // PROTOCOLE DE CONTACT",
+                    tag: "// CANAL DIRECT // SANS INTERMÉDIAIRE",
                     title: "DÉMARRONS UN PROJET D'ENVERGURE.",
                     subtitle: "Pas de formulaire impersonnel ni de filtre commercial. Contactez-moi directement via les canaux ci-dessous pour échanger sur vos objectifs d'architecture, vos plateformes ou vos missions.",
                     guarantee: "Intervention en autonomie complète, basée sur des livrables précis et un alignement stratégique clair dès le départ.",
@@ -607,62 +596,68 @@ function app() {
                     channels: [
                         {
                             id: "whatsapp",
+                            tag: "// INSTANT",
                             title: "WhatsApp Direct",
                             desc: "Échanges rapides, messages & vocaux",
                             value: "+229 01 6151-2491",
                             link: "https://wa.me/2290161512491",
-                            action: "Ouvrir WhatsApp →",
-                            icon: "chat",
-                            color: "accent-green",
-                            borderColor: "hover:border-accent-green"
+                            action: "Ouvrir WhatsApp →"
                         },
                         {
                             id: "email",
+                            tag: "// FORMEL",
                             title: "Email Professionnel",
                             desc: "Cahiers des charges, devis & dossiers",
                             value: "assogbamanuel6@gmail.com",
                             link: "mailto:assogbamanuel6@gmail.com",
-                            action: "Écrire un Email →",
-                            icon: "mail",
-                            color: "accent-green",
-                            borderColor: "hover:border-accent-green"
+                            action: "Écrire un Email →"
                         },
                         {
                             id: "linkedin",
+                            tag: "// RÉSEAU",
                             title: "Réseau LinkedIn",
                             desc: "Parcours vérifié & réseau de pairs",
-                            value: "linkedin.com/in/manuel-assogba",
+                            value: "/in/manuel-assogba",
                             link: "https://linkedin.com/in/manuel-assogba-a0900a123/",
-                            action: "Voir le profil →",
-                            icon: "badge",
-                            color: "text-high",
-                            borderColor: "hover:border-text-high"
+                            action: "Voir le profil →"
                         },
                         {
                             id: "github",
-                            title: "Dépôts GitHub & GitLab",
+                            tag: "// CODE SOURCE",
+                            title: "GitHub & GitLab",
                             desc: "Commits, architectures & solutions",
-                            value: "github.com/manuelh6",
+                            value: "manuelh6 - assogbamanuel6",
                             link: "https://github.com/manuelh6",
-                            secondLink: "https://gitlab.com/assogbamanuel6",
-                            secondLabel: "GitLab",
-                            action: "Consulter GitHub →",
-                            icon: "terminal",
-                            color: "accent-amber",
-                            borderColor: "hover:border-accent-amber"
+                            secondLink: "https://gitlab.com/assogbamanuel6"
                         }
                     ],
-                    locationText: "COTONOU - AFRIQUE DE L'OUEST [UTC+1] — DISPONIBLE MISSIONS REMOTE MONDE"
+                    locationText: "COTONOU - AFRIQUE DE L'OUEST [UTC+1] — DISPONIBLE MISSIONS REMOTE MONDE",
+                    remoteBadge: "DISPONIBLE EN REMOTE"
                 },
                 footer: {
                     tagline: "MANUEL ASSOGBA",
                     desc: "Conception de plateformes critiques, interfaces sobres et topologies logicielles pour organisations à fort enjeu opérationnel.",
+                    colIndex: "// INDEX",
+                    colDoctrine: "// DOCTRINE",
+                    colLocation: "// LOCALISATION",
+                    philosophyLink: "Philosophie",
+                    stackLink: "Stack Terrain",
+                    contactLink: "Contact Direct",
+                    city: "Cotonou (Bénin)",
+                    timezone: "UTC+1 // Remote Global",
                     copyright: "Manuel Assogba. Tous droits réservés.",
-                    status: "STATUS: SYSTÈMES OPÉRATIONNELS"
+                    status: "STATUT : SYSTÈMES OPÉRATIONNELS"
                 }
             },
 
             en: {
+                metaTitle: "Manuel Assogba — Software Architect & Full-Stack Developer",
+                statusStrip: {
+                    operational: "AVAILABLE // COTONOU [UTC+1]",
+                    clockLabel: "LOCAL TIME:",
+                    experienceLabel: "EXPERIENCE:",
+                    experienceValue: "5+ YRS"
+                },
                 nav: {
                     focus: "Focus",
                     featured: "Featured Project",
@@ -670,8 +665,9 @@ function app() {
                     projects: "Projects",
                     parcours: "Experience",
                     stack: "Stack",
-                    contact: "Contact",
-                    cta: "Initiate a Project"
+                    contact: "Direct Contact",
+                    cta: "Initiate a Project",
+                    langLabel: "// LANGUAGE"
                 },
                 hero: {
                     role: "SOFTWARE ARCHITECT & FULL-STACK DEVELOPER",
@@ -702,13 +698,15 @@ function app() {
                     description: "SaaS platform engineered to transform complex field data into undeniable visual impact narratives. Tailored to provide absolute clarity to international donors and field monitoring teams.",
                     quoteTitle: "TECHNICAL & FIELD EXCELLENCE",
                     quoteText: "“Synthesizing the essential, making critical data tangible, and securing complete operational autonomy with zero middlemen.”",
+                    stackLabel: "PRODUCTION ARCHITECTURE",
                     indicators: [
                         { label: "LOAD TIME", val: "< 0.4s" },
                         { label: "DATA CONSUMPTION", val: "-74%" },
                         { label: "AVAILABILITY", val: "99.98%" }
                     ],
                     syncStatus: "OFFLINE SYNC VERIFIED",
-                    liveLink: "Explore GitLab Repository"
+                    liveLink: "Explore GitLab Repository",
+                    statusBadge: "STATUS: DEPLOYED"
                 },
                 doctrine: {
                     tag: "PHILOSOPHY & APPROACH",
@@ -752,14 +750,15 @@ function app() {
                     title: "PROVEN IN PRODUCTION ENVIRONMENTS.",
                     subtitle: "A curated selection of software architectures, offline-first PWAs, mobile applications, and mission-critical data systems deployed under rigorous operational demands.",
                     filters: {
-                        all: "ALL SYSTEMS",
+                        all: "ALL",
                         web: "WEB & SAAS",
                         mobile: "MOBILE",
                         systemes: "SYSTEMS & NGOS"
                     },
                     photosCount: "photos",
                     viewGitlab: "GitLab Repository",
-                    viewSolution: "View Solution"
+                    viewSolution: "View Solution",
+                    privateLabel: "// Private Deployment"
                 },
                 parcours: {
                     tag: "EXPERIENCE & GROUND TRUTH",
@@ -923,75 +922,104 @@ function app() {
                     channels: [
                         {
                             id: "whatsapp",
+                            tag: "// INSTANT",
                             title: "Direct WhatsApp",
                             desc: "Fast messaging & voice exchanges",
                             value: "+229 01 6151-2491",
                             link: "https://wa.me/2290161512491",
-                            action: "Open WhatsApp →",
-                            icon: "chat",
-                            color: "accent-green",
-                            borderColor: "hover:border-accent-green"
+                            action: "Open WhatsApp →"
                         },
                         {
                             id: "email",
+                            tag: "// FORMAL",
                             title: "Professional Email",
                             desc: "Specifications, proposals & technical briefs",
                             value: "assogbamanuel6@gmail.com",
                             link: "mailto:assogbamanuel6@gmail.com",
-                            action: "Send Email →",
-                            icon: "mail",
-                            color: "accent-green",
-                            borderColor: "hover:border-accent-green"
+                            action: "Send Email →"
                         },
                         {
                             id: "linkedin",
+                            tag: "// NETWORK",
                             title: "LinkedIn Network",
                             desc: "Verified background & professional peers",
-                            value: "linkedin.com/in/manuel-assogba",
+                            value: "/in/manuel-assogba",
                             link: "https://linkedin.com/in/manuel-assogba-a0900a123/",
-                            action: "View Profile →",
-                            icon: "badge",
-                            color: "text-high",
-                            borderColor: "hover:border-text-high"
+                            action: "View Profile →"
                         },
                         {
                             id: "github",
-                            title: "GitHub & GitLab Repositories",
+                            tag: "// SOURCE CODE",
+                            title: "GitHub & GitLab",
                             desc: "Architectures, commits & open solutions",
-                            value: "github.com/manuelh6",
+                            value: "manuelh6 - assogbamanuel6",
                             link: "https://github.com/manuelh6",
-                            secondLink: "https://gitlab.com/assogbamanuel6",
-                            secondLabel: "GitLab",
-                            action: "Explore GitHub →",
-                            icon: "terminal",
-                            color: "accent-amber",
-                            borderColor: "hover:border-accent-amber"
+                            secondLink: "https://gitlab.com/assogbamanuel6"
                         }
                     ],
-                    locationText: "COTONOU - WEST AFRICA [UTC+1] — AVAILABLE FOR REMOTE MISSIONS WORLDWIDE"
+                    locationText: "COTONOU - WEST AFRICA [UTC+1] — AVAILABLE FOR REMOTE MISSIONS WORLDWIDE",
+                    remoteBadge: "OPEN TO REMOTE"
                 },
                 footer: {
                     tagline: "MANUEL ASSOGBA",
                     desc: "Engineering mission-critical platforms, sober interfaces, and software architectures for high-stake operations.",
+                    colIndex: "// INDEX",
+                    colDoctrine: "// DOCTRINE",
+                    colLocation: "// LOCATION",
+                    philosophyLink: "Philosophy",
+                    stackLink: "Field Stack",
+                    contactLink: "Direct Contact",
+                    city: "Cotonou (Benin)",
+                    timezone: "UTC+1 // Global Remote",
                     copyright: "Manuel Assogba. All rights reserved.",
                     status: "STATUS: SYSTEMS OPERATIONAL"
                 }
             }
         },
 
-        // Filter handler
         setFilter(filter) {
             this.activeFilter = filter;
         },
 
-        filteredProjects() {
-            // Skip index 0 (featured project FieldOz)
+        projectsForFilter(filter) {
             const rest = this.projects.slice(1);
-            if (this.activeFilter === 'all') return rest;
-            if (this.activeFilter === 'web') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('web'));
-            if (this.activeFilter === 'mobile') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('mobile'));
-            if (this.activeFilter === 'systemes') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('systemes') || (p.type.toLowerCase()).includes('système'));
+            if (filter === 'all') return rest;
+            if (filter === 'web') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('web'));
+            if (filter === 'mobile') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('mobile'));
+            if (filter === 'systemes') return rest.filter(p => (p.category || p.type.toLowerCase()).includes('systemes') || (p.type.toLowerCase()).includes('système'));
             return rest;
+        },
+
+        filteredProjects() {
+            return this.projectsForFilter(this.activeFilter);
+        },
+
+        countByFilter(filter) {
+            const count = this.projectsForFilter(filter).length;
+            return String(count).padStart(2, '0');
+        },
+
+        updateLocalClock() {
+            try {
+                const formatter = new Intl.DateTimeFormat('fr-FR', {
+                    timeZone: 'Africa/Porto-Novo',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
+                this.localTime = formatter.format(new Date()) + ' WAT';
+            } catch (e) {
+                const now = new Date();
+                this.localTime = now.toTimeString().slice(0, 8);
+            }
+        },
+
+        syncDocumentMeta() {
+            document.documentElement.lang = this.currentLang;
+            if (this.texts[this.currentLang] && this.texts[this.currentLang].metaTitle) {
+                document.title = this.texts[this.currentLang].metaTitle;
+            }
         },
 
         toggleDarkMode() {
@@ -1007,27 +1035,28 @@ function app() {
         toggleLanguage() {
             this.currentLang = this.currentLang === 'fr' ? 'en' : 'fr';
             localStorage.setItem('lang', this.currentLang);
-            document.documentElement.lang = this.currentLang;
+            this.syncDocumentMeta();
         },
 
         setLanguage(lang) {
             this.currentLang = lang;
             localStorage.setItem('lang', lang);
-            document.documentElement.lang = lang;
+            this.syncDocumentMeta();
         },
 
         init() {
-            // Restore theme
             if (this.darkMode) {
                 document.documentElement.classList.add('dark');
             } else {
                 document.documentElement.classList.remove('dark');
             }
 
-            // Restore language
             const savedLang = localStorage.getItem('lang') || 'fr';
             this.currentLang = savedLang;
-            document.documentElement.lang = savedLang;
+            this.syncDocumentMeta();
+
+            this.updateLocalClock();
+            this.clockInterval = setInterval(() => this.updateLocalClock(), 1000);
 
             let ticking = false;
             window.addEventListener('scroll', () => {
